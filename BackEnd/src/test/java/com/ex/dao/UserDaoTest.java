@@ -2,11 +2,20 @@ package com.ex.dao;
 
 import com.ex.beans.User;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
 
 public class UserDaoTest {
+
+    @Before
+    public void before() {
+        final UserDao userDao = new UserDao();
+        userDao.findAll().forEach((u)->{
+            userDao.delete(u);
+        });
+    }
 
     @Test
     public void create() {
@@ -62,7 +71,7 @@ public class UserDaoTest {
         User user = new User();
         user = userDao.create(user);
         User user2 = new User();
-        user = userDao.create(user);
+        user2 = userDao.create(user2);
 
         List<User> all = userDao.findAll();
         Assert.assertArrayEquals(new User[]{user, user2}, all.toArray());
