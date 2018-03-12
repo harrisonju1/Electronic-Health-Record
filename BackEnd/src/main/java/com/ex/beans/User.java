@@ -1,14 +1,25 @@
 package com.ex.beans;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-
+@Entity
+@Table(name = "users")
 public class User {
+
+    @Id
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
+    @Column(name = "role")
     private String role;
 
     public User() {
