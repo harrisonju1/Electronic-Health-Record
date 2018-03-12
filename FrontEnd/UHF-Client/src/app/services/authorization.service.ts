@@ -18,9 +18,9 @@ export class AuthorizationService {
     private http: HttpClient
   ) { }
 
-  login(username: string): Observable<User>{
+  login(username: string, password: string): Observable<User>{
       // Replace string argument with servlet URL
-      let obs = this.http.post<User>('', username); 
+      let obs = this.http.post<User>('', { "username": username, "password": password }, httpOptions); 
 
       obs.pipe(
         catchError(this.handleError('login'))
