@@ -2,6 +2,7 @@ package com.ex.beans;
 
 import java.util.Objects;
 
+
 public class User {
     private int employeeId;
     private String username;
