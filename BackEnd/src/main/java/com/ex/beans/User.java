@@ -4,7 +4,7 @@ import java.util.Objects;
 
 
 public class User {
-    private int employeeId;
+    private int id;
     private String username;
     private String password;
     private String firstName;
@@ -25,7 +25,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "employeeId=" + employeeId +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
@@ -39,7 +39,7 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return employeeId == user.employeeId &&
+        return id == user.id &&
                 Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(firstName, user.firstName) &&
@@ -50,15 +50,15 @@ public class User {
     @Override
     public int hashCode() {
 
-        return Objects.hash(employeeId, username, password, firstName, lastName, role);
+        return Objects.hash(id, username, password, firstName, lastName, role);
     }
 
-    public int getEmployeeId() {
-        return employeeId;
+    public int getId() {
+        return id;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
