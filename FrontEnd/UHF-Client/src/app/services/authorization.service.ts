@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../domain/User';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -18,7 +19,8 @@ export class AuthorizationService {
   obj:User;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   /* CLIENT SIDE - SET -------------------------------------------------------------------------------------------------- */
@@ -74,6 +76,14 @@ export class AuthorizationService {
     if (username){
       localStorage.setItem('magickey', JSON.stringify({username:username}));
     }
+  }
+
+  /* LOGOUT -------------------------------------------------------------------------------------------------- */
+  logout(){
+    this.currentUser = null;
+    localStorage.removeItem('magickey');
+    this.router.navigate(['/home']);
+    
   }
 
   /* HANDLE ERRORS -------------------------------------------------------------------------------------------------- */

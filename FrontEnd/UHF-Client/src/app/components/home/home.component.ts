@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../domain/User';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  currentUser: User;
+  loggedIn:boolean = false;
+
+  constructor(
+    private authService:AuthorizationService
+  ) { }
 
   ngOnInit() {
+    this.currentUser = this.authService.getCurrentUser();
+
+    if (this.currentUser != null) {
+      this.loggedIn = true;
+    }
+  }
+
+  ngDoCheck(){
+    if(this.authService.currentUser != null){
+      this.currentUser = this.authService.currentUser;
+        this.loggedIn = true;
+    }
+  }
+
+  logout(){
+    this.currentUser = null;
+    this.loggedIn = false;
+    this.authService.logout();
   }
 
 }

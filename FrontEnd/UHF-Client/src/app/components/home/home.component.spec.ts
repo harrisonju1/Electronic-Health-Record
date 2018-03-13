@@ -22,4 +22,10 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should change states to falsy', () => {
+    component.logout();
+    expect(component.loggedIn).toBeFalsy();
+    expect(component.currentUser).toBeFalsy();
+  });
 });
