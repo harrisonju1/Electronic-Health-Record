@@ -20,20 +20,16 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.login("TB9999","").subscribe(o =>{
-
-      console.log(o);
-
-    });
-
-  }
-
-  login(form: NgForm) {
     this.authService.getAll().subscribe(u => {
       u.forEach(element => {
        console.log(element); 
       });
     });
+
+  }
+
+  login(form: NgForm) {
+    
 
     this.username = form.value['username'];
     this.password = form.value['password'];
@@ -41,16 +37,19 @@ export class LoginComponent implements OnInit {
     console.log(this.username);
     console.log(this.password);
 
-    // this.authService.login(this.username, this.password).subscribe(o => {
-    //   if (o === null){
-    //     console.log(o);
-    //     // Unsuccessful login
-    //     this.error = 'Username/Password is incorrect';
-    //   }
-    //   else {
+    this.authService.login(this.username,this.password).subscribe(o =>{
 
-    //   }
-    // });
+      console.log(o);
+
+      if (o === null){
+        // unsuccessful login
+        this.error="Username/Password is incorrect.";
+      }
+      else {
+        // successful login
+      }
+
+    });
 
   }
 
