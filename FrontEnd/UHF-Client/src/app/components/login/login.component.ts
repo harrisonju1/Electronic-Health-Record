@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorizationService } from '../../services/authorization.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   loggedIn: boolean;
 
   constructor(
-    private authService: AuthorizationService
+    private authService: AuthorizationService,
+    private route:Router
   ) { }
 
   ngOnInit() {
@@ -58,6 +60,8 @@ export class LoginComponent implements OnInit {
         };
         this.authService.setCurrentUser(userObj);
         this.authService.assignToken(username);
+        this.route.navigate(['/home']);
+
       }
       else {
         this.error="Username/Password is incorrect.";
