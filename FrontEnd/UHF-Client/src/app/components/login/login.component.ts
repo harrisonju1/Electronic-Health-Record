@@ -20,16 +20,20 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authService.login("TB9999","").subscribe(o =>{
+
+      console.log(o);
+
+    });
+
+  }
+
+  login(form: NgForm) {
     this.authService.getAll().subscribe(u => {
       u.forEach(element => {
        console.log(element); 
       });
     });
-
-    this.authService.login("","");
-  }
-
-  login(form: NgForm) {
 
     this.username = form.value['username'];
     this.password = form.value['password'];
