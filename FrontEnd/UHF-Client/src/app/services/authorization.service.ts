@@ -21,9 +21,37 @@ export class AuthorizationService {
     private http: HttpClient
   ) { }
 
+  /* CLIENT SIDE - SET -------------------------------------------------------------------------------------------------- */
+  setCurrentUser(user:User){
+    this.currentUser = user;
+    console.log(this.currentUser);
+  }  
+
+  getCurrentUser():User{
+    return this.currentUser;
+  }
+
+  /* GET FROM DB -------------------------------------------------------------------------------------------------- */
   getAll():Observable<User[]>{
     return this.http.get<User[]>(this.usersUrl);
   }
+
+  // getUser(obs: Observable<User[]>) {
+  //   let userArr;
+  //   obs.subscribe(o => {
+  //     userArr = o;
+  //     console.log(o);
+  //     console.log(userArr);
+
+  //     o.forEach(element => {
+  //       console.log(element);
+  //     });
+
+  //     console.log(userArr[0])
+  //   });
+  // }
+
+  /* LOGIN -------------------------------------------------------------------------------------------------- */
 
   login(username: string, password: string): Observable<User>{
       // Replace string argument with servlet URL
@@ -42,21 +70,8 @@ export class AuthorizationService {
       return this.http.post<User>(this.usersUrl, {"username":username, "password":password}, httpOptions); 
   }
 
-  getUser(obs: Observable<User[]>) {
-    let userArr;
-    obs.subscribe(o => {
-      userArr = o;
-      console.log(o);
-      console.log(userArr);
 
-      o.forEach(element => {
-        console.log(element);
-      });
-
-      console.log(userArr[0])
-    });
-  }
-
+  /* HANDLE ERRORS -------------------------------------------------------------------------------------------------- */
   /**
    * Handle Http operation that failed.
    * Let the app continue.

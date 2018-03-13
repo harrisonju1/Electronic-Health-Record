@@ -45,8 +45,18 @@ export class LoginComponent implements OnInit {
         // unsuccessful login
         this.error="Username/Password is incorrect.";
       }
-      else {
+      else if (o != null && this.username == o.username && this.password == o.password){
         // successful login
+        
+        let userObj = {
+          id:o.id,
+          username:o.username,
+          password:o.password,
+          first_name:o.first_name,
+          last_name:o.last_name,
+          role:o.role
+        };
+        this.authService.setCurrentUser(userObj);
       }
 
     });
