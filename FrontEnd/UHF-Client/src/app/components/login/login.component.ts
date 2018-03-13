@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
+  username: string = "test";
   password: string;
   error: string;
 
@@ -20,24 +20,24 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.getAll().subscribe(u => {
-      u.forEach(element => {
-       console.log(element); 
-      });
-    });
+    // this.authService.getAll().subscribe(u => {
+    //   u.forEach(element => {
+    //    console.log(element); 
+    //   });
+    // });
 
   }
 
-  login(form: NgForm) {
-    
+  login(username:string, password:string){
+    // $event.preventDefault();
 
-    this.username = form.value['username'];
-    this.password = form.value['password'];
+    console.log(username);
+    console.log(password);
 
-    console.log(this.username);
-    console.log(this.password);
+    this.username = username;
+    this.password = password;
 
-    this.authService.login(this.username,this.password).subscribe(o =>{
+      this.authService.login(this.username,this.password).subscribe(o =>{
 
       console.log(o);
 
@@ -51,6 +51,30 @@ export class LoginComponent implements OnInit {
 
     });
 
+    return this.username;
   }
+  // login(form: NgForm) {
+
+  //   this.username = form.value['username'];
+  //   this.password = form.value['password'];
+
+  //   console.log(this.username);
+  //   console.log(this.password);
+
+  //   // this.authService.login(this.username,this.password).subscribe(o =>{
+
+  //   //   console.log(o);
+
+  //   //   if (o === null){
+  //   //     // unsuccessful login
+  //   //     this.error="Username/Password is incorrect.";
+  //   //   }
+  //   //   else {
+  //   //     // successful login
+  //   //   }
+
+  //   // });
+
+  // }
 
 }

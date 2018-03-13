@@ -24,4 +24,20 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  it("should create the login component", async(() => {
+    expect(component).toBeTruthy();
+  }));
+
+  it("should get test username", async(() => {
+    expect(component.username).toBeTruthy();
+  }));
+
+  it("should get valid username", async(() => {
+    let username = "RC0110";
+    let password = "rcorona123";
+
+    expect(component.login(username, password)).toBeTruthy();
+  }));
+
 });

@@ -4,21 +4,24 @@
     
     <h3>Login</h3>
 
-    <form #form="ngForm" (ngSubmit)="login(form)">
+    <form>
 
       <div class="form-group row">
         <label for="username" class="col-md-3">Username</label>
-        <input type="text" name="username" id="username" ngModel class="col-md-8 form-control" required>
+        <input type="text" name="username" id="username" ngModel class="col-md-8 form-control" #username required>
         
       </div>
 
       <div class="form-group row">
         <label for="password" class="col-md-3">Password</label>
-        <input type="password" name="password" id="password" ngModel class="col-md-8 form-control" required>
+        <input type="password" name="password" id="password" ngModel class="col-md-8 form-control" #password required>
         
       </div>
 
-      <button type="submit" class="offset-md-5 btn btn-success">Submit</button>
+      <button type="submit" class="offset-md-5 btn btn-success" 
+      (click)="login(username.value, password.value);
+      username.value='';
+      password.value='';">Submit</button>
 
       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 

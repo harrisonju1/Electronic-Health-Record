@@ -30,14 +30,14 @@ export class AuthorizationService {
       console.log(username);
       console.log(password);
 
-      // this.obj = {
-      //             "id":5, 
-      //             "username": username, 
-      //             "password": password,
-      //             "first_name":"Eeyore",
-      //             "last_name":"Donkey", 
-      //             "role":"Patient"
-      //           };
+      this.obj = {
+                  "id":0, 
+                  "username": username, 
+                  "password": password,
+                  "first_name":"TEST",
+                  "last_name":"TEST", 
+                  "role":"TEST"
+                };
 
       return this.http.post<User>(this.usersUrl, {"username":username, "password":password}, httpOptions); 
   }
