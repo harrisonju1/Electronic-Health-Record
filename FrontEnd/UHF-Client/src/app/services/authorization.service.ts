@@ -12,21 +12,60 @@ const httpOptions = {
 @Injectable()
 export class AuthorizationService {
 
+  private usersUrl = 'api/users';
+
   currentUser: User;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  login(username: string, password: string): Observable<User>{
+  getAll():Observable<User[]>{
+    return this.http.get<User[]>(this.usersUrl);
+  }
+
+  login(username: string, password: string): User{
       // Replace string argument with servlet URL
-      let obs = this.http.post<User>('', { "username": username, "password": password }, httpOptions); 
+    //   console.log(username);
+    //   console.log(password);
 
-      obs.pipe(
-        catchError(this.handleError('login'))
-      );
+    //   let obs = this.http.post<User>(this.usersUrl, { "username": username, "password": password }); 
 
-    return obs;
+    //   obs.pipe(
+    //     catchError(this.handleError('login'))
+    //   );
+
+    //   console.log(obs);
+
+    // return obs;
+
+    // MESSING AROUND
+    let obs = this.getAll();
+    let user = this.getUser(obs);
+    return user;
+  }
+
+  getUser( obs: Observable<User[]>) : User {
+    let userArr;
+    obs.subscribe(o => {
+      userArr = o;
+      console.log(o);
+      console.log(userArr);
+
+      o.forEach(element => {
+        console.log(element);
+      });
+
+      console.log(userArr[0])
+    });
+
+    while(userArr === undefined){
+      // if (userArr != undefined){
+      //   return userArr[0];
+      // }
+    }
+
+    return userArr[0];
   }
 
   /**

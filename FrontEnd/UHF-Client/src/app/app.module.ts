@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+// import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthorizationService } from './services/authorization.service';
 import { AppRoutingModule } from './app-routing.module';
 
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './services/in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,17 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
     AppRoutingModule,
-    HttpModule
+    HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [
-    AuthorizationService,
-    HttpClient
+    AuthorizationService
   ],
   bootstrap: [AppComponent]
 })
