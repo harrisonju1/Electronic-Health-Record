@@ -1,0 +1,10 @@
+/* ---------- GENERAL STYLES ---------- */
+div.container {
+    width:50%;
+    margin:12% auto;
+}
+
+#homeContainer {
+    padding:5%;
+    text-align: center;
+}
