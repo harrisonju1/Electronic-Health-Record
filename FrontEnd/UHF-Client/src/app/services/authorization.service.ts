@@ -70,6 +70,11 @@ export class AuthorizationService {
       return this.http.post<User>(this.usersUrl, {"username":username, "password":password}, httpOptions); 
   }
 
+  assignToken(username:string){
+    if (username){
+      localStorage.setItem('magickey', JSON.stringify({username:username}));
+    }
+  }
 
   /* HANDLE ERRORS -------------------------------------------------------------------------------------------------- */
   /**

@@ -57,6 +57,10 @@ export class LoginComponent implements OnInit {
           role:o.role
         };
         this.authService.setCurrentUser(userObj);
+        this.authService.assignToken(username);
+      }
+      else {
+        this.error="Username/Password is incorrect.";
       }
 
     });

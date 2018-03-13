@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './services/in-memory-data.service';
 
+import { AuthGuard } from './guard/auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { InMemoryDataService }  from './services/in-memory-data.service';
     )
   ],
   providers: [
-    AuthorizationService
+    AuthorizationService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
