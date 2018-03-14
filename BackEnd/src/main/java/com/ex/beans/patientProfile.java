@@ -7,7 +7,7 @@ import java.util.Objects;
 //declare which table this bean is for
 @Entity
 @Table(name="patientprofile")
-public class patientProfile {
+public class PatientProfile {
     //set up primary key which is patient_id
     @Id
     @Column(name="patient_id")
@@ -16,6 +16,8 @@ public class patientProfile {
     //set up rest of columns
     //unsure what to do with reference key for now
     //initialize all columns with database column name to match
+    @Column(name="user_id")
+    private int user_id;
     @Column(name="doctor_id")
     private int doctor_id;
     @Column(name="first_name")
@@ -51,10 +53,11 @@ public class patientProfile {
     @Column(name="insurance_id")
     private int insurance_id;
 
-    public patientProfile(){
+    public PatientProfile(){
     }
 
-    public patientProfile(int doctor_id, String firstName, String lastName, int ssn, Date dob, int phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insurance_id) {
+    public PatientProfile(int user_id, int doctor_id, String firstName, String lastName, int ssn, Date dob, int phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insurance_id) {
+        this.user_id = user_id;
         this.doctor_id = doctor_id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -80,6 +83,14 @@ public class patientProfile {
 
     public void setPatient_id(int patient_id) {
         this.patient_id = patient_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public int getDoctor_id() {
@@ -218,10 +229,12 @@ public class patientProfile {
         this.insurance_id = insurance_id;
     }
 
+
     @Override
     public String toString() {
-        return "patientProfile{" +
+        return "PatientProfile{" +
                 "patient_id=" + patient_id +
+                ", user_id=" + user_id +
                 ", doctor_id=" + doctor_id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -246,8 +259,9 @@ public class patientProfile {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        patientProfile that = (patientProfile) o;
+        PatientProfile that = (PatientProfile) o;
         return patient_id == that.patient_id &&
+                user_id == that.user_id &&
                 doctor_id == that.doctor_id &&
                 ssn == that.ssn &&
                 phone_number == that.phone_number &&
@@ -270,6 +284,6 @@ public class patientProfile {
     @Override
     public int hashCode() {
 
-        return Objects.hash(patient_id, doctor_id, firstName, lastName, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
+        return Objects.hash(patient_id, user_id, doctor_id, firstName, lastName, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
     }
 }

@@ -1,17 +1,14 @@
 package com.ex.beans;
 
-import com.ex.beans.*;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
-import java.time.LocalDate;
 import java.util.Random;
 
 public class _BeanTestGen {
     public static void main(String[] args) {
-        GenTestFor(User.class);
+        GenTestFor(PatientProfile.class);
     }
     static void GenTestFor(Class bean) {
         System.out.println("generating test for "+bean.getName());
