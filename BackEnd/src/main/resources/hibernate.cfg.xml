@@ -11,6 +11,7 @@
         <property name="hibernate.connection.password">harrison6</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
+        <!-- this is where we would place mapping for classes used -->
         <mapping class="com.ex.beans.User"/>
         <mapping class="com.ex.beans.PatientProfile"/>
 
