@@ -49,6 +49,15 @@ public class PatientProfileDao {
         return profile;
     }
 
+    public PatientProfile findOneByDoctorId(int doctor_id){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+
+        PatientProfile profile = (PatientProfile) session.get(PatientProfile.class, doctor_id);
+
+        session.close();
+        return profile;
+    }
+
     public List<PatientProfile> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
 

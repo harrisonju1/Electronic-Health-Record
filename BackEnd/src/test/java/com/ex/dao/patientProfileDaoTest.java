@@ -1,6 +1,7 @@
 package com.ex.dao;
 
 import com.ex.beans.*;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,7 @@ public class patientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
         PatientProfile result = profileDao.findOneByPatientId(profile.getPatient_id());
+        Assert.assertEquals(profile, result);
     }
 
     @Test
@@ -28,40 +30,76 @@ public class patientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
 
-//        patient_id SERIAL PRIMARY KEY,
-//        doctor_id int REFERENCES doctors (doctor_id),
-//                first_name varchar(25),
-//                last_name varchar(25),
-//                ssn int,
-//        dob date,
-//        phone_number int,
-//        email varchar(55),
-//                marital_status varchar(20),
-//                gender varchar(55),
-//                ethnicity varchar(55),
-//                occupation varchar(25),
-//                address varchar(55),
-//                city varchar(25),
-//                state varchar(25),
-//                zipcode varchar(25),
-//                insurance_provider varchar(55),
-//                insurance_id int
-//
-//        user.setFirstName("testfnameupdate");
-//        user.setLastName("testlnameupdate");
-//        user.setPassword("testpassupdate");
-//        user.setRole("testroleupdate");
-//        user.setUsername("testusernameupdate");
-//
-//        user = userDao.update(user);
-        profile.setPatient_id(1);
         profile.setDoctor_id(1);
-        profile.setUser
+        profile.setUser_id(1);
+        profile.setDob(null);
+        profile.setPhone_number(123);
+        profile.setEmail("test@test.com");
+        profile.setMarital_status("the 10th gender");
+        profile.setEthnicity("nordic");
+        profile.setOccupation("Hammer King");
+        profile.setAddress("Natalie Portman's address");
+        profile.setCity("Asgard");
+        profile.setState("the state of moving atm");
+        profile.setZipcode(48102);
+        profile.setInsurance_provider("Odin");
+        profile.setInsurance_id(123);
 
         PatientProfile result = profileDao.findOneByPatientId(profile.getPatient_id());
         Assert.assertEquals(profile, result);
 
     }
 
+    @Test
+    public void findOneByPatientId(){
+        PatientProfileDao profileDao = new PatientProfileDao();
+        PatientProfile profile = new PatientProfile();
+        profile = profileDao.create(profile);
+
+        PatientProfile result = profileDao.findOneByPatientId(profile.getPatient_id());
+        Assert.assertEquals(profile, result);
+    }
+
+    @Test
+    public void findOneByUserId(){
+        PatientProfileDao profileDao = new PatientProfileDao();
+        PatientProfile profile = new PatientProfile();
+        profile = profileDao.create(profile);
+
+        PatientProfile result = profileDao.findOneByPatientId(profile.getUser_id());
+        Assert.assertEquals(profile, result);
+    }
+
+    @Test
+    public void findOneByDoctorId(){
+        PatientProfileDao profileDao = new PatientProfileDao();
+        PatientProfile profile = new PatientProfile();
+        profile = profileDao.create(profile);
+
+        PatientProfile result = profileDao.findOneByPatientId(profile.getDoctor_id());
+        Assert.assertEquals(profile, result);
+    }
+
+    @Test
+    public void findAll(){
+        PatientProfileDao profileDao = new PatientProfileDao();
+        PatientProfile profile = new PatientProfile();
+        profile = profileDao.create(profile);
+        PatientProfile profile2 = new PatientProfile();
+        profile2 = profileDao.create(profile2);
+
+        List<PatientProfile> all = profileDao.findAll();
+        Assert.assertArrayEquals(new PatientProfile[]{profile,profile2}, all.toArray());
+    }
+
+    @Test
+    public void delete(){
+        PatientProfileDao profileDao = new PatientProfileDao();
+        PatientProfile profile = new PatientProfile();
+        profile = profileDao.create(profile);
+        profileDao.delete(profile);
+        PatientProfile result = profileDao.findOneByPatientId(profile.getPatient_id());
+        Assert.assertNull(result);
+    }
 
 }
