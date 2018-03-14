@@ -3,10 +3,14 @@ package com.ex.beans;
 import javax.persistence.*;
 import java.util.Objects;
 
+//Using hibernate to set up bean models
 @Entity
 @Table(name = "users")
 public class User {
 
+    //set up primary key using @Id
+    //specify which columns will be in the table
+    //the rest of the bean should be same as the past
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
