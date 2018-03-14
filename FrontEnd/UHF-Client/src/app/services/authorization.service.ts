@@ -7,13 +7,13 @@ import { of } from 'rxjs/observable/of';
 import { Router } from '@angular/router';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':'Basic '+btoa('username'+':'+'password')})
 }
 
 @Injectable()
 export class AuthorizationService {
 
-  private usersUrl = 'api/users';
+  private usersUrl = 'http://localhost:8080/api/login';
 
   currentUser: User;
   obj:User;
