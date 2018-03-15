@@ -1,4 +1,3 @@
-import { zip } from "rxjs/operators";
 
 export class PatientProfile {
     patient_id: number;
