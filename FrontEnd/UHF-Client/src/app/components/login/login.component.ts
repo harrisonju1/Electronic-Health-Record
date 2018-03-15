@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorizationService } from '../../services/authorization.service';
+import { User, UserRole } from '../../domain/User';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,14 +20,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthorizationService,
     private route:Router
-  ) { }
+  ) { 
+    authService.authorizePage(UserRole.NONE);
+  }
 
   ngOnInit() {
-    // this.authService.getAll().subscribe(u => {
-    //   u.forEach(element => {
-    //    console.log(element); 
-    //   });
-    // });
 
   }
 
@@ -38,16 +36,6 @@ export class LoginComponent implements OnInit {
 
       if (this.authService.login(this.username,this.password)!=null) {
         // successful login
-        
-//        let userObj = o;
-        // let userObj = {
-        //   id:o.id,
-        //   username:o.username,
-        //   password:o.password,
-        //   first_name:o.first_name,
-        //   last_name:o.last_name,
-        //   role:o.role
-        // };
         this.route.navigate(['/home']);
       }
       else {

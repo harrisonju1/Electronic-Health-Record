@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../../../services/authorization.service';
+import { UserRole } from '../../../domain/User';
 
 @Component({
   selector: 'app-med-history-form',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedHistoryFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(authService:AuthorizationService) { 
+    authService.authorizePage(UserRole.DOCTOR);
+  }
 
   ngOnInit() {
   }

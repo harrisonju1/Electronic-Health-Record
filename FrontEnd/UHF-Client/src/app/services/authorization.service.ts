@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User, UserRole } from '../domain/User';
 import { catchError } from 'rxjs/operators';
@@ -7,13 +7,13 @@ import { of } from 'rxjs/observable/of';
 import { Router } from '@angular/router';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('username' + ':' + 'password') })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 }
 
 @Injectable()
 export class AuthorizationService {
 
-  private usersUrl = 'http://localhost:8080/api/authorize';
+  private authorizeUrl = 'http://localhost:8080/api/authorize';
 
   currentUser: User;
   obj: User;
@@ -24,52 +24,26 @@ export class AuthorizationService {
   ) { }
 
   /* CLIENT SIDE - SET -------------------------------------------------------------------------------------------------- */
-  setCurrentUser(user: User) {
-    this.currentUser = user;
-    console.log(this.currentUser);
-  }
-
   getCurrentUser(): User {
     return this.currentUser;
   }
 
   /* GET FROM DB -------------------------------------------------------------------------------------------------- */
   getAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl);
+    return this.http.get<User[]>(this.authorizeUrl);
   }
 
-  // getUser(obs: Observable<User[]>) {
-  //   let userArr;
-  //   obs.subscribe(o => {
-  //     userArr = o;
-  //     console.log(o);
-  //     console.log(userArr);
-
-  //     o.forEach(element => {
-  //       console.log(element);
-  //     });
-
-  //     console.log(userArr[0])
-  //   });
-  // }
-
   /* LOGIN -------------------------------------------------------------------------------------------------- */
-
   login(username: string, password: string): User {
     // Replace string argument with servlet URL
-    console.log(username);
-    console.log(password);
+    console.log("login "+username+":"+password);
 
-    this.obj = {
-      "id": 0,
-      "username": username,
-      "password": password,
-      "first_name": "TEST",
-      "last_name": "TEST",
-      "role": UserRole.NONE
-    };
-
-    this.http.post<User>(this.usersUrl, { "username": username, "password": password }, httpOptions).subscribe(o => {
+    // let data = { "username": username, "password": password };
+    // let data = { username: username, password: password };
+    let data = username+":"+password;
+    // HttpParams
+    // let data = "{username:"+username+","+"password:"+password+"}";
+    this.http.post<User>(this.authorizeUrl, data, httpOptions).subscribe(o => {
       if (o && o.username == username) {
         console.log("logged in!");
         this.currentUser = o;
@@ -78,34 +52,25 @@ export class AuthorizationService {
         console.log("login failed");
       }
     });
-    // this.authService.setCurrentUser(userObj);
-    // this.authService.assignToken(username);
     return this.currentUser;
   }
-
-  // assignToken(username:string){
-  //   if (username){
-  //     localStorage.setItem('magickey', JSON.stringify({username:username}));
-  //   }
-  // }
 
   /* LOGOUT -------------------------------------------------------------------------------------------------- */
   logout() {
     this.currentUser = null;
-    // localStorage.removeItem('magickey');
     localStorage.removeItem('auth');
     this.router.navigate(['/home']);
   }
 
   /* AUTHORIZATION --------------------------------------------------------------------------------------------------*/
   // call this to determine if the current account has this right authorization role
-  authorize(role: UserRole) {
+  isAuthorized(role: UserRole) {
     if (role == UserRole.NONE)
       return true;
     var auth = localStorage.getItem('auth');
     var cred = atob(auth).split(':');
     if (cred.length == 2) {
-      this.http.post<User>(this.usersUrl, { "username": cred[0], "password": cred[1] }, httpOptions).subscribe((u) => {
+      this.http.post<User>(this.authorizeUrl, { "username": cred[0], "password": cred[1] }, httpOptions).subscribe((u) => {
         console.log(u);
         if (u && u.role == role) {
           return true;
@@ -113,6 +78,29 @@ export class AuthorizationService {
       });
     }
     return false;
+  }
+
+  // makes sure the current user has permission to view the page, otherwise redirect to home
+  authorizePage(...roles:UserRole[]) {
+    var authorized = false;
+    
+    var auth = localStorage.getItem('auth');
+    var cred = atob(auth).split(':');
+    if (cred.length == 2) {
+      this.http.post<User>(this.authorizeUrl, { "username": cred[0], "password": cred[1] }, httpOptions).subscribe((u) => {
+        console.log(u);
+        for (const role of roles) {
+          if (role == UserRole.NONE || u && u.role == role) {
+            authorized = true;
+            this.currentUser = u;
+            return;
+          }
+        }
+      });
+    }
+    if (!authorized) {
+      this.router.navigate(['/login']);
+    }
   }
 
   /* HANDLE ERRORS -------------------------------------------------------------------------------------------------- */
