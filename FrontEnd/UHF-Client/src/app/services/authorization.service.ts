@@ -33,7 +33,7 @@ export class AuthorizationService {
     return this.currentUser;
   }
 
-  /* GET FROM DB -------------------------------------------------------------------------------------------------- */
+  /* GET FROM IN MEMORY DB -------------------------------------------------------------------------------------------------- */
   getAll():Observable<User[]>{
     return this.http.get<User[]>(this.usersUrl);
   }

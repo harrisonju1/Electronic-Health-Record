@@ -24,6 +24,7 @@ import { ApptRecordFormComponent } from './components/appointment/appt-record-fo
 import { ApptRecordComponent } from './components/appointment/appt-record/appt-record.component';
 import { MedHistoryRecordComponent } from './components/med/med-history-record/med-history-record.component';
 import { MedHistoryFormComponent } from './components/med/med-history-form/med-history-form.component';
+import { FormService } from './services/form.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { MedHistoryFormComponent } from './components/med/med-history-form/med-h
   ],
   providers: [
     AuthorizationService,
+    FormService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

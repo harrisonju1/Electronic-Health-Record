@@ -35,8 +35,5 @@ describe('PatientFormComponent', () => {
     component.cancel();
     expect(component.reset).toBeTruthy();
   });
-  it('should update form field', () => {
-    expect(component.checkDuplicated()).toBeFalsy();
-  });
 
 });

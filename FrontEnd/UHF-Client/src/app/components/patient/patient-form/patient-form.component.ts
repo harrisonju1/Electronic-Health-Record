@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PatientProfile } from '../../../domain/PatientProfile';
+import { FormService } from '../../../services/form.service';
 
 @Component({
   selector: 'app-patient-form',
@@ -13,7 +14,9 @@ export class PatientFormComponent implements OnInit {
   reset: boolean = false;
   patientProfile: PatientProfile;
 
-  constructor() { }
+  constructor(
+    private formService: FormService
+  ) { }
 
   ngOnInit() {
   }
@@ -42,10 +45,6 @@ export class PatientFormComponent implements OnInit {
 
   cancel(){
     this.reset = true;
-  }
-
-  checkDuplicated(): boolean{
-    return true;
   }
 
 }

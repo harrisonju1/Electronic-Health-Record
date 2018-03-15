@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormService } from '../../../services/form.service';
 
 @Component({
   selector: 'app-patient-profile',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private formService: FormService
+  ) { }
 
   ngOnInit() {
+    this.formService.getAllPatientProfiles();
   }
 
 }
