@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthorizationService } from '../../services/authorization.service';
+import { User, UserRole } from '../../domain/User';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,80 +20,32 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthorizationService,
     private route:Router
-  ) { }
+  ) { 
+    authService.authorizePage(UserRole.NONE);
+  }
 
   ngOnInit() {
-    // this.authService.getAll().subscribe(u => {
-    //   u.forEach(element => {
-    //    console.log(element); 
-    //   });
-    // });
 
   }
 
   login(username:string, password:string){
     // $event.preventDefault();
 
-    console.log(username);
-    console.log(password);
-
     this.username = username;
     this.password = password;
 
-      this.authService.login(this.username,this.password).subscribe(o =>{
-
-      console.log(o);
-
-      if (o === null){
-        // unsuccessful login
-        this.error="Username/Password is incorrect.";
-      }
-      else if (o != null && this.username == o.username && this.password == o.password){
-        // successful login
-        
-        let userObj = {
-          id:o.id,
-          username:o.username,
-          password:o.password,
-          first_name:o.first_name,
-          last_name:o.last_name,
-          role:o.role
-        };
-        this.authService.setCurrentUser(userObj);
-        this.authService.assignToken(username);
+    this.authService.login(this.username,this.password).subscribe(o=>{
+      if (o && o.username == username) {
+        console.log("logged in!");
         this.route.navigate(['/home']);
-
-      }
-      else {
+        this.authService.loginsuccess(o);
+      } else {
+        // unsuccessful login
+        console.log("login failed");
         this.error="Username/Password is incorrect.";
       }
-
     });
 
     return this.username;
   }
-  // login(form: NgForm) {
-
-  //   this.username = form.value['username'];
-  //   this.password = form.value['password'];
-
-  //   console.log(this.username);
-  //   console.log(this.password);
-
-  //   // this.authService.login(this.username,this.password).subscribe(o =>{
-
-  //   //   console.log(o);
-
-  //   //   if (o === null){
-  //   //     // unsuccessful login
-  //   //     this.error="Username/Password is incorrect.";
-  //   //   }
-  //   //   else {
-  //   //     // successful login
-  //   //   }
-
-  //   // });
-
-  // }
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../domain/User';
+import { User, UserRole } from '../../domain/User';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -14,7 +14,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private authService:AuthorizationService
-  ) { }
+  ) { 
+    authService.authorizePage(UserRole.NONE);
+  }
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();

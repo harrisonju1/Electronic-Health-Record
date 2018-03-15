@@ -1,10 +1,17 @@
+export enum UserRole {
+    NONE = "",
+    PATIENT = "PATIENT",
+    DOCTOR = "DOCTOR",
+    ADMIN = "ADMIN",
+}
+
 export class User {
     id: number;
     username: string;
     password:string;
     first_name: string;
     last_name: string;
-    role: string;
+    role: UserRole;
 
     // constructor(
     //     id: number,
