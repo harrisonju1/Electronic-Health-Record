@@ -16,14 +16,14 @@ export class MedHistoryFormComponent implements OnInit {
     // "Access-Control-Allow-Credentials":'true',
     // 'X-Requested-With': 'XMLHttpRequest',
     // "Content-Type": "application/x-www-form-urlencoded",
-    // 'Authorization' : 'Basic '+btoa("user:pass"),
+    'Authorization' : 'Basic '+btoa("user:pass"),
   });
   val2={}
   constructor(private http: HttpClient) {
     http.get(
       "http://localhost:8080/api/test",
       {headers: this.headers
-        //, withCredentials:true
+        , withCredentials:true
       })
       .subscribe(data => {this.val = data.toString();});
   }
