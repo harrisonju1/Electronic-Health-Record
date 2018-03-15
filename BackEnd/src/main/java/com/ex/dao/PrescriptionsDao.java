@@ -1,6 +1,6 @@
 package com.ex.dao;
 
-import com.ex.beans.Prescriptions
+import com.ex.beans.Prescriptions;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
