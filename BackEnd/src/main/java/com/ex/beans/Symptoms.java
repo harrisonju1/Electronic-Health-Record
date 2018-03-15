@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="symptoms")
-public class Symptoms {g
+public class Symptoms {
     @Id
     @Column
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -40,6 +40,54 @@ public class Symptoms {g
         this.doctorId = doctorId;
         this.visitId = visitId;
         this.visitDate = visitDate;
+        this.symptoms = symptoms;
+    }
+
+    public int getSymptomId() {
+        return symptomId;
+    }
+
+    public void setSymptomId(int symptomId) {
+        this.symptomId = symptomId;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public int getVisitId() {
+        return visitId;
+    }
+
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
+    }
+
+    public Date getVisitDate() {
+        return visitDate;
+    }
+
+    public void setVisitDate(Date visitDate) {
+        this.visitDate = visitDate;
+    }
+
+    public String getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
     }
 
