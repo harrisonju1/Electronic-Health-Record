@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PatientFormComponent } from './patient-form.component';
+import { FormsModule } from '@angular/forms';
 
 describe('PatientFormComponent', () => {
   let component: PatientFormComponent;
@@ -8,7 +9,8 @@ describe('PatientFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PatientFormComponent ]
+      declarations: [ PatientFormComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
@@ -22,4 +24,5 @@ describe('PatientFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
