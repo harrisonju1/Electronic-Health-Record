@@ -15,12 +15,30 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './services/in-memory-data.service';
 
 import { AuthGuard } from './guard/auth.guard';
+import { SearchPatientComponent } from './components/search-patient/search-patient.component';
+import { PatientProfileComponent } from './components/patient/patient-profile/patient-profile.component';
+import { MedHistoryComponent } from './components/med/med-history/med-history.component';
+import { MedInfoComponent } from './components/med/med-info/med-info.component';
+import { PatientFormComponent } from './components/patient/patient-form/patient-form.component';
+import { ApptRecordFormComponent } from './components/appointment/appt-record-form/appt-record-form.component';
+import { ApptRecordComponent } from './components/appointment/appt-record/appt-record.component';
+import { MedHistoryRecordComponent } from './components/med/med-history-record/med-history-record.component';
+import { MedHistoryFormComponent } from './components/med/med-history-form/med-history-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    SearchPatientComponent,
+    PatientProfileComponent,
+    MedHistoryComponent,
+    MedInfoComponent,
+    PatientFormComponent,
+    ApptRecordFormComponent,
+    ApptRecordComponent,
+    MedHistoryRecordComponent,
+    MedHistoryFormComponent
   ],
   imports: [
     BrowserModule,
