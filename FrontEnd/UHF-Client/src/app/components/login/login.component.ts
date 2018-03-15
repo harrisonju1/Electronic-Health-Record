@@ -33,66 +33,28 @@ export class LoginComponent implements OnInit {
   login(username:string, password:string){
     // $event.preventDefault();
 
-    console.log(username);
-    console.log(password);
-
     this.username = username;
     this.password = password;
 
-      this.authService.login(this.username,this.password).subscribe(o =>{
-
-      console.log(o);
-
-      if (o === null){
+      if (this.authService.login(this.username,this.password)!=null) {
+        // successful login
+        
+//        let userObj = o;
+        // let userObj = {
+        //   id:o.id,
+        //   username:o.username,
+        //   password:o.password,
+        //   first_name:o.first_name,
+        //   last_name:o.last_name,
+        //   role:o.role
+        // };
+        this.route.navigate(['/home']);
+      }
+      else {
         // unsuccessful login
         this.error="Username/Password is incorrect.";
       }
-      else if (o != null && this.username == o.username && this.password == o.password){
-        // successful login
-        
-        let userObj = {
-          id:o.id,
-          username:o.username,
-          password:o.password,
-          first_name:o.first_name,
-          last_name:o.last_name,
-          role:o.role
-        };
-        this.authService.setCurrentUser(userObj);
-        this.authService.assignToken(username);
-        this.route.navigate(['/home']);
-
-      }
-      else {
-        this.error="Username/Password is incorrect.";
-      }
-
-    });
 
     return this.username;
   }
-  // login(form: NgForm) {
-
-  //   this.username = form.value['username'];
-  //   this.password = form.value['password'];
-
-  //   console.log(this.username);
-  //   console.log(this.password);
-
-  //   // this.authService.login(this.username,this.password).subscribe(o =>{
-
-  //   //   console.log(o);
-
-  //   //   if (o === null){
-  //   //     // unsuccessful login
-  //   //     this.error="Username/Password is incorrect.";
-  //   //   }
-  //   //   else {
-  //   //     // successful login
-  //   //   }
-
-  //   // });
-
-  // }
-
 }
