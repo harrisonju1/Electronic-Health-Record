@@ -1,8 +1,8 @@
 export enum UserRole {
-    NONE = 1,
-    PATIENT = 2,
-    DOCTOR = 4,
-    ADMIN = 8,
+    NONE = "",
+    PATIENT = "PATIENT",
+    DOCTOR = "DOCTOR",
+    ADMIN = "ADMIN",
 }
 
 export class User {
