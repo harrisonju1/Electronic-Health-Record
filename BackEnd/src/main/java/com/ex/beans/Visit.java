@@ -38,6 +38,46 @@ public class Visit {
         this.visitReason = visitReason;
     }
 
+    public int getVisitId() {
+        return visitId;
+    }
+
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
+    }
+
+    public Date getVisitDate() {
+        return visitDate;
+    }
+
+    public void setVisitDate(Date visitDate) {
+        this.visitDate = visitDate;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getVisitReason() {
+        return visitReason;
+    }
+
+    public void setVisitReason(String visitReason) {
+        this.visitReason = visitReason;
+    }
+
     @Override
     public String toString() {
         return "Visit{" +
