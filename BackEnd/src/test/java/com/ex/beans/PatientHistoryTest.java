@@ -28,7 +28,7 @@ public void getHistoryIdTest() throws NoSuchFieldException, IllegalAccessExcepti
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("historyId");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = 1166855882;
+	int expected = 221777901;
 	field.set(inst, expected);
 	int result = inst.getHistoryId();
 	Assert.assertEquals(expected, result);
@@ -39,7 +39,7 @@ public void setHistoryIdTest() throws NoSuchFieldException, IllegalAccessExcepti
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("historyId");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = -520194322;
+	int expected = 614141706;
 	inst.setHistoryId(expected);
 	int result = (int)field.get(inst);
 	Assert.assertEquals(expected, result);
@@ -50,7 +50,7 @@ public void getPatientIdTest() throws NoSuchFieldException, IllegalAccessExcepti
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("patientId");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = -82684680;
+	int expected = 1009002851;
 	field.set(inst, expected);
 	int result = inst.getPatientId();
 	Assert.assertEquals(expected, result);
@@ -61,7 +61,7 @@ public void setPatientIdTest() throws NoSuchFieldException, IllegalAccessExcepti
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("patientId");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = 1813124505;
+	int expected = -853820223;
 	inst.setPatientId(expected);
 	int result = (int)field.get(inst);
 	Assert.assertEquals(expected, result);
@@ -72,7 +72,7 @@ public void getDoctorIdTest() throws NoSuchFieldException, IllegalAccessExceptio
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("doctorId");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = -2090751260;
+	int expected = -137756105;
 	field.set(inst, expected);
 	int result = inst.getDoctorId();
 	Assert.assertEquals(expected, result);
@@ -83,7 +83,7 @@ public void setDoctorIdTest() throws NoSuchFieldException, IllegalAccessExceptio
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("doctorId");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = -584023131;
+	int expected = -1700096108;
 	inst.setDoctorId(expected);
 	int result = (int)field.get(inst);
 	Assert.assertEquals(expected, result);
@@ -94,7 +94,7 @@ public void getFirstNameTest() throws NoSuchFieldException, IllegalAccessExcepti
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("firstName");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.023359418";
+	java.lang.String expected = "test string 0.7460709";
 	field.set(inst, expected);
 	java.lang.String result = inst.getFirstName();
 	Assert.assertEquals(expected, result);
@@ -105,7 +105,7 @@ public void setFirstNameTest() throws NoSuchFieldException, IllegalAccessExcepti
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("firstName");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.8232284";
+	java.lang.String expected = "test string 0.69239986";
 	inst.setFirstName(expected);
 	java.lang.String result = (java.lang.String)field.get(inst);
 	Assert.assertEquals(expected, result);
@@ -116,7 +116,7 @@ public void getLastNameTest() throws NoSuchFieldException, IllegalAccessExceptio
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("lastName");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.7711149";
+	java.lang.String expected = "test string 0.7950679";
 	field.set(inst, expected);
 	java.lang.String result = inst.getLastName();
 	Assert.assertEquals(expected, result);
@@ -127,7 +127,7 @@ public void setLastNameTest() throws NoSuchFieldException, IllegalAccessExceptio
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("lastName");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.22553837";
+	java.lang.String expected = "test string 0.017451763";
 	inst.setLastName(expected);
 	java.lang.String result = (java.lang.String)field.get(inst);
 	Assert.assertEquals(expected, result);
@@ -138,7 +138,7 @@ public void getAgeTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("age");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = 1257408889;
+	int expected = -837082829;
 	field.set(inst, expected);
 	int result = inst.getAge();
 	Assert.assertEquals(expected, result);
@@ -149,7 +149,7 @@ public void setAgeTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("age");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	int expected = -632740030;
+	int expected = -670532639;
 	inst.setAge(expected);
 	int result = (int)field.get(inst);
 	Assert.assertEquals(expected, result);
@@ -182,7 +182,7 @@ public void getVisitReasonTest() throws NoSuchFieldException, IllegalAccessExcep
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("visitReason");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.6280269";
+	java.lang.String expected = "test string 0.5868852";
 	field.set(inst, expected);
 	java.lang.String result = inst.getVisitReason();
 	Assert.assertEquals(expected, result);
@@ -193,7 +193,7 @@ public void setVisitReasonTest() throws NoSuchFieldException, IllegalAccessExcep
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("visitReason");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.2866416";
+	java.lang.String expected = "test string 0.579161";
 	inst.setVisitReason(expected);
 	java.lang.String result = (java.lang.String)field.get(inst);
 	Assert.assertEquals(expected, result);
@@ -292,7 +292,7 @@ public void getCurrentPrescriptionTest() throws NoSuchFieldException, IllegalAcc
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("currentPrescription");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.34161526";
+	java.lang.String expected = "test string 0.382832";
 	field.set(inst, expected);
 	java.lang.String result = inst.getCurrentPrescription();
 	Assert.assertEquals(expected, result);
@@ -303,7 +303,7 @@ public void setCurrentPrescriptionTest() throws NoSuchFieldException, IllegalAcc
 	Field field = com.ex.beans.PatientHistory.class.getDeclaredField("currentPrescription");
 	field.setAccessible(true);
 	com.ex.beans.PatientHistory inst = new com.ex.beans.PatientHistory();
-	java.lang.String expected = "test string 0.3315887";
+	java.lang.String expected = "test string 0.43005365";
 	inst.setCurrentPrescription(expected);
 	java.lang.String result = (java.lang.String)field.get(inst);
 	Assert.assertEquals(expected, result);
