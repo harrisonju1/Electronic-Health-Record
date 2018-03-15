@@ -15,11 +15,16 @@ public class AccountController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping("/api/login")
     Map<String, Object> login(String username, String password){
-        //todo Oath and spring security
+        //todo spring security
         Map<String, Object> maps = new HashMap<>();
         maps.put("username", "user");
         maps.put("password", "pass");
         return maps;
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/api/test")
+    String test(String username, String password){
+        return "val from spring";
     }
 
 }
