@@ -7,7 +7,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./med-history-form.component.css']
 })
 export class MedHistoryFormComponent implements OnInit {
-
   val="def";
   headers=new HttpHeaders({
     "Access-Control-Allow-Origin":"*",
@@ -15,12 +14,12 @@ export class MedHistoryFormComponent implements OnInit {
     // "Access-Control-Allow-Method":"GET, PUT, POST",
     'Authorization' : 'Basic '+btoa("user:pass"),
   });
-<<<<<<< HEAD
+
   constructor(private http: HttpClient) {
-=======
-  constructor(private http: HttpClient) { 
->>>>>>> d28f52638abe1ef480e9820d14eb98a1e93f3f5d
-    http.get("http://localhost:8080/api/test", {headers:this.headers}).subscribe(data => this.val = data.toString());
+    http.get(
+      "http://localhost:8080/api/test",
+      {headers: this.headers, withCredentials: true})
+      .subscribe(data => this.val = data.toString());
   }
   ngOnInit() {
 
