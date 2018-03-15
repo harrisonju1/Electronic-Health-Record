@@ -12,6 +12,7 @@ export class MedHistoryFormComponent implements OnInit {
     "Access-Control-Allow-Origin":"*",
     "Access-Control-Allow-Headers": "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With",
     "Access-Control-Allow-Method":"GET,PUT,POST",
+    "Access-Control-Allow-Credentials":'true',
     'Authorization' : 'Basic '+btoa("user:pass"),
   });
 

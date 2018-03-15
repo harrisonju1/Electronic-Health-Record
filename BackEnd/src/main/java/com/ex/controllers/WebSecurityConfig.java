@@ -46,7 +46,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedMethods("GET", "PUT", "POST", "PUT").allowedOrigins("*").allowedHeaders("*");
+                registry.addMapping("/**")
+                        .allowedMethods("GET", "PUT", "POST", "PUT", "OPTIONS")
+                        .allowedOrigins("https://localhost:4200")
+                        .allowedHeaders("*")
+                        .allowCredentials(true)
+                ;
             }
         };
     }
