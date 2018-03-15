@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,8 +28,17 @@ public class AccountController {
     String test(String username, String password){
         return "val from spring";
     }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping("/api/redirect")
+    String goToLogin(HttpServletResponse resp) throws IOException {
+        resp.setStatus(320);
+        resp.setHeader("Location", "http://localhost:4200/login");
+//        resp.sendRedirect("http://localhost:4200/login");
+        return "uh";
+    }
     @RequestMapping("/user")
     public Principal user(Principal user) {
+        System.out.println("USERIS "+user.toString());
         return user;
     }
 
