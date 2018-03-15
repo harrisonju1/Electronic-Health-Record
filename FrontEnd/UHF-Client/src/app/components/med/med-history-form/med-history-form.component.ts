@@ -12,8 +12,8 @@ export class MedHistoryFormComponent implements OnInit {
   headers=new HttpHeaders({
     "Access-Control-Allow-Origin":"*",
     "Access-Control-Allow-Headers": "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With",
-    "Access-Control-Allow-Method":"GET, PUT, POST",
-    // authorization : 'Basic x'
+    // "Access-Control-Allow-Method":"GET, PUT, POST",
+    'Authorization' : 'Basic '+btoa("user:pass"),
   });
   constructor(private http: HttpClient) { 
     http.get("https://localhost:8080/api/test", {headers:this.headers}).subscribe(data => this.val = data.toString());

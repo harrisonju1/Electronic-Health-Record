@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +26,10 @@ public class AccountController {
     @RequestMapping("/api/test")
     String test(String username, String password){
         return "val from spring";
+    }
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
     }
 
 }
