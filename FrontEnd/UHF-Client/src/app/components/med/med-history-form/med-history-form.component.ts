@@ -16,7 +16,7 @@ export class MedHistoryFormComponent implements OnInit {
     // authorization : 'Basic x'
   });
   constructor(private http: HttpClient) { 
-    http.get("localhost:8080/api/test", {headers:this.headers}).subscribe(data => this.val = data.toString());
+    http.get("https://localhost:8080/api/test", {headers:this.headers}).subscribe(data => this.val = data.toString());
   }
   ngOnInit() {
 
