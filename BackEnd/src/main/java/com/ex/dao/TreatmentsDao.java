@@ -32,7 +32,7 @@ public class TreatmentsDao {
         return treatment;
     }
 
-    public List<Treatments> findByPatientId(int treatmentId){
+    public List<Treatments> findByTreatmentId(int treatmentId){
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Treatments> treatments = (List<Treatments>) session.createCriteria(Treatments.class).add(Restrictions.eq("treatment_id", treatmentId)).list();
 
