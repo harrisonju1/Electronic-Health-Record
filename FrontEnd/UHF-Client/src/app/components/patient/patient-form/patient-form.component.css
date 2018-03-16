@@ -1,0 +1,11 @@
+#patientform{
+    width: 50%;
+    margin: 5% auto;
+    background-color: aliceblue;
+    padding: 3%;
+}
+
+.btn-dark:hover{
+    background-color: transparent;
+    color: #343A40;
+}

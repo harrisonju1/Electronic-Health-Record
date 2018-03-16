@@ -20,8 +20,12 @@
   
     </div>
   </nav>
-
-  <div class="container">
+  
+  <div class="container" id="patientform">
+      <h3>New Patient Form</h3>
+      <br>
+      <hr>
+      <br>
       <form #form="ngForm" (ngSubmit)="onSubmit(form)">
           <div class="form-row">
             <div class="form-group col-md-4">
@@ -33,7 +37,7 @@
               <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" required />
             </div>
             <div class="form-group col-md-4">
-              <label for="doctorID">Doctor</label>
+              <label for="doctorID">Doctor ID</label>
               <input type="number" class="form-control" id="doctorID" placeholder="#" name="doctorID" required />
             </div>
           </div>
@@ -181,8 +185,32 @@
               <input type="text" class="form-control" id="insuranceID" name="insuranceID" required />
             </div>
           </div>
+          
+          <button type="button" class="btn btn-outline-dark" 
+          data-toggle="modal" data-target="#cancel">Cancel</button>
+          <button type="submit" class="btn btn-dark">Submit</button>
 
-          <button type="submit" class="btn btn-outline-secondary">Submit</button>
-          <button type="reset" class="btn btn-outline-secondary" (click)="cancel()">Reset</button>
+           <!-- Modal -->
+        <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="cancelLabel">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                All fields will be lost.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">No, Continue</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="cancel()">Yes, Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
         </form>
+
+       
   </div>

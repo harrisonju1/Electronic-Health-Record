@@ -28,15 +28,9 @@ export class AuthorizationService {
     return this.currentUser;
   }
 
-<<<<<<< HEAD
-  /* GET FROM IN MEMORY DB -------------------------------------------------------------------------------------------------- */
-  getAll():Observable<User[]>{
-    return this.http.get<User[]>(this.usersUrl);
-=======
   /* GET FROM DB -------------------------------------------------------------------------------------------------- */
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.authorizeUrl);
->>>>>>> afb1765e6043c3caa7e99bdc143ad40368bdb09f
   }
 
   /* LOGIN -------------------------------------------------------------------------------------------------- */
