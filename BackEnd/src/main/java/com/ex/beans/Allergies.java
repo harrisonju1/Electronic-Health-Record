@@ -12,7 +12,7 @@ public class Allergies {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int allergyId;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="patient_id")
     private int patientId;
 
