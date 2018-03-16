@@ -15,7 +15,7 @@ export class ApptRecordFormComponent implements OnInit {
   submitted:boolean=false;
   reset:boolean=false;
 
-  apptRecord:ApptRecord;
+  apptRecord:ApptRecord = new ApptRecord();
 
   constructor(
     private formService:FormService,
@@ -32,11 +32,12 @@ export class ApptRecordFormComponent implements OnInit {
 
     this.apptRecord.patientId; // grab from patient profile
     this.apptRecord.visitDate = form.value['visitDate'];
-    this.apptRecord.doctorId = form.value['doctorID'];
+    // this.apptRecord.doctorId = form.value['doctorID'];
+    this.apptRecord.doctorId = this.apptRecord.doctorId;
     this.apptRecord.visitReason = form.value['visitReason'];
 
     this.formService.createApptRecord(this.apptRecord);
-
+    
   }
 
   cancel(){
