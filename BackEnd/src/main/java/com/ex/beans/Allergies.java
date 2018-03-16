@@ -1,5 +1,8 @@
 package com.ex.beans;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -13,6 +16,7 @@ public class Allergies {
     private int allergy_id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="patient_id")
     private PatientProfile patient;
 

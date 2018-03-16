@@ -1,6 +1,9 @@
 package com.ex.beans;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -14,10 +17,12 @@ public class Treatments {
     private int treatment_id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="patient_id")
     private PatientProfile patient;
 
@@ -25,6 +30,7 @@ public class Treatments {
     private String treatment;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="visit_id")
     private Visit visit;
 
