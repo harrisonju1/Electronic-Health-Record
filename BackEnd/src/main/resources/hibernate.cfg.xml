@@ -14,6 +14,14 @@
         <!-- this is where we would place mapping for classes used -->
         <mapping class="com.ex.beans.User"/>
         <mapping class="com.ex.beans.PatientProfile"/>
+        <mapping class="com.ex.beans.Allergies"/>
+        <mapping class="com.ex.beans.Diagnosis"/>
+        <mapping class="com.ex.beans.Doctors"/>
+        <mapping class="com.ex.beans.Prescriptions"/>
+        <mapping class="com.ex.beans.Symptoms"/>
+        <mapping class="com.ex.beans.Tests"/>
+        <mapping class="com.ex.beans.Treatments"/>
+        <mapping class="com.ex.beans.Visit"/>
 
     </session-factory>
 </hibernate-configuration>
