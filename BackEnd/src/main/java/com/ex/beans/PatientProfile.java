@@ -12,7 +12,7 @@ public class PatientProfile {
     @Id
     @Column(name="patient_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int patientId;
+    private int patient_id;
     //set up rest of columns
     //unsure what to do with reference key for now
     //initialize all columns with database column name to match
@@ -79,11 +79,11 @@ public class PatientProfile {
     }
 
     public int getPatientId() {
-        return patientId;
+        return patient_id;
     }
 
     public void setPatientId(int patientId) {
-        this.patientId = patientId;
+        this.patient_id = patientId;
     }
 
     public int getUserId() {
@@ -232,7 +232,7 @@ public class PatientProfile {
     @Override
     public String toString() {
         return "PatientProfile{" +
-                "patientId=" + patientId +
+                "patient_id=" + patient_id +
                 ", user_id=" + user_id +
                 ", doctor=" + doctor +
                 ", first_name='" + first_name + '\'' +
@@ -259,7 +259,7 @@ public class PatientProfile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PatientProfile that = (PatientProfile) o;
-        return patientId == that.patientId &&
+        return patient_id == that.patient_id &&
                 user_id == that.user_id &&
                 doctor == that.doctor &&
                 ssn == that.ssn &&
@@ -283,6 +283,6 @@ public class PatientProfile {
     @Override
     public int hashCode() {
 
-        return Objects.hash(patientId, user_id, doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
+        return Objects.hash(patient_id, user_id, doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
     }
 }
