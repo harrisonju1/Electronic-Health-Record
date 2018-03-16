@@ -24,6 +24,7 @@ export class FormService {
   
   createPatientProfile(form: PatientProfile){
     this.http.post(this.patientUrl, form, httpOptions);
+    console.log(form);
   }
 
   getAllPatientProfiles(): Observable<PatientProfile[]> {
