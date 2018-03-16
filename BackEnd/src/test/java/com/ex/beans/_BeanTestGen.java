@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class _BeanTestGen {
     public static void main(String[] args) {
-//        GenTestFor(PatientProfile.class);
+//        GenTestFor(PatientHistory.class);
     }
     static void GenTestFor(Class bean) {
         System.out.println("generating test for "+bean.getName());
