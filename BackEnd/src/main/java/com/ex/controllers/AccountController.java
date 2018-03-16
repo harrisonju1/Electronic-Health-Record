@@ -27,4 +27,18 @@ public class AccountController {
         }
         return null;
     }
+    // adds or updates the patient profile to the database
+    @RequestMapping(value = "/api/patientprofile/submit", method = RequestMethod.POST)
+    Object submitPatientProfile(@RequestBody Object patientInfo) {
+        //todo
+
+        return null;
+    }
+    // returns the patient profile with the username or id from the database
+    @RequestMapping(value = "/api/patientprofile/view", method = RequestMethod.GET)
+    Object viewPatientProfile(@RequestBody Object identifier) {
+        //todo
+
+        return null;
+    }
 }
