@@ -1,6 +1,9 @@
 package com.ex.beans;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -11,13 +14,15 @@ public class Treatments {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int treatmentId;
+    private int treatment_id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="patient_id")
     private PatientProfile patient;
 
@@ -25,29 +30,30 @@ public class Treatments {
     private String treatment;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="visit_id")
     private Visit visit;
 
     @Column(name="visit_date")
-    private Date vistDate;
+    private Date visit_date;
 
     public Treatments() {
     }
 
-    public Treatments(Doctor doctor, PatientProfile patient, String treatment, Visit visit, Date vistDate) {
+    public Treatments(Doctor doctor, PatientProfile patient, String treatment, Visit visit, Date visit_date) {
         this.doctor = doctor;
         this.patient = patient;
         this.treatment = treatment;
         this.visit = visit;
-        this.vistDate = vistDate;
+        this.visit_date = visit_date;
     }
 
     public int getTreatmentId() {
-        return treatmentId;
+        return treatment_id;
     }
 
     public void setTreatmentId(int treatmentId) {
-        this.treatmentId = treatmentId;
+        this.treatment_id = treatmentId;
     }
 
     public Doctor getDoctor() {
@@ -83,22 +89,22 @@ public class Treatments {
     }
 
     public Date getVistDate() {
-        return vistDate;
+        return visit_date;
     }
 
     public void setVistDate(Date vistDate) {
-        this.vistDate = vistDate;
+        this.visit_date = vistDate;
     }
 
     @Override
     public String toString() {
         return "Treatments{" +
-                "treatmentId=" + treatmentId +
+                "treatmentId=" + treatment_id +
                 ", doctor=" + doctor +
                 ", patient=" + patient +
                 ", treatment='" + treatment + '\'' +
                 ", visit=" + visit +
-                ", vistDate=" + vistDate +
+                ", vistDate=" + visit_date +
                 '}';
     }
 
@@ -107,18 +113,18 @@ public class Treatments {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Treatments that = (Treatments) o;
-        return treatmentId == that.treatmentId &&
+        return treatment_id == that.treatment_id &&
                 doctor == that.doctor &&
                 patient == that.patient &&
                 visit == that.visit &&
                 Objects.equals(treatment, that.treatment) &&
-                Objects.equals(vistDate, that.vistDate);
+                Objects.equals(visit_date, that.visit_date);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(treatmentId, doctor, patient, treatment, visit, vistDate);
+        return Objects.hash(treatment_id, doctor, patient, treatment, visit, visit_date);
     }
 }
 

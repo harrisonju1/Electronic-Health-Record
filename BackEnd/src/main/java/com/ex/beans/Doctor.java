@@ -9,13 +9,13 @@ public class Doctor {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int doctorsId;
+    private int doctor_id;
 
     @Column(name="first_name")
-    private String firstName;
+    private String first_name;
 
     @Column(name="last_name")
-    private String lastName;
+    private String last_name;
 
     @Column(name="field")
     private String field;
@@ -24,33 +24,33 @@ public class Doctor {
     }
 
     public Doctor(String firstName, String lastName, String field) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.first_name = firstName;
+        this.last_name = lastName;
         this.field = field;
     }
 
     public int getDoctorsId() {
-        return doctorsId;
+        return doctor_id;
     }
 
-    public void setDoctorsId(int doctorsId) {
-        this.doctorsId = doctorsId;
+    public void setDoctorsId(int doctor_id) {
+        this.doctor_id = doctor_id;
     }
 
     public String getFirstName() {
-        return firstName;
+        return first_name;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.first_name = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return last_name;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.last_name = lastName;
     }
 
     public String getField() {
@@ -64,9 +64,9 @@ public class Doctor {
     @Override
     public String toString() {
         return "Doctor{" +
-                "doctorsId=" + doctorsId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "doctor_id=" + doctor_id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
                 ", field='" + field + '\'' +
                 '}';
     }
@@ -76,15 +76,15 @@ public class Doctor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctors = (Doctor) o;
-        return doctorsId == doctors.doctorsId &&
-                Objects.equals(firstName, doctors.firstName) &&
-                Objects.equals(lastName, doctors.lastName) &&
+        return doctor_id == doctors.doctor_id &&
+                Objects.equals(first_name, doctors.first_name) &&
+                Objects.equals(last_name, doctors.last_name) &&
                 Objects.equals(field, doctors.field);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(doctorsId, firstName, lastName, field);
+        return Objects.hash(doctor_id, first_name, last_name, field);
     }
 }

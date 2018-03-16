@@ -1,5 +1,8 @@
 package com.ex.beans;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -10,46 +13,48 @@ public class Visit {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int visitId;
+    private int visit_id;
 
     @Column(name="visit_date")
-    private Date visitDate;
+    private Date visit_date;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="patient_id")
     private PatientProfile patient;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
 
     @Column(name="visit_reason")
-    private String visitReason;
+    private String visit_reason;
 
     public Visit() {
     }
 
     public Visit(Date visitDate, PatientProfile patient, Doctor doctor, String visitReason) {
-        this.visitDate = visitDate;
+        this.visit_date = visitDate;
         this.patient = patient;
         this.doctor = doctor;
-        this.visitReason = visitReason;
+        this.visit_reason = visitReason;
     }
 
     public int getVisitId() {
-        return visitId;
+        return visit_id;
     }
 
     public void setVisitId(int visitId) {
-        this.visitId = visitId;
+        this.visit_id = visitId;
     }
 
     public Date getVisitDate() {
-        return visitDate;
+        return visit_date;
     }
 
     public void setVisitDate(Date visitDate) {
-        this.visitDate = visitDate;
+        this.visit_date = visitDate;
     }
 
     public PatientProfile getPatient() {
@@ -69,21 +74,21 @@ public class Visit {
     }
 
     public String getVisitReason() {
-        return visitReason;
+        return visit_reason;
     }
 
     public void setVisitReason(String visitReason) {
-        this.visitReason = visitReason;
+        this.visit_reason = visitReason;
     }
 
     @Override
     public String toString() {
         return "Visit{" +
-                "visitId=" + visitId +
-                ", visitDate=" + visitDate +
+                "visitId=" + visit_id +
+                ", visitDate=" + visit_date +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
-                ", visitReason='" + visitReason + '\'' +
+                ", visitReason='" + visit_reason + '\'' +
                 '}';
     }
 
@@ -92,16 +97,16 @@ public class Visit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Visit visit = (Visit) o;
-        return visitId == visit.visitId &&
+        return visit_id == visit.visit_id &&
                 patient == visit.patient &&
                 doctor == visit.doctor &&
-                Objects.equals(visitDate, visit.visitDate) &&
-                Objects.equals(visitReason, visit.visitReason);
+                Objects.equals(visit_date, visit.visit_date) &&
+                Objects.equals(visit_reason, visit.visit_reason);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(visitId, visitDate, patient, doctor, visitReason);
+        return Objects.hash(visit_id, visit_date, patient, doctor, visit_reason);
     }
 }

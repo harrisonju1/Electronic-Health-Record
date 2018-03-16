@@ -1,5 +1,8 @@
 package com.ex.beans;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -10,9 +13,10 @@ public class Allergies {
     @Id
     @Column(name="allergy_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int allergyId;
+    private int allergy_id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="patient_id")
     private PatientProfile patient;
 
@@ -28,11 +32,11 @@ public class Allergies {
     }
 
     public int getAllergyId() {
-        return allergyId;
+        return allergy_id;
     }
 
-    public void setAllergyId(int allergyId) {
-        this.allergyId = allergyId;
+    public void setAllergyId(int allergy_id) {
+        this.allergy_id = allergy_id;
     }
 
     public PatientProfile getPatient() {
@@ -54,7 +58,7 @@ public class Allergies {
     @Override
     public String toString() {
         return "Allergies{" +
-                "allergyId=" + allergyId +
+                "allergy_id=" + allergy_id +
                 ", patient=" + patient +
                 ", allergy='" + allergy + '\'' +
                 '}';
@@ -65,7 +69,7 @@ public class Allergies {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Allergies allergies = (Allergies) o;
-        return allergyId == allergies.allergyId &&
+        return allergy_id == allergies.allergy_id &&
                 patient == allergies.patient &&
                 Objects.equals(allergy, allergies.allergy);
     }
@@ -73,6 +77,6 @@ public class Allergies {
     @Override
     public int hashCode() {
 
-        return Objects.hash(allergyId, patient, allergy);
+        return Objects.hash(allergy_id, patient, allergy);
     }
 }
