@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class patientProfileDaoTest {
+public class PatientProfileDaoTest {
     @Before
     public void before(){
         final PatientProfileDao profileDao= new PatientProfileDao();

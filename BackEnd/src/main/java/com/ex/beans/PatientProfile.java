@@ -18,7 +18,8 @@ public class PatientProfile {
     //initialize all columns with database column name to match
     @Column(name="user_id")
     private int userId;
-    @Column(name="doctor_id")
+    @ManyToOne
+    @JoinColumn(name="doctor_id")
     private Doctor doctor;
     @Column(name="first_name")
     private String firstName;
