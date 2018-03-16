@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { FormService } from '../../../services/form.service';
 import { Router } from '@angular/router';
 import { ApptRecord } from '../../../domain/ApptRecord';
+import { AuthorizationService } from '../../../services/authorization.service';
 
 @Component({
   selector: 'app-appt-record-form',
@@ -18,6 +19,7 @@ export class ApptRecordFormComponent implements OnInit {
 
   constructor(
     private formService:FormService,
+    private authService: AuthorizationService,
     private router:Router
   ) { }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../../../services/form.service';
+import { AuthorizationService } from '../../../services/authorization.service';
 
 @Component({
   selector: 'app-patient-profile',
@@ -9,7 +10,8 @@ import { FormService } from '../../../services/form.service';
 export class PatientProfileComponent implements OnInit {
 
   constructor(
-    private formService: FormService
+    private formService: FormService,
+    private authService: AuthorizationService
   ) { }
 
   ngOnInit() {

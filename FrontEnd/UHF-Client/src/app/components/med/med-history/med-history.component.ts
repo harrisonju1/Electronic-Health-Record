@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../../../services/authorization.service';
 
 @Component({
   selector: 'app-med-history',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MedHistoryComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authService: AuthorizationService
+  ) { }
 
   ngOnInit() {
   }

@@ -9,7 +9,7 @@ import { UserRole } from '../../../domain/User';
 })
 export class MedHistoryFormComponent implements OnInit {
 
-  constructor(authService:AuthorizationService) { 
+  constructor(private authService:AuthorizationService) { 
     authService.authorizePage(UserRole.DOCTOR);
   }
   ngOnInit() {

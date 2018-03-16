@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { PatientProfile } from '../../../domain/PatientProfile';
 import { FormService } from '../../../services/form.service';
 import { Router } from '@angular/router';
+import { Doctor } from '../../../domain/Doctor';
+import { AuthorizationService } from '../../../services/authorization.service';
 
 @Component({
   selector: 'app-patient-form',
@@ -17,6 +19,7 @@ export class PatientFormComponent implements OnInit {
 
   constructor(
     private formService: FormService,
+    private authService: AuthorizationService,
     private router: Router
   ) { }
 
@@ -27,7 +30,9 @@ export class PatientFormComponent implements OnInit {
     this.submitted = true;
 
     // grab the form values and populate patientProfile
-    this.patientProfile.doctor_id = form.value['doctor_id'];
+    let doc: Doctor = new Doctor();
+    doc.doctor_id = form.value['doctor_id'];
+    this.patientProfile.doctor = doc;
     this.patientProfile.firstname = form.value['firstname'];
     this.patientProfile.lastname = form.value['lastname'];
     this.patientProfile.ssn = form.value['ssn'];

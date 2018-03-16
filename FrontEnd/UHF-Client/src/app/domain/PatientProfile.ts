@@ -1,8 +1,9 @@
+import { Doctor } from "./Doctor";
 
 export class PatientProfile {
     patient_id: number;
     user_id: number;
-    doctor_id: number;
+    doctor: Doctor;
     firstname: string;
     lastname: string;
     ssn: number;
@@ -23,7 +24,7 @@ export class PatientProfile {
     constructor(
         patient_id: number,
         user_id: number,
-        doctor_id: number,
+        doctor: Doctor,
         firstname: string,
         lastname: string,
         ssn: number,
@@ -43,7 +44,7 @@ export class PatientProfile {
     ){
         this.patient_id = patient_id;
         this.user_id = user_id;
-        this.doctor_id = doctor_id;
+        this.doctor = doctor;
         this.firstname = firstname;
         this.lastname = lastname;
         this.ssn = ssn;
