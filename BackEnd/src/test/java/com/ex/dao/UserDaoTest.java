@@ -25,8 +25,6 @@ public class UserDaoTest {
         User user = new User();
         user = userDao.create(user);
 
-        user.setFirstName("testfnameupdate");
-        user.setLastName("testlnameupdate");
         user.setPassword("testpassupdate");
         user.setRole("testroleupdate");
         user.setUsername("testusernameupdate");

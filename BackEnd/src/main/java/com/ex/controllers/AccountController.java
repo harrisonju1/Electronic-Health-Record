@@ -1,6 +1,9 @@
 package com.ex.controllers;
 
+import com.ex.beans.PatientProfile;
 import com.ex.beans.User;
+import com.ex.dao.DoctorsDao;
+import com.ex.dao.PatientProfileDao;
 import com.ex.dao.UserDao;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +35,15 @@ public class AccountController {
     // returns error message if failed, or returns the id on success
     @RequestMapping(value = "/api/patientprofile/submit", method = RequestMethod.POST)
     Object submitPatientProfile(@RequestBody Object patientInfo) {
-        //todo
-
+        //todo update
+        try {
+            PatientProfile profile = (PatientProfile) patientInfo;
+            profile.setDoctorId(new DoctorsDao().create(profile.getDoctor()));
+            PatientProfile patientProfile = new PatientProfileDao().create((PatientProfile) patientInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR:FAILED TO CREATE PATIENT PROFILE " + e.getStackTrace();
+        }
         return null;
     }
 

@@ -35,13 +35,12 @@ public class AccountControllerTest {
         PatientProfile req = new PatientProfile();
         req.setUserId(1);
         Doctor doc = new Doctor("dfname2", "dlname2", "");
-        new DoctorsDao().create(doc);
         req.setDoctorId(doc);
         req.setFirstName("firstNamesubtest");
         req.setLastName("lastNamesubtest");
         req.setSsn(123456789);
         req.setDob(Date.from(Instant.now()));
-//        req.setPhone_number("5553333999");
+        req.setPhone_number("5553333999");
         req.setEmail("emailsubtest");
         req.setMarital_status("marital_statussubtest");
         req.setGender("gendersubtest");
@@ -58,7 +57,7 @@ public class AccountControllerTest {
         req.setPatientId((Integer) result);
         PatientProfile indb = new PatientProfileDao().findOneByPatientId(req.getPatientId());
         Assert.assertEquals(req, indb);
-        //todo also test update
+        // todo also test update
         // todo and delete it
     }
     @Test
@@ -75,7 +74,7 @@ public class AccountControllerTest {
         pp.setLastName("lastNamevwtest");
         pp.setSsn(123456789);
         pp.setDob(Date.from(Instant.now()));
-//        pp.setPhone_number("5553333999");
+        pp.setPhone_number("5553333929");
         pp.setEmail("emailvwtest");
         pp.setMarital_status("maritalvwtest");
         pp.setGender("gendervwtest");
