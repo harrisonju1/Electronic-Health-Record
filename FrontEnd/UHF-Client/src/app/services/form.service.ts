@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PatientProfile } from '../domain/PatientProfile';
 import { Observable } from 'rxjs/Observable';
 import { ApptRecord } from '../domain/ApptRecord';
+import { VisitDetails } from '../domain/VisitDetails';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':'Basic '+btoa('username'+':'+'password')})
@@ -55,5 +56,10 @@ export class FormService {
     let records = this.http.get<ApptRecord[]>(this.visitUrl + "/all");
     records.subscribe(r => this.apptRecordsList = r);
     return records;
+  }
+
+  getVisitDetailsByID(id:number):Observable<VisitDetails>{
+    // will need to have a VisitDetails class populated by Diagnosis, Symptoms, Treatment, Tests, and Prescription
+    return this.http.get<VisitDetails>(this.visitUrl + `${id}`);
   }
 }
