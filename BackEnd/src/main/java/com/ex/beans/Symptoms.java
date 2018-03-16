@@ -11,7 +11,7 @@ public class Symptoms {
     @Id
     @Column
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int symptomId;
+    private int symptom_id;
 
     @ManyToOne
     @JoinColumn(name="patient_id")
@@ -26,7 +26,7 @@ public class Symptoms {
     private Visit visit;
 
     @Column(name="visit_date")
-    private Date visitDate;
+    private Date visit_date;
 
     @Column(name="symptoms")
     private String symptoms;
@@ -34,20 +34,20 @@ public class Symptoms {
     public Symptoms() {
     }
 
-    public Symptoms(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String symptoms) {
+    public Symptoms(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String symptoms) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visitDate = visitDate;
+        this.visit_date = visit_date;
         this.symptoms = symptoms;
     }
 
     public int getSymptomId() {
-        return symptomId;
+        return symptom_id;
     }
 
     public void setSymptomId(int symptomId) {
-        this.symptomId = symptomId;
+        this.symptom_id = symptomId;
     }
 
     public PatientProfile getPatient() {
@@ -75,11 +75,11 @@ public class Symptoms {
     }
 
     public Date getVisitDate() {
-        return visitDate;
+        return visit_date;
     }
 
     public void setVisitDate(Date visitDate) {
-        this.visitDate = visitDate;
+        this.visit_date = visitDate;
     }
 
     public String getSymptoms() {
@@ -93,11 +93,11 @@ public class Symptoms {
     @Override
     public String toString() {
         return "Symptoms{" +
-                "symptomId=" + symptomId +
+                "symptomId=" + symptom_id +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
-                ", visitDate=" + visitDate +
+                ", visitDate=" + visit_date +
                 ", symptoms='" + symptoms + '\'' +
                 '}';
     }
@@ -107,17 +107,17 @@ public class Symptoms {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Symptoms symptoms1 = (Symptoms) o;
-        return symptomId == symptoms1.symptomId &&
+        return symptom_id == symptoms1.symptom_id &&
                 patient == symptoms1.patient &&
                 doctor == symptoms1.doctor &&
                 visit == symptoms1.visit &&
-                Objects.equals(visitDate, symptoms1.visitDate) &&
+                Objects.equals(visit_date, symptoms1.visit_date) &&
                 Objects.equals(symptoms, symptoms1.symptoms);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(symptomId, patient, doctor, visit, visitDate, symptoms);
+        return Objects.hash(symptom_id, patient, doctor, visit, visit_date, symptoms);
     }
 }

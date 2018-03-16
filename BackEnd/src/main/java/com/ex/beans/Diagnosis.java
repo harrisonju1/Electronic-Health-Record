@@ -10,7 +10,7 @@ public class Diagnosis {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int diagnosisId;
+    private int diagnosis_id;
 
     @ManyToOne
     @JoinColumn(name="patient_id")
@@ -24,7 +24,7 @@ public class Diagnosis {
     @JoinColumn(name="visit_id")
     private Visit visit;
 
-    private Date visitDate;
+    private Date visit_date;
 
     @Column(name="diagnosis")
     private String diagnosis;
@@ -32,20 +32,20 @@ public class Diagnosis {
     public Diagnosis() {
     }
 
-    public Diagnosis(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String diagnosis) {
+    public Diagnosis(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String diagnosis) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visitDate = visitDate;
+        this.visit_date = visit_date;
         this.diagnosis = diagnosis;
     }
 
     public int getDiagnosisId() {
-        return diagnosisId;
+        return diagnosis_id;
     }
 
     public void setDiagnosisId(int diagnosisId) {
-        this.diagnosisId = diagnosisId;
+        this.diagnosis_id = diagnosis_id;
     }
 
     public PatientProfile getPatient() {
@@ -73,11 +73,11 @@ public class Diagnosis {
     }
 
     public Date getVisitDate() {
-        return visitDate;
+        return visit_date;
     }
 
-    public void setVisitDate(Date visitDate) {
-        this.visitDate = visitDate;
+    public void setVisitDate(Date visit_date) {
+        this.visit_date = visit_date;
     }
 
     public String getDiagnosis() {
@@ -91,11 +91,11 @@ public class Diagnosis {
     @Override
     public String toString() {
         return "Diagnosis{" +
-                "diagnosisId=" + diagnosisId +
+                "diagnosis_id=" + diagnosis_id +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
-                ", visitDate=" + visitDate +
+                ", visit_date=" + visit_date +
                 ", diagnosis='" + diagnosis + '\'' +
                 '}';
     }
@@ -105,17 +105,17 @@ public class Diagnosis {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Diagnosis diagnosis1 = (Diagnosis) o;
-        return diagnosisId == diagnosis1.diagnosisId &&
+        return diagnosis_id == diagnosis1.diagnosis_id &&
                 patient == diagnosis1.patient &&
                 doctor == diagnosis1.doctor &&
                 visit == diagnosis1.visit &&
-                Objects.equals(visitDate, diagnosis1.visitDate) &&
+                Objects.equals(visit_date, diagnosis1.visit_date) &&
                 Objects.equals(diagnosis, diagnosis1.diagnosis);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(diagnosisId, patient, doctor, visit, visitDate, diagnosis);
+        return Objects.hash(diagnosis_id, patient, doctor, visit, visit_date, diagnosis);
     }
 }

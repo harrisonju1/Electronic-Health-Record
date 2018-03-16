@@ -11,7 +11,7 @@ public class Prescriptions {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int prescriptionId;
+    private int prescription_id;
 
     @ManyToOne
     @JoinColumn(name="patient_id")
@@ -26,7 +26,7 @@ public class Prescriptions {
     private Visit visit;
 
     @Column(name="visit_date")
-    private Date visitDate;
+    private Date visit_date;
 
     @Column(name="drugs")
     private String drugs;
@@ -34,20 +34,20 @@ public class Prescriptions {
     public Prescriptions() {
     }
 
-    public Prescriptions(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String drugs) {
+    public Prescriptions(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String drugs) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visitDate = visitDate;
+        this.visit_date = visit_date;
         this.drugs = drugs;
     }
 
     public int getPrescriptionId() {
-        return prescriptionId;
+        return prescription_id;
     }
 
     public void setPrescriptionId(int prescriptionId) {
-        this.prescriptionId = prescriptionId;
+        this.prescription_id = prescriptionId;
     }
 
     public PatientProfile getPatient() {
@@ -75,11 +75,11 @@ public class Prescriptions {
     }
 
     public Date getVisitDate() {
-        return visitDate;
+        return visit_date;
     }
 
     public void setVisitDate(Date visitDate) {
-        this.visitDate = visitDate;
+        this.visit_date = visitDate;
     }
 
     public String getDrugs() {
@@ -93,11 +93,11 @@ public class Prescriptions {
     @Override
     public String toString() {
         return "Prescriptions{" +
-                "prescriptionId=" + prescriptionId +
+                "prescriptionId=" + prescription_id +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
-                ", visitDate=" + visitDate +
+                ", visitDate=" + visit_date +
                 ", drugs='" + drugs + '\'' +
                 '}';
     }
@@ -107,17 +107,17 @@ public class Prescriptions {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prescriptions that = (Prescriptions) o;
-        return prescriptionId == that.prescriptionId &&
+        return prescription_id == that.prescription_id &&
                 patient == that.patient &&
                 doctor == that.doctor &&
                 visit == that.visit &&
-                Objects.equals(visitDate, that.visitDate) &&
+                Objects.equals(visit_date, that.visit_date) &&
                 Objects.equals(drugs, that.drugs);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(prescriptionId, patient, doctor, visit, visitDate, drugs);
+        return Objects.hash(prescription_id, patient, doctor, visit, visit_date, drugs);
     }
 }

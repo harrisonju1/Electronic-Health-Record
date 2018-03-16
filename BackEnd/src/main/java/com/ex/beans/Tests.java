@@ -11,7 +11,7 @@ public class Tests {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int testId;
+    private int test_id;
 
     @ManyToOne
     @JoinColumn(name="patient_id")
@@ -26,7 +26,7 @@ public class Tests {
     private Visit visit;
 
     @Column
-    private Date visitDate;
+    private Date visit_date;
 
     @Column(name="test")
     private String test;
@@ -34,20 +34,20 @@ public class Tests {
     public Tests() {
     }
 
-    public Tests(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String test) {
+    public Tests(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String test) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visitDate = visitDate;
+        this.visit_date = visit_date;
         this.test = test;
     }
 
     public int getTestId() {
-        return testId;
+        return test_id;
     }
 
     public void setTestId(int testId) {
-        this.testId = testId;
+        this.test_id = testId;
     }
 
     public PatientProfile getPatient() {
@@ -75,11 +75,11 @@ public class Tests {
     }
 
     public Date getVisitDate() {
-        return visitDate;
+        return visit_date;
     }
 
     public void setVisitDate(Date visitDate) {
-        this.visitDate = visitDate;
+        this.visit_date = visitDate;
     }
 
     public String getTest() {
@@ -93,11 +93,11 @@ public class Tests {
     @Override
     public String toString() {
         return "Tests{" +
-                "testId=" + testId +
+                "test_id=" + test_id +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
-                ", visitDate=" + visitDate +
+                ", visit_date=" + visit_date +
                 ", test='" + test + '\'' +
                 '}';
     }
@@ -107,17 +107,17 @@ public class Tests {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tests tests = (Tests) o;
-        return testId == tests.testId &&
+        return test_id == tests.test_id &&
                 patient == tests.patient &&
                 doctor == tests.doctor &&
                 visit == tests.visit &&
-                Objects.equals(visitDate, tests.visitDate) &&
+                Objects.equals(visit_date, tests.visit_date) &&
                 Objects.equals(test, tests.test);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(testId, patient, doctor, visit, visitDate, test);
+        return Objects.hash(test_id, patient, doctor, visit, visit_date, test);
     }
 }
