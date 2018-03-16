@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 import { Router } from '@angular/router';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 
 @Injectable()
@@ -36,14 +36,14 @@ export class AuthorizationService {
   /* LOGIN -------------------------------------------------------------------------------------------------- */
   login(username: string, password: string): Observable<User> {
     // Replace string argument with servlet URL
-    console.log("login "+username+":"+password);
+    console.log("login " + username + ":" + password);
 
-    let data = username+":"+password;
+    let data = username + ":" + password;
     console.log(data);
     let obs = this.http.post<User>(this.authorizeUrl, data, httpOptions);
     return obs;
   }
-  loginsuccess(u:User) {
+  loginsuccess(u: User) {
     this.currentUser = u;
     localStorage.setItem('auth', btoa(u.username + ":" + u.password));
   }
@@ -74,38 +74,58 @@ export class AuthorizationService {
   }
 
   // makes sure the current user has permission to view the page, otherwise redirect to home
-  authorizePage(...roles:UserRole[]) {
-    
-    var auth = localStorage.getItem('auth');
-    var cred = atob(auth).split(':');
-    if (cred.length == 2) {
-      var authorized = false;
-      let data = cred[0]+":"+cred[1];
-      this.http.post<User>(this.authorizeUrl, data, httpOptions).subscribe((u) => {
-        console.log(u);
-        for (const role of roles) {
-          if (role == UserRole.NONE || u && u.role == role) {
-            console.log("authorized as "+role.toString());
-            authorized = true;
-            this.currentUser = new User();
-            this.currentUser.id = u.id;
-            this.currentUser.username = u.username;
-            this.currentUser.password = u.password;
-            this.currentUser.first_name = u.first_name;
-            this.currentUser.last_name = u.last_name;
-            this.currentUser.role = u.role;
-            if (!this.currentUser.role)
-              this.currentUser.role = UserRole.NONE;
-            console.log(this.currentUser);
-            return;
-          }
-        }
-        if (!authorized) {
-          console.log("unauthorized");
-          this.router.navigate(['/login']);
-        }
-      });
+  authorizePage(...roles: UserRole[]) {
+
+    var anyoneCanAccess = false;
+    for (const role of roles) {
+      if (role == UserRole.NONE) {
+        anyoneCanAccess = true;
+        break;
+      }
     }
+
+    //get currently logged in user
+    var auth = localStorage.getItem('auth');
+    if (!auth) {
+      if (!anyoneCanAccess)
+        this.router.navigate(['/login']);
+      return;
+    }
+    var cred = atob(auth).split(':');
+
+    if (cred.length != 2) {
+      localStorage.removeItem('auth');
+      if (!anyoneCanAccess)
+        this.router.navigate(['/login']);
+      return;
+    }
+
+    var authorized = false;
+    let data = cred[0] + ":" + cred[1];
+    this.http.post<User>(this.authorizeUrl, data, httpOptions).subscribe((u) => {
+      console.log(u);
+      for (const role of roles) {
+        if (role == UserRole.NONE || u && u.role == role) {
+          console.log("authorized as " + role.toString());
+          authorized = true;
+          this.currentUser = new User();
+          this.currentUser.id = u.id;
+          this.currentUser.username = u.username;
+          this.currentUser.password = u.password;
+          this.currentUser.first_name = u.first_name;
+          this.currentUser.last_name = u.last_name;
+          this.currentUser.role = u.role;
+          if (!this.currentUser.role)
+            this.currentUser.role = UserRole.NONE;
+          console.log("current user: "+this.currentUser);
+          return;
+        }
+      }
+      if (!authorized) {
+        console.log("unauthorized");
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   /* HANDLE ERRORS -------------------------------------------------------------------------------------------------- */
