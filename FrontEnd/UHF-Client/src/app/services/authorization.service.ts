@@ -108,13 +108,14 @@ export class AuthorizationService {
         if (role == UserRole.NONE || u && u.role == role) {
           console.log("authorized as " + role.toString());
           authorized = true;
-          this.currentUser = new User();
-          this.currentUser.id = u.id;
-          this.currentUser.username = u.username;
-          this.currentUser.password = u.password;
-          this.currentUser.first_name = u.first_name;
-          this.currentUser.last_name = u.last_name;
-          this.currentUser.role = u.role;
+          // this.currentUser = new User();
+          this.currentUser = u;
+          // this.currentUser.id = u.id;
+          // this.currentUser.username = u.username;
+          // this.currentUser.password = u.password;
+          // this.currentUser.first_name = u.first_name;
+          // this.currentUser.last_name = u.last_name;
+          // this.currentUser.role = u.role;
           if (!this.currentUser.role)
             this.currentUser.role = UserRole.NONE;
           console.log("current user: "+this.currentUser);

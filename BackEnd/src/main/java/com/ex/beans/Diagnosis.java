@@ -24,7 +24,6 @@ public class Diagnosis {
     @JoinColumn(name="visit_id")
     private int visitId;
 
-    @ManyToOne
     @JoinColumn
     private Date visitDate;
 
