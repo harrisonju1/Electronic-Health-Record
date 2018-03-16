@@ -14,7 +14,7 @@ public class PatientProfileDao {
         Transaction transaction = session.beginTransaction();
 
         Integer id = (Integer) session.save(profile);
-        profile.setPatientId(id);
+        profile.setPatient(id);
         transaction.commit();
 
         session.close();
@@ -32,10 +32,10 @@ public class PatientProfileDao {
         return profile;
     }
 
-    public PatientProfile findOneByPatientId(int patientId){
+    public PatientProfile findOneByPatientId(PatientProfile patient){
         Session session = HibernateUtils.getSessionFactory().openSession();
 
-        PatientProfile profile = (PatientProfile) session.get(PatientProfile.class, patientId);
+        PatientProfile profile = (PatientProfile) session.get(PatientProfile.class, patient);
 
         session.close();
         return profile;

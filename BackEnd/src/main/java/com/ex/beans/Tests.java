@@ -15,7 +15,7 @@ public class Tests {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
@@ -34,8 +34,8 @@ public class Tests {
     public Tests() {
     }
 
-    public Tests(int patientId, Doctor doctor, Visit visit, Date visitDate, String test) {
-        this.patientId = patientId;
+    public Tests(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String test) {
+        this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
         this.visitDate = visitDate;
@@ -50,12 +50,12 @@ public class Tests {
         this.testId = testId;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public Doctor getDoctor() {
@@ -94,7 +94,7 @@ public class Tests {
     public String toString() {
         return "Tests{" +
                 "testId=" + testId +
-                ", patientId=" + patientId +
+                ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
                 ", visitDate=" + visitDate +
@@ -108,7 +108,7 @@ public class Tests {
         if (o == null || getClass() != o.getClass()) return false;
         Tests tests = (Tests) o;
         return testId == tests.testId &&
-                patientId == tests.patientId &&
+                patient == tests.patient &&
                 doctor == tests.doctor &&
                 visit == tests.visit &&
                 Objects.equals(visitDate, tests.visitDate) &&
@@ -118,6 +118,6 @@ public class Tests {
     @Override
     public int hashCode() {
 
-        return Objects.hash(testId, patientId, doctor, visit, visitDate, test);
+        return Objects.hash(testId, patient, doctor, visit, visitDate, test);
     }
 }

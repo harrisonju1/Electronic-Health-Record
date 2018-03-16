@@ -14,7 +14,7 @@ public class Diagnosis {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
@@ -32,8 +32,8 @@ public class Diagnosis {
     public Diagnosis() {
     }
 
-    public Diagnosis(int patientId, Doctor doctor, Visit visit, Date visitDate, String diagnosis) {
-        this.patientId = patientId;
+    public Diagnosis(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String diagnosis) {
+        this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
         this.visitDate = visitDate;
@@ -48,12 +48,12 @@ public class Diagnosis {
         this.diagnosisId = diagnosisId;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public Doctor getDoctor() {
@@ -92,7 +92,7 @@ public class Diagnosis {
     public String toString() {
         return "Diagnosis{" +
                 "diagnosisId=" + diagnosisId +
-                ", patientId=" + patientId +
+                ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
                 ", visitDate=" + visitDate +
@@ -106,7 +106,7 @@ public class Diagnosis {
         if (o == null || getClass() != o.getClass()) return false;
         Diagnosis diagnosis1 = (Diagnosis) o;
         return diagnosisId == diagnosis1.diagnosisId &&
-                patientId == diagnosis1.patientId &&
+                patient == diagnosis1.patient &&
                 doctor == diagnosis1.doctor &&
                 visit == diagnosis1.visit &&
                 Objects.equals(visitDate, diagnosis1.visitDate) &&
@@ -116,6 +116,6 @@ public class Diagnosis {
     @Override
     public int hashCode() {
 
-        return Objects.hash(diagnosisId, patientId, doctor, visit, visitDate, diagnosis);
+        return Objects.hash(diagnosisId, patient, doctor, visit, visitDate, diagnosis);
     }
 }

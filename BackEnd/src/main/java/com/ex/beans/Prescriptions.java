@@ -15,7 +15,7 @@ public class Prescriptions {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
@@ -34,8 +34,8 @@ public class Prescriptions {
     public Prescriptions() {
     }
 
-    public Prescriptions(int patientId, Doctor doctor, Visit visit, Date visitDate, String drugs) {
-        this.patientId = patientId;
+    public Prescriptions(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String drugs) {
+        this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
         this.visitDate = visitDate;
@@ -50,12 +50,12 @@ public class Prescriptions {
         this.prescriptionId = prescriptionId;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public Doctor getDoctor() {
@@ -94,7 +94,7 @@ public class Prescriptions {
     public String toString() {
         return "Prescriptions{" +
                 "prescriptionId=" + prescriptionId +
-                ", patientId=" + patientId +
+                ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
                 ", visitDate=" + visitDate +
@@ -108,7 +108,7 @@ public class Prescriptions {
         if (o == null || getClass() != o.getClass()) return false;
         Prescriptions that = (Prescriptions) o;
         return prescriptionId == that.prescriptionId &&
-                patientId == that.patientId &&
+                patient == that.patient &&
                 doctor == that.doctor &&
                 visit == that.visit &&
                 Objects.equals(visitDate, that.visitDate) &&
@@ -118,6 +118,6 @@ public class Prescriptions {
     @Override
     public int hashCode() {
 
-        return Objects.hash(prescriptionId, patientId, doctor, visit, visitDate, drugs);
+        return Objects.hash(prescriptionId, patient, doctor, visit, visitDate, drugs);
     }
 }

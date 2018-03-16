@@ -17,7 +17,7 @@ public class Visit {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
@@ -29,9 +29,9 @@ public class Visit {
     public Visit() {
     }
 
-    public Visit(Date visitDate, int patientId, Doctor doctor, String visitReason) {
+    public Visit(Date visitDate, PatientProfile patient, Doctor doctor, String visitReason) {
         this.visitDate = visitDate;
-        this.patientId = patientId;
+        this.patient = patient;
         this.doctor = doctor;
         this.visitReason = visitReason;
     }
@@ -52,12 +52,12 @@ public class Visit {
         this.visitDate = visitDate;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public Doctor getDoctor() {
@@ -81,7 +81,7 @@ public class Visit {
         return "Visit{" +
                 "visitId=" + visitId +
                 ", visitDate=" + visitDate +
-                ", patientId=" + patientId +
+                ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visitReason='" + visitReason + '\'' +
                 '}';
@@ -93,7 +93,7 @@ public class Visit {
         if (o == null || getClass() != o.getClass()) return false;
         Visit visit = (Visit) o;
         return visitId == visit.visitId &&
-                patientId == visit.patientId &&
+                patient == visit.patient &&
                 doctor == visit.doctor &&
                 Objects.equals(visitDate, visit.visitDate) &&
                 Objects.equals(visitReason, visit.visitReason);
@@ -102,6 +102,6 @@ public class Visit {
     @Override
     public int hashCode() {
 
-        return Objects.hash(visitId, visitDate, patientId, doctor, visitReason);
+        return Objects.hash(visitId, visitDate, patient, doctor, visitReason);
     }
 }

@@ -19,7 +19,7 @@ public class Treatments {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @Column(name="treatment")
     private String treatment;
@@ -34,9 +34,9 @@ public class Treatments {
     public Treatments() {
     }
 
-    public Treatments(Doctor doctor, int patientId, String treatment, Visit visit, Date vistDate) {
+    public Treatments(Doctor doctor, PatientProfile patient, String treatment, Visit visit, Date vistDate) {
         this.doctor = doctor;
-        this.patientId = patientId;
+        this.patient = patient;
         this.treatment = treatment;
         this.visit = visit;
         this.vistDate = vistDate;
@@ -58,12 +58,12 @@ public class Treatments {
         this.doctor = doctor;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public String getTreatment() {
@@ -95,7 +95,7 @@ public class Treatments {
         return "Treatments{" +
                 "treatmentId=" + treatmentId +
                 ", doctor=" + doctor +
-                ", patientId=" + patientId +
+                ", patient=" + patient +
                 ", treatment='" + treatment + '\'' +
                 ", visit=" + visit +
                 ", vistDate=" + vistDate +
@@ -109,7 +109,7 @@ public class Treatments {
         Treatments that = (Treatments) o;
         return treatmentId == that.treatmentId &&
                 doctor == that.doctor &&
-                patientId == that.patientId &&
+                patient == that.patient &&
                 visit == that.visit &&
                 Objects.equals(treatment, that.treatment) &&
                 Objects.equals(vistDate, that.vistDate);
@@ -118,7 +118,7 @@ public class Treatments {
     @Override
     public int hashCode() {
 
-        return Objects.hash(treatmentId, doctor, patientId, treatment, visit, vistDate);
+        return Objects.hash(treatmentId, doctor, patient, treatment, visit, vistDate);
     }
 }
 

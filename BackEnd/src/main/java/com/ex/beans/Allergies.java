@@ -14,7 +14,7 @@ public class Allergies {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @Column(name="allergy")
     private String allergy;
@@ -22,8 +22,8 @@ public class Allergies {
     public Allergies() {
     }
 
-    public Allergies(int patientId, String allergy) {
-        this.patientId = patientId;
+    public Allergies(PatientProfile patient, String allergy) {
+        this.patient = patient;
         this.allergy = allergy;
     }
 
@@ -35,12 +35,12 @@ public class Allergies {
         this.allergyId = allergyId;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public String getAllergy() {
@@ -55,7 +55,7 @@ public class Allergies {
     public String toString() {
         return "Allergies{" +
                 "allergyId=" + allergyId +
-                ", patientId=" + patientId +
+                ", patient=" + patient +
                 ", allergy='" + allergy + '\'' +
                 '}';
     }
@@ -66,13 +66,13 @@ public class Allergies {
         if (o == null || getClass() != o.getClass()) return false;
         Allergies allergies = (Allergies) o;
         return allergyId == allergies.allergyId &&
-                patientId == allergies.patientId &&
+                patient == allergies.patient &&
                 Objects.equals(allergy, allergies.allergy);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(allergyId, patientId, allergy);
+        return Objects.hash(allergyId, patient, allergy);
     }
 }

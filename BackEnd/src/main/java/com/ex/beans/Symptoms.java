@@ -15,7 +15,7 @@ public class Symptoms {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
@@ -34,8 +34,8 @@ public class Symptoms {
     public Symptoms() {
     }
 
-    public Symptoms(int patientId, Doctor doctor, Visit visit, Date visitDate, String symptoms) {
-        this.patientId = patientId;
+    public Symptoms(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String symptoms) {
+        this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
         this.visitDate = visitDate;
@@ -50,12 +50,12 @@ public class Symptoms {
         this.symptomId = symptomId;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
     public Doctor getDoctor() {
@@ -94,7 +94,7 @@ public class Symptoms {
     public String toString() {
         return "Symptoms{" +
                 "symptomId=" + symptomId +
-                ", patientId=" + patientId +
+                ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
                 ", visitDate=" + visitDate +
@@ -108,7 +108,7 @@ public class Symptoms {
         if (o == null || getClass() != o.getClass()) return false;
         Symptoms symptoms1 = (Symptoms) o;
         return symptomId == symptoms1.symptomId &&
-                patientId == symptoms1.patientId &&
+                patient == symptoms1.patient &&
                 doctor == symptoms1.doctor &&
                 visit == symptoms1.visit &&
                 Objects.equals(visitDate, symptoms1.visitDate) &&
@@ -118,6 +118,6 @@ public class Symptoms {
     @Override
     public int hashCode() {
 
-        return Objects.hash(symptomId, patientId, doctor, visit, visitDate, symptoms);
+        return Objects.hash(symptomId, patient, doctor, visit, visitDate, symptoms);
     }
 }

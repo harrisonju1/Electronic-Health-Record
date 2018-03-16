@@ -20,7 +20,7 @@ public class patientProfileDaoTest {
         PatientProfileDao profileDao = new PatientProfileDao();
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
-        PatientProfile result = profileDao.findOneByPatientId(profile.getPatientId());
+        PatientProfile result = profileDao.findOneByPatientId(profile.getPatient());
         Assert.assertEquals(profile, result);
     }
 
@@ -45,7 +45,7 @@ public class patientProfileDaoTest {
         profile.setInsurance_provider("Odin");
         profile.setInsuranceId(123);
 
-        PatientProfile result = profileDao.findOneByPatientId(profile.getPatientId());
+        PatientProfile result = profileDao.findOneByPatientId(profile.getPatient());
         Assert.assertEquals(profile, result);
 
     }
@@ -56,7 +56,7 @@ public class patientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
 
-        PatientProfile result = profileDao.findOneByPatientId(profile.getPatientId());
+        PatientProfile result = profileDao.findOneByPatientId(profile.getPatient());
         Assert.assertEquals(profile, result);
     }
 
@@ -98,7 +98,7 @@ public class patientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
         profileDao.delete(profile);
-        PatientProfile result = profileDao.findOneByPatientId(profile.getPatientId());
+        PatientProfile result = profileDao.findOneByPatientId(profile.getPatient());
         Assert.assertNull(result);
     }
 
