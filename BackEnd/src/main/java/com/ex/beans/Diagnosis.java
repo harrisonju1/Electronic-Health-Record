@@ -12,19 +12,18 @@ public class Diagnosis {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int diagnosisId;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="patient_id")
     private int patientId;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="doctor_id")
     private int doctorId;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="visit_id")
     private int visitId;
 
-    @OneToMany
     @JoinColumn
     private Date visitDate;
 

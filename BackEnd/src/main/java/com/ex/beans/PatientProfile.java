@@ -12,14 +12,14 @@ public class PatientProfile {
     @Id
     @Column(name="patient_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int patient_id;
+    private int patientId;
     //set up rest of columns
     //unsure what to do with reference key for now
     //initialize all columns with database column name to match
     @Column(name="user_id")
-    private int user_id;
+    private int userId;
     @Column(name="doctor_id")
-    private int doctor_id;
+    private int doctorId;
     @Column(name="first_name")
     private String firstName;
     @Column(name="last_name")
@@ -51,14 +51,14 @@ public class PatientProfile {
     @Column(name="insurance_provider")
     private String insurance_provider;
     @Column(name="insurance_id")
-    private int insurance_id;
+    private int insuranceId;
 
     public PatientProfile(){
     }
 
-    public PatientProfile(int user_id, int doctor_id, String firstName, String lastName, int ssn, Date dob, int phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insurance_id) {
-        this.user_id = user_id;
-        this.doctor_id = doctor_id;
+    public PatientProfile(int userId, int doctorId, String firstName, String lastName, int ssn, Date dob, int phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insuranceId) {
+        this.userId = userId;
+        this.doctorId = doctorId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
@@ -74,31 +74,31 @@ public class PatientProfile {
         this.state = state;
         this.zipcode = zipcode;
         this.insurance_provider = insurance_provider;
-        this.insurance_id = insurance_id;
+        this.insuranceId = insuranceId;
     }
 
-    public int getPatient_id() {
-        return patient_id;
+    public int getPatientId() {
+        return patientId;
     }
 
-    public void setPatient_id(int patient_id) {
-        this.patient_id = patient_id;
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
+    public int getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor_id(int doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctorId(int doctorId) {
+        this.doctorId = doctorId;
     }
 
     public String getFirstName() {
@@ -221,21 +221,21 @@ public class PatientProfile {
         this.insurance_provider = insurance_provider;
     }
 
-    public int getInsurance_id() {
-        return insurance_id;
+    public int getInsuranceId() {
+        return insuranceId;
     }
 
-    public void setInsurance_id(int insurance_id) {
-        this.insurance_id = insurance_id;
+    public void setInsuranceId(int insuranceId) {
+        this.insuranceId = insuranceId;
     }
 
 
     @Override
     public String toString() {
         return "PatientProfile{" +
-                "patient_id=" + patient_id +
-                ", user_id=" + user_id +
-                ", doctor_id=" + doctor_id +
+                "patientId=" + patientId +
+                ", userId=" + userId +
+                ", doctorId=" + doctorId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", ssn=" + ssn +
@@ -251,7 +251,7 @@ public class PatientProfile {
                 ", state='" + state + '\'' +
                 ", zipcode=" + zipcode +
                 ", insurance_provider='" + insurance_provider + '\'' +
-                ", insurance_id=" + insurance_id +
+                ", insuranceId=" + insuranceId +
                 '}';
     }
 
@@ -260,13 +260,13 @@ public class PatientProfile {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PatientProfile that = (PatientProfile) o;
-        return patient_id == that.patient_id &&
-                user_id == that.user_id &&
-                doctor_id == that.doctor_id &&
+        return patientId == that.patientId &&
+                userId == that.userId &&
+                doctorId == that.doctorId &&
                 ssn == that.ssn &&
                 phone_number == that.phone_number &&
                 zipcode == that.zipcode &&
-                insurance_id == that.insurance_id &&
+                insuranceId == that.insuranceId &&
                 Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
                 Objects.equals(dob, that.dob) &&
@@ -284,6 +284,6 @@ public class PatientProfile {
     @Override
     public int hashCode() {
 
-        return Objects.hash(patient_id, user_id, doctor_id, firstName, lastName, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
+        return Objects.hash(patientId, userId, doctorId, firstName, lastName, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insuranceId);
     }
 }

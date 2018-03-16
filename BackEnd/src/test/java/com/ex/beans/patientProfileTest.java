@@ -44,45 +44,45 @@ public void getStateTest() throws NoSuchFieldException, IllegalAccessException {
 }
 
 @Test
-public void getPatient_idTest() throws NoSuchFieldException, IllegalAccessException {
+public void getPatientIdTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = PatientProfile.class.getDeclaredField("patient_id");
 	field.setAccessible(true);
 	PatientProfile inst = new PatientProfile();
 	int expected = -77293257;
 	field.set(inst, expected);
-	int result = inst.getPatient_id();
+	int result = inst.getPatientId();
 	Assert.assertEquals(expected, result);
 }
 
 @Test
-public void setPatient_idTest() throws NoSuchFieldException, IllegalAccessException {
+public void setPatientIdTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = PatientProfile.class.getDeclaredField("patient_id");
 	field.setAccessible(true);
 	PatientProfile inst = new PatientProfile();
 	int expected = 1314298498;
-	inst.setPatient_id(expected);
+	inst.setPatientId(expected);
 	int result = (int)field.get(inst);
 	Assert.assertEquals(expected, result);
 }
 
 @Test
-public void getDoctor_idTest() throws NoSuchFieldException, IllegalAccessException {
+public void getDoctorIdTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = PatientProfile.class.getDeclaredField("doctor_id");
 	field.setAccessible(true);
 	PatientProfile inst = new PatientProfile();
 	int expected = 2134944539;
 	field.set(inst, expected);
-	int result = inst.getDoctor_id();
+	int result = inst.getDoctorId();
 	Assert.assertEquals(expected, result);
 }
 
 @Test
-public void setDoctor_idTest() throws NoSuchFieldException, IllegalAccessException {
+public void setDoctorIdTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = PatientProfile.class.getDeclaredField("doctor_id");
 	field.setAccessible(true);
 	PatientProfile inst = new PatientProfile();
 	int expected = 2062405886;
-	inst.setDoctor_id(expected);
+	inst.setDoctorId(expected);
 	int result = (int)field.get(inst);
 	Assert.assertEquals(expected, result);
 }
@@ -385,23 +385,23 @@ public void setInsurance_providerTest() throws NoSuchFieldException, IllegalAcce
 }
 
 @Test
-public void getInsurance_idTest() throws NoSuchFieldException, IllegalAccessException {
+public void getInsuranceIdTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = PatientProfile.class.getDeclaredField("insurance_id");
 	field.setAccessible(true);
 	PatientProfile inst = new PatientProfile();
 	int expected = 1035045275;
 	field.set(inst, expected);
-	int result = inst.getInsurance_id();
+	int result = inst.getInsuranceId();
 	Assert.assertEquals(expected, result);
 }
 
 @Test
-public void setInsurance_idTest() throws NoSuchFieldException, IllegalAccessException {
+public void setInsuranceIdTest() throws NoSuchFieldException, IllegalAccessException {
 	Field field = PatientProfile.class.getDeclaredField("insurance_id");
 	field.setAccessible(true);
 	PatientProfile inst = new PatientProfile();
 	int expected = 191915541;
-	inst.setInsurance_id(expected);
+	inst.setInsuranceId(expected);
 	int result = (int)field.get(inst);
 	Assert.assertEquals(expected, result);
 }

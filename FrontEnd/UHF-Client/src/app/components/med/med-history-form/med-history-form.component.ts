@@ -12,7 +12,6 @@ export class MedHistoryFormComponent implements OnInit {
   constructor(authService:AuthorizationService) { 
     authService.authorizePage(UserRole.DOCTOR);
   }
-
   ngOnInit() {
   }
 

@@ -17,11 +17,11 @@ public class Visit {
     private Date visitDate;
 
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="patient_id")
     private int patientId;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name="doctor_id")
     private int doctorId;
 
