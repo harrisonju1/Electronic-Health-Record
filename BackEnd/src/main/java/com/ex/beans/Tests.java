@@ -15,18 +15,17 @@ public class Tests {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
-    private int doctorId;
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name="visit_id")
-    private int visitId;
+    private Visit visit;
 
-    @ManyToOne
-    @JoinColumn
+    @Column
     private Date visitDate;
 
     @Column(name="test")
@@ -35,10 +34,10 @@ public class Tests {
     public Tests() {
     }
 
-    public Tests(int patientId, int doctorId, int visitId, Date visitDate, String test) {
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitId = visitId;
+    public Tests(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String test) {
+        this.patient = patient;
+        this.doctor = doctor;
+        this.visit = visit;
         this.visitDate = visitDate;
         this.test = test;
     }
@@ -51,28 +50,28 @@ public class Tests {
         this.testId = testId;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctorId(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public int getVisitId() {
-        return visitId;
+    public Visit getVisit() {
+        return visit;
     }
 
-    public void setVisitId(int visitId) {
-        this.visitId = visitId;
+    public void setVisitId(Visit visit) {
+        this.visit = visit;
     }
 
     public Date getVisitDate() {
@@ -95,9 +94,9 @@ public class Tests {
     public String toString() {
         return "Tests{" +
                 "testId=" + testId +
-                ", patientId=" + patientId +
-                ", doctorId=" + doctorId +
-                ", visitId=" + visitId +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
                 ", visitDate=" + visitDate +
                 ", test='" + test + '\'' +
                 '}';
@@ -109,9 +108,9 @@ public class Tests {
         if (o == null || getClass() != o.getClass()) return false;
         Tests tests = (Tests) o;
         return testId == tests.testId &&
-                patientId == tests.patientId &&
-                doctorId == tests.doctorId &&
-                visitId == tests.visitId &&
+                patient == tests.patient &&
+                doctor == tests.doctor &&
+                visit == tests.visit &&
                 Objects.equals(visitDate, tests.visitDate) &&
                 Objects.equals(test, tests.test);
     }
@@ -119,6 +118,6 @@ public class Tests {
     @Override
     public int hashCode() {
 
-        return Objects.hash(testId, patientId, doctorId, visitId, visitDate, test);
+        return Objects.hash(testId, patient, doctor, visit, visitDate, test);
     }
 }

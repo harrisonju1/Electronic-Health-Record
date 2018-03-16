@@ -18,8 +18,9 @@ public class PatientProfile {
     //initialize all columns with database column name to match
     @Column(name="user_id")
     private int userId;
-    @Column(name="doctor_id")
-    private int doctorId;
+    @ManyToOne
+    @JoinColumn(name="doctor_id")
+    private Doctor doctor;
     @Column(name="first_name")
     private String firstName;
     @Column(name="last_name")
@@ -56,9 +57,9 @@ public class PatientProfile {
     public PatientProfile(){
     }
 
-    public PatientProfile(int userId, int doctorId, String firstName, String lastName, int ssn, Date dob, int phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insuranceId) {
+    public PatientProfile(int userId, Doctor doctor, String firstName, String lastName, int ssn, Date dob, int phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insuranceId) {
         this.userId = userId;
-        this.doctorId = doctorId;
+        this.doctor = doctor;
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
@@ -93,12 +94,12 @@ public class PatientProfile {
         this.userId = userId;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctorId(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public String getFirstName() {
@@ -235,7 +236,7 @@ public class PatientProfile {
         return "PatientProfile{" +
                 "patientId=" + patientId +
                 ", userId=" + userId +
-                ", doctorId=" + doctorId +
+                ", doctor=" + doctor +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", ssn=" + ssn +
@@ -262,7 +263,7 @@ public class PatientProfile {
         PatientProfile that = (PatientProfile) o;
         return patientId == that.patientId &&
                 userId == that.userId &&
-                doctorId == that.doctorId &&
+                doctor == that.doctor &&
                 ssn == that.ssn &&
                 phone_number == that.phone_number &&
                 zipcode == that.zipcode &&
@@ -284,6 +285,6 @@ public class PatientProfile {
     @Override
     public int hashCode() {
 
-        return Objects.hash(patientId, userId, doctorId, firstName, lastName, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insuranceId);
+        return Objects.hash(patientId, userId, doctor, firstName, lastName, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insuranceId);
     }
 }

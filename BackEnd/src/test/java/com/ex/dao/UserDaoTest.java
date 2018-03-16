@@ -9,14 +9,6 @@ import java.util.List;
 
 public class UserDaoTest {
 
-    @Before
-    public void before() {
-        final UserDao userDao = new UserDao();
-        userDao.findAll().forEach((u)->{
-            userDao.delete(u);
-        });
-    }
-
     @Test
     public void create() {
         UserDao userDao = new UserDao();
@@ -24,6 +16,7 @@ public class UserDaoTest {
         user = userDao.create(user);
         User result = userDao.findOne(user.getId());
         Assert.assertEquals(user, result);
+        userDao.delete(user);
     }
 
     @Test
@@ -42,6 +35,7 @@ public class UserDaoTest {
 
         User result = userDao.findOne(user.getId());
         Assert.assertEquals(user, result);
+        userDao.delete(user);
     }
 
     @Test
@@ -52,29 +46,38 @@ public class UserDaoTest {
 
         User result = userDao.findOne(user.getId());
         Assert.assertEquals(user, result);
+        userDao.delete(user);
     }
 
     @Test
     public void findOne1() {
         UserDao userDao = new UserDao();
         User user = new User();
-        user.setUsername("testunamefind");
+        user.setUsername("testunamefind1");
         user = userDao.create(user);
 
         User result = userDao.findOne(user.getUsername());
         Assert.assertEquals(user, result);
+        userDao.delete(user);
     }
 
     @Test
     public void findAll() {
         UserDao userDao = new UserDao();
+        List<User> allbefore = userDao.findAll();
+
         User user = new User();
         user = userDao.create(user);
         User user2 = new User();
         user2 = userDao.create(user2);
 
-        List<User> all = userDao.findAll();
-        Assert.assertArrayEquals(new User[]{user, user2}, all.toArray());
+        allbefore.add(user);
+        allbefore.add(user2);
+
+        List<User> allresult = userDao.findAll();
+        Assert.assertArrayEquals(allbefore.toArray(), allresult.toArray());
+        userDao.delete(user);
+        userDao.delete(user2);
     }
 
     @Test

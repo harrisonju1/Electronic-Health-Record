@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class _BeanTestGen {
     public static void main(String[] args) {
-//        GenTestFor(PatientHistory.class);
+//        GenTestFor(User.class);
     }
     static void GenTestFor(Class bean) {
         System.out.println("generating test for "+bean.getName());
@@ -78,8 +78,6 @@ public class _BeanTestGen {
             return String.valueOf("java.sql.Date.valueOf(java.time.LocalDate.now())");
         if (type.getTypeName().equals("java.sql.Time"))
             return String.valueOf("java.sql.Time.valueOf(java.time.LocalTime.now())");
-        if (type.getTypeName().equals("com.ex.beans.Approval$StatusMsg"))
-            return String.valueOf("com.ex.beans.Approval.StatusMsg.URGENT");
         if (type.getTypeName().equals("byte[]"))
             return String.valueOf("new byte[]{1,2,3}");
 //        System.out.println(""+type.getTypeName());

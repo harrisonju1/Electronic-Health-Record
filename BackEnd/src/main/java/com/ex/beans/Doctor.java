@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name="doctors")
-public class Doctors {
+public class Doctor {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,10 @@ public class Doctors {
     @Column(name="field")
     private String field;
 
-    public Doctors() {
+    public Doctor() {
     }
 
-    public Doctors(String firstName, String lastName, String field) {
+    public Doctor(String firstName, String lastName, String field) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.field = field;
@@ -63,7 +63,7 @@ public class Doctors {
 
     @Override
     public String toString() {
-        return "Doctors{" +
+        return "Doctor{" +
                 "doctorsId=" + doctorsId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -75,7 +75,7 @@ public class Doctors {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Doctors doctors = (Doctors) o;
+        Doctor doctors = (Doctor) o;
         return doctorsId == doctors.doctorsId &&
                 Objects.equals(firstName, doctors.firstName) &&
                 Objects.equals(lastName, doctors.lastName) &&

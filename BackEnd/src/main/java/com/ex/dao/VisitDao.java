@@ -1,5 +1,6 @@
 package com.ex.dao;
 
+import com.ex.beans.PatientProfile;
 import com.ex.beans.Visit;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
@@ -32,9 +33,9 @@ public class VisitDao {
         return visits;
     }
 
-    public List<Visit> findByPatientId(int patientId){
+    public List<Visit> findByPatientId(PatientProfile patient){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        List<Visit> allergies = (List<Visit>) session.createCriteria(Visit.class).add(Restrictions.eq("patient_id", patientId)).list();
+        List<Visit> allergies = (List<Visit>) session.createCriteria(Visit.class).add(Restrictions.eq("patient_id", patient)).list();
 
         session.close();
         return allergies;

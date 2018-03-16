@@ -12,18 +12,16 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int visitId;
 
-    @Id
     @Column(name="visit_date")
     private Date visitDate;
 
-
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
-    private int doctorId;
+    private Doctor doctor;
 
     @Column(name="visit_reason")
     private String visitReason;
@@ -31,10 +29,10 @@ public class Visit {
     public Visit() {
     }
 
-    public Visit(Date visitDate, int patientId, int doctorId, String visitReason) {
+    public Visit(Date visitDate, PatientProfile patient, Doctor doctor, String visitReason) {
         this.visitDate = visitDate;
-        this.patientId = patientId;
-        this.doctorId = doctorId;
+        this.patient = patient;
+        this.doctor = doctor;
         this.visitReason = visitReason;
     }
 
@@ -54,20 +52,20 @@ public class Visit {
         this.visitDate = visitDate;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctorId(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public String getVisitReason() {
@@ -83,8 +81,8 @@ public class Visit {
         return "Visit{" +
                 "visitId=" + visitId +
                 ", visitDate=" + visitDate +
-                ", patientId=" + patientId +
-                ", doctorId=" + doctorId +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
                 ", visitReason='" + visitReason + '\'' +
                 '}';
     }
@@ -95,8 +93,8 @@ public class Visit {
         if (o == null || getClass() != o.getClass()) return false;
         Visit visit = (Visit) o;
         return visitId == visit.visitId &&
-                patientId == visit.patientId &&
-                doctorId == visit.doctorId &&
+                patient == visit.patient &&
+                doctor == visit.doctor &&
                 Objects.equals(visitDate, visit.visitDate) &&
                 Objects.equals(visitReason, visit.visitReason);
     }
@@ -104,6 +102,6 @@ public class Visit {
     @Override
     public int hashCode() {
 
-        return Objects.hash(visitId, visitDate, patientId, doctorId, visitReason);
+        return Objects.hash(visitId, visitDate, patient, doctor, visitReason);
     }
 }

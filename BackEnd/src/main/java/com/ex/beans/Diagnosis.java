@@ -14,17 +14,16 @@ public class Diagnosis {
 
     @ManyToOne
     @JoinColumn(name="patient_id")
-    private int patientId;
+    private PatientProfile patient;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
-    private int doctorId;
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name="visit_id")
-    private int visitId;
+    private Visit visit;
 
-    @JoinColumn
     private Date visitDate;
 
     @Column(name="diagnosis")
@@ -33,10 +32,10 @@ public class Diagnosis {
     public Diagnosis() {
     }
 
-    public Diagnosis(int patientId, int doctorId, int visitId, Date visitDate, String diagnosis) {
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitId = visitId;
+    public Diagnosis(PatientProfile patient, Doctor doctor, Visit visit, Date visitDate, String diagnosis) {
+        this.patient = patient;
+        this.doctor = doctor;
+        this.visit = visit;
         this.visitDate = visitDate;
         this.diagnosis = diagnosis;
     }
@@ -49,28 +48,28 @@ public class Diagnosis {
         this.diagnosisId = diagnosisId;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public PatientProfile getPatient() {
+        return patient;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setPatient(PatientProfile patient) {
+        this.patient = patient;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public int getVisitId() {
-        return visitId;
+    public Visit getVisit() {
+        return visit;
     }
 
-    public void setVisitId(int visitId) {
-        this.visitId = visitId;
+    public void setVisitId(Visit visit) {
+        this.visit = visit;
     }
 
     public Date getVisitDate() {
@@ -93,9 +92,9 @@ public class Diagnosis {
     public String toString() {
         return "Diagnosis{" +
                 "diagnosisId=" + diagnosisId +
-                ", patientId=" + patientId +
-                ", doctorId=" + doctorId +
-                ", visitId=" + visitId +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
                 ", visitDate=" + visitDate +
                 ", diagnosis='" + diagnosis + '\'' +
                 '}';
@@ -107,9 +106,9 @@ public class Diagnosis {
         if (o == null || getClass() != o.getClass()) return false;
         Diagnosis diagnosis1 = (Diagnosis) o;
         return diagnosisId == diagnosis1.diagnosisId &&
-                patientId == diagnosis1.patientId &&
-                doctorId == diagnosis1.doctorId &&
-                visitId == diagnosis1.visitId &&
+                patient == diagnosis1.patient &&
+                doctor == diagnosis1.doctor &&
+                visit == diagnosis1.visit &&
                 Objects.equals(visitDate, diagnosis1.visitDate) &&
                 Objects.equals(diagnosis, diagnosis1.diagnosis);
     }
@@ -117,6 +116,6 @@ public class Diagnosis {
     @Override
     public int hashCode() {
 
-        return Objects.hash(diagnosisId, patientId, doctorId, visitId, visitDate, diagnosis);
+        return Objects.hash(diagnosisId, patient, doctor, visit, visitDate, diagnosis);
     }
 }
