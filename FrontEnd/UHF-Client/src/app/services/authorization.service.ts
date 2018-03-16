@@ -88,7 +88,7 @@ export class AuthorizationService {
     var auth = localStorage.getItem('auth');
     if (!auth) {
       if (!anyoneCanAccess)
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       return;
     }
     var cred = atob(auth).split(':');
@@ -96,7 +96,7 @@ export class AuthorizationService {
     if (cred.length != 2) {
       localStorage.removeItem('auth');
       if (!anyoneCanAccess)
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       return;
     }
 
@@ -124,7 +124,7 @@ export class AuthorizationService {
       }
       if (!authorized) {
         console.log("unauthorized");
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       }
     });
   }
