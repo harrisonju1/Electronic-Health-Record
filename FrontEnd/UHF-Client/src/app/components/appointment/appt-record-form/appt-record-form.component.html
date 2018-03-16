@@ -4,7 +4,7 @@
             <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
       
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Forms
               </a>
@@ -13,10 +13,63 @@
                 <a class="dropdown-item" routerLink="/form/medical" >Medical History</a>
                 <a class="dropdown-item" routerLink="/form/appointment">Appointment Record</a>  
               </div>
-            </li>
+            </li> -->
       
-            <li class="nav-item"><a class="nav-link" (click)="logout()">logout</a></li>
+            <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li>
         </ul>
   
     </div>
   </nav>
+
+  <div id="apptRecordDiv">
+    <div class="container">
+      <h3>Appointment Record Form</h3>
+      <br>
+      <hr>
+      <br>
+
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="doctorID">Doctor ID</label>
+              <input type="number" class="form-control" id="doctorID" placeholder="#" name="doctorID" ngModel required />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="visitDate">Visit Date</label>
+              <input type="date" class="form-control" id="visitDate" name="visitDate" ngModel required />
+            </div>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="visitReason">Reason For Visit</label>
+                <textarea class="form-control" rows="3" id="visitReason" name="visitReason" ngModel required></textarea>
+              </div>
+          </div>
+
+          <button type="button" class="btn btn-outline-dark" 
+          data-toggle="modal" data-target="#cancel">Cancel</button>
+          <button type="submit" class="btn btn-dark">Submit</button>
+
+          <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="cancelLabel">Are you sure?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  All fields will be lost.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" data-dismiss="modal">No, Continue</button>
+                  <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="cancel()">Yes, Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
