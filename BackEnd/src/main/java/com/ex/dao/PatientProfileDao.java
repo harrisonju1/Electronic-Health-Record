@@ -1,5 +1,6 @@
 package com.ex.dao;
 
+import com.ex.beans.Doctor;
 import com.ex.beans.PatientProfile;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
@@ -49,10 +50,10 @@ public class PatientProfileDao {
         return profile;
     }
 
-    public PatientProfile findOneByDoctorId(int doctorId){
+    public PatientProfile findOneByDoctorId(Doctor doctor){
         Session session = HibernateUtils.getSessionFactory().openSession();
 
-        PatientProfile profile = (PatientProfile) session.get(PatientProfile.class, doctorId);
+        PatientProfile profile = (PatientProfile) session.get(PatientProfile.class, doctor.getDoctorsId());
 
         session.close();
         return profile;

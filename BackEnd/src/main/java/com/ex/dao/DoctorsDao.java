@@ -1,6 +1,6 @@
 package com.ex.dao;
 
-import com.ex.beans.Doctors;
+import com.ex.beans.Doctor;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -9,7 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import java.util.List;
 
 public class DoctorsDao {
-    public Doctors create(Doctors doctor){
+    public Doctor create(Doctor doctor){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -21,7 +21,7 @@ public class DoctorsDao {
         return doctor;
     }
 
-    public Doctors update(Doctors doctors){
+    public Doctor update(Doctor doctors){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -32,24 +32,24 @@ public class DoctorsDao {
         return doctors;
     }
 
-    public List<Doctors> findByDoctorId(int doctorId){
+    public List<Doctor> findByDoctorId(Doctor doctor){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        List<Doctors> doctors = (List<Doctors>) session.createCriteria(Doctors.class).add(Restrictions.eq("doctor_id", doctorId)).list();
+        List<Doctor> doctors = (List<Doctor>) session.createCriteria(Doctor.class).add(Restrictions.eq("doctor_id", doctor)).list();
 
         session.close();
         return doctors;
     }
 
-    public List<Doctors> findAll(){
+    public List<Doctor> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
 
-        List<Doctors> doctors = session.createCriteria(Doctors.class).list();
+        List<Doctor> doctors = session.createCriteria(Doctor.class).list();
 
         session.close();
         return doctors;
     }
 
-    public void delete(Doctors doctor){
+    public void delete(Doctor doctor){
         Session session = HibernateUtils.getSessionFactory().openSession();
 
         session.delete(doctor);

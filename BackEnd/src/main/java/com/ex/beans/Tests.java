@@ -19,14 +19,13 @@ public class Tests {
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
-    private int doctorId;
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name="visit_id")
-    private int visitId;
+    private Visit visit;
 
-    @ManyToOne
-    @JoinColumn
+    @Column
     private Date visitDate;
 
     @Column(name="test")
@@ -35,10 +34,10 @@ public class Tests {
     public Tests() {
     }
 
-    public Tests(int patientId, int doctorId, int visitId, Date visitDate, String test) {
+    public Tests(int patientId, Doctor doctor, Visit visit, Date visitDate, String test) {
         this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitId = visitId;
+        this.doctor = doctor;
+        this.visit = visit;
         this.visitDate = visitDate;
         this.test = test;
     }
@@ -59,20 +58,20 @@ public class Tests {
         this.patientId = patientId;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctorId(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public int getVisitId() {
-        return visitId;
+    public Visit getVisit() {
+        return visit;
     }
 
-    public void setVisitId(int visitId) {
-        this.visitId = visitId;
+    public void setVisitId(Visit visit) {
+        this.visit = visit;
     }
 
     public Date getVisitDate() {
@@ -96,8 +95,8 @@ public class Tests {
         return "Tests{" +
                 "testId=" + testId +
                 ", patientId=" + patientId +
-                ", doctorId=" + doctorId +
-                ", visitId=" + visitId +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
                 ", visitDate=" + visitDate +
                 ", test='" + test + '\'' +
                 '}';
@@ -110,8 +109,8 @@ public class Tests {
         Tests tests = (Tests) o;
         return testId == tests.testId &&
                 patientId == tests.patientId &&
-                doctorId == tests.doctorId &&
-                visitId == tests.visitId &&
+                doctor == tests.doctor &&
+                visit == tests.visit &&
                 Objects.equals(visitDate, tests.visitDate) &&
                 Objects.equals(test, tests.test);
     }
@@ -119,6 +118,6 @@ public class Tests {
     @Override
     public int hashCode() {
 
-        return Objects.hash(testId, patientId, doctorId, visitId, visitDate, test);
+        return Objects.hash(testId, patientId, doctor, visit, visitDate, test);
     }
 }

@@ -30,8 +30,8 @@ public class patientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
 
-        profile.setDoctorId(1);
-        profile.setUserId(1);
+        profile.setDoctorId(new Doctor());
+        profile.setUserId(new User().getId());
         profile.setDob(null);
         profile.setPhone_number(123);
         profile.setEmail("test@test.com");
@@ -76,7 +76,7 @@ public class patientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
 
-        PatientProfile result = profileDao.findOneByPatientId(profile.getDoctorId());
+        PatientProfile result = profileDao.findOneByPatientId(profile.getDoctor().getDoctorsId());
         Assert.assertEquals(profile, result);
     }
 

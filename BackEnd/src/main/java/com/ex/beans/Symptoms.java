@@ -19,14 +19,13 @@ public class Symptoms {
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
-    private int doctorId;
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name="visit_id")
-    private int visitId;
+    private Visit visit;
 
-    @ManyToOne
-    @JoinColumn(name="visit_date")
+    @Column(name="visit_date")
     private Date visitDate;
 
     @Column(name="symptoms")
@@ -35,10 +34,10 @@ public class Symptoms {
     public Symptoms() {
     }
 
-    public Symptoms(int patientId, int doctorId, int visitId, Date visitDate, String symptoms) {
+    public Symptoms(int patientId, Doctor doctor, Visit visit, Date visitDate, String symptoms) {
         this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitId = visitId;
+        this.doctor = doctor;
+        this.visit = visit;
         this.visitDate = visitDate;
         this.symptoms = symptoms;
     }
@@ -59,20 +58,20 @@ public class Symptoms {
         this.patientId = patientId;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctorId(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public int getVisitId() {
-        return visitId;
+    public Visit getVisit() {
+        return visit;
     }
 
-    public void setVisitId(int visitId) {
-        this.visitId = visitId;
+    public void setVisitId(Visit visit) {
+        this.visit = visit;
     }
 
     public Date getVisitDate() {
@@ -96,8 +95,8 @@ public class Symptoms {
         return "Symptoms{" +
                 "symptomId=" + symptomId +
                 ", patientId=" + patientId +
-                ", doctorId=" + doctorId +
-                ", visitId=" + visitId +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
                 ", visitDate=" + visitDate +
                 ", symptoms='" + symptoms + '\'' +
                 '}';
@@ -110,8 +109,8 @@ public class Symptoms {
         Symptoms symptoms1 = (Symptoms) o;
         return symptomId == symptoms1.symptomId &&
                 patientId == symptoms1.patientId &&
-                doctorId == symptoms1.doctorId &&
-                visitId == symptoms1.visitId &&
+                doctor == symptoms1.doctor &&
+                visit == symptoms1.visit &&
                 Objects.equals(visitDate, symptoms1.visitDate) &&
                 Objects.equals(symptoms, symptoms1.symptoms);
     }
@@ -119,6 +118,6 @@ public class Symptoms {
     @Override
     public int hashCode() {
 
-        return Objects.hash(symptomId, patientId, doctorId, visitId, visitDate, symptoms);
+        return Objects.hash(symptomId, patientId, doctor, visit, visitDate, symptoms);
     }
 }

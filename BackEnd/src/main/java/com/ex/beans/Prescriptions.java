@@ -19,14 +19,13 @@ public class Prescriptions {
 
     @ManyToOne
     @JoinColumn(name="doctor_id")
-    private int doctorId;
+    private Doctor doctor;
 
     @ManyToOne
     @JoinColumn(name="visit_id")
-    private int visitId;
+    private Visit visit;
 
-    @ManyToOne
-    @JoinColumn(name="visit_date")
+    @Column(name="visit_date")
     private Date visitDate;
 
     @Column(name="drugs")
@@ -35,10 +34,10 @@ public class Prescriptions {
     public Prescriptions() {
     }
 
-    public Prescriptions(int patientId, int doctorId, int visitId, Date visitDate, String drugs) {
+    public Prescriptions(int patientId, Doctor doctor, Visit visit, Date visitDate, String drugs) {
         this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitId = visitId;
+        this.doctor = doctor;
+        this.visit = visit;
         this.visitDate = visitDate;
         this.drugs = drugs;
     }
@@ -59,20 +58,20 @@ public class Prescriptions {
         this.patientId = patientId;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctorId(int doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctorId(Doctor doctor) {
+        this.doctor = doctor;
     }
 
-    public int getVisitId() {
-        return visitId;
+    public Visit getVisit() {
+        return visit;
     }
 
-    public void setVisitId(int visitId) {
-        this.visitId = visitId;
+    public void setVisitId(Visit visit) {
+        this.visit = visit;
     }
 
     public Date getVisitDate() {
@@ -96,8 +95,8 @@ public class Prescriptions {
         return "Prescriptions{" +
                 "prescriptionId=" + prescriptionId +
                 ", patientId=" + patientId +
-                ", doctorId=" + doctorId +
-                ", visitId=" + visitId +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
                 ", visitDate=" + visitDate +
                 ", drugs='" + drugs + '\'' +
                 '}';
@@ -110,8 +109,8 @@ public class Prescriptions {
         Prescriptions that = (Prescriptions) o;
         return prescriptionId == that.prescriptionId &&
                 patientId == that.patientId &&
-                doctorId == that.doctorId &&
-                visitId == that.visitId &&
+                doctor == that.doctor &&
+                visit == that.visit &&
                 Objects.equals(visitDate, that.visitDate) &&
                 Objects.equals(drugs, that.drugs);
     }
@@ -119,6 +118,6 @@ public class Prescriptions {
     @Override
     public int hashCode() {
 
-        return Objects.hash(prescriptionId, patientId, doctorId, visitId, visitDate, drugs);
+        return Objects.hash(prescriptionId, patientId, doctor, visit, visitDate, drugs);
     }
 }

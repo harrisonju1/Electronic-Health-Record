@@ -16,7 +16,7 @@
         <mapping class="com.ex.beans.PatientProfile"/>
         <mapping class="com.ex.beans.Allergies"/>
         <mapping class="com.ex.beans.Diagnosis"/>
-        <mapping class="com.ex.beans.Doctors"/>
+        <mapping class="com.ex.beans.Doctor"/>
         <mapping class="com.ex.beans.Prescriptions"/>
         <mapping class="com.ex.beans.Symptoms"/>
         <mapping class="com.ex.beans.Tests"/>
