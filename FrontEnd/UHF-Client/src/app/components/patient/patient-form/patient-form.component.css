@@ -9,3 +9,28 @@
     background-color: transparent;
     color: #343A40;
 }
+
+/* FORM VALIDATION */
+#review, #review:hover {
+    background-color:transparent;
+    color:rgb(99, 111, 124);
+    border:1.5px solid rgb(99, 111, 124);
+    cursor:none;
+}
+
+input.ng-pristine[required],textarea.ng-pristine[required], select.ng-pristine[required] {
+    border-left:5px solid #343A40;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; 
+  }
+  
+.ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; 
+  }
+
+#submit:hover{
+    background-color: transparent;
+    color: #343A40;
+}

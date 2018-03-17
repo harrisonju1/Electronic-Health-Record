@@ -4,16 +4,16 @@
             <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/form/patient">New Patient Form</a></li>
-      
-            <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Forms
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" routerLink="/form/patient">New Patient</a>
-                <a class="dropdown-item" routerLink="/form/medical" >Medical History</a>
-                <a class="dropdown-item" routerLink="/form/appointment">Appointment Record</a>  
-              </div>
+
+      <!-- <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Forms
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/form/patient">New Patient</a>
+          <a class="dropdown-item" routerLink="/form/medical" >Medical History</a>
+          <a class="dropdown-item" routerLink="/form/appointment">Appointment Record</a>  
+        </div>
             </li> -->
       
             <!-- <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li> -->
@@ -30,36 +30,43 @@
       <hr>
       <br>
 
-      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <form (ngSubmit)="onSubmit()" #apptForm="ngForm">
           <div class="form-row">
             <div class="form-group col-md-6" >
               <label for="doctorId">Doctor ID</label>
               <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="apptRecord.doctorId" #doctorId="ngModel" required />
-              <div [hidden]="doctorId.valid || doctorId.pristine" class="alert alert-danger">
-                Doctor ID is required.
+              <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
+                Doctor ID is required and must be greater than 0.
               </div>
-              
             </div>
+
             <div class="form-group col-md-6">
               <label for="visitDate">Visit Date</label>
-              <input type="date" class="form-control" id="visitDate" name="visitDate" ngModel required />
+              <input type="date" class="form-control" id="visitDate" name="visitDate" [(ngModel)]="apptRecord.visitDate" #visitDate="ngModel" required />
+              <div *ngIf="visitDate.invalid && (visitDate.touched || visitDate.dirty)" class="alert alert-danger">
+                Visit date is required.
+              </div>
             </div>
           </div>
-
-
-
-
 
           <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="visitReason">Reason For Visit</label>
-                <textarea class="form-control" rows="3" id="visitReason" name="visitReason" ngModel required></textarea>
+                <textarea class="form-control" rows="3" id="visitReason" name="visitReason" [(ngModel)]="apptRecord.visitReason" #visitReason="ngModel" required></textarea>
+              </div>
+              <div *ngIf="visitReason.invalid && (visitReason.touched || visitReason.dirty)" class="alert alert-danger">
+                The reason for visit is required.
               </div>
           </div>
 
           <button type="button" class="btn btn-outline-dark" 
           data-toggle="modal" data-target="#cancel">Cancel</button>
-          <button type="submit" class="btn btn-dark">Submit</button>
+          
+          <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm">Submit</button>
+                
+          <button id="review" class="btn btn-dark" [disabled]="!apptForm.form.valid" *ngIf="!validForm">Review</button>
+
+
 
           <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -80,6 +87,7 @@
               </div>
             </div>
           </div>
+          
       </form>
     </div>
   </div>
