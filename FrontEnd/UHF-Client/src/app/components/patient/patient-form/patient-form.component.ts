@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatientProfile } from '../../../domain/PatientProfile';
 import { FormService } from '../../../services/form.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,6 @@ export class PatientFormComponent implements OnInit {
   submitted: boolean = false;
   reset: boolean = false;
   validForm:boolean = false;
-  fakedate:Date = new Date();
   patientProfile: PatientProfile = new PatientProfile(null,null,null,"","",null,null,null,null,"","","","","","","",null,"",null);
 
   constructor(
@@ -42,11 +41,15 @@ export class PatientFormComponent implements OnInit {
         this.patientProfile.lastname != "" &&
         this.patientProfile.gender != "" &&
         this.patientProfile.ssn != null &&
+        this.patientProfile.ssn < 999999999 &&
+        this.patientProfile.ssn > 100000000 &&
         this.patientProfile.occupation != "" &&
         this.patientProfile.marital_status != "" &&
         this.patientProfile.phone_number != null &&
         this.patientProfile.state != "" &&
         this.patientProfile.zipcode != null &&
+        this.patientProfile.zipcode > 10000 &&
+        this.patientProfile.zipcode < 99999 &&
         this.patientProfile.insurance_id != null &&
         this.patientProfile.insurance_provider != ""
       ) {

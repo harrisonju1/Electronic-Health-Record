@@ -32,21 +32,21 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="firstname">First Name</label>
-              <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [(ngModel)]="patientProfile.firstname" #firstname="ngModel" required />
+              <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [(ngModel)]="patientProfile.firstname" #firstname="ngModel" minlength="1" required />
               <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)" class="alert alert-danger">
                 First name is required.
               </div>
             </div>
             <div class="form-group col-md-4">
               <label for="lastname">Last Name</label>
-              <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [(ngModel)]="patientProfile.lastname" #lastname="ngModel" required />
+              <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [(ngModel)]="patientProfile.lastname" #lastname="ngModel" minlength="1" required />
               <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)" class="alert alert-danger">
                 Last name is required.
               </div>
             </div>
             <div class="form-group col-md-4">
               <label for="doctorId">Doctor ID</label>
-              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" required />
+              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" required />
               <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
                 Doctor ID is required.
               </div>
@@ -59,12 +59,12 @@
               <label for="SSN">Social Security Number</label>
               <input type="text" class="form-control" id="ssn" placeholder="###-##-####" name="ssn" [(ngModel)]="patientProfile.ssn" #ssn="ngModel" required/>
               <div *ngIf="ssn.invalid && (ssn.touched || ssn.dirty)" class="alert alert-danger">
-                Social Security Number is required.
+                Social Security Number (no dashes) is required.
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="DOB">Date of Birth</label>
-              <input type="date" class="form-control" id="dob" name="dob" ([ngModel])="patientProfile.dob" #dob="ngModel" required/>
+              <label for="dob">Date of Birth</label>
+              <input type="date" class="form-control" id="dob" name="dob" [(ngModel)]="patientProfile.dob" #dob="ngModel" required />
               <div *ngIf="dob.invalid && (dob.touched || dob.dirty)" class="alert alert-danger">
                 Date of Birth is required.
               </div>

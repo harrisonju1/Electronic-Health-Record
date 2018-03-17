@@ -29,7 +29,7 @@ describe('ApptRecordFormComponent', () => {
   it('should submit', () => {
     let ngf: NgForm;
 
-    component.onSubmit(ngf);
+    component.onSubmit();
     expect(component.submitted).toBeTruthy();
   });
   it('should reset form', () => {
