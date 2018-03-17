@@ -33,7 +33,7 @@ public class PatientProfileDaoTest {
         profile.setDoctorId(new Doctor());
         profile.setUserId(new User().getId());
         profile.setDob(null);
-        profile.setPhone_number(123);
+        profile.setPhone_number("123");
         profile.setEmail("test@test.com");
         profile.setMarital_status("the 10th gender");
         profile.setEthnicity("nordic");
