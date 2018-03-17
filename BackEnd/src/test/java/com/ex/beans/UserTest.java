@@ -45,16 +45,6 @@ public void getPasswordTest() throws NoSuchFieldException, IllegalAccessExceptio
 	Assert.assertEquals(expected, result);
 }
 
-@Test
-public void getLastNameTest() throws NoSuchFieldException, IllegalAccessException {
-	Field field = com.ex.beans.User.class.getDeclaredField("lastName");
-	field.setAccessible(true);
-	com.ex.beans.User inst = new com.ex.beans.User();
-	java.lang.String expected = "test string 0.047386944";
-	field.set(inst, expected);
-	java.lang.String result = inst.getLastName();
-	Assert.assertEquals(expected, result);
-}
 
 @Test
 public void setIdTest() throws NoSuchFieldException, IllegalAccessException {
@@ -97,39 +87,6 @@ public void getUsernameTest() throws NoSuchFieldException, IllegalAccessExceptio
 	java.lang.String expected = "test string 0.56159925";
 	field.set(inst, expected);
 	java.lang.String result = inst.getUsername();
-	Assert.assertEquals(expected, result);
-}
-
-@Test
-public void getFirstNameTest() throws NoSuchFieldException, IllegalAccessException {
-	Field field = com.ex.beans.User.class.getDeclaredField("firstName");
-	field.setAccessible(true);
-	com.ex.beans.User inst = new com.ex.beans.User();
-	java.lang.String expected = "test string 0.79567146";
-	field.set(inst, expected);
-	java.lang.String result = inst.getFirstName();
-	Assert.assertEquals(expected, result);
-}
-
-@Test
-public void setFirstNameTest() throws NoSuchFieldException, IllegalAccessException {
-	Field field = com.ex.beans.User.class.getDeclaredField("firstName");
-	field.setAccessible(true);
-	com.ex.beans.User inst = new com.ex.beans.User();
-	java.lang.String expected = "test string 0.43739152";
-	inst.setFirstName(expected);
-	java.lang.String result = (java.lang.String)field.get(inst);
-	Assert.assertEquals(expected, result);
-}
-
-@Test
-public void setLastNameTest() throws NoSuchFieldException, IllegalAccessException {
-	Field field = com.ex.beans.User.class.getDeclaredField("lastName");
-	field.setAccessible(true);
-	com.ex.beans.User inst = new com.ex.beans.User();
-	java.lang.String expected = "test string 0.98697656";
-	inst.setLastName(expected);
-	java.lang.String result = (java.lang.String)field.get(inst);
 	Assert.assertEquals(expected, result);
 }
 
