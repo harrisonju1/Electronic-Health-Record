@@ -57,7 +57,7 @@
             </div>
           </div>
 
-        <!-- <div class="form-row">
+        <div class="form-row">
           <div class="form-group col-md-6">
             <label for="SSN">Social Security Number</label>
             <input type="text" class="form-control" id="ssn" placeholder="###-##-####" name="ssn" [(ngModel)]="patientProfile.ssn" #ssn="ngModel" required/>
@@ -72,28 +72,27 @@
               Date of Birth is required.
             </div>
           </div>
-        </div> -->
+        </div>
 
-          <!-- <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="phoneNumber">Phone Number</label>
-              <input type="text" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patientProfile.phone_number" #phoneNumber="ngModel" required />
-              <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-danger">
-                Phone Number is required.
-              </div>
-            </div>
-
-            <div class="form-group col-md-6">
-              <label for="email">Email Address</label>
-              <input type="email" class="form-control" id="email" placeholder="flynn.rider@gmail.com" name="email" [(ngModel)]="patientProfile.email" #email="ngModel" required />
-              <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
-                Email address is required.
-              </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patientProfile.phone_number" #phoneNumber="ngModel" required />
+            <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-danger">
+              Phone Number is required.
             </div>
           </div>
-        </div> -->
 
-        <!-- <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="flynn.rider@gmail.com" name="email" [(ngModel)]="patientProfile.email" #email="ngModel" required />
+            <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
+              Email address is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
           <div class="form-group col-md-6">
             <label for="maritalStatus">Marital Status</label>
             <select id="maritalStatus" class="form-control" name="maritalStatus" [(ngModel)]="patientProfile.marital_status" #maritalStatus="ngModel" required >
@@ -117,9 +116,9 @@
                 Gender is required.
               </div>
           </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="form-row">  
+        <div class="form-row">  
           <div class="form-group col-md-6">
             <label for="ethnicity">Ethnicity</label>
             <input type="text" class="form-control" id="ethnicity" name="ethnicity" [(ngModel)]="patientProfile.ethnicity" #ethnicity="ngModel" required/>
@@ -133,34 +132,11 @@
             <input type="text" class="form-control" id="occupation" name="occupation" [(ngModel)]="patientProfile.occupation" #occupation="ngModel" required/>
             <div *ngIf="occupation.invalid && (occupation.touched || occupation.dirty)" class="alert alert-danger">
               Occupation is required.
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="maritalStatus">Marital Status</label>
-              <select id="maritalStatus" class="form-control" name="maritalStatus" [(ngModel)]="patientProfile.marital_status" #maritalStatus="ngModel" required >
-                  <option value="single">Single</option>
-                  <option value="divorced">Divorced</option>
-                  <option value="married">Married</option>
-                </select>
-                <div *ngIf="maritalStatus.invalid && (maritalStatus.touched || maritalStatus.dirty)" class="alert alert-danger">
-                  Marital status is required.
-                </div>
-            </div>
-          
-            <div class="form-group col-md-6">
-              <label for="gender">Gender</label>
-              <select id="gender" class="form-control" name="gender" [(ngModel)]="patientProfile.gender" #gender="ngModel" required>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-                <div *ngIf="gender.invalid && (gender.touched || gender.dirty)" class="alert alert-danger">
-                  Gender is required.
-                </div>
-            </div>
-          </div>
-        </div>      -->
+            </div>   
+          </div> 
+        </div> 
 
-        <!-- <div class="form-row">
+        <div class="form-row">
             <div class="form-group col-md-12">
               <label for="address">Address</label>
               <input type="text" class="form-control" id="address" placeholder="1234 Main Street" name="address" [(ngModel)]="patientProfile.address" #address="ngModel" required>
@@ -168,23 +144,22 @@
                 Address is required.
               </div>
             </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="form-row">
+        <div class="form-row">
           <div class="form-group col-md-12">
             <label for="city">City</label>
-            <input type="text" class="form-control" id="city" name="city" [(ngModel)]="patientProfile.city" #city="ngModel" required>
+            <input type="text" class="form-control" id="city" name="city" placeholder="Orlando" [(ngModel)]="patientProfile.city" #city="ngModel" required>
             <div *ngIf="city.invalid && (city.touched || city.dirty)" class="alert alert-danger">
               City is required.
             </div>
           </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="form-row">  
+        <div class="form-row">  
           <div class="form-group col-md-8">
             <label for="state">State</label>
             <select id="state" class="form-control" name="state" [(ngModel)]="patientProfile.state" #state="ngModel" required>
-              <option selected disabled>Choose...</option>
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
@@ -249,9 +224,9 @@
               Zip code is required.
             </div>
           </div>
-        </div> -->
+        </div>
         
-        <!-- <div class="form-row">
+        <div class="form-row">
           <div class="form-group col-md-6">
             <label for="insuranceProvider">Insurance Provider</label>
             <input type="text" class="form-control" id="insuranceProvider" name="insuranceProvider" [(ngModel)]="patientProfile.insurance_provider" #insuranceProvider="ngModel" required/>
@@ -267,9 +242,9 @@
                 Zip code is required.
               </div>
             </div>
-          </div> -->
+          </div>
           
-          <!-- <div class="form-row">
+          <div class="form-row">
             <div class="form-group col-md-6">
               <label for="insuranceProvider">Insurance Provider</label>
               <input type="text" class="form-control" id="insuranceProvider" name="insuranceProvider" [(ngModel)]="patientProfile.insurance_provider" #insuranceProvider="ngModel" required/>
@@ -285,7 +260,7 @@
                 Insurance ID is required.
               </div>
             </div>
-          </div> -->
+          </div>
           
           <button type="button" class="btn btn-outline-dark" 
           data-toggle="modal" data-target="#cancel">Cancel</button>
