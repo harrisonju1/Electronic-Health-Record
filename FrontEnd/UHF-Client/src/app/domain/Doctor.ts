@@ -3,4 +3,5 @@ export class Doctor {
     firstname: string;
     lastname: string;
     field:  string;
+
 }

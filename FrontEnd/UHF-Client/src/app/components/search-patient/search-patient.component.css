@@ -1,0 +1,12 @@
+.form-group{
+    margin:0 auto;
+}
+
+#search {
+    background-color:aliceblue;
+    padding: 4%;
+}
+
+.container{
+    width: 60%;
+}

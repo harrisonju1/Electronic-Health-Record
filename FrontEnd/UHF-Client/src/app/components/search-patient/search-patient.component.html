@@ -22,14 +22,63 @@
     </div>
     <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
   </nav>
+  <br>
+  <div class="container" id="title"><h2>Patients</h2></div>
+  <br>
+  <form>
+    <div class="form-row">
+        <div class="form-group">
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-3" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+              </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-row">
+        <div class="form-check offset-md-5 col-md-1">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+          <label class="form-check-label" for="exampleRadios1">
+            Patient ID
+          </label>
+        </div>
+        <div class="form-check col-md-1">
+          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+          <label class="form-check-label" for="exampleRadios2">
+            Name
+          </label>
+        </div>
+      </div>
+  </form>
+  <br>
+<div class="container" id="search">
+  
+  <div class="row">
+    <div class="offset-md-1 col-md-2"><h6>ID</h6></div>
+    <div class="col-md-4"><h6>Name</h6></div>
+    <div class="col-md-4"><h6>Date of Birth</h6></div>
+  </div>
+  <hr>
+  <div *ngFor="let patient of patients">
+    <div class="row">
+        <div class="offset-md-1 col-md-2">{{patient.patient_id}}</div>
+        <div class="col-md-4">{{patient.firstname}} {{patient.lastname}}</div>
+        <div class="col-md-4">{{patient.dob.toLocaleDateString()}}</div>
+        <button class="btn btn-outline-info btn-sm">View</button>
+    </div>
+    <hr>
+  </div>
+
+</div>
+  
 
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch button if search returns no existing patient
-  </button>
+  </button> -->
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -47,5 +96,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
