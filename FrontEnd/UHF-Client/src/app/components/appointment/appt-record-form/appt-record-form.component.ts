@@ -14,10 +14,9 @@ export class ApptRecordFormComponent implements OnInit {
 
   submitted:boolean=false;
   reset:boolean=false;
-  d:Date = new Date();
   validForm:boolean=false;
 
-  apptRecord:ApptRecord = new ApptRecord(0, this.d , 0, 0, "");
+  apptRecord:ApptRecord = new ApptRecord(0, null , 0, 0, "");
 
   constructor(
     private formService:FormService,
@@ -26,13 +25,13 @@ export class ApptRecordFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.apptRecord.doctorId == 0 || this.apptRecord.patientId == 0 || this.apptRecord.visitReason == ""){
+    if (this.apptRecord.doctorId == 0 || this.apptRecord.visitDate == null || this.apptRecord.patientId == 0 || this.apptRecord.visitReason == ""){
       this.validForm = false;
     }
   }
 
   ngDoCheck(){
-    if (this.apptRecord.doctorId != null && this.apptRecord.doctorId != 0 && this.apptRecord.visitDate != null && this.apptRecord.visitReason != null && this.apptRecord.patientId != 0 && this.apptRecord.visitReason != ""){
+    if (this.apptRecord.doctorId != null && this.apptRecord.visitDate != null && this.apptRecord.doctorId != 0 && this.apptRecord.visitDate != null && this.apptRecord.visitReason != null && this.apptRecord.patientId != 0 && this.apptRecord.visitReason != ""){
       this.validForm = true;
     }
   }
@@ -43,6 +42,8 @@ export class ApptRecordFormComponent implements OnInit {
       console.log(this.apptRecord.doctorId);
       console.log(this.apptRecord.visitDate);
       console.log(this.apptRecord.visitReason);
+
+      this.formService.createApptRecord(this.apptRecord);
     }
 
   }

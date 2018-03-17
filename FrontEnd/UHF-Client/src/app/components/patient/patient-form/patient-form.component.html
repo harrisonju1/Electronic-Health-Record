@@ -28,19 +28,28 @@
       <br>
       <hr>
       <br>
-      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <form (ngSubmit)="onSubmit(form)" #patientForm="ngForm" >
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="firstname">First Name</label>
-              <input type="text" ngModel class="form-control" id="firstname" placeholder="Flynn" name="firstname" required/>
+              <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [(ngModel)]="patientProfile.firstname" #firstname="ngModel" required />
+              <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)" class="alert alert-danger">
+                First name is required.
+              </div>
             </div>
             <div class="form-group col-md-4">
               <label for="lastname">Last Name</label>
-              <input type="text" ngModel class="form-control" id="lastname" placeholder="Rider" name="lastname" required/>
+              <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [(ngModel)]="patientProfile.lastname" #lastname="ngModel" required />
+              <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)" class="alert alert-danger">
+                Last name is required.
+              </div>
             </div>
             <div class="form-group col-md-4">
-              <label for="doctorID">Doctor ID</label>
-              <input type="number" ngModel class="form-control" id="doctor_id" placeholder="#" name="doctor_id" required/>
+              <label for="doctorId">Doctor ID</label>
+              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" required />
+              <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
+                Doctor ID is required.
+              </div>
             </div>
           </div>
 
@@ -48,74 +57,105 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="SSN">Social Security Number</label>
-              <input type="text" ngModel class="form-control" id="ssn" placeholder="###-##-####" name="ssn" required/>
+              <input type="text" class="form-control" id="ssn" placeholder="###-##-####" name="ssn" [(ngModel)]="patientProfile.ssn" #ssn="ngModel" required/>
+              <div *ngIf="ssn.invalid && (ssn.touched || ssn.dirty)" class="alert alert-danger">
+                Social Security Number is required.
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="DOB">Date of Birth</label>
-              <input type="date" ngModel class="form-control" id="dob" name="date" required/>
+              <input type="date" class="form-control" id="dob" name="dob" ([ngModel])="patientProfile.dob" #dob="ngModel" required/>
+              <div *ngIf="dob.invalid && (dob.touched || dob.dirty)" class="alert alert-danger">
+                Date of Birth is required.
+              </div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="phoneNumber">Phone Number (Cell Phone)</label>
-              <input type="text" ngModel class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" required/>
+              <label for="phone_number">Phone Number (Cell Phone)</label>
+              <input type="text" class="form-control" id="phone_number" placeholder="###-###-####" name="phone_number" [(ngModel)]="patientProfile.phone_number" #phoneNumber="ngModel" required />
+              <div *ngIf="phone_number.invalid && (phone_number.touched || phone_number.dirty)" class="alert alert-danger">
+                Phone Number is required.
+              </div>
             </div>
             <div class="form-troup col-md-6">
               <label for="email">Email Address</label>
-              <input type="email" ngModel class="form-control" id="email" placeholder="flynn.rider@gmail.com" name="email" required/>
+              <input type="email" class="form-control" id="email" placeholder="flynn.rider@gmail.com" name="email" [(ngModel)]="patientProfile.email" #email="ngModel" required/>
+              <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
+                Email address is required.
+              </div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="maritalStatus">Marital Status</label>
-              <select id="maritalStatus" ngModel class="form-control" name="maritalStatus" required >
+              <label for="marital_status">Marital Status</label>
+              <select id="marital_status" class="form-control" name="marital_status" [(ngModel)]="patientProfile.marital_status" #maritalStatus="ngModel" required >
                   <option selected disabled>Choose...</option>
                   <option value="single">Single</option>
                   <option value="divorced">Divorced</option>
                   <option value="married">Married</option>
                 </select>
+                <div *ngIf="marital_status.invalid && (marital_status.touched || marital_status.dirty)" class="alert alert-danger">
+                  Marital status is required.
+                </div>
             </div>
           
             <div class="form-group col-md-6">
               <label for="gender">Gender</label>
-              <select id="gender" ngModel class="form-control" name="gender" required>
+              <select id="gender" class="form-control" name="gender" [(ngModel)]="patientProfile.gender" #gender="ngModel" required>
                   <option selected disabled>Choose...</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
+                <div *ngIf="gender.invalid && (gender.touched || gender.dirty)" class="alert alert-danger">
+                  Gender is required.
+                </div>
             </div>
           </div>
 
-          <div class="form-row">
+          <div class="form-row">  
             <div class="form-group col-md-6">
               <label for="ethnicity">Ethnicity</label>
-              <input type="text" ngModel class="form-control" id="ethnicity" name="ethnicity" required/>
+              <input type="text" class="form-control" id="ethnicity" name="ethnicity" [(ngModel)]="patientProfile.ethnicity" #ethnicity="ngModel" required/>
+              <div *ngIf="ethnicity.invalid && (ethnicity.touched || ethnicity.dirty)" class="alert alert-danger">
+                Ethnicity is required.
+              </div>
             </div>
 
             <div class="form-group col-md-6">
               <label for="occupation">Occupation</label>
-              <input type="text" ngModel class="form-control" id="occupation" name="occupation" required/>
+              <input type="text" class="form-control" id="occupation" name="occupation" [(ngModel)]="patientProfile.occupation" #occupation="ngModel" required/>
+              <div *ngIf="occupation.invalid && (occupation.touched || occupation.dirty)" class="alert alert-danger">
+                Occupation is required.
+              </div>
             </div>
           </div>     
 
           <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="address">Address</label>
-                <input type="text" ngModel class="form-control" id="address" placeholder="1234 Main Street" name="address" required>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main Street" name="address" required>
+                <div *ngIf="address.invalid && (address.touched || address.dirty)" class="alert alert-danger">
+                  Address is required.
+                </div>
               </div>
           </div>
 
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="city">City</label>
-              <input type="text" ngModel class="form-control" id="city" name="city" required>
+              <input type="text" class="form-control" id="city" name="city" [(ngModel)]="patientProfile.city" #city="ngModel" required>
+              <div *ngIf="city.invalid && (city.touched || city.dirty)" class="alert alert-danger">
+                City is required.
+              </div>
             </div>
+            
             <div class="form-group col-md-4">
               <label for="state">State</label>
-              <select id="state" class="form-control" name="state" required ngModel>
+              <select id="state" class="form-control" name="state" [(ngModel)]="patientProfile.state" #state="ngModel" required>
                 <option selected disabled>Choose...</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -169,28 +209,43 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
               </select>
+              <div *ngIf="state.invalid && (state.touched || state.dirty)" class="alert alert-danger">
+                State is required.
+              </div>
             </div>
+
             <div class="form-group col-md-2">
               <label for="zipcode">Zip Code</label>
-              <input type="text" ngModel class="form-control" id="zipcode" name="zipcode" required>
+              <input type="text" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="patientProfile.zipcode" #zipcode="ngModel" required>
+              <div *ngIf="zipcode.invalid && (zipcode.touched || zipcode.dirty)" class="alert alert-danger">
+                Zip code is required.
+              </div>
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="insuranceProvider">Insurance Provider</label>
-              <input type="text" ngModel class="form-control" id="insuranceProvider" name="insuranceProvider" required/>
+              <label for="insurance_provider">Insurance Provider</label>
+              <input type="text" class="form-control" id="insurance_provider" name="insurance_provider" [(ngModel)]="patientProfile.insurance_provider" #insuranceProvider="ngModel" required/>
+              <div *ngIf="insurance_provider.invalid && (insurance_provider.touched || insurance_provider.dirty)" class="alert alert-danger">
+                Insurance provider is required.
+              </div>
             </div>
 
             <div class="form-group col-md-6">
-              <label for="insuranceID">Insurance ID</label>
-              <input type="text" ngModel class="form-control" id="insuranceID" name="insuranceID" required/>
+              <label for="insurance_id">Insurance ID</label>
+              <input type="text" class="form-control" id="insurance_id" name="insurance_id" [(ngModel)]="patientProfile.insurance_id" #insuranceID="ngModel" required/>
+              <div *ngIf="insurance_id.invalid && (insurance_id.touched || insurance_id.dirty)" class="alert alert-danger">
+                Insurance ID is required.
+              </div>
             </div>
           </div>
           
           <button type="button" class="btn btn-outline-dark" 
           data-toggle="modal" data-target="#cancel">Cancel</button>
-          <button type="submit" class="btn btn-dark">Submit</button>
+          <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm">Submit</button>
+                
+          <button id="review" class="btn btn-dark" [disabled]="!apptForm.form.valid" *ngIf="!validForm">Review</button>
 
            <!-- Modal -->
         <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">
