@@ -22,6 +22,7 @@ import { ApptRecordFormComponent } from './components/appointment/appt-record-fo
 import { ApptRecordComponent } from './components/appointment/appt-record/appt-record.component';
 import { MedHistoryFormComponent } from './components/med/med-history-form/med-history-form.component';
 import { FormService } from './services/form.service';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FormService } from './services/form.service';
     PatientFormComponent,
     ApptRecordFormComponent,
     ApptRecordComponent,
-    MedHistoryFormComponent
+    MedHistoryFormComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

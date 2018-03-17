@@ -41,8 +41,18 @@ export class SearchPatientComponent implements OnInit {
     this.sort(0);
   }
 
+  search(searchType: number){
+
+  }
+
   sort(sortType: number) {
-    console.log(sortType);
+    /* SortTypes
+        0 - ID
+        1 - Firstname
+        2 - Lastname
+        3 - Date of Birth
+    */
+    // console.log(sortType);
     if (sortType == 0){
 
       this.patients.sort(function(obj1, obj2) {
