@@ -25,35 +25,77 @@ export class PatientFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.patientProfile == null){
-      this.validForm = false;
-    }
+    if (this.patientProfile.address == "" ||
+          this.patientProfile.city == "" ||
+          this.patientProfile.dob == null ||
+          this.patientProfile.doctor == null ||
+          this.patientProfile.email == null ||
+          this.patientProfile.ethnicity == "" ||
+          this.patientProfile.firstname == "" ||
+          this.patientProfile.lastname == "" ||
+          this.patientProfile.gender == "" ||
+          this.patientProfile.ssn == null ||
+          this.patientProfile.occupation == "" ||
+          this.patientProfile.marital_status == "" ||
+          this.patientProfile.phone_number == null ||
+          this.patientProfile.state == "" ||
+          this.patientProfile.zipcode == null &&
+          this.patientProfile.insurance_id == null ||
+          this.patientProfile.insurance_provider == ""
+        ) {
+        this.validForm = false;
+      }
   }
 
   ngDoCheck(){
-    if (this.patientProfile.address != "" &&
-        this.patientProfile.city != "" &&
-        this.patientProfile.dob != null &&
-        this.patientProfile.doctor != null &&
-        this.patientProfile.email != null &&
-        this.patientProfile.ethnicity != "" &&
-        this.patientProfile.firstname != "" &&
-        this.patientProfile.lastname != "" &&
-        this.patientProfile.gender != "" &&
-        this.patientProfile.ssn != null &&
-        this.patientProfile.ssn < 999999999 &&
-        this.patientProfile.ssn > 100000000 &&
-        this.patientProfile.occupation != "" &&
-        this.patientProfile.marital_status != "" &&
-        this.patientProfile.phone_number != null &&
-        this.patientProfile.state != "" &&
-        this.patientProfile.zipcode != null &&
-        this.patientProfile.zipcode > 10000 &&
-        this.patientProfile.zipcode < 99999 &&
-        this.patientProfile.insurance_id != null &&
-        this.patientProfile.insurance_provider != ""
-      ) {
-      this.validForm = true;
+    if (this.validForm == false){
+        if (this.patientProfile.address != "" &&
+          this.patientProfile.city != "" &&
+          this.patientProfile.dob != null &&
+          this.patientProfile.doctor != null &&
+          this.patientProfile.email != null &&
+          this.patientProfile.ethnicity != "" &&
+          this.patientProfile.firstname != "" &&
+          this.patientProfile.lastname != "" &&
+          this.patientProfile.gender != "" &&
+          this.patientProfile.ssn != null &&
+          this.patientProfile.ssn < 999999999 &&
+          this.patientProfile.ssn > 100000000 &&
+          this.patientProfile.occupation != "" &&
+          this.patientProfile.marital_status != "" &&
+          this.patientProfile.phone_number != null &&
+          this.patientProfile.state != "" &&
+          this.patientProfile.zipcode != null &&
+          this.patientProfile.zipcode > 10000 &&
+          this.patientProfile.zipcode < 99999 &&
+          this.patientProfile.insurance_id != null &&
+          this.patientProfile.insurance_provider != ""
+        ) {
+        this.validForm = true;
+      }
+    }
+    
+    if(this.validForm == true){
+      if (this.patientProfile.address == "" ||
+          this.patientProfile.city == "" ||
+          this.patientProfile.dob == null ||
+          this.patientProfile.doctor == null ||
+          this.patientProfile.email == null ||
+          this.patientProfile.ethnicity == "" ||
+          this.patientProfile.firstname == "" ||
+          this.patientProfile.lastname == "" ||
+          this.patientProfile.gender == "" ||
+          this.patientProfile.ssn == null ||
+          this.patientProfile.occupation == "" ||
+          this.patientProfile.marital_status == "" ||
+          this.patientProfile.phone_number == null ||
+          this.patientProfile.state == "" ||
+          this.patientProfile.zipcode == null &&
+          this.patientProfile.insurance_id == null ||
+          this.patientProfile.insurance_provider == ""
+        ) {
+        this.validForm = false;
+      }
     }
   }
 

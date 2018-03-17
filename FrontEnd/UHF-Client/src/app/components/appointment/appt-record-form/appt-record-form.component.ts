@@ -31,8 +31,17 @@ export class ApptRecordFormComponent implements OnInit {
   }
 
   ngDoCheck(){
-    if (this.apptRecord.doctorId != null && this.apptRecord.visitDate != null && this.apptRecord.doctorId != 0 && this.apptRecord.visitDate != null && this.apptRecord.visitReason != null && this.apptRecord.patientId != 0 && this.apptRecord.visitReason != ""){
-      this.validForm = true;
+    if (this.validForm == false){
+      if (this.apptRecord.doctorId != null && this.apptRecord.visitDate != null && this.apptRecord.doctorId != 0 && this.apptRecord.visitDate != null && this.apptRecord.visitReason != null && this.apptRecord.visitReason != ""){
+        // remember to validate patient id: && this.apptRecord.patientId != 0 
+        this.validForm = true;
+      }
+    }
+    if (this.validForm == true){
+      if (this.apptRecord.doctorId == 0 || this.apptRecord.visitDate == null || this.apptRecord.visitReason == ""){
+        // remember to validate patient id: this.apptRecord.patientId == 0 
+        this.validForm = false;
+      }
     }
   }
 

@@ -1,64 +1,63 @@
 <nav class="navbar navbar-expand navbar-light bg-light">
-  <div class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/form/patient">New Patient Form</a></li>
-    
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Forms
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item active" routerLink="/form/patient">New Patient</a>
-              <a class="dropdown-item" routerLink="/form/medical" >Medical History</a>
-              <a class="dropdown-item" routerLink="/form/appointment">Appointment Record</a>  
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/form/patient">New Patient Form</a></li>
+      
+            <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Forms
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item active" routerLink="/form/patient">New Patient</a>
+                <a class="dropdown-item" routerLink="/form/medical" >Medical History</a>
+                <a class="dropdown-item" routerLink="/form/appointment">Appointment Record</a>  
+              </div>
+            </li> -->
+      
+            <!-- <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li> -->
+        </ul>
+  
+    </div>
+    <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
+  </nav>
+  
+  <div id="patientform">
+  <div class="container">
+      <h3>New Patient Form</h3>
+      <br>
+      <hr>
+      <br>
+
+      <form (ngSubmit)="onSubmit()" #patientForm="ngForm" >
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="firstname">First Name</label>
+              <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [(ngModel)]="patientProfile.firstname" #firstname="ngModel" minlength="1" required />
+              <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)" class="alert alert-danger">
+                First name is required.
+              </div>
             </div>
-          </li> -->
-    
-          <!-- <li class="nav-item"><a class="nav-link" (click)="logout()">Logout</a></li> -->
-      </ul>
 
-  </div>
-  <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
-</nav>
+            <div class="form-group col-md-4">
+              <label for="lastname">Last Name</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [(ngModel)]="patientProfile.lastname" #lastname="ngModel" minlength="1" required />
+              <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)" class="alert alert-danger">
+                Last name is required.
+              </div>
+            </div>
 
-<div id="patientform">
-<div class="container">
-    <h3>New Patient Form</h3>
-    <br>
-    <hr>
-    <br>
-
-    <form (ngSubmit)="onSubmit()" #patientForm="ngForm" >
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="firstname">First Name</label>
-            <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [(ngModel)]="patientProfile.firstname" #firstname="ngModel" minlength="1" required />
-            <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)" class="alert alert-danger">
-              First name is required.
+            <div class="form-group col-md-4">
+              <label for="doctorId">Doctor ID</label>
+              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="patientProfile.doctorId" #doctorId="ngModel" required />
+              <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
+                Doctor ID is required.
+              </div>
             </div>
           </div>
 
-          <div class="form-group col-md-4">
-            <label for="lastname">Last Name</label>
-            <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [(ngModel)]="patientProfile.lastname" #lastname="ngModel" minlength="1" required />
-            <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)" class="alert alert-danger">
-              Last name is required.
-            </div>
-          </div>
-
-          <div class="form-group col-md-4">
-            <label for="doctorId">Doctor ID</label>
-            <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="patientProfile.doctorId" #doctorId="ngModel" required />
-            <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
-              Doctor ID is required.
-            </div>
-          </div>
-        </div>
-
-
-        <div class="form-row">
+        <!-- <div class="form-row">
           <div class="form-group col-md-6">
             <label for="SSN">Social Security Number</label>
             <input type="text" class="form-control" id="ssn" placeholder="###-##-####" name="ssn" [(ngModel)]="patientProfile.ssn" #ssn="ngModel" required/>
@@ -73,27 +72,28 @@
               Date of Birth is required.
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patientProfile.phone_number" #phoneNumber="ngModel" required />
-            <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-danger">
-              Phone Number is required.
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="phoneNumber">Phone Number</label>
+              <input type="text" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patientProfile.phone_number" #phoneNumber="ngModel" required />
+              <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-danger">
+                Phone Number is required.
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="email">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="flynn.rider@gmail.com" name="email" [(ngModel)]="patientProfile.email" #email="ngModel" required />
+              <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
+                Email address is required.
+              </div>
             </div>
           </div>
+        </div> -->
 
-          <div class="form-troup col-md-6">
-            <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="flynn.rider@gmail.com" name="email" [(ngModel)]="patientProfile.email" #email="ngModel" required />
-            <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
-              Email address is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="form-row">
+        <!-- <div class="form-row">
           <div class="form-group col-md-6">
             <label for="maritalStatus">Marital Status</label>
             <select id="maritalStatus" class="form-control" name="maritalStatus" [(ngModel)]="patientProfile.marital_status" #maritalStatus="ngModel" required >
@@ -117,9 +117,9 @@
                 Gender is required.
               </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="form-row">  
+        <!-- <div class="form-row">  
           <div class="form-group col-md-6">
             <label for="ethnicity">Ethnicity</label>
             <input type="text" class="form-control" id="ethnicity" name="ethnicity" [(ngModel)]="patientProfile.ethnicity" #ethnicity="ngModel" required/>
@@ -133,11 +133,34 @@
             <input type="text" class="form-control" id="occupation" name="occupation" [(ngModel)]="patientProfile.occupation" #occupation="ngModel" required/>
             <div *ngIf="occupation.invalid && (occupation.touched || occupation.dirty)" class="alert alert-danger">
               Occupation is required.
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="maritalStatus">Marital Status</label>
+              <select id="maritalStatus" class="form-control" name="maritalStatus" [(ngModel)]="patientProfile.marital_status" #maritalStatus="ngModel" required >
+                  <option value="single">Single</option>
+                  <option value="divorced">Divorced</option>
+                  <option value="married">Married</option>
+                </select>
+                <div *ngIf="maritalStatus.invalid && (maritalStatus.touched || maritalStatus.dirty)" class="alert alert-danger">
+                  Marital status is required.
+                </div>
+            </div>
+          
+            <div class="form-group col-md-6">
+              <label for="gender">Gender</label>
+              <select id="gender" class="form-control" name="gender" [(ngModel)]="patientProfile.gender" #gender="ngModel" required>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                <div *ngIf="gender.invalid && (gender.touched || gender.dirty)" class="alert alert-danger">
+                  Gender is required.
+                </div>
             </div>
           </div>
-        </div>     
+        </div>      -->
 
-        <div class="form-row">
+        <!-- <div class="form-row">
             <div class="form-group col-md-12">
               <label for="address">Address</label>
               <input type="text" class="form-control" id="address" placeholder="1234 Main Street" name="address" [(ngModel)]="patientProfile.address" #address="ngModel" required>
@@ -145,9 +168,9 @@
                 Address is required.
               </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="form-row">
+        <!-- <div class="form-row">
           <div class="form-group col-md-12">
             <label for="city">City</label>
             <input type="text" class="form-control" id="city" name="city" [(ngModel)]="patientProfile.city" #city="ngModel" required>
@@ -155,9 +178,9 @@
               City is required.
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="form-row">  
+        <!-- <div class="form-row">  
           <div class="form-group col-md-8">
             <label for="state">State</label>
             <select id="state" class="form-control" name="state" [(ngModel)]="patientProfile.state" #state="ngModel" required>
@@ -226,9 +249,9 @@
               Zip code is required.
             </div>
           </div>
-        </div>
+        </div> -->
         
-        <div class="form-row">
+        <!-- <div class="form-row">
           <div class="form-group col-md-6">
             <label for="insuranceProvider">Insurance Provider</label>
             <input type="text" class="form-control" id="insuranceProvider" name="insuranceProvider" [(ngModel)]="patientProfile.insurance_provider" #insuranceProvider="ngModel" required/>
@@ -237,45 +260,64 @@
             </div>
           </div>
 
-          <div class="form-group col-md-6">
-            <label for="insuranceID">Insurance ID</label>
-            <input type="text" class="form-control" id="insuranceID" name="insuranceID" [(ngModel)]="patientProfile.insuranceID" #insuranceID="ngModel" required/>
-            <div *ngIf="insuranceID.invalid && (insuranceID.touched || insuranceID.dirty)" class="alert alert-danger">
-              Insurance ID is required.
+            <div class="form-group col-md-4">
+              <label for="zipcode">Zip Code</label>
+              <input type="text" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="patientProfile.zipcode" #zipcode="ngModel" required>
+              <div *ngIf="zipcode.invalid && (zipcode.touched || zipcode.dirty)" class="alert alert-danger">
+                Zip code is required.
+              </div>
             </div>
+          </div> -->
+          
+          <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="insuranceProvider">Insurance Provider</label>
+              <input type="text" class="form-control" id="insuranceProvider" name="insuranceProvider" [(ngModel)]="patientProfile.insurance_provider" #insuranceProvider="ngModel" required/>
+              <div *ngIf="insuranceProvider.invalid && (insuranceProvider.touched || insuranceProvider.dirty)" class="alert alert-danger">
+                Insurance provider is required.
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="insuranceID">Insurance ID</label>
+              <input type="text" class="form-control" id="insuranceID" name="insuranceID" [(ngModel)]="patientProfile.insuranceID" #insuranceID="ngModel" required/>
+              <div *ngIf="insuranceID.invalid && (insuranceID.touched || insuranceID.dirty)" class="alert alert-danger">
+                Insurance ID is required.
+              </div>
+            </div>
+          </div> -->
+          
+          <button type="button" class="btn btn-outline-dark" 
+          data-toggle="modal" data-target="#cancel">Cancel</button>
+          <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm">Submit</button>
+                
+          <button id="review" class="btn btn-dark" [disabled]="!patientForm.form.valid" *ngIf="!validForm">Review</button>
+
+           <!-- Modal -->
+        <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="cancelLabel">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                All fields will be lost.
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-dismiss="modal">No, Continue</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="cancel()">Yes, Cancel</button>
+              </div>
+
+            </div>
+
           </div>
         </div>
-        
-        <button type="button" class="btn btn-outline-dark" 
-        data-toggle="modal" data-target="#cancel">Cancel</button>
-        <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm">Submit</button>
-              
-        <button id="review" class="btn btn-dark" [disabled]="!patientForm.form.valid" *ngIf="!validForm">Review</button>
 
-         <!-- Modal -->
-      <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="cancelLabel">Are you sure?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-
-            <div class="modal-body">
-              All fields will be lost.
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" data-dismiss="modal">No, Continue</button>
-              <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="cancel()">Yes, Cancel</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </form>
+      </form>
+    </div>
   </div>
-</div>
