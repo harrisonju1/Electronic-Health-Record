@@ -36,7 +36,7 @@
               <label for="doctorId">Doctor ID</label>
               <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="apptRecord.doctorId" #doctorId="ngModel" required />
               <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
-                Doctor ID is required and must be greater than 0.
+                Doctor ID is required.
               </div>
             </div>
 
