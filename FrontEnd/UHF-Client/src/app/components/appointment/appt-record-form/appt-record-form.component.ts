@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormService } from '../../../services/form.service';
 import { Router } from '@angular/router';
 import { ApptRecord } from '../../../domain/ApptRecord';
@@ -14,8 +14,10 @@ export class ApptRecordFormComponent implements OnInit {
 
   submitted:boolean=false;
   reset:boolean=false;
+  d:Date = new Date();
+  validForm:boolean=false;
 
-  apptRecord:ApptRecord = new ApptRecord();
+  apptRecord:ApptRecord = new ApptRecord(0, this.d , 0, 0, "");
 
   constructor(
     private formService:FormService,
@@ -24,21 +26,40 @@ export class ApptRecordFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.apptRecord.doctorId == 0 || this.apptRecord.patientId == 0 || this.apptRecord.visitReason == ""){
+      this.validForm = false;
+    }
   }
 
-  onSubmit(form:NgForm){
-    // appt record form to be submitted from inside patient profile - already includes patient ID
-    this.submitted = true;
+  ngDoCheck(){
+    if (this.apptRecord.doctorId != null && this.apptRecord.doctorId != 0 && this.apptRecord.visitDate != null && this.apptRecord.visitReason != null && this.apptRecord.patientId != 0 && this.apptRecord.visitReason != ""){
+      this.validForm = true;
+    }
+  }
 
-    this.apptRecord.patientId; // grab from patient profile
-    this.apptRecord.visitDate = form.value['visitDate'];
-    // this.apptRecord.doctorId = form.value['doctorID'];
-    this.apptRecord.doctorId = this.apptRecord.doctorId;
-    this.apptRecord.visitReason = form.value['visitReason'];
+  onSubmit(){
+    if (this.apptRecord.doctorId != null && this.apptRecord.doctorId != 0 && this.apptRecord.visitDate != null && this.apptRecord.visitReason != null && this.apptRecord.patientId != 0 && this.apptRecord.visitReason != ""){
+      this.submitted = true;
+      console.log(this.apptRecord.doctorId);
+      console.log(this.apptRecord.visitDate);
+      console.log(this.apptRecord.visitReason);
+    }
 
-    this.formService.createApptRecord(this.apptRecord);
+  }
+  
+  // onSubmit(form:NgForm){
+  //   // appt record form to be submitted from inside patient profile - already includes patient ID
+  //   this.submitted = true;
+
+  //   this.apptRecord.patientId; // grab from patient profile
+  //   this.apptRecord.visitDate = form.value['visitDate'];
+  //   // this.apptRecord.doctorId = form.value['doctorID'];
+  //   this.apptRecord.doctorId = this.apptRecord.doctorId;
+  //   this.apptRecord.visitReason = form.value['visitReason'];
+
+  //   this.formService.createApptRecord(this.apptRecord);
     
-  }
+  // }
 
   cancel(){
     this.reset = true;
