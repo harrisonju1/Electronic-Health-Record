@@ -16,6 +16,8 @@ export class PatientFormComponent implements OnInit {
   submitted: boolean = false;
   reset: boolean = false;
   validForm:boolean = false;
+  ssnIsNINE: boolean = false;
+  zipIsFIVE: boolean = false;
   patientProfile: PatientProfile = new PatientProfile(null,null,new Doctor(),"","",null,null,null,null,"","","","","","","",null,"",null);
 
   constructor(
@@ -48,6 +50,24 @@ export class PatientFormComponent implements OnInit {
   }
 
   ngDoCheck(){
+    if (this.patientProfile.ssn < 999999999 &&  // This constantly checks if the SSN input is 9 digits
+      this.patientProfile.ssn > 100000000){
+        this.ssnIsNINE = true;
+      }
+      else{
+        this.ssnIsNINE = false;
+        this.validForm = false;
+      }
+
+    if (this.patientProfile.zipcode > 10000 &&  // Ths constantly checks if the ZIP input is 5 digits
+      this.patientProfile.zipcode < 99999){
+        this.zipIsFIVE = true;
+      }
+      else {
+        this.zipIsFIVE = false;
+        this.validForm = false;
+      }
+
     if (this.validForm == false){
         if (this.patientProfile.address != "" &&
           this.patientProfile.city != "" &&
@@ -78,9 +98,9 @@ export class PatientFormComponent implements OnInit {
     if(this.validForm == true){
       if (this.patientProfile.address == "" ||
           this.patientProfile.city == "" ||
-          this.patientProfile.dob == null ||
+          !this.patientProfile.dob ||
           this.patientProfile.doctor.doctor_id == null ||
-          this.patientProfile.email == null ||
+          this.patientProfile.email == "" ||
           this.patientProfile.ethnicity == "" ||
           this.patientProfile.firstname == "" ||
           this.patientProfile.lastname == "" ||
@@ -90,7 +110,7 @@ export class PatientFormComponent implements OnInit {
           this.patientProfile.marital_status == "" ||
           this.patientProfile.phone_number == null ||
           this.patientProfile.state == "" ||
-          this.patientProfile.zipcode == null &&
+          this.patientProfile.zipcode == null ||
           this.patientProfile.insurance_id == null ||
           this.patientProfile.insurance_provider == ""
         ) {
@@ -120,7 +140,6 @@ export class PatientFormComponent implements OnInit {
         this.patientProfile.insurance_provider != ""){
       
         this.submitted = true;
-
 
       // send patient profile to server
       this.formService.createPatientProfile(this.patientProfile);

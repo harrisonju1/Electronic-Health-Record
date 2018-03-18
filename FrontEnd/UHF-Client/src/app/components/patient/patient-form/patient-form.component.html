@@ -60,9 +60,12 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="SSN">Social Security Number</label>
-            <input type="text" class="form-control" id="ssn" placeholder="###-##-####" name="ssn" [(ngModel)]="patientProfile.ssn" #ssn="ngModel" required/>
-            <div *ngIf="ssn.invalid && (ssn.touched || ssn.dirty)" class="alert alert-danger">
+            <input type="number" class="form-control" id="ssn" placeholder="###-##-####" name="ssn" [(ngModel)]="patientProfile.ssn" #ssn="ngModel" required/>
+            <div *ngIf="ssn.invalid && (ssn.touched || ssn.dirty)" class="alert alert-danger">  
               Social Security Number (no dashes) is required.
+            </div>
+            <div *ngIf="!ssnIsNINE && (ssn.touched || ssn.dirty)" class="alert alert-light">
+              Has to be 9 Digits
             </div>
           </div>
           <div class="form-group col-md-6">
@@ -77,7 +80,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patientProfile.phone_number" #phoneNumber="ngModel" required />
+            <input type="number" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patientProfile.phone_number" #phoneNumber="ngModel" required />
             <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-danger">
               Phone Number is required.
             </div>
@@ -217,10 +220,13 @@
 
           <div class="form-group col-md-2">
             <label for="zipcode">Zip Code</label>
-            <input type="text" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="patientProfile.zipcode" #zipcode="ngModel" required>
+            <input type="number" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="patientProfile.zipcode" #zipcode="ngModel" required>
             <div *ngIf="zipcode.invalid && (zipcode.touched || zipcode.dirty)" class="alert alert-danger">
               Zip code is required.
             </div>
+            <div *ngIf="!zipIsFIVE && (zipcode.touched || zipcode.dirty)" class="alert alert-light">
+                Has to be 5 Digits
+              </div>
           </div>
         </div>
           
@@ -235,7 +241,7 @@
 
             <div class="form-group col-md-6">
               <label for="insuranceID">Insurance ID</label>
-              <input type="text" class="form-control" id="insuranceID" name="insuranceID" [(ngModel)]="patientProfile.insuranceID" #insuranceID="ngModel" required/>
+              <input type="number" class="form-control" id="insuranceID" name="insuranceID" [(ngModel)]="patientProfile.insurance_id" #insuranceID="ngModel" required/>
               <div *ngIf="insuranceID.invalid && (insuranceID.touched || insuranceID.dirty)" class="alert alert-danger">
                 Insurance ID is required.
               </div>
