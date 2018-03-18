@@ -50,7 +50,7 @@
 
             <div class="form-group col-md-4">
               <label for="doctorId">Doctor ID</label>
-              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="patientProfile.doctorId" #doctorId="ngModel" required />
+              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="patientProfile.doctor.doctor_id" #doctorId="ngModel" required />
               <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
                 Doctor ID is required.
               </div>

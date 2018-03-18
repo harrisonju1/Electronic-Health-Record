@@ -16,7 +16,7 @@ export class PatientFormComponent implements OnInit {
   submitted: boolean = false;
   reset: boolean = false;
   validForm:boolean = false;
-  patientProfile: PatientProfile = new PatientProfile(null,null,null,"","",null,null,null,null,"","","","","","","",null,"",null);
+  patientProfile: PatientProfile = new PatientProfile(null,null,new Doctor(),"","",null,null,null,null,"","","","","","","",null,"",null);
 
   constructor(
     private formService: FormService,
@@ -28,7 +28,7 @@ export class PatientFormComponent implements OnInit {
     if (this.patientProfile.address == "" ||
           this.patientProfile.city == "" ||
           this.patientProfile.dob == null ||
-          this.patientProfile.doctor == null ||
+          this.patientProfile.doctor.doctor_id == null ||
           this.patientProfile.email == null ||
           this.patientProfile.ethnicity == "" ||
           this.patientProfile.firstname == "" ||
@@ -52,7 +52,7 @@ export class PatientFormComponent implements OnInit {
         if (this.patientProfile.address != "" &&
           this.patientProfile.city != "" &&
           this.patientProfile.dob != null &&
-          this.patientProfile.doctor != null &&
+          this.patientProfile.doctor.doctor_id != null &&
           this.patientProfile.email != null &&
           this.patientProfile.ethnicity != "" &&
           this.patientProfile.firstname != "" &&
@@ -79,7 +79,7 @@ export class PatientFormComponent implements OnInit {
       if (this.patientProfile.address == "" ||
           this.patientProfile.city == "" ||
           this.patientProfile.dob == null ||
-          this.patientProfile.doctor == null ||
+          this.patientProfile.doctor.doctor_id == null ||
           this.patientProfile.email == null ||
           this.patientProfile.ethnicity == "" ||
           this.patientProfile.firstname == "" ||
@@ -101,12 +101,10 @@ export class PatientFormComponent implements OnInit {
 
   onSubmit(form:NgForm){
     
-        let doc: Doctor = new Doctor();
-        doc.doctor_id = form.value['doctorId'];
-        this.patientProfile.doctor = doc;if (this.patientProfile.address != "" &&
+        if (this.patientProfile.address != "" &&
         this.patientProfile.city != "" &&
         this.patientProfile.dob != null &&
-        this.patientProfile.doctor != null &&
+        this.patientProfile.doctor.doctor_id != null &&
         this.patientProfile.email != null &&
         this.patientProfile.ethnicity != "" &&
         this.patientProfile.firstname != "" &&
