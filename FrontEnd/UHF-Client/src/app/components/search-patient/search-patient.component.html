@@ -79,7 +79,7 @@
   <div *ngFor="let patient of patients | filter : searchText | idfilter : searchID | datefilter : searchDate">
     <div class="row">
         <div class="ml-md-5 col-md-2">{{patient.patient_id}}</div>
-        <div class="col-md-4">{{patient.firstname}} {{patient.lastname}}</div>
+        <div class="col-md-4">{{patient.firstname | uppercase}} {{patient.lastname | uppercase}}</div>
         <div class="col-md-4">{{patient.dob.getMonth()+1}}/{{patient.dob.getDate()}}/{{patient.dob.getFullYear()}}</div>
         <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
     </div>

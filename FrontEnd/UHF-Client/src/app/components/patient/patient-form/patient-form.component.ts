@@ -100,7 +100,10 @@ export class PatientFormComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
-    if (this.patientProfile.address != "" &&
+    
+        let doc: Doctor = new Doctor();
+        doc.doctor_id = form.value['doctorId'];
+        this.patientProfile.doctor = doc;if (this.patientProfile.address != "" &&
         this.patientProfile.city != "" &&
         this.patientProfile.dob != null &&
         this.patientProfile.doctor != null &&
@@ -120,9 +123,6 @@ export class PatientFormComponent implements OnInit {
       
         this.submitted = true;
 
-        let doc: Doctor = new Doctor();
-        doc.doctor_id = form.value['doctorId'];
-        this.patientProfile.doctor = doc;
 
       // send patient profile to server
       this.formService.createPatientProfile(this.patientProfile);
