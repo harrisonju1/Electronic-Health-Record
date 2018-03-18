@@ -47,10 +47,21 @@ public class AccountController {
         return null;
     }
 
+    @RequestMapping(value="/api/patientprofile/edit", method = RequestMethod.POST)
+    Object editPatientProfile(@RequestBody Object patientInfo){
+        try{
+            PatientProfile patientProfile = new PatientProfileDao().update((PatientProfile) patientInfo);
+        } catch (Exception e){
+            e.printStackTrace();
+            return "ERROR:FAILED TO UPDATE PATIENT PROFILE " + e.getStackTrace();
+        }
+        return null;
+    }
+
     // returns the patient profile with the username or id from the database
     @RequestMapping(value = "/api/patientprofile/view", method = RequestMethod.GET)
     Object viewPatientProfile(@RequestBody Object identifier) {
-        //todo
+        
 
         return null;
     }
