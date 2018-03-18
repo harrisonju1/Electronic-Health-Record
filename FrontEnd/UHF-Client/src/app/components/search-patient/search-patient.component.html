@@ -34,7 +34,7 @@
             </select>
           <span class="input-group-btn">
               <button class="btn" (click)="sort(sortBy.value)" *ngIf="!filtered">Sort</button>
-              <button class="btn" *ngIf="filtered" id="filtered">Sort</button>
+              <button class="btn" *ngIf="filtered" id="filtered" disabled>Sort</button>
           </span>
       </div>
   </div>
@@ -81,7 +81,7 @@
         <div class="ml-md-5 col-md-2">{{patient.patient_id}}</div>
         <div class="col-md-4">{{patient.firstname}} {{patient.lastname}}</div>
         <div class="col-md-4">{{patient.dob.getMonth()+1}}/{{patient.dob.getDate()}}/{{patient.dob.getFullYear()}}</div>
-        <button class="btn btn-outline-info btn-sm">View</button>
+        <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
     </div>
     <hr>
   </div>
