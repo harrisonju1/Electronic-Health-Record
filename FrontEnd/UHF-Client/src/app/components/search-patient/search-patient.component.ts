@@ -12,6 +12,10 @@ import { Doctor } from '../../domain/Doctor';
 export class SearchPatientComponent implements OnInit {
 
   patients: PatientProfile[] = [];
+  filtered: boolean = false;
+  searchText: string;
+  searchID: number;
+  searchDate: string;
 
   constructor(
     private authService: AuthorizationService,
@@ -39,10 +43,11 @@ export class SearchPatientComponent implements OnInit {
     this.patients.push(p4);
 
     this.sort(0);
+    this.filtered = false;
   }
 
-  search(searchType: number){
-
+  ngDoCheck(){
+    this.touchedSearch();
   }
 
   sort(sortType: number) {
@@ -53,6 +58,9 @@ export class SearchPatientComponent implements OnInit {
         3 - Date of Birth
     */
     // console.log(sortType);
+
+    this.filtered = true;
+
     if (sortType == 0){
 
       this.patients.sort(function(obj1, obj2) {
@@ -82,6 +90,15 @@ export class SearchPatientComponent implements OnInit {
         if (obj1.dob > obj2.dob) return 1;
         return 0;
       })
+    }
+  }
+
+  touchedSearch(){
+    if (this.searchDate || this.searchID || this.searchText) {
+      this.filtered = true;
+    }
+    else{
+      this.filtered = false;
     }
   }
 

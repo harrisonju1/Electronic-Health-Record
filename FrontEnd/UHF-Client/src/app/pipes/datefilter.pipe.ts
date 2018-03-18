@@ -7,14 +7,13 @@ import { PatientProfile } from '../domain/PatientProfile';
 export class DatefilterPipe implements PipeTransform {
 
   transform(items: PatientProfile[], searchDate: string): PatientProfile[] {
-    let arr: PatientProfile[];
 
     if (!items || !searchDate){
       return items;
     }
 
     items.forEach(item => {
-      arr =  items.filter( it => {
+      items =  items.filter( it => {
         let month = it.dob.getMonth()+1;
         let day = it.dob.getDate();
         let year = it.dob.getFullYear();
@@ -22,7 +21,7 @@ export class DatefilterPipe implements PipeTransform {
         return date.includes(searchDate);
       });  
     });
-    return arr;
+    return items;
   }
 
 }

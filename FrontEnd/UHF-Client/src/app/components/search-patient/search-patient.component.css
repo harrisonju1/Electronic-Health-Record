@@ -13,3 +13,13 @@
     width: 60%;
     border-radius: 25px;
 }
+
+#alertDiv {
+    width:30%;
+    margin:0 auto;
+}
+
+#filtered {
+    cursor:none;
+    background-color:rgb(220, 229, 238);
+}
