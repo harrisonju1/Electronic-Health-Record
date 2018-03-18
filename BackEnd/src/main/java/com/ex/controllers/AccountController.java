@@ -61,7 +61,7 @@ public class AccountController {
     // returns the patient profile with the username or id from the database
     @RequestMapping(value = "/api/patientprofile/view", method = RequestMethod.GET)
     Object viewPatientProfile(@RequestBody Object identifier) {
-        
+        //todo
 
         return null;
     }
