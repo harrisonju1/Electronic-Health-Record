@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { PatientProfile } from './domain/PatientProfile';
+import { PatientProfile } from './../domain/PatientProfile';
 
 @Pipe({
   name: 'filter'

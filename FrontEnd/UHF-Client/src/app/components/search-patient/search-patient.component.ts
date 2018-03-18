@@ -25,11 +25,11 @@ export class SearchPatientComponent implements OnInit {
       'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
     let p1: PatientProfile = new PatientProfile(1,1,doc,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
       'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p2: PatientProfile = new PatientProfile(4, 1,doc, 'Kelvin', 'Dheng', 123121234,new Date(1995,3,4), 1231231234, 'cal@gmail.com',
+    let p2: PatientProfile = new PatientProfile(4, 1,doc, 'Kelvin', 'Dheng', 123121234,new Date(1992,3,4), 1231231234, 'cal@gmail.com',
     'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p3: PatientProfile = new PatientProfile(3, 1,doc, 'Kalven', 'Rheng', 123121234,new Date(1992,3,4), 1231231234, 'cal@gmail.com',
+    let p3: PatientProfile = new PatientProfile(3, 1,doc, 'Kalven', 'Rheng', 123121234,new Date(1993,3 ,4), 1231231234, 'cal@gmail.com',
     'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p4: PatientProfile = new PatientProfile(5, 1,doc, 'Kelven', 'Hheng', 123121234,new Date(1980,5,4), 1231231234, 'cal@gmail.com',
+    let p4: PatientProfile = new PatientProfile(5, 1,doc, 'Kelven', 'Hheng', 123121234,new Date(1980,3,4), 1231231234, 'cal@gmail.com',
     'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
 
     this.patients.push(p);

@@ -23,18 +23,28 @@
     <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
   </nav>
   <br>
-  <div class="container" id="title"><h2>Patients</h2></div>
-  <br>
-  <form>
+  <div class="container" id="title">
+    
+    <div class="input-group">
+        <h2>Patients</h2>
+          <select class="form-control offset-md-7 mr-sm-2" #sortBy>
+              <option selected [value]=0>Patient ID</option>
+              <option [value]=1>First name</option>
+              <option [value]=2>Last name</option>
+              <option [value]=3>Date of Birth</option>
+            </select>
+          <span class="input-group-btn">
+              <button class="btn" (click)="sort(sortBy.value)">Sort</button>
+          </span>
+
+      </div>
+  </div>
+
+  <!-- <form>
     <div class="form-row">
         <div class="form-group">
             <div class="form-inline my-2 my-lg-0">
-                <div class="col-md-9">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="searchBar" [(ngModel)]="searchText">
-                      
-                    <!-- <button class="btn btn-outline-dark my-2 my-sm-0">Search</button> -->
-                </div>
-                <div class="col-md-3">
+                <div class="offset-md-9 col-md-3">
                     <select class="form-control" #sortBy>
                         <option selected [value]=0>Patient ID</option>
                         <option [value]=1>First name</option>
@@ -46,40 +56,27 @@
               </div>
         </div>
       </div>
-      <br>
-      <div class="container">
-      <div class="form-row">
-        <div class="form-check col-md-12">
-          <div class="radios">
-              <input class="form-check-input" type="radio" name="radio" id="patient_id" value="option1" checked>
-              <label class="form-check-label" for="patient_id">
-                Patient ID
-              </label>
-          </div>
-          <div class="radios">
-              <input class="form-check-input" type="radio" name="radio" id="name" value="option2">
-              <label class="form-check-label" for="name">
-                Name
-              </label>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
+  </form> -->
   <br>
 <div class="container" id="search">
   
   <div class="row">
-    <div class="offset-md-1 col-md-2"><h6>ID</h6></div>
-    <div class="col-md-4"><h6>Name</h6></div>
-    <div class="col-md-4"><h6>Date of Birth</h6></div>
+    <div class=" col-md-2">
+      <input class="form-control mr-sm-2" type="number" placeholder="ID" aria-label="Search" name="id" [(ngModel)]="searchID">
+    </div>
+    <div class="ml-md-3 col-md-4">
+        <input class="form-control mr-sm-2" type="text" placeholder="Name" aria-label="Search" name="name" [(ngModel)]="searchText">
+    </div>
+    <div class="ml-md-3 col-md-3">
+        <input class="form-control mr-sm-2" type="text" placeholder="Date of Birth" aria-label="Search" name="date" [(ngModel)]="searchDate">
+    </div>
   </div>
   <hr>
-  <div *ngFor="let patient of patients | filter : searchText">
+  <div *ngFor="let patient of patients | filter : searchText | idfilter : searchID | datefilter : searchDate">
     <div class="row">
-        <div class="offset-md-1 col-md-2">{{patient.patient_id}}</div>
+        <div class="ml-md-5 col-md-2">{{patient.patient_id}}</div>
         <div class="col-md-4">{{patient.firstname}} {{patient.lastname}}</div>
-        <div class="col-md-4">{{patient.dob.toLocaleDateString()}}</div>
+        <div class="col-md-4">{{patient.dob.getMonth()+1}}/{{patient.dob.getDate()}}/{{patient.dob.getFullYear()}}</div>
         <button class="btn btn-outline-info btn-sm">View</button>
     </div>
     <hr>

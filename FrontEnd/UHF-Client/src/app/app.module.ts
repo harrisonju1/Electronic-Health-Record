@@ -22,7 +22,9 @@ import { ApptRecordFormComponent } from './components/appointment/appt-record-fo
 import { ApptRecordComponent } from './components/appointment/appt-record/appt-record.component';
 import { MedHistoryFormComponent } from './components/med/med-history-form/med-history-form.component';
 import { FormService } from './services/form.service';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { IdfilterPipe } from './pipes/idfilter.pipe';
+import { DatefilterPipe } from './pipes/datefilter.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { FilterPipe } from './filter.pipe';
     ApptRecordFormComponent,
     ApptRecordComponent,
     MedHistoryFormComponent,
-    FilterPipe
+    FilterPipe,
+    IdfilterPipe,
+    DatefilterPipe
   ],
   imports: [
     BrowserModule,
