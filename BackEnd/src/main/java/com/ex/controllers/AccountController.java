@@ -106,4 +106,17 @@ public class AccountController {
 
         return null;
     }
+    @RequestMapping(value = "/api/form/patient/all", method = RequestMethod.GET)
+    Object getAllPatientProfile(){
+        try{
+            PatientProfile profile = new PatientProfile();
+            PatientProfileDao getProfiles = new PatientProfileDao();
+            List<PatientProfile> allProfiles = new ArrayList<>();
+            allProfiles = getProfiles.findAll();
+            return allProfiles;
+        } catch (Exception e){
+            e.printStackTrace();
+            return "ERROR:FAILED TO RETRIEVE PATIENT PROFILES " + e.getStackTrace();
+        }
+    }
 }

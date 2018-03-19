@@ -23,27 +23,27 @@ export class SearchPatientComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.formService.getAllPatientProfiles().subscribe(plist => this.patients = plist);
-    let doc = new Doctor();
-    let p: PatientProfile = new PatientProfile(2,5,'Kalvin','Aheng',123121234,new Date(2018,0,1), 1231231234,'cal@gmail.com',
-      'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p1: PatientProfile = new PatientProfile(1,4,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
-      'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p2: PatientProfile = new PatientProfile(4 ,3, 'Kelvin', 'Dheng', 123121234,new Date(1992,3,4), 1231231234, 'cal@gmail.com',
-    'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p3: PatientProfile = new PatientProfile(3 ,2, 'Kalven', 'Rheng', 123121234,new Date(1993,3 ,4), 1231231234, 'cal@gmail.com',
-    'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p4: PatientProfile = new PatientProfile(5 ,1, 'Kelven', 'Hheng', 123121234,new Date(1980,3,4), 1231231234, 'cal@gmail.com',
-    'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-
-    this.patients.push(p);
-    this.patients.push(p1);
-    this.patients.push(p2);
-    this.patients.push(p3);
-    this.patients.push(p4);
-
-    this.sort(0);
-    this.filtered = false;
+    this.formService.getAllPatientProfiles().subscribe(plist => this.patients = plist);
+    // let doc = new Doctor();
+    // let p: PatientProfile = new PatientProfile(2,5,'Kalvin','Aheng',123121234,new Date(2018,0,1), 1231231234,'cal@gmail.com',
+    //   'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
+    // let p1: PatientProfile = new PatientProfile(1,4,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
+    //   'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
+    // let p2: PatientProfile = new PatientProfile(4 ,3, 'Kelvin', 'Dheng', 123121234,new Date(1992,3,4), 1231231234, 'cal@gmail.com',
+    // 'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
+    // let p3: PatientProfile = new PatientProfile(3 ,2, 'Kalven', 'Rheng', 123121234,new Date(1993,3 ,4), 1231231234, 'cal@gmail.com',
+    // 'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
+    // let p4: PatientProfile = new PatientProfile(5 ,1, 'Kelven', 'Hheng', 123121234,new Date(1980,3,4), 1231231234, 'cal@gmail.com',
+    // 'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
+    //
+    // this.patients.push(p);
+    // this.patients.push(p1);
+    // this.patients.push(p2);
+    // this.patients.push(p3);
+    // this.patients.push(p4);
+    //
+    // this.sort(0);
+    // this.filtered = false;
   }
 
   ngDoCheck(){
