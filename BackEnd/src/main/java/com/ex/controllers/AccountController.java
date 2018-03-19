@@ -111,7 +111,7 @@ public class AccountController {
         try{
             PatientProfile profile = new PatientProfile();
             PatientProfileDao getProfiles = new PatientProfileDao();
-            List<PatientProfile> allProfiles = new ArrayList<>();
+            List<PatientProfile> allProfiles;
             allProfiles = getProfiles.findAll();
             return allProfiles;
         } catch (Exception e){
