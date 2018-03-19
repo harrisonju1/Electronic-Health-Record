@@ -40,6 +40,7 @@ export class AuthorizationService {
 
     let data = username + ":" + password;
     console.log(data);
+    data = this.encrypt(data);
     let obs = this.http.post<User>(this.authorizeUrl, data, httpOptions);
     return obs;
   }
@@ -56,22 +57,6 @@ export class AuthorizationService {
   }
 
   /* AUTHORIZATION --------------------------------------------------------------------------------------------------*/
-  // call this to determine if the current account has this right authorization role
-  isAuthorized(role: UserRole) {
-    if (role == UserRole.NONE)
-      return true;
-    var auth = localStorage.getItem('auth');
-    var cred = atob(auth).split(':');
-    if (cred.length == 2) {
-      this.http.post<User>(this.authorizeUrl, { "username": cred[0], "password": cred[1] }, httpOptions).subscribe((u) => {
-        console.log(u);
-        if (u && u.role == role) {
-          return true;
-        }
-      });
-    }
-    return false;
-  }
 
   // makes sure the current user has permission to view the page, otherwise redirect to home
   authorizePage(...roles: UserRole[]) {
@@ -102,14 +87,16 @@ export class AuthorizationService {
 
     var authorized = false;
     let data = cred[0] + ":" + cred[1];
+    data = this.encrypt(data);
     this.http.post<User>(this.authorizeUrl, data, httpOptions).subscribe((u) => {
-      console.log(u);
+      if (u==null)
+        return;
       for (const role of roles) {
         if (role == UserRole.NONE || u && u.role == role) {
-          console.log("authorized as " + role.toString());
+          // console.log("authorized as " + role.valueOf());
           authorized = true;
-          // this.currentUser = new User();
           this.currentUser = u;
+          // this.currentUser = new User();
           // this.currentUser.id = u.id;
           // this.currentUser.username = u.username;
           // this.currentUser.password = u.password;
@@ -118,7 +105,7 @@ export class AuthorizationService {
           // this.currentUser.role = u.role;
           if (!this.currentUser.role)
             this.currentUser.role = UserRole.NONE;
-          console.log("current user: "+this.currentUser);
+          console.log("current user: "+this.currentUser.username);
           return;
         }
       }
@@ -127,6 +114,35 @@ export class AuthorizationService {
         this.router.navigate(['/home']);
       }
     });
+  }
+
+  /* ENCRYPTION ---------------------------------------------------------------------------------------------------- */
+  encrypt(value:string) {
+    var privatekey = "yXh3w5XOSEViRgHwfKnjPA8jJZ3RPEQE";
+    var encrypted = "";
+    var len = Math.max(value.length, privatekey.length);
+    for (let i = 0; i < len; i++) {
+        let c = 0;
+        if (i<value.length)
+            c += value.charCodeAt(i);
+        if (i<privatekey.length)
+            c += privatekey.charCodeAt(i);
+        encrypted += String.fromCharCode(c);
+    }
+    return encrypted;
+  }
+  decrypt(value:string) {
+    var privatekey = "yXh3w5XOSEViRgHwfKnjPA8jJZ3RPEQE";
+    var decrypted = "";
+    var len = value.length;
+    for (let i = 0; i < len; i++) {
+        let c = value.charCodeAt(i);
+        if (i<privatekey.length)
+            c -= privatekey.charCodeAt(i);
+        decrypted += c;
+    }
+    decrypted = decrypted.trim();
+    return decrypted;
   }
 
   /* HANDLE ERRORS -------------------------------------------------------------------------------------------------- */
