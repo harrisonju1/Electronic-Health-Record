@@ -3,6 +3,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 import { FormService } from '../../services/form.service';
 import { PatientProfile } from '../../domain/PatientProfile';
 import { Doctor } from '../../domain/Doctor';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-search-patient',
@@ -23,7 +24,10 @@ export class SearchPatientComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.formService.getAllPatientProfiles().subscribe(plist => this.patients = plist);
+    this.formService.getAllPatientProfiles().subscribe(plist => {
+      this.patients = plist;
+      console.log(this.patients);
+    });
     // let doc = new Doctor();
     // let p: PatientProfile = new PatientProfile(2,5,'Kalvin','Aheng',123121234,new Date(2018,0,1), 1231231234,'cal@gmail.com',
     //   'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);

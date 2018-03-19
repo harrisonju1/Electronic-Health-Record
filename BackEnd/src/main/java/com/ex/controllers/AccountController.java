@@ -114,7 +114,6 @@ public class AccountController {
     @RequestMapping(value = "/api/form/patient/all", method = RequestMethod.GET)
     Object getAllPatientProfile(){
         try{
-            PatientProfile profile = new PatientProfile();
             PatientProfileDao getProfiles = new PatientProfileDao();
             List<PatientProfile> allProfiles;
             allProfiles = getProfiles.findAll();

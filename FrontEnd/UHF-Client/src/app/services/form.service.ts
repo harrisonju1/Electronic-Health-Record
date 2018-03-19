@@ -44,7 +44,9 @@ export class FormService {
 
   getAllPatientProfiles(): Observable<PatientProfile[]> {
     let ppl = this.http.get<PatientProfile[]>(this.patientUrl + "/all");
-    ppl.subscribe(p => this.patientProfileList = p);
+    ppl.subscribe(p => {this.patientProfileList = p;
+      console.log(this.patientProfileList);});
+
     return ppl;
   }
 
