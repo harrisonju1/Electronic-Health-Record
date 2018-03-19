@@ -30,7 +30,7 @@ public class PatientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
 
-        profile.setDoctorId(new Doctor());
+        profile.setDoctor(new Doctor());
 //        profile.setUserId(new User().getId());
         profile.setDob(null);
         profile.setPhone_number("123");

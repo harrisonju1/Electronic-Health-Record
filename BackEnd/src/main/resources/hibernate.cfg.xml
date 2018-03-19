@@ -22,6 +22,7 @@
         <mapping class="com.ex.beans.Tests"/>
         <mapping class="com.ex.beans.Treatments"/>
         <mapping class="com.ex.beans.Visit"/>
+        <mapping class="com.ex.beans.PatientInfo"/>
 
     </session-factory>
 </hibernate-configuration>

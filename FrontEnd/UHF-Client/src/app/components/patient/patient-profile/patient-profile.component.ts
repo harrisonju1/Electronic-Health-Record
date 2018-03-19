@@ -35,7 +35,7 @@ export class PatientProfileComponent implements OnInit {
     doc.first_name="Flynn";
     doc.last_name="Tan";
 
-    let p1: PatientProfile = new PatientProfile(1, doc,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
+    let p1: PatientProfile = new PatientProfile(1, 0,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
       'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
     this.patient = p1;
 
@@ -54,7 +54,7 @@ export class PatientProfileComponent implements OnInit {
     if (this.validForm == false){
         if (this.patient.address != "" &&
           this.patient.city != "" &&
-          this.patient.Doctor.doctor_id != null &&
+          this.patient.doctor_id != null &&
           this.patient.email != null &&
           this.patient.ethnicity != "" &&
           this.patient.first_name != "" &&
@@ -77,7 +77,7 @@ export class PatientProfileComponent implements OnInit {
     if(this.validForm == true){
       if (this.patient.address == "" ||
           this.patient.city == "" ||
-          this.patient.Doctor.doctor_id == null ||
+          this.patient.doctor_id == null ||
           this.patient.email == null ||
           this.patient.ethnicity == "" ||
           this.patient.first_name == "" ||
@@ -106,7 +106,7 @@ export class PatientProfileComponent implements OnInit {
 
     if (this.patient.address != "" &&
       this.patient.city != "" &&
-      this.patient.Doctor.doctor_id != null &&
+      this.patient.doctor_id != null &&
       this.patient.email != null &&
       this.patient.ethnicity != "" &&
       this.patient.first_name != "" &&

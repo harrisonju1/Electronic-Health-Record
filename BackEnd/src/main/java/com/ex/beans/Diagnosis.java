@@ -23,7 +23,7 @@ public class Diagnosis {
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="doctor_id")
-    private int doctor_id;
+    private Doctor doctor;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -38,9 +38,9 @@ public class Diagnosis {
     public Diagnosis() {
     }
 
-    public Diagnosis(PatientProfile patient, int doctor_id, Visit visit, Date visit_date, String diagnosis) {
+    public Diagnosis(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String diagnosis) {
         this.patient = patient;
-        this.doctor_id = doctor_id;
+        this.doctor = doctor;
         this.visit = visit;
         this.visit_date = visit_date;
         this.diagnosis = diagnosis;
@@ -62,12 +62,12 @@ public class Diagnosis {
         this.patient = patient;
     }
 
-    public int getDoctor_Id() {
-        return doctor_id;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setDoctor_Id(int doctor_id) {
-        this.doctor_id = doctor_id;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public Visit getVisit() {
@@ -99,7 +99,7 @@ public class Diagnosis {
         return "Diagnosis{" +
                 "diagnosis_id=" + diagnosis_id +
                 ", patient=" + patient +
-                ", doctor=" + doctor_id +
+                ", doctor=" + doctor +
                 ", visit=" + visit +
                 ", visit_date=" + visit_date +
                 ", diagnosis='" + diagnosis + '\'' +
@@ -113,7 +113,7 @@ public class Diagnosis {
         Diagnosis diagnosis1 = (Diagnosis) o;
         return diagnosis_id == diagnosis1.diagnosis_id &&
                 patient == diagnosis1.patient &&
-                doctor_id == diagnosis1.doctor_id &&
+                doctor == diagnosis1.doctor &&
                 visit == diagnosis1.visit &&
                 Objects.equals(visit_date, diagnosis1.visit_date) &&
                 Objects.equals(diagnosis, diagnosis1.diagnosis);
@@ -122,6 +122,6 @@ public class Diagnosis {
     @Override
     public int hashCode() {
 
-        return Objects.hash(diagnosis_id, patient, doctor_id, visit, visit_date, diagnosis);
+        return Objects.hash(diagnosis_id, patient, doctor, visit, visit_date, diagnosis);
     }
 }
