@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Doctor {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int doctor_id;
 
     @Column(name="first_name")

@@ -59,13 +59,13 @@ public class AccountController {
 //            PatientProfile profile = new PatientProfile(doctor, first_name, last_name, ssn,dob,phone,email
 //            ,marital_status,gender,ethnicity,occupation,address,city,state,zipcode,insurance,insurance_id);
 //            PatientProfile profile = new PatientProfile();
-
-            patientInfo.setDoctorId(new DoctorsDao().create(patientInfo.getDoctor()));
-            PatientProfile patientProfile = new PatientProfileDao().create((PatientProfile) patientInfo);
             System.out.println(patientInfo);
-            System.out.println(patientInfo.getPatientId());
-//            new PatientProfileDao().create(patientInfo);
-            System.out.println(patientInfo.getPatientId());
+//            Doctor doctor = patientInfo.getDoctor();
+//            System.out.println("doctor id: " + doctor.getDoctorsId());
+////            patientInfo.setDoctorId(doctor.getDoctorsId());
+//
+//            System.out.println("doctor object: " + patientInfo.getDoctor());
+//            PatientProfile patientProfile = new PatientProfileDao().create((PatientProfile) patientInfo);
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR:FAILED TO CREATE PATIENT PROFILE " + e.getStackTrace();

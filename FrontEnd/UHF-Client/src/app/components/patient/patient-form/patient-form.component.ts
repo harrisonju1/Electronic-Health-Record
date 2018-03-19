@@ -33,8 +33,8 @@ export class PatientFormComponent implements OnInit {
           this.patientProfile.doctor.doctor_id == null ||
           this.patientProfile.email == null ||
           this.patientProfile.ethnicity == "" ||
-          this.patientProfile.firstname == "" ||
-          this.patientProfile.lastname == "" ||
+          this.patientProfile.first_name == "" ||
+          this.patientProfile.last_name == "" ||
           this.patientProfile.gender == "" ||
           this.patientProfile.ssn == null ||
           this.patientProfile.occupation == "" ||
@@ -75,8 +75,8 @@ export class PatientFormComponent implements OnInit {
           this.patientProfile.doctor.doctor_id != null &&
           this.patientProfile.email != null &&
           this.patientProfile.ethnicity != "" &&
-          this.patientProfile.firstname != "" &&
-          this.patientProfile.lastname != "" &&
+          this.patientProfile.first_name != "" &&
+          this.patientProfile.last_name != "" &&
           this.patientProfile.gender != "" &&
           this.patientProfile.ssn != null &&
           this.patientProfile.ssn < 999999999 &&
@@ -102,8 +102,8 @@ export class PatientFormComponent implements OnInit {
           this.patientProfile.doctor.doctor_id == null ||
           this.patientProfile.email == "" ||
           this.patientProfile.ethnicity == "" ||
-          this.patientProfile.firstname == "" ||
-          this.patientProfile.lastname == "" ||
+          this.patientProfile.first_name == "" ||
+          this.patientProfile.last_name == "" ||
           this.patientProfile.gender == "" ||
           this.patientProfile.ssn == null ||
           this.patientProfile.occupation == "" ||
@@ -127,8 +127,8 @@ export class PatientFormComponent implements OnInit {
         this.patientProfile.doctor.doctor_id != null &&
         this.patientProfile.email != null &&
         this.patientProfile.ethnicity != "" &&
-        this.patientProfile.firstname != "" &&
-        this.patientProfile.lastname != "" &&
+        this.patientProfile.first_name != "" &&
+        this.patientProfile.last_name != "" &&
         this.patientProfile.gender != "" &&
         this.patientProfile.ssn != null &&
         this.patientProfile.occupation != "" &&

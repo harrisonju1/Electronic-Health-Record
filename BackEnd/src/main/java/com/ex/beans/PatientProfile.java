@@ -20,7 +20,6 @@ public class PatientProfile {
     //unsure what to do with reference key for now
     //initialize all columns with database column name to match
     @ManyToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
     @Column(name="first_name")

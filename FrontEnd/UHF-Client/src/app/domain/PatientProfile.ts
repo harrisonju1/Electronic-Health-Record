@@ -4,8 +4,8 @@ export class PatientProfile {
     patient_id: number;
     // user_id: number;
     doctor: Doctor;
-    firstname: string;
-    lastname: string;
+    first_name: string;
+    last_name: string;
     ssn: number;
     dob: Date;
     phone_number: number;
@@ -25,8 +25,8 @@ export class PatientProfile {
         patient_id: number,
         // user_id: number,
         doctor: Doctor,
-        firstname: string,
-        lastname: string,
+        first_name: string,
+        last_name: string,
         ssn: number,
         dob: Date,
         phone_number: number,
@@ -45,8 +45,8 @@ export class PatientProfile {
         this.patient_id = patient_id;
         // this.user_id = user_id;
         this.doctor = doctor;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.ssn = ssn;
         this.dob = dob;
         this.phone_number = phone_number;
