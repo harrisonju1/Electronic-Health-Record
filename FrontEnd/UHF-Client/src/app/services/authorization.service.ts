@@ -131,11 +131,30 @@ export class AuthorizationService {
 
   /* ENCRYPTION ---------------------------------------------------------------------------------------------------- */
   encrypt(value:string) {
-    let encryped = value;
-    return encryped;
+    var privatekey = "yXh3w5XOSEViRgHwfKnjPA8jJZ3RPEQE";
+    var encrypted = "";
+    var len = Math.max(value.length, privatekey.length);
+    for (let i = 0; i < len; i++) {
+        let c = 0;
+        if (i<value.length)
+            c += value.charCodeAt(i);
+        if (i<privatekey.length)
+            c += privatekey.charCodeAt(i);
+        encrypted += c;
+    }
+    return encrypted;
   }
   decrypt(value:string) {
-    let decrypted = value;
+    var privatekey = "yXh3w5XOSEViRgHwfKnjPA8jJZ3RPEQE";
+    var decrypted = "";
+    var len = value.length;
+    for (let i = 0; i < len; i++) {
+        let c = value.charCodeAt(i);
+        if (i<privatekey.length)
+            c -= privatekey.charCodeAt(i);
+        decrypted += c;
+    }
+    decrypted = decrypted.trim();
     return decrypted;
   }
 
