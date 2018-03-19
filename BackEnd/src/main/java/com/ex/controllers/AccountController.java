@@ -10,10 +10,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Base64;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -39,33 +36,9 @@ public class AccountController {
     @RequestMapping(value = "/api/form/patient", method = RequestMethod.POST)
     Object submitPatientProfile(@RequestBody PatientProfile patientInfo) {
         try {
-//            Doctor doctor = patientInfo.getDoctor();
-//            String first_name = patientInfo.getFirstName();
-//            String last_name = patientInfo.getLastName();
-//            int ssn = patientInfo.getSsn();
-//            Date dob = patientInfo.getDob();
-//            String phone = patientInfo.getPhone_number();
-//            String email = patientInfo.getEmail();
-//            String marital_status= patientInfo.getMarital_status();
-//            String gender = patientInfo.getGender();
-//            String ethnicity = patientInfo.getEthnicity();
-//            String occupation = patientInfo.getOccupation();
-//            String address = patientInfo.getAddress();
-//            String city = patientInfo.getCity();
-//            String state = patientInfo.getState();
-//            int zipcode = patientInfo.getZipcode();
-//            String insurance = patientInfo.getInsurance_provider();
-//            int insurance_id = patientInfo.getInsuranceId();
-//            PatientProfile profile = new PatientProfile(doctor, first_name, last_name, ssn,dob,phone,email
-//            ,marital_status,gender,ethnicity,occupation,address,city,state,zipcode,insurance,insurance_id);
-//            PatientProfile profile = new PatientProfile();
-            System.out.println(patientInfo);
-//            Doctor doctor = patientInfo.getDoctor();
-//            System.out.println("doctor id: " + doctor.getDoctorsId());
-////            patientInfo.setDoctorId(doctor.getDoctorsId());
-//
-//            System.out.println("doctor object: " + patientInfo.getDoctor());
-//            PatientProfile patientProfile = new PatientProfileDao().create((PatientProfile) patientInfo);
+            PatientProfile patient = patientInfo;
+
+            PatientProfile patientProfile = new PatientProfileDao().create((PatientProfile) patient);
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR:FAILED TO CREATE PATIENT PROFILE " + e.getStackTrace();

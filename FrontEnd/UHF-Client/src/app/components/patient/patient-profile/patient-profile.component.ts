@@ -54,7 +54,7 @@ export class PatientProfileComponent implements OnInit {
     if (this.validForm == false){
         if (this.patient.address != "" &&
           this.patient.city != "" &&
-          this.patient.doctor.doctor_id != null &&
+          this.patient.Doctor.doctor_id != null &&
           this.patient.email != null &&
           this.patient.ethnicity != "" &&
           this.patient.first_name != "" &&
@@ -77,7 +77,7 @@ export class PatientProfileComponent implements OnInit {
     if(this.validForm == true){
       if (this.patient.address == "" ||
           this.patient.city == "" ||
-          this.patient.doctor.doctor_id == null ||
+          this.patient.Doctor.doctor_id == null ||
           this.patient.email == null ||
           this.patient.ethnicity == "" ||
           this.patient.first_name == "" ||
@@ -106,7 +106,7 @@ export class PatientProfileComponent implements OnInit {
 
     if (this.patient.address != "" &&
       this.patient.city != "" &&
-      this.patient.doctor.doctor_id != null &&
+      this.patient.Doctor.doctor_id != null &&
       this.patient.email != null &&
       this.patient.ethnicity != "" &&
       this.patient.first_name != "" &&

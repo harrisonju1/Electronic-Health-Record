@@ -23,7 +23,7 @@ public class Prescriptions {
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="doctor_id")
+    @JoinColumn(name="doctor")
     private Doctor doctor;
 
     @ManyToOne
@@ -68,7 +68,7 @@ public class Prescriptions {
         return doctor;
     }
 
-    public void setDoctorId(Doctor doctor) {
+    public void setDoctor(int doctor_id) {
         this.doctor = doctor;
     }
 

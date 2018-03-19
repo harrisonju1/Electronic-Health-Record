@@ -22,9 +22,20 @@ public class Doctor {
     public Doctor() {
     }
 
+    public Doctor(int doctor_id){
+        this.doctor_id = doctor_id;
+    }
+
     public Doctor(String firstName, String lastName, String field) {
         this.first_name = firstName;
         this.last_name = lastName;
+        this.field = field;
+    }
+
+    public Doctor(int doctor_id, String first_name, String last_name, String field){
+        this.doctor_id = doctor_id;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.field = field;
     }
 
