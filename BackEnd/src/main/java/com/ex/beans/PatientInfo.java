@@ -28,6 +28,27 @@ public class PatientInfo {
     public PatientInfo() {
     }
 
+    public PatientInfo(PatientProfile pp) {
+        this.patient_id = pp.getPatientId();
+        this.doctor_id = pp.getDoctor().getDoctorsId();
+        this.first_name = pp.getFirst_name();
+        this.last_name = pp.getLast_name();
+        this.ssn = pp.getSsn();
+        this.dob = pp.getDob();
+        this.phone_number = pp.getPhone_number();
+        this.email = pp.getEmail();
+        this.marital_status = pp.getMarital_status();
+        this.gender = pp.getGender();
+        this.ethnicity = pp.getEthnicity();
+        this.occupation = pp.getOccupation();
+        this.address = pp.getAddress();
+        this.city = pp.getCity();
+        this.state = pp.getState();
+        this.zipcode = pp.getZipcode();
+        this.insurance_provider = pp.getInsurance_provider();
+        this.insurance_id = pp.getInsuranceId();
+    }
+
     public PatientInfo(int patient_id, int doctor_id, String first_name, String last_name, int ssn, Date dob, String phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insurance_id) {
         this.patient_id = patient_id;
         this.doctor_id = doctor_id;

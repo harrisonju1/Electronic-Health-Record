@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 @RestController
@@ -113,11 +114,18 @@ public class AccountController {
     }
     @RequestMapping(value = "/api/form/patient/all", method = RequestMethod.GET)
     Object getAllPatientProfile(){
+        List<PatientInfo> sendProfiles= new ArrayList<>();
         try{
             PatientProfileDao getProfiles = new PatientProfileDao();
             List<PatientProfile> allProfiles;
             allProfiles = getProfiles.findAll();
-            return allProfiles;
+
+            for (int i =0; i < allProfiles.size(); i++){
+                PatientInfo p = new PatientInfo(allProfiles.get(i));
+                sendProfiles.add(p);
+            }
+
+            return sendProfiles;
         } catch (Exception e){
             e.printStackTrace();
             return "ERROR:FAILED TO RETRIEVE PATIENT PROFILES " + e.getStackTrace();

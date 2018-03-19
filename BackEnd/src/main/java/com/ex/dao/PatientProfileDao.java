@@ -6,6 +6,7 @@ import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PatientProfileDao {

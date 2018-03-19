@@ -3,6 +3,7 @@ package com.ex.beans;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -248,6 +249,9 @@ public class PatientProfile {
         this.insurance_id = insuranceId;
     }
 
+    public int getPatient_id() {
+        return patient_id;
+    }
 
     @Override
     public String toString() {
@@ -303,4 +307,6 @@ public class PatientProfile {
 
         return Objects.hash(patient_id, doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
     }
+
+
 }
