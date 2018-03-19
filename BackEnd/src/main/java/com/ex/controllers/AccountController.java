@@ -135,7 +135,6 @@ public class AccountController {
         }
     }
     @RequestMapping(value="/api/form/patient", method = RequestMethod.GET)
-    public @RequestBody
     Object getByPatientId(@RequestParam int patient_id){
         try{
             PatientProfileDao getProfile = new PatientProfileDao();
