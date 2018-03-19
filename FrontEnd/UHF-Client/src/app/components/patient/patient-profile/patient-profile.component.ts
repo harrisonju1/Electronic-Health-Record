@@ -25,8 +25,8 @@ export class PatientProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // const id = +this.route.snapshot.paramMap.get('id');
-    // this.formService.getPatientById(id).subscribe(p => this.patient = p);
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.formService.getPatientById(id).subscribe(p => this.patient = p);
     this.validForm = true;
 
     // DUMMY DATA

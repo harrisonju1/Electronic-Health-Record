@@ -134,12 +134,14 @@ public class AccountController {
             return "ERROR:FAILED TO RETRIEVE PATIENT PROFILES " + e.getStackTrace();
         }
     }
-    @RequestMapping(value="/api/form/patient" ,method = RequestMethod.GET)
-    Object getOnePatientProfile(@RequestParam int patient_id){
+    @RequestMapping(value="/api/form/patient", method = RequestMethod.GET)
+    public @RequestBody
+    Object getByPatientId(@RequestParam int patient_id){
         try{
             PatientProfileDao getProfile = new PatientProfileDao();
             PatientProfile getProfile1= getProfile.findOneByPatientId(patient_id);
             PatientInfo profile = new PatientInfo(getProfile1);
+            System.out.println(profile);
             return profile;
         } catch (Exception e){
             e.printStackTrace();

@@ -51,7 +51,7 @@ export class FormService {
   }
 
   getPatientById(patient_id: number): Observable<PatientProfile> {
-    let pp = this.http.get<PatientProfile>(this.patientUrl + `?id=${patient_id}`);
+    let pp = this.http.get<PatientProfile>(this.patientUrl + `?patient_id=${patient_id}`);
     pp.subscribe(p => this.currentPatientProfile = p);
     return pp;
   }
