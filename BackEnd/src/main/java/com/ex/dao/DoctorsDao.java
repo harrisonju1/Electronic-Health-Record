@@ -2,6 +2,7 @@ package com.ex.dao;
 
 import com.ex.beans.Doctor;
 import com.ex.util.HibernateUtils;
+import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
@@ -30,6 +31,13 @@ public class DoctorsDao {
 
         session.close();
         return doctors;
+    }
+
+    public Doctor getByDoctorId(int doctor_id){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Doctor doctor = (Doctor) session.get(Doctor.class, doctor_id);
+        session.close();
+        return doctor;
     }
 
     public List<Doctor> findByDoctorId(Doctor doctor){

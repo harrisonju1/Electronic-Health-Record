@@ -31,7 +31,7 @@ public class PatientProfileDaoTest {
         profile = profileDao.create(profile);
 
         profile.setDoctorId(new Doctor());
-        profile.setUserId(new User().getId());
+//        profile.setUserId(new User().getId());
         profile.setDob(null);
         profile.setPhone_number("123");
         profile.setEmail("test@test.com");
@@ -60,15 +60,15 @@ public class PatientProfileDaoTest {
         Assert.assertEquals(profile, result);
     }
 
-    @Test
-    public void findOneByUserId(){
-        PatientProfileDao profileDao = new PatientProfileDao();
-        PatientProfile profile = new PatientProfile();
-        profile = profileDao.create(profile);
-
-        PatientProfile result = profileDao.findOneByPatientId(profile.getUserId());
-        Assert.assertEquals(profile, result);
-    }
+//    @Test
+//    public void findOneByUserId(){
+//        PatientProfileDao profileDao = new PatientProfileDao();
+//        PatientProfile profile = new PatientProfile();
+//        profile = profileDao.create(profile);
+//
+//        PatientProfile result = profileDao.findOneByPatientId(profile.getUserId());
+//        Assert.assertEquals(profile, result);
+//    }
 
     @Test
     public void findOneByDoctorId(){

@@ -18,7 +18,7 @@ export class PatientFormComponent implements OnInit {
   validForm:boolean = false;
   ssnIsNINE: boolean = false;
   zipIsFIVE: boolean = false;
-  patientProfile: PatientProfile = new PatientProfile(null,null,new Doctor(),"","",null,null,null,null,"","","","","","","",null,"",null);
+  patientProfile: PatientProfile = new PatientProfile(null, new Doctor(),"","",null,null,null,null,"","","","","","","",null,"",null);
 
   constructor(
     private formService: FormService,
@@ -94,7 +94,7 @@ export class PatientFormComponent implements OnInit {
         this.validForm = true;
       }
     }
-    
+
     if(this.validForm == true){
       if (this.patientProfile.address == "" ||
           this.patientProfile.city == "" ||
@@ -120,7 +120,7 @@ export class PatientFormComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
-    
+
         if (this.patientProfile.address != "" &&
         this.patientProfile.city != "" &&
         this.patientProfile.dob != null &&
@@ -138,7 +138,7 @@ export class PatientFormComponent implements OnInit {
         this.patientProfile.zipcode != null &&
         this.patientProfile.insurance_id != null &&
         this.patientProfile.insurance_provider != ""){
-      
+
         this.submitted = true;
 
       // send patient profile to server
