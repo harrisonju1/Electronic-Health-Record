@@ -67,10 +67,31 @@ public class AccountController {
         return null;
     }
 
-    @RequestMapping(value="/api/patientprofile/edit", method = RequestMethod.POST)
-    Object editPatientProfile(@RequestBody Object patientInfo){
+    @RequestMapping(value="/api/form/patient/update", method = RequestMethod.POST)
+    Object editPatientProfile(@RequestBody PatientInfo patientInfo){
         try{
-            PatientProfile patientProfile = new PatientProfileDao().update((PatientProfile) patientInfo);
+            int doctor_id = patientInfo.getDoctor_id();
+            DoctorsDao doctordao = new DoctorsDao();
+            Doctor doctor =  doctordao.getByDoctorId(doctor_id);
+            String first_name = patientInfo.getFirst_name();
+            String last_name = patientInfo.getLast_name();
+            int ssn = patientInfo.getSsn();
+            Date dob = patientInfo.getDob();
+            String phone_number = patientInfo.getPhone_number();
+            String email = patientInfo.getEmail();
+            String marital_status = patientInfo.getMarital_status();
+            String gender = patientInfo.getGender();
+            String ethnicity = patientInfo.getEthnicity();
+            String occupation = patientInfo.getOccupation();
+            String address = patientInfo.getAddress();
+            String city = patientInfo.getCity();
+            String state = patientInfo.getState();
+            int zipcode = patientInfo.getZipcode();
+            String insurance_provider = patientInfo.getInsurance_provider();
+            int insurance_id = patientInfo.getInsurance_id();
+            PatientProfile profile = new PatientProfile(doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
+            PatientProfileDao updateProfile = new PatientProfileDao();
+            updateProfile.update(profile);
         } catch (Exception e){
             e.printStackTrace();
             return "ERROR:FAILED TO UPDATE PATIENT PROFILE " + e.getStackTrace();
