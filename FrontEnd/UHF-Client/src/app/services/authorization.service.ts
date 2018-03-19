@@ -129,6 +129,16 @@ export class AuthorizationService {
     });
   }
 
+  /* ENCRYPTION ---------------------------------------------------------------------------------------------------- */
+  encrypt(value:string) {
+    let encryped = value;
+    return encryped;
+  }
+  decrypt(value:string) {
+    let decrypted = value;
+    return decrypted;
+  }
+
   /* HANDLE ERRORS -------------------------------------------------------------------------------------------------- */
   /**
    * Handle Http operation that failed.
