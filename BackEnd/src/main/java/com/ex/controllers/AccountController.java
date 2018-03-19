@@ -27,8 +27,11 @@ public class AccountController {
         String cred = EncryptionUtil.decrypt(encred);
         System.out.println("got "+encred+" to "+cred);
         try {
-            String username = cred.split(":")[0];
-            String password = cred.split(":")[1];
+            String[] uandp = cred.split(":");
+            if (uandp.length<2)
+                return null;
+            String username = uandp[0];
+            String password = uandp[1];
             System.out.println("login attempt: u:" + username + ", p:" + password);
             User found = new UserDao().findOne(username);
             if (found != null && found.getPassword().equals(password)) {
