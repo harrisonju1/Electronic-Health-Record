@@ -40,7 +40,7 @@ export class PatientProfileComponent implements OnInit {
       });
     });
 
-    
+
 
     // DUMMY DATA
     // let doc = new Doctor();
@@ -64,7 +64,7 @@ export class PatientProfileComponent implements OnInit {
           this.zipIsFIVE = false;
           this.validForm = false;
         }
-  
+
       if (this.validForm == false){
           if (this.patient.address != "" &&
             this.patient.city != "" &&
@@ -87,7 +87,7 @@ export class PatientProfileComponent implements OnInit {
           this.validForm = true;
         }
       }
-  
+
       if(this.validForm == true){
         if (this.patient.address == "" ||
             this.patient.city == "" ||
@@ -136,12 +136,13 @@ export class PatientProfileComponent implements OnInit {
       this.patient.insurance_provider != ""){
 
       this.formService.updatePatientProfile(this.patient);
+      console.log(this.patient);
 
       // after you finish updating the form, set it back to false
       this.updating = false;
     }
   }
-  
+
   cancel(){
     this.updating = false;
   }

@@ -64,6 +64,7 @@ export class FormService {
 
   updatePatientProfile(profile: PatientProfile){
     this.http.put(this.patientUrl+"/update", profile, httpOptions);
+    console.log(profile);
   }
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */

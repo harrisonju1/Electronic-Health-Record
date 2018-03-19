@@ -77,7 +77,7 @@ public class AccountController {
     }
 
     @RequestMapping(value="/api/form/patient/update", method = RequestMethod.POST)
-    Object editPatientProfile(@RequestBody PatientInfo patientInfo){
+    Object updatePatient(@RequestBody PatientInfo patientInfo){
         try{
             int doctor_id = patientInfo.getDoctor_id();
             DoctorsDao doctordao = new DoctorsDao();
@@ -101,6 +101,7 @@ public class AccountController {
             PatientProfile profile = new PatientProfile(doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
             PatientProfileDao updateProfile = new PatientProfileDao();
             updateProfile.update(profile);
+            System.out.println(profile);
         } catch (Exception e){
             e.printStackTrace();
             return "ERROR:FAILED TO UPDATE PATIENT PROFILE " + e.getStackTrace();
@@ -146,7 +147,7 @@ public class AccountController {
 //            String doctor_lname = doctor.getLastName();
 //            profile.setDoctor_fname(doctor_fname);
 //            profile.setDoctor_lname(doctor_lname);
-            System.out.println(profile);
+//            System.out.println(profile);
             return profile;
         } catch (Exception e){
             e.printStackTrace();
@@ -159,7 +160,7 @@ public class AccountController {
         try{
             DoctorsDao getDoctor = new DoctorsDao();
             Doctor doctor = getDoctor.getByDoctorId(doctor_id);
-            System.out.println(doctor);
+//            System.out.println(doctor);
             return doctor;
         } catch(Exception e){
             e.printStackTrace();;
