@@ -76,7 +76,7 @@ public class PatientProfileDaoTest {
         PatientProfile profile = new PatientProfile();
         profile = profileDao.create(profile);
 
-        PatientProfile result = profileDao.findOneByPatientId(profile.getDoctor().getDoctorsId());
+        PatientProfile result = profileDao.findOneByPatientId(profile.getDoctor().getDoctor_id());
         Assert.assertEquals(profile, result);
     }
 

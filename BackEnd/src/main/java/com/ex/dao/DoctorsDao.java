@@ -15,7 +15,7 @@ public class DoctorsDao {
         Transaction transaction = session.beginTransaction();
 
         Integer id = (Integer) session.save(doctor);
-        doctor.setDoctorsId(id);
+        doctor.setDoctor_id(id);
         transaction.commit();
 
         session.close();
@@ -47,6 +47,7 @@ public class DoctorsDao {
         session.close();
         return doctors;
     }
+
 
     public List<Doctor> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();

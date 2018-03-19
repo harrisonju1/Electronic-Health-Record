@@ -140,6 +140,12 @@ public class AccountController {
             PatientProfileDao getProfile = new PatientProfileDao();
             PatientProfile getProfile1= getProfile.findOneByPatientId(patient_id);
             PatientInfo profile = new PatientInfo(getProfile1);
+//            DoctorsDao getDoctor = new DoctorsDao();
+//            Doctor doctor = getDoctor.getByDoctorId(profile.getDoctor_id());
+//            String doctor_fname = doctor.getFirstName();
+//            String doctor_lname = doctor.getLastName();
+//            profile.setDoctor_fname(doctor_fname);
+//            profile.setDoctor_lname(doctor_lname);
             System.out.println(profile);
             return profile;
         } catch (Exception e){
@@ -148,5 +154,16 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value="/ap")
+    @RequestMapping(value="/api/form/doctor", method=RequestMethod.GET)
+    Object getDoctor(@RequestParam int doctor_id){
+        try{
+            DoctorsDao getDoctor = new DoctorsDao();
+            Doctor doctor = getDoctor.getByDoctorId(doctor_id);
+            System.out.println(doctor);
+            return doctor;
+        } catch(Exception e){
+            e.printStackTrace();;
+            return "ERROR:FAILED TO RETRIEVE DOCTOR " + e.getStackTrace();
+        }
+    }
 }

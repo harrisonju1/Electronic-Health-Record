@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class PatientInfo {
     public int doctor_id;
+//    public String doctor_fname;
+//    public String doctor_lname;
     public int patient_id;
     public Doctor doctor;
     public String first_name;
@@ -30,7 +32,7 @@ public class PatientInfo {
 
     public PatientInfo(PatientProfile pp) {
         this.patient_id = pp.getPatientId();
-        this.doctor_id = pp.getDoctor().getDoctorsId();
+        this.doctor_id = pp.getDoctor().getDoctor_id();
         this.first_name = pp.getFirst_name();
         this.last_name = pp.getLast_name();
         this.ssn = pp.getSsn();
@@ -70,6 +72,30 @@ public class PatientInfo {
         this.insurance_id = insurance_id;
     }
 
+//    public PatientInfo(int doctor_id, String doctor_fname, String doctor_lname, int patient_id, String first_name, String last_name, int ssn, Date dob, String phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insurance_id) {
+//        this.doctor_id = doctor_id;
+//        this.doctor_fname = doctor_fname;
+//        this.doctor_lname = doctor_lname;
+//        this.patient_id = patient_id;
+//        this.doctor = doctor;
+//        this.first_name = first_name;
+//        this.last_name = last_name;
+//        this.ssn = ssn;
+//        this.dob = dob;
+//        this.phone_number = phone_number;
+//        this.email = email;
+//        this.marital_status = marital_status;
+//        this.gender = gender;
+//        this.ethnicity = ethnicity;
+//        this.occupation = occupation;
+//        this.address = address;
+//        this.city = city;
+//        this.state = state;
+//        this.zipcode = zipcode;
+//        this.insurance_provider = insurance_provider;
+//        this.insurance_id = insurance_id;
+//    }
+
     public int getDoctor_id() {
         return doctor_id;
     }
@@ -77,6 +103,22 @@ public class PatientInfo {
     public void setDoctor_id(int doctor_id) {
         this.doctor_id = doctor_id;
     }
+
+//    public String getDoctor_fname() {
+//        return doctor_fname;
+//    }
+//
+//    public void setDoctor_fname(String doctor_fname) {
+//        this.doctor_fname = doctor_fname;
+//    }
+//
+//    public String getDoctor_lname() {
+//        return doctor_lname;
+//    }
+//
+//    public void setDoctor_lname(String doctor_lname) {
+//        this.doctor_lname = doctor_lname;
+//    }
 
     public int getPatient_id() {
         return patient_id;
