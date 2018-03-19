@@ -1,7 +1,7 @@
 export class Doctor {
     doctor_id: number;
-    firstname: string;
-    lastname: string;
+    first_name: string;
+    last_name: string;
     field:  string;
 
 }

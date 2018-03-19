@@ -7,16 +7,16 @@ import { PatientProfile } from './../domain/PatientProfile';
 
 export class FilterPipe implements PipeTransform {
   transform(items: PatientProfile[], searchText: any): PatientProfile[] {
-    
+
     if (!items || !searchText){
       return items;
     }
-    
+
     items.forEach(item => {
         searchText = searchText.toLowerCase();
         items =  items.filter( it => {
-          let f = it.firstname.toLowerCase();
-          let l = it.lastname.toLowerCase();
+          let f = it.first_name.toLowerCase();
+          let l = it.last_name.toLowerCase();
           let name = f + " " + l;
           return name.includes(searchText);
         });

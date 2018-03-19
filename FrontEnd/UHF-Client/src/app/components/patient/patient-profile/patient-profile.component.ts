@@ -32,8 +32,8 @@ export class PatientProfileComponent implements OnInit {
     // DUMMY DATA
     let doc = new Doctor();
     doc.doctor_id=10;
-    doc.firstname="Flynn";
-    doc.lastname="Tan";
+    doc.first_name="Flynn";
+    doc.last_name="Tan";
 
     let p1: PatientProfile = new PatientProfile(1, doc,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
       'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);

@@ -25,15 +25,15 @@ export class SearchPatientComponent implements OnInit {
   ngOnInit() {
     // this.formService.getAllPatientProfiles().subscribe(plist => this.patients = plist);
     let doc = new Doctor();
-    let p: PatientProfile = new PatientProfile(2,1,doc,'Kalvin','Aheng',123121234,new Date(2018,0,1), 1231231234,'cal@gmail.com',
+    let p: PatientProfile = new PatientProfile(2,doc,'Kalvin','Aheng',123121234,new Date(2018,0,1), 1231231234,'cal@gmail.com',
       'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p1: PatientProfile = new PatientProfile(1,1,doc,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
+    let p1: PatientProfile = new PatientProfile(1,doc,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
       'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p2: PatientProfile = new PatientProfile(4, 1,doc, 'Kelvin', 'Dheng', 123121234,new Date(1992,3,4), 1231231234, 'cal@gmail.com',
+    let p2: PatientProfile = new PatientProfile(4 ,doc, 'Kelvin', 'Dheng', 123121234,new Date(1992,3,4), 1231231234, 'cal@gmail.com',
     'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p3: PatientProfile = new PatientProfile(3, 1,doc, 'Kalven', 'Rheng', 123121234,new Date(1993,3 ,4), 1231231234, 'cal@gmail.com',
+    let p3: PatientProfile = new PatientProfile(3 ,doc, 'Kalven', 'Rheng', 123121234,new Date(1993,3 ,4), 1231231234, 'cal@gmail.com',
     'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
-    let p4: PatientProfile = new PatientProfile(5, 1,doc, 'Kelven', 'Hheng', 123121234,new Date(1980,3,4), 1231231234, 'cal@gmail.com',
+    let p4: PatientProfile = new PatientProfile(5 ,doc, 'Kelven', 'Hheng', 123121234,new Date(1980,3,4), 1231231234, 'cal@gmail.com',
     'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
 
     this.patients.push(p);
@@ -53,8 +53,8 @@ export class SearchPatientComponent implements OnInit {
   sort(sortType: number) {
     /* SortTypes
         0 - ID
-        1 - Firstname
-        2 - Lastname
+        1 - first_name
+        2 - last_name
         3 - Date of Birth
     */
     // console.log(sortType);
@@ -70,16 +70,16 @@ export class SearchPatientComponent implements OnInit {
     else if(sortType == 1) {
 
       this.patients.sort(function(obj1,obj2) {
-        if (obj1.firstname < obj2.firstname) return -1;
-        if (obj1.firstname > obj2.firstname) return 1;
+        if (obj1.first_name < obj2.first_name) return -1;
+        if (obj1.first_name > obj2.first_name) return 1;
         return 0;
       })
     }
     else if(sortType == 2) {
 
       this.patients.sort(function(obj1, obj2) {
-        if (obj1.lastname < obj2.lastname) return -1;
-        if (obj1.lastname > obj2.lastname) return 1;
+        if (obj1.last_name < obj2.last_name) return -1;
+        if (obj1.last_name > obj2.last_name) return 1;
         return 0;
       })
     }

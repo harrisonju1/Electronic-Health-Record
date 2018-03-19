@@ -4,7 +4,7 @@
             <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/form/patient">New Patient Form</a></li>
-      
+
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Forms
@@ -12,13 +12,13 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" routerLink="/form/patient">New Patient</a>
                 <a class="dropdown-item" routerLink="/form/medical" >Medical History</a>
-                <a class="dropdown-item" routerLink="/form/appointment">Appointment Record</a>  
+                <a class="dropdown-item" routerLink="/form/appointment">Appointment Record</a>
               </div>
             </li> -->
-      
+
             <!-- <li class="nav-item"><a class="nav-link" (click)="logout()">logout</a></li> -->
         </ul>
-  
+
     </div>
     <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
   </nav>
@@ -63,7 +63,7 @@
   </form> -->
   <!-- <br> -->
 <div class="container" id="search">
-  
+
   <div class="row">
     <div class=" col-md-2">
       <input class="form-control mr-sm-2" type="number" placeholder="ID" aria-label="Search" name="id" [(ngModel)]="searchID">
@@ -79,7 +79,7 @@
   <div *ngFor="let patient of patients | filter : searchText | idfilter : searchID | datefilter : searchDate">
     <div class="row">
         <div class="ml-md-5 col-md-2">{{patient.patient_id}}</div>
-        <div class="col-md-4">{{patient.firstname | uppercase}} {{patient.lastname | uppercase}}</div>
+        <div class="col-md-4">{{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</div>
         <div class="col-md-4">{{patient.dob.getMonth()+1}}/{{patient.dob.getDate()}}/{{patient.dob.getFullYear()}}</div>
         <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
     </div>
@@ -87,17 +87,17 @@
   </div>
 
   <!-- <li *ngFor="let patient of patients | filter : searchText">
-      {{patient.firstname}} {{patient.lastname}}
+      {{patient.first_name}} {{patient.last_name}}
     </li> -->
 
 </div>
-  
+
 
   <!-- Button trigger modal -->
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch button if search returns no existing patient
   </button> -->
-  
+
   <!-- Modal -->
   <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
