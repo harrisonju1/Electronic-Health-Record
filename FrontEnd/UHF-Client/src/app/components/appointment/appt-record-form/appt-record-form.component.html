@@ -38,6 +38,9 @@
               <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
                 Doctor ID is required.
               </div>
+              <div *ngIf="!isPositive && (doctorId.touched || doctorId.dirty)" class="alert alert-light">
+                ID has to be positive. {{!isPositive}}
+              </div>
             </div>
 
             <div class="form-group col-md-6">

@@ -27,7 +27,7 @@ const routes : Routes = [
   { path: 'record/:id', component: ApptRecordComponent},
   { path: 'form/patient', component: PatientFormComponent},
   { path: 'form/medical', component: MedHistoryFormComponent},
-  { path: 'form/appointment', component: ApptRecordFormComponent},
+  { path: 'form/appointment/:id', component: ApptRecordFormComponent},
   { path: 'temp', component: MedHistoryComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ]
