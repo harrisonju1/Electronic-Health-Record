@@ -6,6 +6,7 @@ import com.ex.beans.User;
 import com.ex.dao.DoctorsDao;
 import com.ex.dao.PatientProfileDao;
 import com.ex.dao.UserDao;
+import com.ex.util.EncryptionUtil;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +24,18 @@ public class AccountController {
     // returns the user if true
     // otherwise returns null
     @RequestMapping("/api/authorize")
-    Object authorize(@RequestBody String cred){
-        String username = cred.split(":")[0];
-        String password = cred.split(":")[1];
-        System.out.println("login attempt: u:"+username+", p:"+password);
-        User found = new UserDao().findOne(username);
-        if (found!=null && found.getPassword().equals(password)) {
-            return found;
-        }
+    Object authorize(@RequestBody String encred){
+        String cred = EncryptionUtil.decrypt(encred);
+        System.out.println("got "+encred+" to "+cred);
+        try {
+            String username = cred.split(":")[0];
+            String password = cred.split(":")[1];
+            System.out.println("login attempt: u:" + username + ", p:" + password);
+            User found = new UserDao().findOne(username);
+            if (found != null && found.getPassword().equals(password)) {
+                return found;
+            }
+        } catch (Exception e) {e.printStackTrace();}
         return null;
     }
 

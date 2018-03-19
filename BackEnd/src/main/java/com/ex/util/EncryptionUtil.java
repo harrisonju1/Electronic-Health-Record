@@ -1,6 +1,7 @@
 package com.ex.util;
 
 public class EncryptionUtil {
+    // uses a shared private key for symmetric encryption with the angular application
     public static String encrypt(String value) {
         String privatekey = "yXh3w5XOSEViRgHwfKnjPA8jJZ3RPEQE";
         String encrypted = "";
