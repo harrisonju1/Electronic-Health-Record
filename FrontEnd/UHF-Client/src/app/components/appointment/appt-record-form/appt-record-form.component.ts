@@ -15,7 +15,6 @@ export class ApptRecordFormComponent implements OnInit {
 
   patient_id: number;
   submitted:boolean=false;
-  reset:boolean=false;
   validForm:boolean=false;
   isPositive: boolean=false;
 
@@ -91,7 +90,6 @@ export class ApptRecordFormComponent implements OnInit {
   // }
 
   cancel(){
-    this.reset = true;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/patient/' + this.patient_id]);
   }
 }

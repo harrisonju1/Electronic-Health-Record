@@ -23,12 +23,12 @@
     <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
   </nav>
 
-  <div class="container">
+  <div class="container" *ngIf="canCheck">
 
     <div class="input-group">
       <h2>PROFILE: {{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</h2>
       <span class="input-group-btn offset-md-2">
-          <button class="btn btn-outline-dark" id="updateBTN" (click)="activateUpdate()">Update Profile</button>
+          <button class="btn btn-outline-dark" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating">Update Profile</button>
       </span>
     </div>
 
@@ -36,7 +36,7 @@
     <br/>
 
     <!-- PATIENT PROFILE -->
-    <div id="formDiv" [hidden]="updating">
+    <div id="formDiv" [hidden]="updating" *ngIf="canCheck">
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="first_name">First Name</label>
@@ -143,21 +143,21 @@
 
     <!-- FORM FOR UPDATING PATIENT PROFILE -->
 
-    <div id="updateFormDiv" [hidden]="!updating">
+    <div id="updateFormDiv" [hidden]="!updating" *ngIf="canCheck">
      <form (ngSubmit)="updateForm()" #patientForm="ngForm">
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="first_name">First Name</label>
-          <input type="text" class="form-control" id="first_name" placeholder="Flynn" name="first_name" [ngModel]="patient.first_name" #first_name="ngModel" minlength="1" required />
-          <div *ngIf="first_name.invalid && (first_name.touched || first_name.dirty)" class="alert alert-danger">
+          <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [ngModel]="patient.first_name" #firstname="ngModel" minlength="1" required />
+          <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)" class="alert alert-danger">
             First name is required.
           </div>
         </div>
 
         <div class="form-group col-md-4">
           <label for="last_name">Last Name</label>
-          <input type="text" class="form-control" id="last_name" placeholder="Rider" name="last_name" [ngModel]="patient.last_name" #last_name="ngModel" minlength="1" required />
-          <div *ngIf="last_name.invalid && (last_name.touched || last_name.dirty)" class="alert alert-danger">
+          <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [ngModel]="patient.last_name" #lastname="ngModel" minlength="1" required />
+          <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)" class="alert alert-danger">
             Last name is required.
           </div>
         </div>
@@ -356,7 +356,7 @@
       data-toggle="modal" data-target="#cancel">Cancel</button>
       <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm">Update</button>
 
-      <button id="review" class="btn btn-dark" disabled *ngIf="!validForm">Review</button>
+      <button id="review" class="btn btn-dark" disabled *ngIf="!validForm">Update</button>
 
        <!-- Modal -->
       <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">

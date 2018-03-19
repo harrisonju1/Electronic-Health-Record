@@ -252,7 +252,7 @@
           data-toggle="modal" data-target="#cancel">Cancel</button>
           <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm">Submit</button>
 
-          <button id="review" class="btn btn-dark" [disabled]="!patientForm.form.valid" *ngIf="!validForm">Review</button>
+          <button id="review" class="btn btn-dark" [disabled]="!patientForm.form.valid" *ngIf="!validForm">Submit</button>
 
            <!-- Modal -->
         <div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancelLabel" aria-hidden="true">
