@@ -16,6 +16,7 @@ export class PatientProfileComponent implements OnInit {
   patient: PatientProfile;
   updating:boolean=false;
   validForm:boolean=true;
+  zipIsFIVE: boolean = false;
 
   constructor(
     private formService: FormService,
@@ -41,6 +42,14 @@ export class PatientProfileComponent implements OnInit {
   }
 
   ngDoCheck(){
+    if (this.patient.zipcode > 10000 &&  // Ths constantly checks if the ZIP input is 5 digits
+      this.patient.zipcode < 99999){
+        this.zipIsFIVE = true;
+      }
+      else {
+        this.zipIsFIVE = false;
+        this.validForm = false;
+      }
 
     if (this.validForm == false){
         if (this.patient.address != "" &&
@@ -66,22 +75,20 @@ export class PatientProfileComponent implements OnInit {
     }
     
     if(this.validForm == true){
-      if (this.patient.address == "" &&
-          this.patient.city == "" &&
-          this.patient.doctor.doctor_id == null &&
-          this.patient.email == null &&
-          this.patient.ethnicity == "" &&
-          this.patient.firstname == "" &&
-          this.patient.lastname == "" &&
-          this.patient.gender == "" &&
-          this.patient.occupation == "" &&
-          this.patient.marital_status == "" &&
-          this.patient.phone_number == null &&
-          this.patient.state == "" &&
-          this.patient.zipcode == null &&
-          this.patient.zipcode < 10000 &&
-          this.patient.zipcode > 99999 &&
-          this.patient.insurance_id == null &&
+      if (this.patient.address == "" ||
+          this.patient.city == "" ||
+          this.patient.doctor.doctor_id == null ||
+          this.patient.email == null ||
+          this.patient.ethnicity == "" ||
+          this.patient.firstname == "" ||
+          this.patient.lastname == "" ||
+          this.patient.gender == "" ||
+          this.patient.occupation == "" ||
+          this.patient.marital_status == "" ||
+          this.patient.phone_number == null ||
+          this.patient.state == "" ||
+          this.patient.zipcode == null ||
+          this.patient.insurance_id == null ||
           this.patient.insurance_provider == ""
         ) {
         this.validForm = false;

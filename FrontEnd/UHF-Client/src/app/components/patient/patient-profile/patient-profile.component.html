@@ -176,7 +176,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="phoneNumber">Phone Number</label>
-          <input type="text" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patient.phone_number" #phoneNumber="ngModel" required />
+          <input type="number" class="form-control" id="phoneNumber" placeholder="###-###-####" name="phoneNumber" [(ngModel)]="patient.phone_number" #phoneNumber="ngModel" required />
           <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-danger">
             Phone Number is required.
           </div>
@@ -322,10 +322,13 @@
 
       <div class="form-group col-md-2">
         <label for="zipcode">Zip Code</label>
-        <input type="text" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="patient.zipcode" #zipcode="ngModel" required>
+        <input type="number" class="form-control" id="zipcode" name="zipcode" [(ngModel)]="patient.zipcode" #zipcode="ngModel" required>
         <div *ngIf="zipcode.invalid && (zipcode.touched || zipcode.dirty)" class="alert alert-danger">
           Zip code is required.
         </div>
+        <div *ngIf="!zipIsFIVE && (zipcode.touched || zipcode.dirty)" class="alert alert-light">
+            Has to be 5 Digits
+          </div>
       </div>
     </div>
 
@@ -342,7 +345,7 @@
 
         <div class="form-group col-md-6">
           <label for="insuranceID">Insurance ID</label>
-          <input type="text" class="form-control" id="insuranceID" name="insuranceID" [(ngModel)]="patient.insurance_id" #insuranceID="ngModel" required/>
+          <input type="number" class="form-control" id="insuranceID" name="insuranceID" [(ngModel)]="patient.insurance_id" #insuranceID="ngModel" required/>
           <div *ngIf="insuranceID.invalid && (insuranceID.touched || insuranceID.dirty)" class="alert alert-danger">
             Insurance ID is required.
           </div>
