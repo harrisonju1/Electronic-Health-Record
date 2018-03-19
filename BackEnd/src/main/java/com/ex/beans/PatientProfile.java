@@ -22,6 +22,7 @@ public class PatientProfile {
     @ManyToOne
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
+
     @Column(name="first_name")
     private String first_name;
     @Column(name="last_name")
@@ -116,6 +117,10 @@ public class PatientProfile {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
+
+//    public int getDoctor_id(){return doctor_id;}
+//
+//    public void setDoctor_id(int doctor_id){this.doctor_id = doctor_id;}
 
     public String getFirst_name() {
         return first_name;

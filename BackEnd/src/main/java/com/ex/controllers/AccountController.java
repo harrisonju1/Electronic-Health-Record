@@ -1,6 +1,7 @@
 package com.ex.controllers;
 
 import com.ex.beans.Doctor;
+import com.ex.beans.PatientInfo;
 import com.ex.beans.PatientProfile;
 import com.ex.beans.User;
 import com.ex.dao.DoctorsDao;
@@ -34,11 +35,31 @@ public class AccountController {
     // adds or updates the patient profile to the database
     // returns error message if failed, or returns the id on success
     @RequestMapping(value = "/api/form/patient", method = RequestMethod.POST)
-    Object submitPatientProfile(@RequestBody PatientProfile patientInfo) {
+    Object submitPatientProfile(@RequestBody PatientInfo patientInfo) {
         try {
-            PatientProfile patient = patientInfo;
+            int doctor_id = patientInfo.getDoctor_id();
+            DoctorsDao doctordao = new DoctorsDao();
+            Doctor doctor =  doctordao.getByDoctorId(doctor_id);
+            String first_name = patientInfo.getFirst_name();
+            String last_name = patientInfo.getLast_name();
+            int ssn = patientInfo.getSsn();
+            Date dob = patientInfo.getDob();
+            String phone_number = patientInfo.getPhone_number();
+            String email = patientInfo.getEmail();
+            String marital_status = patientInfo.getMarital_status();
+            String gender = patientInfo.getGender();
+            String ethnicity = patientInfo.getEthnicity();
+            String occupation = patientInfo.getOccupation();
+            String address = patientInfo.getAddress();
+            String city = patientInfo.getCity();
+            String state = patientInfo.getState();
+            int zipcode = patientInfo.getZipcode();
+            String insurance_provider = patientInfo.getInsurance_provider();
+            int insurance_id = patientInfo.getInsurance_id();
+            PatientProfile profile = new PatientProfile(doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
+            PatientProfileDao createProfile = new PatientProfileDao();
+            createProfile.create(profile);
 
-            PatientProfile patientProfile = new PatientProfileDao().create((PatientProfile) patient);
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR:FAILED TO CREATE PATIENT PROFILE " + e.getStackTrace();
