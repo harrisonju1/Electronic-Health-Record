@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { ApptRecord } from '../domain/ApptRecord';
 import { VisitDetails } from '../domain/VisitDetails';
 import {User} from "../domain/User";
+import {Doctor} from "../domain/Doctor";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -40,6 +41,10 @@ export class FormService {
     // console.log(data);
     // let obs = this.http.post<User>(this.authorizeUrl, data, httpOptions);
     // return obs;
+  }
+
+  getDoctor(doctor_id: number): Observable<Doctor>{
+    return this.http.get<Doctor>(this.patientUrl + `doctor_id=${doctor_id}`);
   }
 
   getAllPatientProfiles(): Observable<PatientProfile[]> {

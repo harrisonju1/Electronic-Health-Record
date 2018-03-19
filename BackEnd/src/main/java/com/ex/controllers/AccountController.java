@@ -147,4 +147,6 @@ public class AccountController {
             return "ERROR:FAILED TO RETRIEVE PATIENT PROFILE " + e.getStackTrace();
         }
     }
+
+    @RequestMapping(value="/ap")
 }

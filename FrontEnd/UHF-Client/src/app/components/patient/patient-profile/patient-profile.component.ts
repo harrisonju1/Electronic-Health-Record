@@ -14,6 +14,8 @@ import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class PatientProfileComponent implements OnInit {
 
   patient: PatientProfile;
+  doctor: Doctor;
+  doctor_id: number;
   updating:boolean=false;
   validForm:boolean=true;
   zipIsFIVE: boolean = false;
@@ -26,7 +28,11 @@ export class PatientProfileComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.formService.getPatientById(id).subscribe(p => this.patient = p);
+    this.formService.getPatientById(id).subscribe(p => {
+      this.patient = p;
+      this.doctor_id = p.doctor_id;
+    });
+    this.formService.getDoctor(this.doctor_id).subscribe(p=>this.doctor = p);
     this.validForm = true;
 
     // DUMMY DATA
