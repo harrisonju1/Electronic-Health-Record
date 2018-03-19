@@ -26,9 +26,9 @@ public class Doctor {
         this.doctor_id = doctor_id;
     }
 
-    public Doctor(String firstName, String lastName, String field) {
-        this.first_name = firstName;
-        this.last_name = lastName;
+    public Doctor(String first_name, String last_name, String field) {
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.field = field;
     }
 
@@ -39,27 +39,27 @@ public class Doctor {
         this.field = field;
     }
 
-    public int getDoctorsId() {
+    public int getDoctor_id() {
         return doctor_id;
     }
 
-    public void setDoctorsId(int doctor_id) {
+    public void setDoctor_id(int doctor_id) {
         this.doctor_id = doctor_id;
     }
 
-    public String getFirstName() {
+    public String getFirst_name() {
         return first_name;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirst_name(String firstName) {
         this.first_name = firstName;
     }
 
-    public String getLastName() {
+    public String getLast_name() {
         return last_name;
     }
 
-    public void setLastName(String lastName) {
+    public void setLast_name(String lastName) {
         this.last_name = lastName;
     }
 

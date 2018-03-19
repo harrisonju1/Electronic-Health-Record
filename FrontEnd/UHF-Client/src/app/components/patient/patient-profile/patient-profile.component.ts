@@ -31,8 +31,14 @@ export class PatientProfileComponent implements OnInit {
     this.formService.getPatientById(id).subscribe(p => {
       this.patient = p;
       this.doctor_id = p.doctor_id;
+      this.formService.getDoctor(this.doctor_id).subscribe(p=> {
+        this.doctor = p;
+        console.log(this.doctor);
+
+      });
+
     });
-    this.formService.getDoctor(this.doctor_id).subscribe(p=>this.doctor = p);
+
     this.validForm = true;
 
     // DUMMY DATA

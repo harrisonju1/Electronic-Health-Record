@@ -20,6 +20,7 @@ export class FormService {
   private patientUrl = this.baseUrl+'form/patient';
   private medUrl = this.baseUrl+'form/medical';
   private visitUrl = this.baseUrl+'form/visit';
+  private doctorUrl = this.baseUrl+'form/doctor';
 
   patientProfileList: PatientProfile[];
   currentPatientProfile: PatientProfile;
@@ -44,7 +45,7 @@ export class FormService {
   }
 
   getDoctor(doctor_id: number): Observable<Doctor>{
-    return this.http.get<Doctor>(this.patientUrl + `doctor_id=${doctor_id}`);
+    return this.http.get<Doctor>(this.doctorUrl + `?doctor_id=${doctor_id}`);
   }
 
   getAllPatientProfiles(): Observable<PatientProfile[]> {
