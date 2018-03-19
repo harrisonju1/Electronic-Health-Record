@@ -7,18 +7,18 @@ import { VisitDetails } from '../domain/VisitDetails';
 import {User} from "../domain/User";
 
 const httpOptions = {
-  // headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization':'Basic '+btoa('username'+':'+'password')})
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 }
 
 @Injectable()
 export class FormService {
 
-  private authorizeUrl = 'http://localhost:8080/api/authorize';
+  private baseUrl = 'http://localhost:8080/api/';
+  private authorizeUrl = this.baseUrl+'authorize';
 
-  private patientUrl = 'http://localhost:8080/api/form/patient';
-  private medUrl = 'http://localhost:8080/api/form/medical';
-  private visitUrl = 'http://localhost:8080/api/form/visit';
+  private patientUrl = this.baseUrl+'form/patient';
+  private medUrl = this.baseUrl+'form/medical';
+  private visitUrl = this.baseUrl+'form/visit';
 
   patientProfileList: PatientProfile[];
   currentPatientProfile: PatientProfile;
