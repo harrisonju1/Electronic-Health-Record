@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../../services/authorization.service';
 import { VisitDetails } from '../../../domain/VisitDetails';
+import { ApptRecord } from '../../../domain/ApptRecord';
+import { ActivatedRoute } from '@angular/router';
+import { FormService } from '../../../services/form.service';
+import { Doctor } from '../../../domain/Doctor';
 
 @Component({
   selector: 'app-visits',
@@ -11,13 +15,35 @@ export class VisitsComponent implements OnInit {
 
   visit_id: number = 1;
   currentVisit: VisitDetails;
+  currentAppt: ApptRecord;
+  currentDoctor: Doctor;
+
+  canCheck: boolean = false;
 
   constructor(
-    private authService: AuthorizationService
+    private authService: AuthorizationService,
+    private formService: FormService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    // this.currentVisit = new VisitDetails()
+    // get patientID
+    const pID = +this.route.snapshot.paramMap.get('patient_id');
+
+    // get visit details
+    // const visID = +this.route.snapshot.paramMap.get('visit_id');
+    // this.formService.getVisitDetailsByID(visID).subscribe(a => {
+    //   this.currentVisit = a;
+    // });
+
+    // VISIT DETAILS DUMMY DATA
+    this.currentVisit = new VisitDetails(1, 5, pID, ["You're on fire.", "Make a dragon wanna retire, man."], ["Very high temperatures.", "Fire.", "Burn baby burn."], ["Ice water.", "Burn cream.", "Sleep."], ["Ice Bath"], ["None"]);
+
+    // get doctor information
+    this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+      this.currentDoctor = d;
+      this.canCheck = true;
+    });
   }
 
 }

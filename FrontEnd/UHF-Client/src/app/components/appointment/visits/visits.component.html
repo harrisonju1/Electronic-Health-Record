@@ -10,6 +10,91 @@
     <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
   </nav>
 
-  <div class="container">
+  <div class="container" *ngIf="canCheck">
     <h3>#{{visit_id}}: VISIT DETAILS</h3>
+    <hr />
+    <br />
+    <!-- APPOINT RECORD INFO -->
+    <!-- DOCTOR INFO / WHO TREATED YOU -->
+    <div id="doctorInfoDiv">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>DOCTOR {{currentDoctor.first_name | uppercase}} {{currentDoctor.last_name | uppercase}}</h5>
+                <span class="badge badge-info">ID# {{currentDoctor.doctor_id}}</span>
+                <span class="badge badge-warning">UHF Certified</span>
+                <span class="badge badge-primary">{{currentDoctor.field}}</span>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+    <hr/>
+    <br/>
+
+    <!-- APPT SUMMARY -->
+    <div id="apptRecordDiv">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>APPOINTMENT SUMMARY</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Visit Date</label>
+                <p>insert info here</p>
+            </div>
+            <div class="col-md-6">
+                <label>Visit Reason</label>
+                <p>insert info here</p>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <!-- VISIT DETAILS -->
+    <div id="visitDetailsDiv">
+        <div class="row">
+            <div class="col-md-12">
+                <label>Diagnosis</label>
+                <ul *ngFor="let d of currentVisit.diagnoses">
+                    <li>{{d}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Symptoms</label>
+                <ul *ngFor="let s of currentVisit.symptoms">
+                    <li>{{s}}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <label>Prescriptions</label>
+                <ul *ngFor="let p of currentVisit.prescriptions">
+                    <li>{{p}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Treatments</label>
+                <ul *ngFor="let t of currentVisit.treatments">
+                    <li>{{t}}</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <label>Tests</label>
+                <ul *ngFor="let t of currentVisit.tests">
+                    <li>{{t}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
   </div>

@@ -25,6 +25,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { IdfilterPipe } from './pipes/idfilter.pipe';
 import { DatefilterPipe } from './pipes/datefilter.pipe';
 import { VisitsComponent } from './components/appointment/visits/visits.component';
+import { VidfilterPipe } from './pipes/vidfilter.pipe';
+import { DocidfilterPipe } from './pipes/docidfilter.pipe';
+import { VdatefilterPipe } from './pipes/vdatefilter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { VisitsComponent } from './components/appointment/visits/visits.componen
     FilterPipe,
     IdfilterPipe,
     DatefilterPipe,
-    VisitsComponent
+    VisitsComponent,
+    VidfilterPipe,
+    DocidfilterPipe,
+    VdatefilterPipe
   ],
   imports: [
     BrowserModule,

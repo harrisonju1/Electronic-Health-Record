@@ -391,20 +391,23 @@
     <br>
     <div class="row">
       <div class="col-md-2">
-          <label for="visit_id">Visit ID</label>
+          <!-- <label for="visit_id">Visit ID</label> -->
+          <input class="form-control" type="number" placeholder="ID" aria-label="Search" name="vID" [(ngModel)]="searchVID" />
       </div>
       <div class="col-md-3">
-          <label for="visit_date">Visit Date</label>
+          <!-- <label for="visit_date">Visit Date</label> -->
+          <input class="form-control" type="text" placeHolder="Visit Date" aria-label="Search" name="vDate" [(ngModel)]="searchVDate" />
       </div>
       <div class="col-md-2">
-          <label for="doctor_id">Doctor ID</label>
+          <!-- <label for="doctor_id">Doctor ID</label> -->
+          <input class="form-control" type="number" placeholder="Doc#" aria-label="Search" name="doctorID" [(ngModel)]="searchDoctorID" />
       </div>
       <div class="col-md-5">
           <label for="visit_reason">Visit Reason</label>
       </div>
     </div>
     <hr/>
-    <div *ngFor="let appt of apptRecords; let i = index">
+    <div *ngFor="let i = index; let appt of apptRecords | vidfilter : searchVID | vdatefilter : searchVDate | docidfilter : searchDoctorID">
       <div class="row">
           <div class="col-md-2">
             {{appt.visit_id}}
