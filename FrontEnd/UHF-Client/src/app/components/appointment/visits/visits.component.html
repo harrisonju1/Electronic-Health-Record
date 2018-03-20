@@ -12,6 +12,11 @@
 
   <div class="container" *ngIf="canCheck">
     <h3>#{{visit_id}}: VISIT DETAILS</h3>
+    <button class="btn btn-outline-secondary btn-sm" routerLink="/patient/{{pID}}">Return</button>
+
+    <!-- ONLY FOR DOCTOR!!!! -->
+    <!-- ngIf current user role is doctor -->
+    <!-- <button *ngIf="isDoctor">Update</button> -->
     <hr />
     <br />
     <!-- APPOINT RECORD INFO -->

@@ -13,10 +13,12 @@ import { Doctor } from '../../../domain/Doctor';
 })
 export class VisitsComponent implements OnInit {
 
+  pID: number;
   visit_id: number = 1;
   currentVisit: VisitDetails;
   currentAppt: ApptRecord;
   currentDoctor: Doctor;
+  isDoctor:boolean; // check if current user role is doctor
 
   canCheck: boolean = false;
 
@@ -27,8 +29,13 @@ export class VisitsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // get the current user
+    // if (this.authService.currentUser.role == "DOCTOR"){
+    //   this.isDoctor = true;
+    // }
+
     // get patientID
-    const pID = +this.route.snapshot.paramMap.get('patient_id');
+    this.pID = +this.route.snapshot.paramMap.get('patient_id');
 
     // get visit details
     // const visID = +this.route.snapshot.paramMap.get('visit_id');
@@ -37,7 +44,7 @@ export class VisitsComponent implements OnInit {
     // });
 
     // VISIT DETAILS DUMMY DATA
-    this.currentVisit = new VisitDetails(1, 5, pID, ["You're on fire.", "Make a dragon wanna retire, man."], ["Very high temperatures.", "Fire.", "Burn baby burn."], ["Ice water.", "Burn cream.", "Sleep."], ["Ice Bath"], ["None"]);
+    this.currentVisit = new VisitDetails(1, 5, this.pID, ["You're on fire.", "Make a dragon wanna retire, man."], ["Very high temperatures.", "Fire.", "Burn baby burn."], ["Ice water.", "Burn cream.", "Sleep."], ["Ice Bath"], ["None"]);
 
     // get doctor information
     this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
