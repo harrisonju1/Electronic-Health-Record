@@ -172,7 +172,7 @@ public class AccountController {
     }
 
     @RequestMapping(value="/api/form/visit", method=RequestMethod.POST)
-    Object createAppointment(@RequestParam VisitInfo visitInfo){
+    Object createAppointment(@RequestBody VisitInfo visitInfo){
         try{
             PatientProfileDao pd = new PatientProfileDao();
             PatientProfile pp = pd.findOneByPatientId(visitInfo.getPatient_id());
@@ -188,32 +188,32 @@ public class AccountController {
         return null;
     }
 
-//    @RequestMapping(value="/api/form/visit", method=RequestMethod.GET)
-//    Object getAllVisits(@RequestParam int patient_id){
-//        try{
-////            have to get patient and doctor object to grab visit from database per parameters we have
-////            create patientprofile
-//            PatientProfileDao pd = new PatientProfileDao();
-//            PatientProfile pp = pd.findOneByPatientId(patient_id);
-////            //grab doctor_id with patientprofile
-////            int doctor_id = pp.getDoctor().getDoctor_id();
-////            DoctorsDao dd = new DoctorsDao();
-////            //create new doctor object using doctor_id
-////            Doctor d = dd.getByDoctorId(doctor_id);
-//            VisitDao visitDao = new VisitDao();
-//            List<Visit> allVisits;
-//            allVisits = visitDao.findByPatientId(pp);
-//            List<VisitInfo> patientVisits = new ArrayList<>();
-//            for (int i = 0; i < allVisits.size(); i++){
-//                VisitInfo vi = new VisitInfo(allVisits.get(i));
-//                patientVisits.add(vi);
-//            }
-//            return patientVisits;
-//        } catch(Exception e){
-//            e.printStackTrace();
-//            return "ERROR: FAILED TO RETRIEVE ALL VISITS " + e.getStackTrace();
-//        }
-//    }
+    @RequestMapping(value="/api/form/visit", method=RequestMethod.GET)
+    Object getAllVisits(@RequestParam int patient_id){
+        try{
+//            have to get patient and doctor object to grab visit from database per parameters we have
+//            create patientprofile
+            PatientProfileDao pd = new PatientProfileDao();
+            PatientProfile pp = pd.findOneByPatientId(patient_id);
+//            //grab doctor_id with patientprofile
+//            int doctor_id = pp.getDoctor().getDoctor_id();
+//            DoctorsDao dd = new DoctorsDao();
+//            //create new doctor object using doctor_id
+//            Doctor d = dd.getByDoctorId(doctor_id);
+            VisitDao visitDao = new VisitDao();
+            List<Visit> allVisits;
+            allVisits = visitDao.findByPatientId(pp);
+            List<VisitInfo> patientVisits = new ArrayList<>();
+            for (int i = 0; i < allVisits.size(); i++){
+                VisitInfo vi = new VisitInfo(allVisits.get(i));
+                patientVisits.add(vi);
+            }
+            return patientVisits;
+        } catch(Exception e){
+            e.printStackTrace();
+            return "ERROR: FAILED TO RETRIEVE ALL VISITS " + e.getStackTrace();
+        }
+    }
 
 //    @RequestMapping(value="/api/form/visit/", method=RequestMethod.GET)
 //    Object getVisitById(@RequestParam int patient_id){
