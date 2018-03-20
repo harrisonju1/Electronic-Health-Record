@@ -25,12 +25,9 @@
 
   <div class="container" *ngIf="canCheck">
 
-    <div class="input-group">
-      <h2>PROFILE: {{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</h2>
-      <span class="input-group-btn offset-md-2">
-          <button class="btn btn-outline-dark" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating">Update Profile</button>
-      </span>
-    </div>
+      <h3 *ngIf="!updating">PROFILE: {{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</h3>
+      <br>
+      <button class="btn btn-outline-dark btn-sm" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating">Update Profile</button>
 
     <br/>
     <br/>
@@ -385,4 +382,48 @@
     </div>
   </div>
 
-  <div class="container">Appt Record</div>
+  <div class="container" *ngIf="canCheck">
+    <h3>PAST VISITS</h3>
+    <br>
+    <div class="row">
+      <div class="col-md-2">
+          <label for="visit_id">Visit ID</label>
+      </div>
+      <div class="col-md-3">
+          <label for="visit_date">Visit Date</label>
+      </div>
+      <div class="col-md-2">
+          <label for="doctor_id">Doctor ID</label>
+      </div>
+      <div class="col-md-5">
+          <label for="visit_reason">Visit Reason</label>
+      </div>
+    </div>
+    <hr/>
+    <div *ngFor="let appt of apptRecords; let i = index">
+      <div class="row">
+          <div class="col-md-2">
+            {{appt.visit_id}}
+          </div>
+          <div class="col-md-3">
+            {{appt.visit_date | date: 'MM/dd/yyyy'}}
+          </div>
+          <div class="col-md-2">
+            {{appt.doctor_id}}
+          </div>
+          <div class="col-md-5">
+              <a class="btn btn-outline-info btn-sm" role="button" data-toggle="collapse" href="#appt.visit_id-{{i}}" aria-expanded="false" aria-controls="collapseExample">
+                  Reason
+              </a>
+              <div class="collapse" id="appt.visit_id-{{i}}">
+                  <div class="card card-body">
+                      {{appt.visit_reason}}
+                      <br/>
+                      <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <hr>
+    </div>
+  </div>

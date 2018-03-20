@@ -5,6 +5,7 @@ import { PatientProfile } from '../../../domain/PatientProfile';
 import { Doctor } from '../../../domain/Doctor';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ApptRecord } from '../../../domain/ApptRecord';
 
 @Component({
   selector: 'app-patient-profile',
@@ -14,6 +15,7 @@ import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class PatientProfileComponent implements OnInit {
 
   patient: PatientProfile;
+  apptRecords: ApptRecord[] = [];
   doctor: Doctor;
   doctor_id: number;
   updating:boolean=false;
@@ -51,6 +53,14 @@ export class PatientProfileComponent implements OnInit {
     // let p1: PatientProfile = new PatientProfile(1, 0,'Calvin','Zheng',123121234,new Date(1995,7,23), 1231231234,'cal@gmail.com',
     //   'single','male','asian','developer','1234 Main St','Reston','VA',11234,'United Health',12341234);
     // this.patient = p1;
+
+    // DUMMY DATA FOR APPT RECORDS
+    let a1:ApptRecord = new ApptRecord(1, new Date(2018, 3, 2), 76, 5, "I'm on fire. Send help LOL");
+    let a2:ApptRecord = new ApptRecord(2, new Date(2018, 3,17), 76, 5, "Flynn is overworking me. Send help LOL");
+    this.apptRecords.push(a1);
+    this.apptRecords.push(a2);
+
+    console.log(this.apptRecords);
 
   }
 
@@ -140,6 +150,7 @@ export class PatientProfileComponent implements OnInit {
 
       // after you finish updating the form, set it back to false
       this.updating = false;
+      window.location.reload();
     }
   }
 
