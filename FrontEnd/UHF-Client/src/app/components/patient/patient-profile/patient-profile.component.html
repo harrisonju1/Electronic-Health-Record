@@ -25,12 +25,9 @@
 
   <div class="container" *ngIf="canCheck">
 
-    <div class="input-group">
-      <h2 *ngIf="!updating">PROFILE: {{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</h2>
-      <span class="input-group-btn offset-md-2">
-          <button class="btn btn-outline-dark" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating">Update Profile</button>
-      </span>
-    </div>
+      <h3 *ngIf="!updating">PROFILE: {{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</h3>
+      <br>
+      <button class="btn btn-outline-dark btn-sm" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating">Update Profile</button>
 
     <br/>
     <br/>
@@ -385,4 +382,7 @@
     </div>
   </div>
 
-  <div class="container">Appt Record</div>
+  <div class="container" *ngIf="canCheck">
+    Past Visits
+
+  </div>
