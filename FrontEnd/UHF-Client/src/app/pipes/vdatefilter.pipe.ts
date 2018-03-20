@@ -14,9 +14,10 @@ export class VdatefilterPipe implements PipeTransform {
 
     items.forEach(item => {
       items =  items.filter( it => {
-        let month = it.visit_date.getMonth()+1;
-        let day = it.visit_date.getDate();
-        let year = it.visit_date.getFullYear();
+        let dateConvert = new Date(it.visit_date);
+        let month = dateConvert.getMonth()+1;
+        let day = dateConvert.getDate();
+        let year = dateConvert.getFullYear();
         let date = month + "/" + day + "/" + year;
         return date.includes(searchDate);
       });  
