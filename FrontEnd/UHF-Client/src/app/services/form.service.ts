@@ -26,6 +26,7 @@ export class FormService {
   currentPatientProfile: PatientProfile;
   apptRecordsList: ApptRecord[];
 
+
   constructor(
     private http: HttpClient
   ) { }
@@ -73,7 +74,7 @@ export class FormService {
   }
 
   getAllApptRecords():Observable<ApptRecord[]>{
-    let records = this.http.get<ApptRecord[]>(this.visitUrl + "/all");
+    let records = this.http.get<ApptRecord[]>(this.visitUrl + '/all');
     records.subscribe(r => this.apptRecordsList = r);
     return records;
   }
