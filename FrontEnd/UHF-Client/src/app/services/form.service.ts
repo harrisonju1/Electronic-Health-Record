@@ -63,7 +63,7 @@ export class FormService {
   }
 
   updatePatientProfile(profile: PatientProfile){
-    this.http.put(this.patientUrl+"/update", profile, httpOptions);
+    this.http.post(this.patientUrl+"/update", profile, httpOptions).subscribe();
     console.log(profile);
   }
 

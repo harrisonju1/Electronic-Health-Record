@@ -148,7 +148,7 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="first_name">First Name</label>
-          <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [ngModel]="patient.first_name" #firstname="ngModel" minlength="1" required />
+          <input type="text" class="form-control" id="firstname" placeholder="Flynn" name="firstname" [(ngModel)]="patient.first_name" #firstname="ngModel" minlength="1" required />
           <div *ngIf="firstname.invalid && (firstname.touched || firstname.dirty)" class="alert alert-danger">
             First name is required.
           </div>
@@ -156,7 +156,7 @@
 
         <div class="form-group col-md-4">
           <label for="last_name">Last Name</label>
-          <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [ngModel]="patient.last_name" #lastname="ngModel" minlength="1" required />
+          <input type="text" class="form-control" id="lastname" placeholder="Rider" name="lastname" [(ngModel)]="patient.last_name" #lastname="ngModel" minlength="1" required />
           <div *ngIf="lastname.invalid && (lastname.touched || lastname.dirty)" class="alert alert-danger">
             Last name is required.
           </div>
