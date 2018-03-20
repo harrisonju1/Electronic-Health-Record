@@ -1,6 +1,7 @@
 package com.ex.dao;
 
 import com.ex.beans.Doctor;
+import com.ex.beans.PatientInfo;
 import com.ex.beans.PatientProfile;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
@@ -10,22 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatientProfileDao {
-    public PatientProfile create(PatientProfile profile){
+    public PatientInfo create(PatientProfile profile){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-
+        System.out.println("creating profile: " + profile);
         Integer id = (Integer) session.save(profile);
-        profile.setPatientId(id);
+        PatientInfo info = new PatientInfo();
+        info.setPatient_id(id);
         transaction.commit();
 
         session.close();
-        return profile;
+        return info;
     }
 
     public PatientProfile update(PatientProfile profile){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-
+        System.out.println("inside the update dao: " + profile);
         session.update(profile);
         transaction.commit();
 
@@ -42,6 +44,15 @@ public class PatientProfileDao {
         return profile;
     }
 
+//    public PatientProfile findBySSN(int ssn){
+//        Session session = HibernateUtils.getSessionFactory().openSession();
+//
+//        PatientProfile profile = (PatientProfile) session.get(PatientProfile.class, ssn);
+//
+//        session.close();
+//        return profile;
+//
+//    }
     public PatientProfile findOneByUserId(int userId){
         Session session = HibernateUtils.getSessionFactory().openSession();
 
