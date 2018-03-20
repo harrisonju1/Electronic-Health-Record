@@ -10,6 +10,13 @@ form, #formDiv {
     padding:4%;
 }
 
+/* COLLAPSIBLE */
+.card {
+    border:none;
+    background-color:transparent;
+
+}
+
 /* FORM VALIDATION */
 #review, #review:hover {
     background-color:transparent;

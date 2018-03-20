@@ -400,7 +400,7 @@
       </div>
     </div>
     <hr/>
-    <div *ngFor="let appt of apptRecords">
+    <div *ngFor="let appt of apptRecords; let i = index">
       <div class="row">
           <div class="col-md-2">
             {{appt.visit_id}}
@@ -411,17 +411,18 @@
           <div class="col-md-2">
             {{appt.doctor_id}}
           </div>
-          <div class="col-md-4">
-              <button class="btn btn-outline-info btn-sm " type="button" data-toggle="collapse" data-target="#appt.visit_id" aria-expanded="false" aria-controls="collapseExample">
+          <div class="col-md-5">
+              <a class="btn btn-outline-info btn-sm" role="button" data-toggle="collapse" href="#appt.visit_id-{{i}}" aria-expanded="false" aria-controls="collapseExample">
                   Reason
-                </button>
-                <div class="collapse" id="appt.visit_id">
-                    <div class="card card-body">
-                        {{appt.visit_reason}}
-                    </div>
-                </div>
+              </a>
+              <div class="collapse" id="appt.visit_id-{{i}}">
+                  <div class="card card-body">
+                      {{appt.visit_reason}}
+                      <br/>
+                      <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
+                  </div>
+              </div>
           </div>
-          <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
       </div>
       <hr>
     </div>
