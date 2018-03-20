@@ -79,6 +79,7 @@ public class AccountController {
     @RequestMapping(value="/api/form/patient/update", method = RequestMethod.POST)
     Object updatePatient(@RequestBody PatientInfo patientInfo){
         try{
+            System.out.println(patientInfo);
             int doctor_id = patientInfo.getDoctor_id();
             DoctorsDao doctordao = new DoctorsDao();
             Doctor doctor =  doctordao.getByDoctorId(doctor_id);
@@ -99,7 +100,11 @@ public class AccountController {
             String insurance_provider = patientInfo.getInsurance_provider();
             int insurance_id = patientInfo.getInsurance_id();
             PatientProfile profile = new PatientProfile(doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
+            System.out.println(profile);
             PatientProfileDao updateProfile = new PatientProfileDao();
+            int patient_id = patientInfo.getPatient_id();
+            profile.setPatientId(patient_id);
+            System.out.println(profile);
             updateProfile.update(profile);
             System.out.println(profile);
         } catch (Exception e){
