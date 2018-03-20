@@ -26,7 +26,7 @@
   <div class="container" *ngIf="canCheck">
 
     <div class="input-group">
-      <h2>PROFILE: {{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</h2>
+      <h2 *ngIf="!updating">PROFILE: {{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</h2>
       <span class="input-group-btn offset-md-2">
           <button class="btn btn-outline-dark" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating">Update Profile</button>
       </span>

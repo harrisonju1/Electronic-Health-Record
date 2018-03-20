@@ -140,6 +140,7 @@ export class PatientProfileComponent implements OnInit {
 
       // after you finish updating the form, set it back to false
       this.updating = false;
+      window.location.reload();
     }
   }
 
