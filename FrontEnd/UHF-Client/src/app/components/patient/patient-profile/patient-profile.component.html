@@ -411,7 +411,7 @@
           <div class="col-md-2">
             {{appt.doctor_id}}
           </div>
-          <div class="col-md-5">
+          <div class="col-md-3">
               <a class="btn btn-outline-info btn-sm" role="button" data-toggle="collapse" href="#appt.visit_id-{{i}}" aria-expanded="false" aria-controls="collapseExample">
                   Reason
               </a>
@@ -419,9 +419,12 @@
                   <div class="card card-body">
                       {{appt.visit_reason}}
                       <br/>
-                      <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
+                      <!-- <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}/appointment/{{appt.visit_id}}">View</button> -->
                   </div>
               </div>
+          </div>
+          <div class="col-md-2">
+              <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}/appointment/{{appt.visit_id}}">View</button>
           </div>
       </div>
       <hr>
