@@ -71,6 +71,7 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form:ApptRecord){
+    console.log("from createappt record:" +form);
     this.http.post(this.visitUrl, form, httpOptions).subscribe();
   }
 
