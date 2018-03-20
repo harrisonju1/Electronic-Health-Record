@@ -7,13 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PatientProfileDaoTest {
-    @Before
-    public void before(){
-        final PatientProfileDao profileDao= new PatientProfileDao();
-        profileDao.findAll().forEach((p)->{
-            profileDao.delete(p);
-        });
-    }
+//    @Before
+//    public void before(){
+//        final PatientProfileDao profileDao= new PatientProfileDao();
+//        profileDao.findAll().forEach((p)->{
+//            profileDao.delete(p);
+//        });
+//    }
 
     @Test
     public void create(){
