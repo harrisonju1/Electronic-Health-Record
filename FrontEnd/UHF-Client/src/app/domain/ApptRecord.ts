@@ -1,21 +1,21 @@
 export class ApptRecord {
-    visitId:number;
-    visitDate:Date;
-    patientId:number;
-    doctorId:number;
-    visitReason:string;
+    visit_id:number;
+    visit_date:Date;
+    patient_id:number;
+    doctor_id:number;
+    visit_reason:string;
 
     constructor(
-        visitID:number,
-        visitDate:Date,
-        patientId:number,
-        doctorId:number,
-        visitReason:string
+        visit_id:number,
+        visit_date:Date,
+        patient_id:number,
+        doctor_id:number,
+        visit_reason:string
     ){
-        this.visitId = visitID;
-        this.visitDate = visitDate;
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitReason = visitReason;
+        this.visit_id = visit_id;
+        this.visit_date = visit_date;
+        this.patient_id = patient_id;
+        this.doctor_id = doctor_id;
+        this.visit_reason = visit_reason;
     }
 }

@@ -383,6 +383,46 @@
   </div>
 
   <div class="container" *ngIf="canCheck">
-    Past Visits
-
+    <h3>PAST VISITS</h3>
+    <br>
+    <div class="row">
+      <div class="col-md-2">
+          <label for="visit_id">Visit ID</label>
+      </div>
+      <div class="col-md-3">
+          <label for="visit_date">Visit Date</label>
+      </div>
+      <div class="col-md-2">
+          <label for="doctor_id">Doctor ID</label>
+      </div>
+      <div class="col-md-5">
+          <label for="visit_reason">Visit Reason</label>
+      </div>
+    </div>
+    <hr/>
+    <div *ngFor="let appt of apptRecords">
+      <div class="row">
+          <div class="col-md-2">
+            {{appt.visit_id}}
+          </div>
+          <div class="col-md-3">
+            {{appt.visit_date | date: 'MM/dd/yyyy'}}
+          </div>
+          <div class="col-md-2">
+            {{appt.doctor_id}}
+          </div>
+          <div class="col-md-4">
+              <button class="btn btn-outline-info btn-sm " type="button" data-toggle="collapse" data-target="#appt.visit_id" aria-expanded="false" aria-controls="collapseExample">
+                  Reason
+                </button>
+                <div class="collapse" id="appt.visit_id">
+                    <div class="card card-body">
+                        {{appt.visit_reason}}
+                    </div>
+                </div>
+          </div>
+          <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
+      </div>
+      <hr>
+    </div>
   </div>
