@@ -19,12 +19,12 @@ import { PatientProfileComponent } from './components/patient/patient-profile/pa
 import { MedHistoryComponent } from './components/med/med-history/med-history.component';
 import { PatientFormComponent } from './components/patient/patient-form/patient-form.component';
 import { ApptRecordFormComponent } from './components/appointment/appt-record-form/appt-record-form.component';
-import { ApptRecordComponent } from './components/appointment/appt-record/appt-record.component';
 import { MedHistoryFormComponent } from './components/med/med-history-form/med-history-form.component';
 import { FormService } from './services/form.service';
 import { FilterPipe } from './pipes/filter.pipe';
 import { IdfilterPipe } from './pipes/idfilter.pipe';
 import { DatefilterPipe } from './pipes/datefilter.pipe';
+import { VisitsComponent } from './components/appointment/visits/visits.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +36,11 @@ import { DatefilterPipe } from './pipes/datefilter.pipe';
     MedHistoryComponent,
     PatientFormComponent,
     ApptRecordFormComponent,
-    ApptRecordComponent,
     MedHistoryFormComponent,
     FilterPipe,
     IdfilterPipe,
-    DatefilterPipe
+    DatefilterPipe,
+    VisitsComponent
   ],
   imports: [
     BrowserModule,

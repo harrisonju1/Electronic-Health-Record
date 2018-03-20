@@ -385,6 +385,10 @@
   <div class="container" *ngIf="canCheck">
     <h3>PAST VISITS</h3>
     <br>
+      <button class="btn btn-outline-dark btn-sm" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating" routerLink="/form/appointment/{{patient.patient_id}}">Add New</button>
+    <br>
+    <br>
+    <br>
     <div class="row">
       <div class="col-md-2">
           <label for="visit_id">Visit ID</label>
@@ -424,7 +428,7 @@
               </div>
           </div>
           <div class="col-md-2">
-              <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}/appointment/{{appt.visit_id}}">View</button>
+              <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}/visit/{{appt.visit_id}}">View</button>
           </div>
       </div>
       <hr>

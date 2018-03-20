@@ -10,7 +10,8 @@ import { PatientFormComponent } from './components/patient/patient-form/patient-
 import { MedHistoryFormComponent } from './components/med/med-history-form/med-history-form.component';
 import { ApptRecordFormComponent } from './components/appointment/appt-record-form/appt-record-form.component';
 import { AuthGuard } from './guard/auth.guard';
-import { ApptRecordComponent } from './components/appointment/appt-record/appt-record.component';
+import { VisitsComponent } from './components/appointment/visits/visits.component';
+
 
 // add AuthGuard to protected routes
 const routes : Routes = [
@@ -24,7 +25,7 @@ const routes : Routes = [
   // { path: 'form/appointment', component: ApptRecordFormComponent, canActivate: [AuthGuard]},
   { path: 'search', component: SearchPatientComponent},
   { path: 'patient/:id', component: PatientProfileComponent},
-  { path: 'record/:id', component: ApptRecordComponent},
+  { path: 'patient/:patient_id/visit/:visit_id', component: VisitsComponent},
   { path: 'form/patient', component: PatientFormComponent},
   { path: 'form/medical', component: MedHistoryFormComponent},
   { path: 'form/appointment/:id', component: ApptRecordFormComponent},

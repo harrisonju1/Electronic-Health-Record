@@ -34,18 +34,18 @@
           <div class="form-row">
             <div class="form-group col-md-6" >
               <label for="doctorId">Doctor ID</label>
-              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="apptRecord.doctorId" #doctorId="ngModel" required />
+              <input type="number" class="form-control" id="doctorId" placeholder="#" name="doctorId" min="1" [(ngModel)]="apptRecord.doctor_id" #doctorId="ngModel" required />
               <div *ngIf="doctorId.invalid && (doctorId.touched || doctorId.dirty)" class="alert alert-danger">
                 Doctor ID is required.
               </div>
               <div *ngIf="!isPositive && (doctorId.touched || doctorId.dirty)" class="alert alert-light">
-                ID has to be positive. {{!isPositive}}
+                ID has to be positive.
               </div>
             </div>
 
             <div class="form-group col-md-6">
               <label for="visitDate">Visit Date</label>
-              <input type="date" class="form-control" id="visitDate" name="visitDate" [(ngModel)]="apptRecord.visitDate" #visitDate="ngModel" required />
+              <input type="date" class="form-control" id="visitDate" name="visitDate" [(ngModel)]="apptRecord.visit_date" #visitDate="ngModel" required />
               <div *ngIf="visitDate.invalid && (visitDate.touched || visitDate.dirty)" class="alert alert-danger">
                 Visit date is required.
               </div>
@@ -55,7 +55,7 @@
           <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="visitReason">Reason For Visit</label>
-                <textarea class="form-control" rows="3" id="visitReason" name="visitReason" [(ngModel)]="apptRecord.visitReason" #visitReason="ngModel" required></textarea>
+                <textarea class="form-control" rows="3" id="visitReason" name="visitReason" [(ngModel)]="apptRecord.visit_reason" #visitReason="ngModel" required></textarea>
               </div>
               <div *ngIf="visitReason.invalid && (visitReason.touched || visitReason.dirty)" class="alert alert-danger">
                 The reason for visit is required.
@@ -65,7 +65,7 @@
           <button type="button" class="btn btn-outline-dark" 
           data-toggle="modal" data-target="#cancel">Cancel</button>
           
-          <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm">Submit</button>
+          <button id="submit" type="submit" class="btn btn-dark" *ngIf="validForm" (click)="goBack()">Submit</button>
                 
           <button id="review" class="btn btn-dark" [disabled]="!apptForm.form.valid" *ngIf="!validForm">Submit</button>
 
@@ -85,7 +85,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" data-dismiss="modal">No, Continue</button>
-                  <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="cancel()">Yes, Cancel</button>
+                  <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="goBack()">Yes, Cancel</button>
                 </div>
               </div>
             </div>

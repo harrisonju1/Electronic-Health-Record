@@ -12,6 +12,7 @@ form, #formDiv {
 
 /* COLLAPSIBLE */
 .card {
+    padding-left: 0;
     border:none;
     background-color:transparent;
 
