@@ -1,7 +1,7 @@
 export class ApptRecord {
     visitId:number;
     visitDate:Date;
-    patientId:number;
+    patient_id:number;
     doctorId:number;
     visitReason:string;
 

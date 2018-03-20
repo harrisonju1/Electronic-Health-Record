@@ -69,11 +69,11 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form:ApptRecord){
-    this.http.post(this.visitUrl, form, httpOptions);
+    this.http.post(this.visitUrl, form, httpOptions).subscribe();
   }
 
   getAllApptRecords():Observable<ApptRecord[]>{
-    let records = this.http.get<ApptRecord[]>(this.visitUrl + "/all");
+    let records = this.http.get<ApptRecord[]>(this.visitUrl + `?patient_id=${patient_id}`);
     records.subscribe(r => this.apptRecordsList = r);
     return records;
   }
