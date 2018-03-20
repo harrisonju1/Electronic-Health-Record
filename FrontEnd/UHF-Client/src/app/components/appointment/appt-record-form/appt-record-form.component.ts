@@ -32,7 +32,7 @@ export class ApptRecordFormComponent implements OnInit {
     if (this.apptRecord.doctor_id <= 0 || this.apptRecord.doctor_id == null || this.apptRecord.visit_date == null || this.apptRecord.patient_id == 0 || this.apptRecord.visit_reason == ""){
       this.validForm = false;
     }
-    
+
   }
 
   ngDoCheck(){
@@ -50,27 +50,27 @@ export class ApptRecordFormComponent implements OnInit {
 
     if (this.validForm == false){
       if (this.apptRecord.visit_date && this.apptRecord.visit_reason && this.apptRecord.doctor_id){
-        // remember to validate patient id: && this.apptRecord.patientId != 0 
+        // remember to validate patient id: && this.apptRecord.patientId != 0
         this.validForm = true;
       }
     }
     if (this.validForm == true){
       if (!this.apptRecord.visit_date || this.apptRecord.visit_reason == "" || this.isPositive == false){
-        // remember to validate patient id: this.apptRecord.patientId == 0 
+        // remember to validate patient id: this.apptRecord.patientId == 0
         this.validForm = false;
       }
     }
   }
 
-  onSubmit(){
+  onSubmit(form:NgForm){
+      this.apptRecord.patient_id = this.patient_id;
       this.submitted = true;
 
-      this.apptRecord.patient_id = this.patient_id;
-      console.log(this.apptRecord);
+
       this.formService.createApptRecord(this.apptRecord);
 
   }
-  
+
   // onSubmit(form:NgForm){
   //   // appt record form to be submitted from inside patient profile - already includes patient ID
   //   this.submitted = true;
@@ -82,7 +82,7 @@ export class ApptRecordFormComponent implements OnInit {
   //   this.apptRecord.visitReason = form.value['visitReason'];
 
   //   this.formService.createApptRecord(this.apptRecord);
-    
+
   // }
 
   goBack(){

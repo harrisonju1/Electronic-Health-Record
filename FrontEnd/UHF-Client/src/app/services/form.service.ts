@@ -73,7 +73,11 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form:ApptRecord){
+<<<<<<< HEAD
     console.log(form);
+=======
+    console.log("from createappt record:" +form);
+>>>>>>> 8881beace5ed42bc7aeab1ceff808f1631040870
     this.http.post(this.visitUrl, form, httpOptions).subscribe();
     this.router.navigate(['/patient/'+ form.patient_id]);
   }
