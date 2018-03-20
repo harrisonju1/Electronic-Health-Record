@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../../../services/authorization.service';
+import { VisitDetails } from '../../../domain/VisitDetails';
 
 @Component({
   selector: 'app-visits',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisitsComponent implements OnInit {
 
-  constructor() { }
+  visit_id: number = 1;
+  currentVisit: VisitDetails;
+
+  constructor(
+    private authService: AuthorizationService
+  ) { }
 
   ngOnInit() {
+    // this.currentVisit = new VisitDetails()
   }
 
 }

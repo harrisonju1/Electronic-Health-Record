@@ -6,6 +6,7 @@ import { ApptRecord } from '../domain/ApptRecord';
 import { VisitDetails } from '../domain/VisitDetails';
 import {User} from "../domain/User";
 import {Doctor} from "../domain/Doctor";
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -30,7 +31,8 @@ export class FormService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   /* PATIENT FORM SERVICES ------------------------------------------------------------------------------- */
@@ -71,7 +73,9 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form:ApptRecord){
+    console.log(form);
     this.http.post(this.visitUrl, form, httpOptions).subscribe();
+    this.router.navigate(['/patient/'+ form.patient_id]);
   }
 
   getAllApptRecords(patient_id: number):Observable<ApptRecord[]>{

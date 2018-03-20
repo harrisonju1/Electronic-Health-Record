@@ -1,3 +1,15 @@
-<p>
-  visits works!
-</p>
+<nav class="navbar navbar-expand navbar-light bg-light">
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/form/patient">New Patient Form</a></li>
+        </ul>
+  
+    </div>
+    <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
+  </nav>
+
+  <div class="container">
+    <h3>#{{visit_id}}: VISIT DETAILS</h3>
+  </div>
