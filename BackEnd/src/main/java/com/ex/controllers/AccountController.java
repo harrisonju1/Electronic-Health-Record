@@ -1,12 +1,10 @@
 package com.ex.controllers;
 
-import com.ex.beans.Doctor;
-import com.ex.beans.PatientInfo;
-import com.ex.beans.PatientProfile;
-import com.ex.beans.User;
+import com.ex.beans.*;
 import com.ex.dao.DoctorsDao;
 import com.ex.dao.PatientProfileDao;
 import com.ex.dao.UserDao;
+import com.ex.dao.VisitDao;
 import com.ex.util.EncryptionUtil;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import org.json.simple.JSONObject;
@@ -170,6 +168,43 @@ public class AccountController {
         } catch(Exception e){
             e.printStackTrace();;
             return "ERROR:FAILED TO RETRIEVE DOCTOR " + e.getStackTrace();
+        }
+    }
+
+    @RequestMapping(value="/api/form/visit", method=RequestMethod.POST)
+    Object createAppointment(@RequestParam Visit visit){
+        try{
+            VisitDao visitDao = new VisitDao();
+            visitDao.create(visit);
+        } catch(Exception e){
+            e.printStackTrace();
+            return "ERROR: FAILED TO RETRIEVE VISIT " + e.getStackTrace();
+        }
+        return null;
+    }
+
+    @RequestMapping(value="/api/form/visit", method=RequestMethod.GET)
+    Object getAllVisits(@RequestParam int patient_id){
+        try{
+            VisitDao visitDao = new VisitDao();
+            List<Visit> allVisits;
+            allVisits = visitDao.findAll();
+            return allVisits;
+        } catch(Exception e){
+            e.printStackTrace();
+            return "ERROR: FAILED TO RETRIEVE ALL VISITS " + e.getStackTrace();
+        }
+    }
+
+    @RequestMapping(value="/api/form/visit/visit", method=RequestMethod.GET)
+    Object getVisitById(@RequestParam int patient_id){
+        try{
+            VisitDao visitDao = new VisitDao();
+            Visit visit = visitDao.
+
+        } catch(Exception e){
+            e.printStackTrace();
+            return "ERROR: FAILED TO RETRIEVE VISIT BY ID " + e.getStackTrace();
         }
     }
 }

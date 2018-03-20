@@ -5,6 +5,7 @@ export class ApptRecord {
     doctor_id:number;
     visit_reason:string;
 
+
     constructor(
         visit_id:number,
         visit_date:Date,

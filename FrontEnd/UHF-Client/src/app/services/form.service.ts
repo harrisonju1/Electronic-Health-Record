@@ -69,7 +69,7 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form:ApptRecord){
-    this.http.post(this.visitUrl, form, httpOptions);
+    this.http.post(this.visitUrl, form, httpOptions).subscribe();
   }
 
   getAllApptRecords():Observable<ApptRecord[]>{
