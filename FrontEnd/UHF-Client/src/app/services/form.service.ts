@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-}
+};
 
 @Injectable()
 export class FormService {
@@ -73,7 +73,6 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form:ApptRecord){
-    console.log(form);
     console.log("from createappt record:" +form);
     this.http.post(this.visitUrl, form, httpOptions).subscribe();
     this.router.navigate(['/patient/'+ form.patient_id]);
