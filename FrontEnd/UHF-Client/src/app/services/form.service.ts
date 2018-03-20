@@ -24,7 +24,9 @@ export class FormService {
 
   patientProfileList: PatientProfile[];
   currentPatientProfile: PatientProfile;
+  apptRecord: ApptRecord;
   apptRecordsList: ApptRecord[];
+
 
 
   constructor(
@@ -51,8 +53,7 @@ export class FormService {
 
   getAllPatientProfiles(): Observable<PatientProfile[]> {
     let ppl = this.http.get<PatientProfile[]>(this.patientUrl + "/all");
-    ppl.subscribe(p => {this.patientProfileList = p;
-      console.log(this.patientProfileList);});
+    ppl.subscribe(p => {this.patientProfileList = p});
 
     return ppl;
   }
@@ -73,8 +74,8 @@ export class FormService {
     this.http.post(this.visitUrl, form, httpOptions).subscribe();
   }
 
-  getAllApptRecords():Observable<ApptRecord[]>{
-    let records = this.http.get<ApptRecord[]>(this.visitUrl + '/all');
+  getAllApptRecords(patient_id: number):Observable<ApptRecord[]>{
+    let records = this.http.get<ApptRecord[]>(this.visitUrl + `?patient_id=${patient_id}`);
     records.subscribe(r => this.apptRecordsList = r);
     return records;
   }
