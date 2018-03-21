@@ -1,3 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
 .alert {
     margin-top: 3%;
+}
+
+button {
+    background-color:#014353;
+    color:#fff;
+    margin-top:5%;
+}
+
+button:hover {
+    background-color:transparent;
+    color:#014353;
+}
+
+h3 {
+    margin-bottom:5%;
+}
+
+#loginDiv {
+    height:fill;
+
+    background-image:url("https://static.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg");
+    background-position: fixed;
+    background-size:cover;
+    overflow: hidden;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.jumbotron {
+    background-color: rgba(250,250,250,0.6);
+    width:40%;
+    margin:0 auto;    
+    margin-top:10%;
+}
+
+input {
+    width:200px;
 }
