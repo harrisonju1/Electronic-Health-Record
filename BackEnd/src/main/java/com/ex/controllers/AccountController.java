@@ -212,7 +212,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value="api/form/visit/detail", method=RequestMethod.GET)
+    @RequestMapping(value="api/form/visit/details", method=RequestMethod.GET)
     Object getVisitDetailByPatient(@RequestParam int visit_id){
         try{
             VisitDao visitDao = new VisitDao();
@@ -227,24 +227,54 @@ public class AccountController {
             //get list of diagnosis by patient
             DiagnosisDao diagnosisDao = new DiagnosisDao();
             List<Diagnosis> allDiagnosis = diagnosisDao.findByPatient(pp);
+            String diagnosis;
+            List<String> diagnosisList = new ArrayList<>();
+            for (int i = 0; i < allDiagnosis.size(); i++){
+                diagnosis = allDiagnosis.get(i).getDiagnosis();
+                diagnosisList.add(diagnosis);
+            }
 
             //get list of symptoms by patient
             SymptomsDao symptomsDao = new SymptomsDao();
             List<Symptoms> allSymptoms = symptomsDao.findByPatient(pp);
+            String symptom;
+            List<String> symptoms = new ArrayList<>();
+            for(int i =0; i < allSymptoms.size(); i++){
+                symptom = allSymptoms.get(i).getSymptoms();
+                symptoms.add(symptom);
+            }
 
             //get list of prescriptions
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
             List<Prescriptions> allPrescriptions = prescriptionsDao.findByPatient(pp);
+            String prescription;
+            List<String> prescriptions = new ArrayList<>();
+            for(int i = 0; i < allPrescriptions.size(); i++){
+                prescription = allPrescriptions.get(i).getDrugs();
+                prescriptions.add(prescription);
+            }
+
 
             //get list of treatments
             TreatmentsDao treatmentsDao = new TreatmentsDao();
             List<Treatments> allTreatments = treatmentsDao.findByPatient(pp);
+            String treatment;
+            List<String> treatments = new ArrayList<>();
+            for (int i =0; i < allTreatments.size(); i++){
+                treatment = allTreatments.get(i).getTreatment();
+                treatments.add(treatment);
+            }
 
             //get list of tests
             TestsDao testsDao = new TestsDao();
             List<Tests> allTests = testsDao.findByPatient(pp);
-
-            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), allDiagnosis, allSymptoms, allPrescriptions, allTreatments, allTests);
+            String test;
+            List<String> tests = new ArrayList<>();
+            for (int i = 0; i < allTests.size(); i++){
+                test = allTests.get(i).getTest();
+                tests.add(test);
+            }
+            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), diagnosisList, symptoms, prescriptions, treatments, tests);
 
             return visitDetails;
 

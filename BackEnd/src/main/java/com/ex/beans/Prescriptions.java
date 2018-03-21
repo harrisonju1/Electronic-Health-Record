@@ -23,7 +23,7 @@ public class Prescriptions {
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="doctor")
+    @JoinColumn(name="doctor_id")
     private Doctor doctor;
 
     @ManyToOne
@@ -31,20 +31,16 @@ public class Prescriptions {
     @JoinColumn(name="visit_id")
     private Visit visit;
 
-    @Column(name="visit_date")
-    private Date visit_date;
-
-    @Column(name="drugs")
+    @Column(name="drug")
     private String drugs;
 
     public Prescriptions() {
     }
 
-    public Prescriptions(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String drugs) {
+    public Prescriptions(PatientProfile patient, Doctor doctor, Visit visit, String drugs) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visit_date = visit_date;
         this.drugs = drugs;
     }
 
@@ -80,14 +76,6 @@ public class Prescriptions {
         this.visit = visit;
     }
 
-    public Date getVisitDate() {
-        return visit_date;
-    }
-
-    public void setVisitDate(Date visitDate) {
-        this.visit_date = visitDate;
-    }
-
     public String getDrugs() {
         return drugs;
     }
@@ -97,33 +85,31 @@ public class Prescriptions {
     }
 
     @Override
-    public String toString() {
-        return "Prescriptions{" +
-                "prescriptionId=" + prescription_id +
-                ", patient=" + patient +
-                ", doctor=" + doctor +
-                ", visit=" + visit +
-                ", visitDate=" + visit_date +
-                ", drugs='" + drugs + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prescriptions that = (Prescriptions) o;
         return prescription_id == that.prescription_id &&
-                patient == that.patient &&
-                doctor == that.doctor &&
-                visit == that.visit &&
-                Objects.equals(visit_date, that.visit_date) &&
+                Objects.equals(patient, that.patient) &&
+                Objects.equals(doctor, that.doctor) &&
+                Objects.equals(visit, that.visit) &&
                 Objects.equals(drugs, that.drugs);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(prescription_id, patient, doctor, visit, visit_date, drugs);
+        return Objects.hash(prescription_id, patient, doctor, visit, drugs);
+    }
+
+    @Override
+    public String toString() {
+        return "Prescriptions{" +
+                "prescription_id=" + prescription_id +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
+                ", drugs='" + drugs + '\'' +
+                '}';
     }
 }

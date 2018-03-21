@@ -43,7 +43,8 @@ public class SymptomsDao {
 
     public List<Symptoms> findByPatient(PatientProfile profile){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        List<Symptoms> symptoms = (List<Symptoms>) session.createCriteria(Symptoms.class).add(Restrictions.eq("patient", profile)).list();
+        List<Symptoms> symptoms = (List<Symptoms>) session.createCriteria(Symptoms.class)
+                .add(Restrictions.eq("patient", profile)).list();
 
         session.close();
         return symptoms;
