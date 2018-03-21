@@ -88,4 +88,8 @@ export class FormService {
     // will need to have a VisitDetails class populated by Diagnosis, Symptoms, Treatment, Tests, and Prescription
     return this.http.get<VisitDetails>(this.visitUrl + '/details' + `?visit_id=${visit_id}`);
   }
+
+  updateVisitDetails(visitDetails: VisitDetails) {
+    this.http.post(this.visitUrl+"/update", visitDetails, httpOptions).subscribe();
+  }
 }

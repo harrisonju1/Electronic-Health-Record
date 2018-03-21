@@ -174,7 +174,7 @@ export class VisitsComponent implements OnInit {
     this.updating = true;
   }
 
-  deactivateUpdate(){
+  finishUpdate(){
     this.updating = false;
   }
 
