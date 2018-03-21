@@ -22,7 +22,7 @@ h3 {
 }
 
 #loginDiv {
-    height:fill;
+    height:stretch;
 
     background-image:url("https://static.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg");
     background-position: fixed;

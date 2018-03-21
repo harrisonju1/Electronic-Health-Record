@@ -8,24 +8,24 @@ public class VisitDetails {
     public int visit_id;
     public int doctor_id;
     public int patient_id;
-    public List<String> diagnosisList;
-    public List<String> symptomsList;
-    public List<String> prescriptionsList;
-    public List<String> treatmentsList;
-    public List<String> testsList;
+    public List<String> diagnosis;
+    public List<String> symptoms;
+    public List<String> prescriptions;
+    public List<String> treatments;
+    public List<String> tests;
 
     public VisitDetails() {
     }
 
-    public VisitDetails(int visit_id, int doctor_id, int patient_id, List<String> diagnosisList, List<String> symptomsList, List<String> prescriptionsList, List<String> treatmentsList, List<String> testsList) {
+    public VisitDetails(int visit_id, int doctor_id, int patient_id, List<String> diagnosis, List<String> symptoms, List<String> prescriptions, List<String> treatments, List<String> tests) {
         this.visit_id = visit_id;
         this.doctor_id = doctor_id;
         this.patient_id = patient_id;
-        this.diagnosisList = diagnosisList;
-        this.symptomsList = symptomsList;
-        this.prescriptionsList = prescriptionsList;
-        this.treatmentsList = treatmentsList;
-        this.testsList = testsList;
+        this.diagnosis = diagnosis;
+        this.symptoms = symptoms;
+        this.prescriptions = prescriptions;
+        this.treatments = treatments;
+        this.tests = tests;
     }
 
     public int getVisit_id() {
@@ -53,42 +53,42 @@ public class VisitDetails {
     }
 
     public List<String> getDiagnosisList() {
-        return diagnosisList;
+        return diagnosis;
     }
 
-    public void setDiagnosisList(List<String> diagnosisList) {
-        this.diagnosisList = diagnosisList;
+    public void setDiagnosisList(List<String> diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public List<String> getSymptomsList() {
-        return symptomsList;
+        return symptoms;
     }
 
-    public void setSymptomsList(List<String> symptomsList) {
-        this.symptomsList = symptomsList;
+    public void setSymptomsList(List<String> symptoms) {
+        this.symptoms = symptoms;
     }
 
     public List<String> getPrescriptionsList() {
-        return prescriptionsList;
+        return prescriptions;
     }
 
-    public void setPrescriptionsList(List<String> prescriptionsList) {
-        this.prescriptionsList = prescriptionsList;
+    public void setPrescriptionsList(List<String> prescriptions) {
+        this.prescriptions = prescriptions;
     }
 
     public List<String> getTreatmentsList() {
-        return treatmentsList;
+        return treatments;
     }
 
-    public void setTreatmentsList(List<String> treatmentsList) {
-        this.treatmentsList = treatmentsList;
+    public void setTreatmentsList(List<String> treatments) {
+        this.treatments = treatments;
     }
 
     public List<String> getTestsList() {
-        return testsList;
+        return tests;
     }
 
-    public void setTestsList(List<String> testsList) {
-        this.testsList = testsList;
+    public void setTestsList(List<String> tests) {
+        this.tests = tests;
     }
 }

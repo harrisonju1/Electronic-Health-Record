@@ -168,7 +168,7 @@ export class VisitsComponent implements OnInit {
     let index = tests.indexOf(t);
     tests.splice(index,1);
   }
-  
+
   // ---------------------- TOGGLING UPDATE MODE ------------------------------
   activateUpdate(){
     this.updating = true;
