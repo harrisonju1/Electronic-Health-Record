@@ -60,19 +60,19 @@ export class VisitsComponent implements OnInit {
       this.currentVisit = a;
 
     //   // get doctor information
-    //   this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
-    //     this.currentDoctor = d;
-    //     this.canCheck = true;
-    //   });
+      this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+        this.currentDoctor = d;
+        this.canCheck = true;
+      });
     });
 
     // VISIT DETAILS DUMMY DATA
     // this.currentVisit = new VisitDetails(1, 5, this.pID, ["You're on fire.", "Make a dragon wanna retire, man."], ["Very high temperatures.", "Fire.", "Burn baby burn."], ["Ice water.", "Burn cream.", "Sleep."], ["Ice Bath"], ["None"]);
     // get doctor information
-      this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
-        this.currentDoctor = d;
-        this.canCheck = true;
-      });
+      // this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+      //   this.currentDoctor = d;
+      //   this.canCheck = true;
+      // });
   }
 
   ngDoCheck(){

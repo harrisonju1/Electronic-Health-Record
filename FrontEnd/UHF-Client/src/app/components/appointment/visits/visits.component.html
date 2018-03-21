@@ -38,7 +38,7 @@
     <br/>
 
     <!-- APPT SUMMARY -->
-    <div id="apptRecordDiv" *ngIf="!updating">
+    <div id="apptRecordDiv" *ngIf="!updating && canCheck">
         <div class="row">
             <div class="col-md-12">
                 <h5>APPOINTMENT SUMMARY</h5>
@@ -59,7 +59,7 @@
     <br/>
 
     <!-- VISIT DETAILS -->
-    <div id="visitDetailsDiv" *ngIf="!updating">
+    <div id="visitDetailsDiv" *ngIf="!updating && canCheck">
         <div class="row">
             <div class="col-md-12">
                 <label>Diagnosis</label>
@@ -105,7 +105,7 @@
     </div>
 
     <!-- UPDATING APPT SUMMARY -->
-    <div id="apptRecordDiv" *ngIf="updating">
+    <div id="apptRecordDiv" *ngIf="updating && canCheck">
             <div class="row">
                 <div class="col-md-12">
                     <h5>APPOINTMENT SUMMARY</h5>
@@ -125,7 +125,7 @@
         <br>
 
     <!-- UPDATING VISIT DETAILS -->
-    <div id="visitDetailsDiv" *ngIf="updating">
+    <div id="visitDetailsDiv" *ngIf="updating && canCheck">
             <div class="row">
                 <div class="col-md-12">
                     <label>Diagnosis</label>
