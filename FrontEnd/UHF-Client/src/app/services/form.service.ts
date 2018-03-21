@@ -86,6 +86,6 @@ export class FormService {
 
   getVisitDetailsByID(visit_id:number):Observable<VisitDetails>{
     // will need to have a VisitDetails class populated by Diagnosis, Symptoms, Treatment, Tests, and Prescription
-    return this.http.get<VisitDetails>(this.visitUrl+'/detail' + `${visit_id}`);
+    return this.http.get<VisitDetails>(this.visitUrl + '/details' + `?visit_id=${visit_id}`);
   }
 }

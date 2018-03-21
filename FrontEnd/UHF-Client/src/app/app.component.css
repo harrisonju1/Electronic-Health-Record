@@ -1,6 +1,12 @@
 /* ---------- TEXT ---------- */
 h1 {
+    padding:1%;
     text-align:center;
+    color:#fff;
+}
+
+nav {
+    background:linear-gradient(to right, #003542 , #1190af);
 }
 
 #title {

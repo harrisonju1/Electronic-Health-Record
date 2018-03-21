@@ -22,16 +22,124 @@
 </nav>
 
 
-
-<!-- Add ngIf to hide Login button -->
-<div id="homeContainer">
+<div id="homeDiv">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <button class="btn btn-outline-secondary" routerLink="/login" *ngIf="!currentUser">Login</button>
+      <div class="col-md-12" id="welcomeDiv">
+        <h1>Changing Healthcare For The Better</h1>
+        <p>Your Universal Healthcare Force For A Brighter Future</p>
+        <button id="loginBTN" class="btn btn-dark btn-lg" routerLink="/login" *ngIf="!currentUser">Login</button>          
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 box">
+          <h4>View Medical History</h4>
+      </div>
+      <div class="col-md-4 box">
+          <h4>Find A Doctor</h4>
+      </div>
+      <div class="col-md-4 box">
+          <h4>Schedule An Appointment</h4>
+      </div>
+    </div>  
+  </div>
+</div>
+
+<div id="aboutDiv">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+          <h3>Our Team At Universal Healthcare Force</h3>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+      <div class="col-md-3">
+        <h4>Ian Bishop</h4>
+      </div>
+      <div class="col-md-3">
+        <h4>Harrison Ju</h4>
+      </div>
+      <div class="col-md-3">
+        <h4>Flynn Tan</h4>
+      </div>
+      <div class="col-md-3">
+        <h4>Calvin Zheng</h4>
       </div>
     </div>
   </div>
 </div>
+
+<footer>
+  <p>Brought to you by Team Triple G Force.</p>
+</footer>
+
+<!-- <div class="container" id="optionsDiv">
+    <div class="row">
+        <div class="col-md-4 box">
+            <h4>View Medical History</h4>
+        </div>
+        <div class="col-md-4 box">
+            <h4>Find A Doctor</h4>
+        </div>
+        <div class="col-md-4 box">
+            <h4>Schedule An Appointment</h4>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- Add ngIf to hide Login button -->
+<!-- <div class="parallax">
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <button id="loginBTN" class="btn btn-outline-secondary" routerLink="/login" *ngIf="!currentUser">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="nonparallax" *ngIf="currentUser">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <h2>CHANGING HEALTHCARE FOR THE BETTER</h2>
+          <p>According to all known laws
+              of aviation
+              
+          </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="parallax">
+  <div class="container">
+  </div>
+</div>
+
+<div class="nonparallax">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 box">
+        <h4>View Medical History</h4>
+      </div>
+      <div class="col-md-4 box">
+          <h4>Find A Doctor</h4>
+      </div>
+      <div class="col-md-4 box">
+          <h4>Schedule An Appointment</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="parallax">
+    <div class="container">
+    </div>
+  </div> -->
+
 
 

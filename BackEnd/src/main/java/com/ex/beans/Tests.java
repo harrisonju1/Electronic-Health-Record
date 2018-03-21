@@ -31,20 +31,16 @@ public class Tests {
     @JoinColumn(name="visit_id")
     private Visit visit;
 
-    @Column
-    private Date visit_date;
-
     @Column(name="test")
     private String test;
 
     public Tests() {
     }
 
-    public Tests(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String test) {
+    public Tests(PatientProfile patient, Doctor doctor, Visit visit, String test) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visit_date = visit_date;
         this.test = test;
     }
 
@@ -80,14 +76,6 @@ public class Tests {
         this.visit = visit;
     }
 
-    public Date getVisitDate() {
-        return visit_date;
-    }
-
-    public void setVisitDate(Date visitDate) {
-        this.visit_date = visitDate;
-    }
-
     public String getTest() {
         return test;
     }
@@ -97,33 +85,33 @@ public class Tests {
     }
 
     @Override
-    public String toString() {
-        return "Tests{" +
-                "test_id=" + test_id +
-                ", patient=" + patient +
-                ", doctor=" + doctor +
-                ", visit=" + visit +
-                ", visit_date=" + visit_date +
-                ", test='" + test + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tests tests = (Tests) o;
         return test_id == tests.test_id &&
-                patient == tests.patient &&
-                doctor == tests.doctor &&
-                visit == tests.visit &&
-                Objects.equals(visit_date, tests.visit_date) &&
+                Objects.equals(patient, tests.patient) &&
+                Objects.equals(doctor, tests.doctor) &&
+                Objects.equals(visit, tests.visit) &&
                 Objects.equals(test, tests.test);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(test_id, patient, doctor, visit, visit_date, test);
+        return Objects.hash(test_id, patient, doctor, visit, test);
+    }
+
+    @Override
+    public String
+
+    toString() {
+        return "Tests{" +
+                "test_id=" + test_id +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
+                ", test='" + test + '\'' +
+                '}';
     }
 }

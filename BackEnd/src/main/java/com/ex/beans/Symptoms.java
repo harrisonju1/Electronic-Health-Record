@@ -31,20 +31,16 @@ public class Symptoms {
     @JoinColumn(name="visit_id")
     private Visit visit;
 
-    @Column(name="visit_date")
-    private Date visit_date;
-
-    @Column(name="symptoms")
+    @Column(name="symptom")
     private String symptoms;
 
     public Symptoms() {
     }
 
-    public Symptoms(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String symptoms) {
+    public Symptoms(PatientProfile patient, Doctor doctor, Visit visit, String symptoms) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visit_date = visit_date;
         this.symptoms = symptoms;
     }
 
@@ -80,14 +76,6 @@ public class Symptoms {
         this.visit = visit;
     }
 
-    public Date getVisitDate() {
-        return visit_date;
-    }
-
-    public void setVisitDate(Date visitDate) {
-        this.visit_date = visitDate;
-    }
-
     public String getSymptoms() {
         return symptoms;
     }
@@ -97,33 +85,31 @@ public class Symptoms {
     }
 
     @Override
-    public String toString() {
-        return "Symptoms{" +
-                "symptomId=" + symptom_id +
-                ", patient=" + patient +
-                ", doctor=" + doctor +
-                ", visit=" + visit +
-                ", visitDate=" + visit_date +
-                ", symptoms='" + symptoms + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Symptoms symptoms1 = (Symptoms) o;
         return symptom_id == symptoms1.symptom_id &&
-                patient == symptoms1.patient &&
-                doctor == symptoms1.doctor &&
-                visit == symptoms1.visit &&
-                Objects.equals(visit_date, symptoms1.visit_date) &&
+                Objects.equals(patient, symptoms1.patient) &&
+                Objects.equals(doctor, symptoms1.doctor) &&
+                Objects.equals(visit, symptoms1.visit) &&
                 Objects.equals(symptoms, symptoms1.symptoms);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(symptom_id, patient, doctor, visit, visit_date, symptoms);
+        return Objects.hash(symptom_id, patient, doctor, visit, symptoms);
+    }
+
+    @Override
+    public String toString() {
+        return "Symptoms{" +
+                "symptom_id=" + symptom_id +
+                ", patient=" + patient +
+                ", doctor=" + doctor +
+                ", visit=" + visit +
+                ", symptoms='" + symptoms + '\'' +
+                '}';
     }
 }
