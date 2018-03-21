@@ -5,7 +5,7 @@
             <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/form/patient">New Patient Form</a></li>
         </ul>
-  
+
     </div>
     <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="this.authService.logout()">Logout</button>
   </nav>
@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-md-12">
                 <label>Diagnosis</label>
-                <ul *ngFor="let d of currentVisit.diagnoses">
+                <ul *ngFor="let d of currentVisit.diagnosis">
                     <li>{{d}}</li>
                 </ul>
             </div>

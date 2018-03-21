@@ -1,10 +1,7 @@
 package com.ex.controllers;
 
 import com.ex.beans.*;
-import com.ex.dao.DoctorsDao;
-import com.ex.dao.PatientProfileDao;
-import com.ex.dao.UserDao;
-import com.ex.dao.VisitDao;
+import com.ex.dao.*;
 import com.ex.util.EncryptionUtil;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import org.json.simple.JSONObject;
@@ -201,17 +198,59 @@ public class AccountController {
 //            //create new doctor object using doctor_id
 //            Doctor d = dd.getByDoctorId(doctor_id);
             VisitDao visitDao = new VisitDao();
-            List<Visit> allVisits;
-            allVisits = visitDao.findByPatientId(pp);
+            List<Visit> allVisits = visitDao.findByPatientId(pp);
             List<VisitInfo> patientVisits = new ArrayList<>();
             for (int i = 0; i < allVisits.size(); i++){
                 VisitInfo vi = new VisitInfo(allVisits.get(i));
                 patientVisits.add(vi);
             }
+            System.out.println(patientVisits);
             return patientVisits;
         } catch(Exception e){
             e.printStackTrace();
             return "ERROR: FAILED TO RETRIEVE ALL VISITS " + e.getStackTrace();
+        }
+    }
+
+    @RequestMapping(value="api/form/visit/detail", method=RequestMethod.GET)
+    Object getVisitDetailByPatient(@RequestParam int visit_id){
+        try{
+            VisitDao visitDao = new VisitDao();
+            Visit visit = visitDao.findByVisitId(visit_id);
+
+            //get patient for other fields and patient_id
+            PatientProfile pp = visit.getPatient();
+
+            //get Doctor for doctor id
+            Doctor doctor = pp.getDoctor();
+
+            //get list of diagnosis by patient
+            DiagnosisDao diagnosisDao = new DiagnosisDao();
+            List<Diagnosis> allDiagnosis = diagnosisDao.findByPatient(pp);
+
+            //get list of symptoms by patient
+            SymptomsDao symptomsDao = new SymptomsDao();
+            List<Symptoms> allSymptoms = symptomsDao.findByPatient(pp);
+
+            //get list of prescriptions
+            PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
+            List<Prescriptions> allPrescriptions = prescriptionsDao.findByPatient(pp);
+
+            //get list of treatments
+            TreatmentsDao treatmentsDao = new TreatmentsDao();
+            List<Treatments> allTreatments = treatmentsDao.findByPatient(pp);
+
+            //get list of tests
+            TestsDao testsDao = new TestsDao();
+            List<Tests> allTests = testsDao.findByPatient(pp);
+
+            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), allDiagnosis, allSymptoms, allPrescriptions, allTreatments, allTests);
+
+            return visitDetails;
+
+        } catch(Exception e){
+            e.printStackTrace();
+            return "ERROR: FAILED TO RETRIEVE ALL VISIT DETAILS " + e.getStackTrace();
         }
     }
 

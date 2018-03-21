@@ -1,5 +1,6 @@
 package com.ex.dao;
 
+import com.ex.beans.PatientProfile;
 import com.ex.beans.Tests;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
@@ -40,6 +41,13 @@ public class TestsDao {
         return tests;
     }
 
+    public List<Tests> findByPatient(PatientProfile profile){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        List<Tests> tests = (List<Tests>) session.createCriteria(Tests.class).add(Restrictions.eq("patient", profile)).list();
+
+        session.close();
+        return tests;
+    }
     public List<Tests> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
 

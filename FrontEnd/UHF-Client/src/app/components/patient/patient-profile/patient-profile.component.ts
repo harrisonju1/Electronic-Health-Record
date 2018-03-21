@@ -47,7 +47,10 @@ export class PatientProfileComponent implements OnInit {
         this.validForm = true;
         this.canCheck = true;
       });
-      // this.formService.getAllApptRecords(id).subscribe(r => this.apptRecords = r);
+      this.formService.getAllApptRecords(id).subscribe(r =>{
+        this.apptRecords = r;
+        console.log(this.apptRecords);
+      }) 
     });
 
 
@@ -63,12 +66,12 @@ export class PatientProfileComponent implements OnInit {
     // this.patient = p1;
 
     // DUMMY DATA FOR APPT RECORDS
-    let a1:ApptRecord = new ApptRecord(1, new Date(2018, 3, 2), 76, 5, "I'm on fire. Send help LOL");
-    let a2:ApptRecord = new ApptRecord(2, new Date(2018, 3,17), 76, 5, "I dropped too many chilis in my food. Send help LOL");
-    this.apptRecords.push(a1);
-    this.apptRecords.push(a2);
+    // let a1:ApptRecord = new ApptRecord(1, new Date(2018, 3, 2), 76, 5, "I'm on fire. Send help LOL");
+    // let a2:ApptRecord = new ApptRecord(2, new Date(2018, 3,17), 76, 5, "I dropped too many chilis in my food. Send help LOL");
+    // this.apptRecords.push(a1);
+    // this.apptRecords.push(a2);
 
-    console.log(this.apptRecords);
+    // console.log(this.apptRecords);
 
   }
 
