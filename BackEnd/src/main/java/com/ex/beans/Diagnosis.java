@@ -84,6 +84,24 @@ public class Diagnosis {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Diagnosis diagnosis1 = (Diagnosis) o;
+        return diagnosis_id == diagnosis1.diagnosis_id &&
+                Objects.equals(patient, diagnosis1.patient) &&
+                Objects.equals(doctor, diagnosis1.doctor) &&
+                Objects.equals(visit, diagnosis1.visit) &&
+                Objects.equals(diagnosis, diagnosis1.diagnosis);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(diagnosis_id, patient, doctor, visit, diagnosis);
+    }
+
+    @Override
     public String toString() {
         return "Diagnosis{" +
                 "diagnosis_id=" + diagnosis_id +
@@ -92,23 +110,5 @@ public class Diagnosis {
                 ", visit=" + visit +
                 ", diagnosis='" + diagnosis + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Diagnosis diagnosis1 = (Diagnosis) o;
-        return diagnosis_id == diagnosis1.diagnosis_id &&
-                patient == diagnosis1.patient &&
-                doctor == diagnosis1.doctor &&
-                visit == diagnosis1.visit &&
-                Objects.equals(diagnosis, diagnosis1.diagnosis);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(diagnosis_id, patient, doctor, visit, diagnosis);
     }
 }
