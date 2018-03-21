@@ -34,7 +34,7 @@
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="first_name">First Name</label>
-              <input type="text" class="form-control" id="first_name" placeholder="Flynn" name="first_name" [(ngModel)]="patientProfile.first_name" #first_name="ngModel" minlength="1" required />
+              <input type="text" class="form-control" id="first_name" placeholder="Flynn" maxlength="25" name="first_name" [(ngModel)]="patientProfile.first_name" #first_name="ngModel" minlength="1" required />
               <div *ngIf="first_name.invalid && (first_name.touched || first_name.dirty)" class="alert alert-danger">
                 First name is required.
               </div>
@@ -42,7 +42,7 @@
 
             <div class="form-group col-md-4">
               <label for="last_name">Last Name</label>
-              <input type="text" class="form-control" id="last_name" placeholder="Rider" name="last_name" [(ngModel)]="patientProfile.last_name" #last_name="ngModel" minlength="1" required />
+              <input type="text" class="form-control" id="last_name" placeholder="Rider" maxlength="25" name="last_name" [(ngModel)]="patientProfile.last_name" #last_name="ngModel" minlength="1" required />
               <div *ngIf="last_name.invalid && (last_name.touched || last_name.dirty)" class="alert alert-danger">
                 Last name is required.
               </div>
@@ -84,11 +84,14 @@
             <div *ngIf="phoneNumber.invalid && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-danger">
               Phone Number is required.
             </div>
+            <div *ngIf="!phoneIsTEN && (phoneNumber.touched || phoneNumber.dirty)" class="alert alert-light">
+                Has to be 10 Digits
+            </div>
           </div>
 
           <div class="form-group col-md-6">
             <label for="email">Email Address</label>
-            <input type="email" class="form-control" id="email" placeholder="flynn.rider@gmail.com" name="email" [(ngModel)]="patientProfile.email" #email="ngModel" required />
+            <input type="email" class="form-control" id="email" maxlength="55" placeholder="flynn.rider@gmail.com" name="email" [(ngModel)]="patientProfile.email" #email="ngModel" required />
             <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
               Email address is required.
             </div>
@@ -124,7 +127,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="ethnicity">Ethnicity</label>
-            <input type="text" class="form-control" id="ethnicity" name="ethnicity" [(ngModel)]="patientProfile.ethnicity" #ethnicity="ngModel" required/>
+            <input type="text" class="form-control" id="ethnicity" name="ethnicity" maxlength="55" [(ngModel)]="patientProfile.ethnicity" #ethnicity="ngModel" required/>
             <div *ngIf="ethnicity.invalid && (ethnicity.touched || ethnicity.dirty)" class="alert alert-danger">
               Ethnicity is required.
             </div>
@@ -132,7 +135,7 @@
 
           <div class="form-group col-md-6">
             <label for="occupation">Occupation</label>
-            <input type="text" class="form-control" id="occupation" name="occupation" [(ngModel)]="patientProfile.occupation" #occupation="ngModel" required/>
+            <input type="text" class="form-control" id="occupation" name="occupation" maxlength="25" [(ngModel)]="patientProfile.occupation" #occupation="ngModel" required/>
             <div *ngIf="occupation.invalid && (occupation.touched || occupation.dirty)" class="alert alert-danger">
               Occupation is required.
             </div>
@@ -142,7 +145,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
               <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main Street" name="address" [(ngModel)]="patientProfile.address" #address="ngModel" required>
+              <input type="text" class="form-control" id="address" maxlength="55" placeholder="1234 Main Street" name="address" [(ngModel)]="patientProfile.address" #address="ngModel" required>
               <div *ngIf="address.invalid && (address.touched || address.dirty)" class="alert alert-danger">
                 Address is required.
               </div>
@@ -152,7 +155,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="city">City</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="Orlando" [(ngModel)]="patientProfile.city" #city="ngModel" required>
+            <input type="text" class="form-control" id="city" name="city" maxlength="25" placeholder="Orlando" [(ngModel)]="patientProfile.city" #city="ngModel" required>
             <div *ngIf="city.invalid && (city.touched || city.dirty)" class="alert alert-danger">
               City is required.
             </div>
@@ -233,7 +236,7 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="insuranceProvider">Insurance Provider</label>
-              <input type="text" class="form-control" id="insuranceProvider" name="insuranceProvider" [(ngModel)]="patientProfile.insurance_provider" #insuranceProvider="ngModel" required/>
+              <input type="text" class="form-control" id="insuranceProvider" maxlength="55" name="insuranceProvider" [(ngModel)]="patientProfile.insurance_provider" #insuranceProvider="ngModel" required/>
               <div *ngIf="insuranceProvider.invalid && (insuranceProvider.touched || insuranceProvider.dirty)" class="alert alert-danger">
                 Insurance provider is required.
               </div>

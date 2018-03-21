@@ -16,9 +16,13 @@ export class PatientFormComponent implements OnInit {
   submitted: boolean = false;
   reset: boolean = false;
   validForm:boolean = false;
+  
   ssnIsNINE: boolean = false;
   zipIsFIVE: boolean = false;
+  phoneIsTEN: boolean = false;
+
   patientProfile: PatientProfile = new PatientProfile(null, null,"","",null,null,null,null,"","","","","","","",null,"",null);
+
 
   constructor(
     private formService: FormService,
@@ -67,6 +71,14 @@ export class PatientFormComponent implements OnInit {
         this.zipIsFIVE = false;
         this.validForm = false;
       }
+
+    if (this.patientProfile.phone_number > 1000000000 && this.patientProfile.phone_number < 9999999999) {
+      this.phoneIsTEN = true;
+    }
+    else {
+      this.phoneIsTEN = false;
+      this.validForm = false;
+    }
 
     if (this.validForm == false){
         if (this.patientProfile.address != "" &&
