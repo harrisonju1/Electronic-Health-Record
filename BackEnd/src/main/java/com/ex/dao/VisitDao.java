@@ -42,6 +42,14 @@ public class VisitDao {
         return visits;
     }
 
+    public Visit findByVisitId(int visit_id){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Visit visit = (Visit) session.get(Visit.class, visit_id);
+
+        session.close();
+        return visit;
+    }
+
     public List<Visit> findAll(){
         Session session = HibernateUtils.getSessionFactory().openSession();
 

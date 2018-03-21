@@ -79,7 +79,7 @@ export class FormService {
   }
 
   getAllApptRecords(patient_id: number):Observable<ApptRecord[]>{
-    let records = this.http.get<ApptRecord[]>(this.visitUrl + `?patient_id=${patient_id}`);
+    let records = this.http.get<ApptRecord[]>(this.visitUrl + `?visit_id=${visit_id}`);
     records.subscribe(r => this.apptRecordsList = r);
     return records;
   }

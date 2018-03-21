@@ -1,5 +1,6 @@
 package com.ex.dao;
 
+import com.ex.beans.PatientProfile;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -35,6 +36,14 @@ public class SymptomsDao {
     public List<Symptoms> findBySymptomId(int symptomId){
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Symptoms> symptoms = (List<Symptoms>) session.createCriteria(Symptoms.class).add(Restrictions.eq("symptom_id", symptomId)).list();
+
+        session.close();
+        return symptoms;
+    }
+
+    public List<Symptoms> findByPatient(PatientProfile profile){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        List<Symptoms> symptoms = (List<Symptoms>) session.createCriteria(Symptoms.class).add(Restrictions.eq("patient", profile)).list();
 
         session.close();
         return symptoms;
