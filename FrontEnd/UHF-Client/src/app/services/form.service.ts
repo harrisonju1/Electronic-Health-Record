@@ -78,7 +78,7 @@ export class FormService {
     this.router.navigate(['/patient/'+ form.patient_id]);
   }
 
-  getAllApptRecords(patient_id: number):Observable<ApptRecord[]>{
+  getAllApptRecords(visit_id: number):Observable<ApptRecord[]>{
     let records = this.http.get<ApptRecord[]>(this.visitUrl + `?visit_id=${visit_id}`);
     records.subscribe(r => this.apptRecordsList = r);
     return records;
