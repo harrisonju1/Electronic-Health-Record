@@ -1,28 +1,35 @@
-<div id="loginContainer">
+<div id="loginDiv">
 
   <div class="container jumbotron">
     
-    <h3>Login</h3>
+      <h3>Login</h3>
+
+      <hr />
+      <br/>
 
     <form>
+      
+      <div class="row">
+        <div class="col-md-6">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" ngModel class="col-md-8 form-control" #username required>
+        </div>
 
-      <div class="form-group row">
-        <label for="username" class="col-md-3">Username</label>
-        <input type="text" name="username" id="username" ngModel class="col-md-8 form-control" #username required>
-        
+        <div class="col-md-6">
+            <label for="password" class="col-md-3">Password</label>
+            <input type="password" name="password" id="password" ngModel class="col-md-8 form-control" #password required>
+        </div>
       </div>
 
-      <div class="form-group row">
-        <label for="password" class="col-md-3">Password</label>
-        <input type="password" name="password" id="password" ngModel class="col-md-8 form-control" #password required>
-        
+      <div class="row">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-outline-secondary" 
+            (click)="login(username.value, password.value);
+            username.value='';
+            password.value='';">Submit</button>
+            <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        </div>
       </div>
-
-      <button type="submit" class="offset-md-5 btn btn-outline-secondary" 
-      (click)="login(username.value, password.value);
-      username.value='';
-      password.value='';">Submit</button>
-      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 
     </form>
   </div>
