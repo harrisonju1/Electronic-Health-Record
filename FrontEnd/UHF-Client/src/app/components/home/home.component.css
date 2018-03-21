@@ -14,13 +14,16 @@ div.container {
 #homeDiv{
     display:block;
     /* margin-top:5%; */
-    height:auto;
+    height:fill;
 
     background-image:url("https://static.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg");
     background-position: fixed;
     background-size:cover;
     overflow: hidden;
     /* height:650px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #welcomeDiv {
@@ -35,12 +38,24 @@ div.container {
     font-size:50px;
 }
 
-#optionsDiv {
+/* #optionsDiv {
     display:block;
     width:100%;
     margin:0 auto;
     background-color:white;
     height:400px;
+} */
+
+#aboutDiv {
+    display:block;
+    background-color: #374346;
+    text-align:center;
+    color:#fff;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 nav {
@@ -81,7 +96,7 @@ footer {
     width:90%;
     margin:0 auto;
     text-align:center;
-    padding:5% 2%  0% 2%;
+    padding:5% 2%  5% 2%;
 }
 /* ---------- PARALLAX STYLES ---------- */
 .parallax {
