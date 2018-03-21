@@ -55,10 +55,13 @@
           <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="visitReason">Reason For Visit</label>
-                <textarea class="form-control" rows="3" id="visitReason" name="visitReason" [(ngModel)]="apptRecord.visit_reason" #visitReason="ngModel" required></textarea>
+                <textarea class="form-control" rows="3" id="visitReason" maxlength="200" name="visitReason" [(ngModel)]="apptRecord.visit_reason" #visitReason="ngModel" required></textarea>
               </div>
               <div *ngIf="visitReason.invalid && (visitReason.touched || visitReason.dirty)" class="alert alert-danger">
                 The reason for visit is required.
+              </div>
+              <div *ngIf="!reason200 && (visitReason.touched || visitReason.dirty)" class="alert alert-light">
+                  Visit reason has to be 200 characters or less.
               </div>
           </div>
 

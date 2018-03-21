@@ -17,6 +17,7 @@ export class ApptRecordFormComponent implements OnInit {
   submitted:boolean=false;
   validForm:boolean=false;
   isPositive: boolean=false;
+  reason200:boolean=false;
 
   apptRecord:ApptRecord = new ApptRecord(0, null , 0, 0, "");
 
@@ -47,6 +48,14 @@ export class ApptRecordFormComponent implements OnInit {
         this.validForm = false;
         // console.log("3:" +this.isPositive);
       }
+
+    if (this.apptRecord.visit_reason.length <= 200) {
+      this.reason200 = true;
+    }
+    else if (this.apptRecord.visit_reason.length > 200) {
+      this.reason200 = false;
+      this.validForm = false;
+    }
 
     if (this.validForm == false){
       if (this.apptRecord.visit_date && this.apptRecord.visit_reason && this.apptRecord.doctor_id){
