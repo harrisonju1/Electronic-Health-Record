@@ -30,8 +30,6 @@ public class Diagnosis {
     @JoinColumn(name="visit_id")
     private Visit visit;
 
-    private Date visit_date;
-
     @Column(name="diagnosis")
     private String diagnosis;
 

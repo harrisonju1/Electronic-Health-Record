@@ -24,6 +24,7 @@
         <mapping class="com.ex.beans.Visit"/>
         <mapping class="com.ex.beans.PatientInfo"/>
         <mapping class="com.ex.beans.VisitInfo"/>
+        <mapping class="com.ex.beans.VisitDetails"/>
 
     </session-factory>
 </hibernate-configuration>

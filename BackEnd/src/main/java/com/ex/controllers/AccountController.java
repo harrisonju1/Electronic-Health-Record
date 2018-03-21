@@ -212,7 +212,7 @@ public class AccountController {
         }
     }
 
-    @RequestMapping(value="api/form/visit", method=RequestMethod.GET)
+    @RequestMapping(value="api/form/visit/detail", method=RequestMethod.GET)
     Object getVisitDetailByPatient(@RequestParam int visit_id){
         try{
             VisitDao visitDao = new VisitDao();

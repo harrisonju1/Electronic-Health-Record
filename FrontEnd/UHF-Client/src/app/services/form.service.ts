@@ -78,14 +78,14 @@ export class FormService {
     this.router.navigate(['/patient/'+ form.patient_id]);
   }
 
-  getAllApptRecords(visit_id: number):Observable<ApptRecord[]>{
-    let records = this.http.get<ApptRecord[]>(this.visitUrl + `?visit_id=${visit_id}`);
+  getAllApptRecords(patient_id: number):Observable<ApptRecord[]>{
+    let records = this.http.get<ApptRecord[]>(this.visitUrl +`?patient_id=${patient_id}`);
     records.subscribe(r => this.apptRecordsList = r);
     return records;
   }
 
-  getVisitDetailsByID(id:number):Observable<VisitDetails>{
+  getVisitDetailsByID(visit_id:number):Observable<VisitDetails>{
     // will need to have a VisitDetails class populated by Diagnosis, Symptoms, Treatment, Tests, and Prescription
-    return this.http.get<VisitDetails>(this.visitUrl + `${id}`);
+    return this.http.get<VisitDetails>(this.visitUrl+'/detail' + `${visit_id}`);
   }
 }
