@@ -20,7 +20,10 @@ export class PatientProfileComponent implements OnInit {
   doctor_id: number;
   updating:boolean=false;
   validForm:boolean=true;
+  
   zipIsFIVE: boolean = false;
+  phoneIsTEN: boolean = false;
+
   canCheck: boolean = false;
 
   searchVID: number;
@@ -79,6 +82,14 @@ export class PatientProfileComponent implements OnInit {
           this.zipIsFIVE = false;
           this.validForm = false;
         }
+
+      if (this.patient.phone_number > 1000000000 && this.patient.phone_number < 9999999999) {
+        this.phoneIsTEN = true;
+      }
+      else {
+        this.phoneIsTEN = false;
+        this.validForm = false;
+      }
 
       if (this.validForm == false){
           if (this.patient.address != "" &&
