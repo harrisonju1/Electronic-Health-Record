@@ -11,7 +11,7 @@
   </nav>
 
   <div class="container" *ngIf="canCheck">
-    <h3>#{{visit_id}}: VISIT DETAILS</h3>
+    <h3>VISIT DETAILS</h3>
     <button class="btn btn-outline-secondary btn-sm" routerLink="/patient/{{pID}}">Return</button>
 
     <!-- ONLY FOR DOCTOR!!!! -->
@@ -134,7 +134,7 @@
                         <button class="btn btn-sm btn-outline-secondary ml-sm-1">Add</button>
                     </div>
                     <br>
-                    <ul *ngFor="let d of currentVisit.diagnoses">
+                    <ul *ngFor="let d of currentVisit.diagnosis">
                         <li>{{d}} <button class="btn btn-sm btn-outline-secondary"><b>X</b></button></li>
                     </ul>
                 </div>

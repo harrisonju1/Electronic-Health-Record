@@ -385,7 +385,7 @@
     </div>
   </div>
 
-  <div class="container" *ngIf="canCheck">
+  <div class="container" *ngIf="canCheck" id="visitsDiv">
     <h3>PAST VISITS</h3>
     <br>
       <button class="btn btn-outline-dark btn-sm" id="updateBTN" (click)="activateUpdate()" *ngIf="!updating" routerLink="/form/appointment/{{patient.patient_id}}">Add New</button>
@@ -393,35 +393,28 @@
     <br>
     <br>
     <div class="row">
-      <div class="col-md-2">
-          <!-- <label for="visit_id">Visit ID</label> -->
-          <input class="form-control" type="number" placeholder="ID" aria-label="Search" name="vID" [(ngModel)]="searchVID" />
-      </div>
       <div class="col-md-3">
           <!-- <label for="visit_date">Visit Date</label> -->
           <input class="form-control" type="text" placeHolder="Visit Date" aria-label="Search" name="vDate" [(ngModel)]="searchVDate" />
       </div>
-      <div class="col-md-2">
+      <div class="col-md-3">
           <!-- <label for="doctor_id">Doctor ID</label> -->
-          <input class="form-control" type="number" placeholder="Doc#" aria-label="Search" name="doctorID" [(ngModel)]="searchDoctorID" />
+          <input class="form-control" type="number" placeholder="Doctor ID#" aria-label="Search" name="doctorID" [(ngModel)]="searchDoctorID" />
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
           <label for="visit_reason">Visit Reason</label>
       </div>
     </div>
     <hr/>
-    <div *ngFor="let i = index; let appt of apptRecords | vidfilter : searchVID | vdatefilter : searchVDate | docidfilter : searchDoctorID">
+    <div *ngFor="let i = index; let appt of apptRecords | vdatefilter : searchVDate | docidfilter : searchDoctorID">
       <div class="row">
-          <div class="col-md-2">
-            {{appt.visit_id}}
-          </div>
           <div class="col-md-3">
             {{appt.visit_date | date: 'MM/dd/yyyy'}}
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             {{appt.doctor_id}}
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
               <a class="btn btn-outline-info btn-sm" role="button" data-toggle="collapse" href="#appt.visit_id-{{i}}" aria-expanded="false" aria-controls="collapseExample">
                   Reason
               </a>
