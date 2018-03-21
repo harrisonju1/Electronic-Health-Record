@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
-
+    console.log(this.currentUser);
+    
     if (this.currentUser != null) {
       this.loggedIn = true;
     }

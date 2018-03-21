@@ -29,6 +29,9 @@
         <h1>Changing Healthcare For The Better</h1>
         <p>Your Universal Healthcare Force For A Brighter Future</p>
         <button id="loginBTN" class="btn btn-dark btn-lg" routerLink="/login" *ngIf="!currentUser">Login</button>          
+        <hr *ngIf="currentUser" />
+        <br *ngIf="currentUser" />
+        <h3 *ngIf="currentUser">WELCOME, {{currentUser.username | uppercase}}!</h3>
       </div>
     </div>
     <div class="row">

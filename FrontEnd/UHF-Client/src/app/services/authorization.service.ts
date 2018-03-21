@@ -52,6 +52,7 @@ export class AuthorizationService {
 
   loginsuccess(u: User) {
     this.currentUser = u;
+    console.log(this.currentUser);
     localStorage.setItem('auth', btoa(u.username + ":" + u.password));
     localStorage.setItem('role', u.role);
   }
