@@ -19,6 +19,7 @@ export class VisitsComponent implements OnInit {
   currentAppt: ApptRecord;
   currentDoctor: Doctor;
   isDoctor:boolean; // check if current user role is doctor
+  userRole:string;
 
   canCheck: boolean = false;
 
@@ -30,9 +31,12 @@ export class VisitsComponent implements OnInit {
 
   ngOnInit() {
     // get the current user
-    // if (this.authService.currentUser.role == "DOCTOR"){
-    //   this.isDoctor = true;
-    // }
+    this.userRole = this.authService.getUserRole();
+    console.log(this.userRole);
+
+    if (this.userRole == "DOCTOR"){
+      this.isDoctor = true;
+    }
 
     // get patientID
     this.pID = +this.route.snapshot.paramMap.get('patient_id');

@@ -28,6 +28,11 @@ export class AuthorizationService {
     return this.currentUser;
   }
 
+  getUserRole(): string {
+    let role = localStorage.getItem('role');
+    return role;
+  }
+
   /* GET FROM DB -------------------------------------------------------------------------------------------------- */
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(this.authorizeUrl);
@@ -44,9 +49,11 @@ export class AuthorizationService {
     let obs = this.http.post<User>(this.authorizeUrl, data, httpOptions);
     return obs;
   }
+
   loginsuccess(u: User) {
     this.currentUser = u;
     localStorage.setItem('auth', btoa(u.username + ":" + u.password));
+    localStorage.setItem('role', u.role);
   }
 
   /* LOGOUT -------------------------------------------------------------------------------------------------- */
