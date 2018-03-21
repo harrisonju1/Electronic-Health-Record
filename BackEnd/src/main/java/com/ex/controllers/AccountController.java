@@ -208,6 +208,7 @@ public class AccountController {
                 VisitInfo vi = new VisitInfo(allVisits.get(i));
                 patientVisits.add(vi);
             }
+            System.out.println(patientVisits);
             return patientVisits;
         } catch(Exception e){
             e.printStackTrace();
