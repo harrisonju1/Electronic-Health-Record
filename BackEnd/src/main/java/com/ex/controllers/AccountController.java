@@ -284,6 +284,65 @@ public class AccountController {
         }
     }
 
+    @RequestMapping(value="/api/form/visit/update", method=RequestMethod.POST)
+    Object updateVisitDetail(@RequestParam VisitDetails visitDetails){
+        try{
+            //get patient
+            PatientProfileDao patientProfileDao= new PatientProfileDao();
+            PatientProfile profile = patientProfileDao.findOneByPatientId(visitDetails.getPatient_id());
+
+            DoctorsDao doctorsDao = new DoctorsDao();
+            Doctor doctor = doctorsDao.getByDoctorId(visitDetails.getDoctor_id());
+
+            VisitDao visitDao = new VisitDao();
+            Visit visit = visitDao.findByVisitId(visitDetails.getVisit_id());
+
+            //update diagnosis
+            List<String> diagnosisList = visitDetails.getDiagnosisList();
+            DiagnosisDao diagnosisDao = new DiagnosisDao();
+            for (int i = 0; i < diagnosisList.size(); i++){
+                Diagnosis d = new Diagnosis(profile, doctor, visit, diagnosisList.get(i));
+                diagnosisDao.create(d);
+            }
+
+            //update symptoms
+            List<String> symptomsList=  visitDetails.getSymptomsList();
+            SymptomsDao symptomsDao = new SymptomsDao();
+            for (int i = 0; i < symptomsList.size(); i++){
+                Symptoms s = new Symptoms(profile, doctor, visit, symptomsList.get(i));
+                symptomsDao.create(s);
+            }
+
+            //update prescriptions
+            List<String> prescriptionsList = visitDetails.getPrescriptionsList();
+            PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
+            for(int i =0;i <prescriptionsList.size(); i++){
+                Prescriptions p = new Prescriptions(profile, doctor, visit, prescriptionsList.get(i));
+                prescriptionsDao.create(p);
+            }
+
+            //update treatment
+            List<String> treatmentsList = visitDetails.getTreatmentsList();
+            TreatmentsDao treatmentsDao = new TreatmentsDao();
+            for(int i = 0; i < treatmentsList.size(); i++){
+                Treatments t = new Treatments(doctor, profile, treatmentsList.get(i),visit);
+                treatmentsDao.create(t);
+            }
+
+            //update tests
+            List<String> testsList = visitDetails.getTestsList();
+            TestsDao testsDao = new TestsDao();
+            for (int i = 0; i < testsList.size(); i++){
+                Tests t = new Tests(profile, doctor, visit, testsList.get(i));
+                testsDao.create(t);
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+            return "ERROR: FAILED TO UPDATE VISIT DETAILS " + e.getStackTrace();
+        }
+        return null;
+    }
+
 //    @RequestMapping(value="/api/form/visit/", method=RequestMethod.GET)
 //    Object getVisitById(@RequestParam int patient_id){
 //        try{
