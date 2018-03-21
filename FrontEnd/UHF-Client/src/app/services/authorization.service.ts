@@ -60,6 +60,7 @@ export class AuthorizationService {
   logout() {
     this.currentUser = null;
     localStorage.removeItem('auth');
+    localStorage.removeItem('role');
     this.router.navigate(['/home']);
   }
 
