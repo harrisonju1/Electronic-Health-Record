@@ -1,10 +1,25 @@
+* {
+    box-sizing: border-box;
+}
+
 .form-group{
     width:60%;
     margin:0 auto;
 }
 
+input {
+    border:none;
+}
+
+#title {
+    margin-top:5%;
+}
+
 #search {
-    background-color:aliceblue;
+    background-color:#ecf7fa;
+    border-radius: 25px;
+    color:#374346;
+
     padding: 4%;
     margin-bottom: 10%;
 }
