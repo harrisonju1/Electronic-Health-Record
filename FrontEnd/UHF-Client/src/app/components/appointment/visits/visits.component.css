@@ -9,3 +9,11 @@
 ul {
     padding-left:7%;
 }
+
+#updater{
+    margin-left: 0.3%;
+}
+
+li button {
+    border:none;
+}

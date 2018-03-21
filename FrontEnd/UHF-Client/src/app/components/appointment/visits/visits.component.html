@@ -16,7 +16,8 @@
 
     <!-- ONLY FOR DOCTOR!!!! -->
     <!-- ngIf current user role is doctor -->
-    <button class="btn btn-outline-info btn-sm" *ngIf="isDoctor">Update</button>
+    <button class="btn btn-outline-info btn-sm" *ngIf="isDoctor && !updating" (click)="activateUpdate()">Add Details</button>
+    <button class="btn btn-outline-success btn-sm" *ngIf="updating" (click)="deactivateForNow()">Finish</button>
     <hr />
     <br />
     <!-- APPOINT RECORD INFO -->
@@ -37,7 +38,7 @@
     <br/>
 
     <!-- APPT SUMMARY -->
-    <div id="apptRecordDiv">
+    <div id="apptRecordDiv" *ngIf="!updating">
         <div class="row">
             <div class="col-md-12">
                 <h5>APPOINTMENT SUMMARY</h5>
@@ -46,11 +47,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Visit Date</label>
-                <p>insert info here</p>
+                <p>If only I was not undefined</p>
             </div>
             <div class="col-md-6">
                 <label>Visit Reason</label>
-                <p>insert info here</p>
+                <p>If only I was not undefined</p>
             </div>
         </div>
     </div>
@@ -58,7 +59,7 @@
     <br/>
 
     <!-- VISIT DETAILS -->
-    <div id="visitDetailsDiv">
+    <div id="visitDetailsDiv" *ngIf="!updating">
         <div class="row">
             <div class="col-md-12">
                 <label>Diagnosis</label>
@@ -102,4 +103,95 @@
             </div>
         </div>
     </div>
+
+    <!-- APPT SUMMARY -->
+    <div id="apptRecordDiv" *ngIf="updating">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>APPOINTMENT SUMMARY</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Visit Date</label>
+                    <input type="date" class="form-control col-md-7" placeholder="#"  id="visitDate" name="visitDate">
+                </div>
+                <div class="col-md-6">
+                    <label>Visit Reason</label>
+                    <input type="text" class="form-control col-md-8" placeholder="Why?" id="visitReason" name="visitReason">
+                </div>
+            </div>
+        </div>
+        <br>
+
+    <!-- UPDATING VISIT DETAILS -->
+    <div id="visitDetailsDiv" *ngIf="updating">
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Diagnosis</label>
+                    <div class="row" id="updater">
+                        <input type="text" class="form-control col-md-9" placeholder="New Diagnosis" id="diagnosis" name="diagnosis">
+                        <button class="btn btn-sm btn-outline-secondary ml-sm-1">Add</button>
+                    </div>
+                    <br>
+                    <ul *ngFor="let d of currentVisit.diagnoses">
+                        <li>{{d}} <button class="btn btn-sm btn-outline-secondary"><b>X</b></button></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <hr />
+    
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Symptoms</label>
+                    <div class="row" id="updater">
+                        <input type="text" class="form-control col-md-7" placeholder="New Symptom" id="symptom" name="symptom">
+                        <button class="btn btn-sm btn-outline-secondary ml-sm-1">Add</button>
+                    </div>
+                    <br>
+                    <ul *ngFor="let s of currentVisit.symptoms">
+                        <li>{{s}} <button class="btn btn-sm btn-outline-secondary"><b>X</b></button></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <label>Prescriptions</label>
+                    <div class="row" id="updater">
+                        <input type="text" class="form-control col-md-7" placeholder="New Prescription" id="prescription" name="prescription">
+                        <button class="btn btn-sm btn-outline-secondary ml-sm-1">Add</button>
+                    </div>
+                    <br>
+                    <ul *ngFor="let p of currentVisit.prescriptions">
+                        <li>{{p}} <button class="btn btn-sm btn-outline-secondary"><b>X</b></button></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <hr />
+    
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Treatments</label>
+                    <div class="row" id="updater">
+                        <input type="text" class="form-control col-md-7" placeholder="New Treatment" id="treatment" name="treatment">
+                        <button class="btn btn-sm btn-outline-secondary ml-sm-1">Add</button>
+                    </div>
+                    <br>
+                    <ul *ngFor="let t of currentVisit.treatments">
+                        <li>{{t}} <button class="btn btn-sm btn-outline-secondary"><b>X</b></button></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <label>Test Results</label>
+                    <div class="row" id="updater">
+                        <input type="text" class="form-control col-md-7" placeholder="New Test Result" id="test" name="test">
+                        <button class="btn btn-sm btn-outline-secondary ml-sm-1">Add</button>
+                    </div>
+                    <br>
+                    <ul *ngFor="let t of currentVisit.tests">
+                        <li>{{t}} <button class="btn btn-sm btn-outline-secondary"><b>X</b></button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
   </div>

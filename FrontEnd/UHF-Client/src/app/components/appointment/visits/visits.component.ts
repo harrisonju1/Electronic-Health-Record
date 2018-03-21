@@ -20,6 +20,7 @@ export class VisitsComponent implements OnInit {
   currentDoctor: Doctor;
   isDoctor:boolean; // check if current user role is doctor
   userRole:string;
+  updating: boolean = false; //check if page is in update mode
 
   canCheck: boolean = false;
 
@@ -55,6 +56,18 @@ export class VisitsComponent implements OnInit {
       this.currentDoctor = d;
       this.canCheck = true;
     });
+  }
+
+  ngDoCheck(){
+
+  }
+
+  activateUpdate(){
+    this.updating = true;
+  }
+
+  deactivateForNow(){
+    this.updating = false;
   }
 
 }
