@@ -45,11 +45,12 @@ export class PatientProfileComponent implements OnInit {
         this.doctor = p;
         console.log(this.doctor);
         this.validForm = true;
-        this.canCheck = true;
+        
       });
       this.formService.getAllApptRecords(id).subscribe(r =>{
         this.apptRecords = r;
         console.log(this.apptRecords);
+        this.canCheck = true;
       }) 
     });
 
