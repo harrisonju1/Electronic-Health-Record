@@ -35,14 +35,31 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4 box">
+      <div class="col-md-4 box" *ngIf="currentUser" routerLink="/search">
           <h4>View Medical History</h4>
+          <p>View patient medical record quickly and efficiently!</p>
       </div>
-      <div class="col-md-4 box">
+      <div class="col-md-4 box" *ngIf="!currentUser" routerLink="/login">
+        <h4>View Medical History</h4>
+        <p>View patient medical record quickly and efficiently!</p>
+      </div>
+
+      <div class="col-md-4 box" *ngIf="currentUser">
           <h4>Find A Doctor</h4>
+          <p>Feature coming soon!</p>
       </div>
-      <div class="col-md-4 box">
+      <div class="col-md-4 box" *ngIf="!currentUser" routerLink="/login">
+          <h4>Find A Doctor</h4>
+          <p>Feature coming soon!</p>
+      </div>
+
+      <div class="col-md-4 box" *ngIf="currentUser">
           <h4>Schedule An Appointment</h4>
+          <p>Feature coming soon!</p>
+      </div>
+      <div class="col-md-4 box" *ngIf="!currentUser" routerLink="/login">
+          <h4>Schedule An Appointment</h4>
+          <p>Feature coming soon!</p>
       </div>
     </div>  
   </div>
