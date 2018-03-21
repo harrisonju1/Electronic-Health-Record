@@ -36,11 +36,10 @@ public class Diagnosis {
     public Diagnosis() {
     }
 
-    public Diagnosis(PatientProfile patient, Doctor doctor, Visit visit, Date visit_date, String diagnosis) {
+    public Diagnosis(PatientProfile patient, Doctor doctor, Visit visit, String diagnosis) {
         this.patient = patient;
         this.doctor = doctor;
         this.visit = visit;
-        this.visit_date = visit_date;
         this.diagnosis = diagnosis;
     }
 
@@ -76,14 +75,6 @@ public class Diagnosis {
         this.visit = visit;
     }
 
-    public Date getVisitDate() {
-        return visit_date;
-    }
-
-    public void setVisitDate(Date visit_date) {
-        this.visit_date = visit_date;
-    }
-
     public String getDiagnosis() {
         return diagnosis;
     }
@@ -99,7 +90,6 @@ public class Diagnosis {
                 ", patient=" + patient +
                 ", doctor=" + doctor +
                 ", visit=" + visit +
-                ", visit_date=" + visit_date +
                 ", diagnosis='" + diagnosis + '\'' +
                 '}';
     }
@@ -113,13 +103,12 @@ public class Diagnosis {
                 patient == diagnosis1.patient &&
                 doctor == diagnosis1.doctor &&
                 visit == diagnosis1.visit &&
-                Objects.equals(visit_date, diagnosis1.visit_date) &&
                 Objects.equals(diagnosis, diagnosis1.diagnosis);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(diagnosis_id, patient, doctor, visit, visit_date, diagnosis);
+        return Objects.hash(diagnosis_id, patient, doctor, visit, diagnosis);
     }
 }
