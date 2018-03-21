@@ -3,6 +3,7 @@ package com.ex.beans;
 import java.util.Date;
 import java.util.Objects;
 
+
 public class VisitInfo {
     public int visit_id;
     public Date visit_date;
@@ -12,6 +13,14 @@ public class VisitInfo {
 
     public VisitInfo() {
     }
+//    public VisitInfo(Visit v){
+//        this.visit_id = v.getVisitId();
+//        this.visit_date = v.getVisitDate();
+//        this.patient_id = v.getPatient().getPatientId();
+//        this.doctor_id = v.getDoctor().getDoctor_id();
+//        this.visit_reason = v.getVisitReason();
+//    }
+
     public VisitInfo(Visit v){
         this.visit_id = v.getVisitId();
         this.visit_date = v.getVisitDate();
