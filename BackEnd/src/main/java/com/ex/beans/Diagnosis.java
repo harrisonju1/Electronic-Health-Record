@@ -103,12 +103,10 @@ public class Diagnosis {
 
     @Override
     public String toString() {
-        return "Diagnosis{" +
-                "diagnosis_id=" + diagnosis_id +
-                ", patient=" + patient +
-                ", doctor=" + doctor +
-                ", visit=" + visit +
-                ", diagnosis='" + diagnosis + '\'' +
-                '}';
+        return diagnosis_id +","+
+                patient + ","+
+                doctor + "," +
+                visit + "," +
+                diagnosis;
     }
 }

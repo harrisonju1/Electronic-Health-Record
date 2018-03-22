@@ -18,12 +18,12 @@ public class AccountController {
     // returns the user if true
     // otherwise returns null
     @RequestMapping("/api/authorize")
-    Object authorize(@RequestBody String encred){
+    Object authorize(@RequestBody String encred) {
         String cred = EncryptionUtil.decrypt(encred);
-        System.out.println("got "+encred+" to "+cred);
+        System.out.println("got " + encred + " to " + cred);
         try {
             String[] uandp = cred.split(":");
-            if (uandp.length<2)
+            if (uandp.length < 2)
                 return null;
             String username = uandp[0];
             String password = uandp[1];
@@ -32,7 +32,9 @@ public class AccountController {
             if (found != null && found.getPassword().equals(password)) {
                 return found;
             }
-        } catch (Exception e) {e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -43,7 +45,7 @@ public class AccountController {
         try {
             int doctor_id = patientInfo.getDoctor_id();
             DoctorsDao doctordao = new DoctorsDao();
-            Doctor doctor =  doctordao.getByDoctorId(doctor_id);
+            Doctor doctor = doctordao.getByDoctorId(doctor_id);
             String first_name = patientInfo.getFirst_name();
             String last_name = patientInfo.getLast_name();
             int ssn = patientInfo.getSsn();
@@ -71,13 +73,13 @@ public class AccountController {
         return null;
     }
 
-    @RequestMapping(value="/api/form/patient/update", method = RequestMethod.POST)
-    Object updatePatient(@RequestBody PatientInfo patientInfo){
-        try{
+    @RequestMapping(value = "/api/form/patient/update", method = RequestMethod.POST)
+    Object updatePatient(@RequestBody PatientInfo patientInfo) {
+        try {
             System.out.println(patientInfo);
             int doctor_id = patientInfo.getDoctor_id();
             DoctorsDao doctordao = new DoctorsDao();
-            Doctor doctor =  doctordao.getByDoctorId(doctor_id);
+            Doctor doctor = doctordao.getByDoctorId(doctor_id);
             String first_name = patientInfo.getFirst_name();
             String last_name = patientInfo.getLast_name();
             int ssn = patientInfo.getSsn();
@@ -102,75 +104,62 @@ public class AccountController {
             System.out.println(profile);
             updateProfile.update(profile);
             System.out.println(profile);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR:FAILED TO UPDATE PATIENT PROFILE " + e.getStackTrace();
         }
         return null;
     }
 
-    // returns the patient profile with the username or id from the database
-    @RequestMapping(value = "/api/patientprofile/view", method = RequestMethod.GET)
-    Object viewPatientProfile(@RequestBody Object identifier) {
-        //todo
-
-        return null;
-    }
     @RequestMapping(value = "/api/form/patient/all", method = RequestMethod.GET)
-    Object getAllPatientProfile(){
-        List<PatientInfo> sendProfiles= new ArrayList<>();
-        try{
+    Object getAllPatientProfile() {
+        List<PatientInfo> sendProfiles = new ArrayList<>();
+        try {
             PatientProfileDao getProfiles = new PatientProfileDao();
             List<PatientProfile> allProfiles;
             allProfiles = getProfiles.findAll();
 
-            for (int i =0; i < allProfiles.size(); i++){
+            for (int i = 0; i < allProfiles.size(); i++) {
                 PatientInfo p = new PatientInfo(allProfiles.get(i));
                 sendProfiles.add(p);
             }
 
             return sendProfiles;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR:FAILED TO RETRIEVE PATIENT PROFILES " + e.getStackTrace();
         }
     }
-    @RequestMapping(value="/api/form/patient", method = RequestMethod.GET)
-    Object getByPatientId(@RequestParam int patient_id){
-        try{
+
+    @RequestMapping(value = "/api/form/patient", method = RequestMethod.GET)
+    Object getByPatientId(@RequestParam int patient_id) {
+        try {
             PatientProfileDao getProfile = new PatientProfileDao();
-            PatientProfile getProfile1= getProfile.findOneByPatientId(patient_id);
+            PatientProfile getProfile1 = getProfile.findOneByPatientId(patient_id);
             PatientInfo profile = new PatientInfo(getProfile1);
-//            DoctorsDao getDoctor = new DoctorsDao();
-//            Doctor doctor = getDoctor.getByDoctorId(profile.getDoctor_id());
-//            String doctor_fname = doctor.getFirstName();
-//            String doctor_lname = doctor.getLastName();
-//            profile.setDoctor_fname(doctor_fname);
-//            profile.setDoctor_lname(doctor_lname);
-//            System.out.println(profile);
             return profile;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR:FAILED TO RETRIEVE PATIENT PROFILE " + e.getStackTrace();
         }
     }
 
-    @RequestMapping(value="/api/form/doctor", method=RequestMethod.GET)
-    Object getDoctor(@RequestParam int doctor_id){
-        try{
+    @RequestMapping(value = "/api/form/doctor", method = RequestMethod.GET)
+    Object getDoctor(@RequestParam int doctor_id) {
+        try {
             DoctorsDao getDoctor = new DoctorsDao();
             Doctor doctor = getDoctor.getByDoctorId(doctor_id);
-//            System.out.println(doctor);
             return doctor;
-        } catch(Exception e){
-            e.printStackTrace();;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ;
             return "ERROR:FAILED TO RETRIEVE DOCTOR " + e.getStackTrace();
         }
     }
 
-    @RequestMapping(value="/api/form/visit", method=RequestMethod.POST)
-    Object createAppointment(@RequestBody VisitInfo visitInfo){
-        try{
+    @RequestMapping(value = "/api/form/visit", method = RequestMethod.POST)
+    Object createAppointment(@RequestBody VisitInfo visitInfo) {
+        try {
             PatientProfileDao pd = new PatientProfileDao();
             PatientProfile pp = pd.findOneByPatientId(visitInfo.getPatient_id());
             DoctorsDao dd = new DoctorsDao();
@@ -178,43 +167,36 @@ public class AccountController {
             Visit visit = new Visit(visitInfo.getVisit_date(), pp, d, visitInfo.getVisit_reason());
             VisitDao visitDao = new VisitDao();
             visitDao.create(visit);
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: FAILED TO RETRIEVE VISIT " + e.getStackTrace();
         }
         return null;
     }
 
-    @RequestMapping(value="/api/form/visit", method=RequestMethod.GET)
-    Object getAllVisits(@RequestParam int patient_id){
-        try{
-//            have to get patient and doctor object to grab visit from database per parameters we have
-//            create patientprofile
+    @RequestMapping(value = "/api/form/visit", method = RequestMethod.GET)
+    Object getAllVisits(@RequestParam int patient_id) {
+        try {
             PatientProfileDao pd = new PatientProfileDao();
             PatientProfile pp = pd.findOneByPatientId(patient_id);
-//            //grab doctor_id with patientprofile
-//            int doctor_id = pp.getDoctor().getDoctor_id();
-//            DoctorsDao dd = new DoctorsDao();
-//            //create new doctor object using doctor_id
-//            Doctor d = dd.getByDoctorId(doctor_id);
             VisitDao visitDao = new VisitDao();
             List<Visit> allVisits = visitDao.findByPatientId(pp);
             List<VisitInfo> patientVisits = new ArrayList<>();
-            for (int i = 0; i < allVisits.size(); i++){
+            for (int i = 0; i < allVisits.size(); i++) {
                 VisitInfo vi = new VisitInfo(allVisits.get(i));
                 patientVisits.add(vi);
             }
             System.out.println(patientVisits);
             return patientVisits;
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: FAILED TO RETRIEVE ALL VISITS " + e.getStackTrace();
         }
     }
 
-    @RequestMapping(value="api/form/visit/details", method=RequestMethod.GET)
-    Object getVisitDetailByPatient(@RequestParam int visit_id){
-        try{
+    @RequestMapping(value = "api/form/visit/details", method = RequestMethod.GET)
+    Object getVisitDetailByPatient(@RequestParam int visit_id) {
+        try {
             VisitDao visitDao = new VisitDao();
             Visit visit = visitDao.findByVisitId(visit_id);
 
@@ -226,69 +208,49 @@ public class AccountController {
 
             //get list of diagnosis by patient
             DiagnosisDao diagnosisDao = new DiagnosisDao();
-            List<Diagnosis> allDiagnosis = diagnosisDao.findByPatient(pp);
-            String diagnosis;
-            List<String> diagnosisList = new ArrayList<>();
-            for (int i = 0; i < allDiagnosis.size(); i++){
-                diagnosis = allDiagnosis.get(i).getDiagnosis();
-                diagnosisList.add(diagnosis);
-            }
+            Diagnosis diagnosis = diagnosisDao.findByVisit(visit);
+            String toSplit = diagnosis.getDiagnosis();
+            List<String> diagnosisList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
 
             //get list of symptoms by patient
             SymptomsDao symptomsDao = new SymptomsDao();
-            List<Symptoms> allSymptoms = symptomsDao.findByPatient(pp);
-            String symptom;
-            List<String> symptoms = new ArrayList<>();
-            for(int i =0; i < allSymptoms.size(); i++){
-                symptom = allSymptoms.get(i).getSymptoms();
-                symptoms.add(symptom);
-            }
+            Symptoms symptomByVisitId = symptomsDao.findByVisit(visit);
+            toSplit = symptomByVisitId.getSymptoms();
+            List<String> symptomList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
 
             //get list of prescriptions
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
-            List<Prescriptions> allPrescriptions = prescriptionsDao.findByPatient(pp);
-            String prescription;
-            List<String> prescriptions = new ArrayList<>();
-            for(int i = 0; i < allPrescriptions.size(); i++){
-                prescription = allPrescriptions.get(i).getDrugs();
-                prescriptions.add(prescription);
-            }
-
+            Prescriptions allPrescriptions = prescriptionsDao.findByVisit(visit);
+            toSplit = allPrescriptions.getDrugs();
+            List<String> prescriptionsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
 
             //get list of treatments
             TreatmentsDao treatmentsDao = new TreatmentsDao();
-            List<Treatments> allTreatments = treatmentsDao.findByPatient(pp);
-            String treatment;
-            List<String> treatments = new ArrayList<>();
-            for (int i =0; i < allTreatments.size(); i++){
-                treatment = allTreatments.get(i).getTreatment();
-                treatments.add(treatment);
-            }
+            Treatments allTreatments = treatmentsDao.findByVisit(visit);
+            toSplit = allTreatments.getTreatment();
+            List<String> treatmentsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
 
             //get list of tests
             TestsDao testsDao = new TestsDao();
-            List<Tests> allTests = testsDao.findByPatient(pp);
-            String test;
-            List<String> tests = new ArrayList<>();
-            for (int i = 0; i < allTests.size(); i++){
-                test = allTests.get(i).getTest();
-                tests.add(test);
-            }
-            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), diagnosisList, symptoms, prescriptions, treatments, tests);
+            Tests allTests = testsDao.findByVisit(visit);
+            toSplit = allTests.getTest();
+            List<String> testsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+
+            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), diagnosisList, symptomList, prescriptionsList, treatmentsList, testsList);
 
             return visitDetails;
 
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: FAILED TO RETRIEVE ALL VISIT DETAILS " + e.getStackTrace();
         }
     }
 
-    @RequestMapping(value="/api/form/visit/update", method=RequestMethod.POST)
-    Object updateVisitDetail(@RequestBody VisitDetails visitDetails){
-        try{
+    @RequestMapping(value = "/api/form/visit/update", method = RequestMethod.POST)
+    Object updateVisitDetail(@RequestBody VisitDetails visitDetails) {
+        try {
             //get patient
-            PatientProfileDao patientProfileDao= new PatientProfileDao();
+            PatientProfileDao patientProfileDao = new PatientProfileDao();
             PatientProfile profile = patientProfileDao.findOneByPatientId(visitDetails.getPatient_id());
 
             DoctorsDao doctorsDao = new DoctorsDao();
@@ -299,61 +261,64 @@ public class AccountController {
 
             //update diagnosis
             List<String> diagnosisList = visitDetails.getDiagnosisList();
-            int length = diagnosisList.size();
-            DiagnosisDao diagnosisDao = new DiagnosisDao();
-            for (int i = 0; i < length; i++){
-                Diagnosis d = new Diagnosis(profile, doctor, visit, diagnosisList.get(i));
-                diagnosisDao.create(d);
+            String diagnosis ="";
+            for (int i = 0; i < diagnosisList.size(); i++){
+                diagnosis = diagnosis + "," +diagnosisList.get(i);
             }
+            DiagnosisDao dd = new DiagnosisDao();
+            Diagnosis diag = dd.findByVisit(visit);
+            diag.setDiagnosis(diagnosis);
+            dd.update(diag);
 
             //update symptoms
-            List<String> symptomsList=  visitDetails.getSymptomsList();
-            SymptomsDao symptomsDao = new SymptomsDao();
+            List<String> symptomsList = visitDetails.getSymptomsList();
+            String symptoms = "";
             for (int i = 0; i < symptomsList.size(); i++){
-                Symptoms s = new Symptoms(profile, doctor, visit, symptomsList.get(i));
-                symptomsDao.create(s);
+                symptoms = symptoms + "," + symptomsList.get(i);
             }
+            SymptomsDao s = new SymptomsDao();
+            Symptoms symptoms1 = s.findByVisit(visit);
+            symptoms1.setSymptoms(symptoms);
+            s.update(symptoms1);
 
             //update prescriptions
             List<String> prescriptionsList = visitDetails.getPrescriptionsList();
-            PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
-            for(int i =0;i <prescriptionsList.size(); i++){
-                Prescriptions p = new Prescriptions(profile, doctor, visit, prescriptionsList.get(i));
-                prescriptionsDao.create(p);
+            String prescriptions = "";
+            for (int i = 0; i < prescriptionsList.size(); i++){
+                prescriptions = prescriptions + "," + prescriptionsList.get(i);
             }
+            PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
+            Prescriptions prescriptionsBean = prescriptionsDao.findByVisit(visit);
+            prescriptionsBean.setDrugs(prescriptions);
+            prescriptionsDao.update(prescriptionsBean);
 
             //update treatment
             List<String> treatmentsList = visitDetails.getTreatmentsList();
-            TreatmentsDao treatmentsDao = new TreatmentsDao();
-            for(int i = 0; i < treatmentsList.size(); i++){
-                Treatments t = new Treatments(doctor, profile, treatmentsList.get(i),visit);
-                treatmentsDao.create(t);
+            String treatments = "";
+            for (int i = 0; i <treatmentsList.size(); i++){
+                treatments = treatments + "," + treatmentsList.get(i);
             }
+            TreatmentsDao treatmentsDao = new TreatmentsDao();
+            Treatments treatmentsBean = treatmentsDao.findByVisit(visit);
+            treatmentsBean.setTreatment(treatments);
+            treatmentsDao.update(treatmentsBean);
+
 
             //update tests
             List<String> testsList = visitDetails.getTestsList();
-            TestsDao testsDao = new TestsDao();
+            String tests = "";
             for (int i = 0; i < testsList.size(); i++){
-                Tests t = new Tests(profile, doctor, visit, testsList.get(i));
-                testsDao.create(t);
+                tests = tests + "," + testsList.get(i);
             }
-        } catch(Exception e){
+            TestsDao testsDao = new TestsDao();
+            Tests testsBean = testsDao.findByVisit(visit);
+            testsBean.setTest(tests);
+            testsDao.update(testsBean);
+        } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: FAILED TO UPDATE VISIT DETAILS " + e.getStackTrace();
         }
         return null;
     }
-
-//    @RequestMapping(value="/api/form/visit/", method=RequestMethod.GET)
-//    Object getVisitById(@RequestParam int patient_id){
-//        try{
-//
-//            VisitDao visitDao = new VisitDao();
-//            return null;
-//
-//        } catch(Exception e){
-//            e.printStackTrace();
-//            return "ERROR: FAILED TO RETRIEVE VISIT BY ID " + e.getStackTrace();
-//        }
-//    }
 }
+

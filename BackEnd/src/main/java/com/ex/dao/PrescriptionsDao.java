@@ -2,6 +2,7 @@ package com.ex.dao;
 
 import com.ex.beans.PatientProfile;
 import com.ex.beans.Prescriptions;
+import com.ex.beans.Visit;
 import com.ex.util.HibernateUtils;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -45,6 +46,15 @@ public class PrescriptionsDao {
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Prescriptions> prescription = (List<Prescriptions>) session.createCriteria(Prescriptions.class).
                 add(Restrictions.eq("patient", profile)).list();
+
+        session.close();
+        return prescription;
+    }
+
+    public Prescriptions findByVisit(Visit visit){
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        Prescriptions prescription = (Prescriptions) session.createCriteria(Prescriptions.class).
+                add(Restrictions.eq("visit", visit));
 
         session.close();
         return prescription;
