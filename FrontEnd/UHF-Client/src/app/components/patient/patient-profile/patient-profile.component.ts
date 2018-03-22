@@ -178,4 +178,8 @@ export class PatientProfileComponent implements OnInit {
     this.updating = false;
   }
 
+  logout(){
+    this.authService.logout();
+  }
+
 }

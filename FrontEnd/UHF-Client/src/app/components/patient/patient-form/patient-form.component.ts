@@ -131,7 +131,7 @@ export class PatientFormComponent implements OnInit {
     }
   }
 
-  onSubmit(form:NgForm){
+  onSubmit(){
 
         if (this.patientProfile.address != "" &&
         this.patientProfile.city != "" &&
@@ -158,37 +158,14 @@ export class PatientFormComponent implements OnInit {
     }
   }
 
-  // onSubmit(form:NgForm){
-  //   this.submitted = true;
-
-  //   // grab the form values and populate patientProfile
-  //   let doc: Doctor = new Doctor();
-  //   doc.doctor_id = form.value['doctor_id'];
-  //   this.patientProfile.doctor = doc;
-  //   this.patientProfile.firstname = form.value['firstname'];
-  //   this.patientProfile.lastname = form.value['lastname'];
-  //   this.patientProfile.ssn = form.value['ssn'];
-  //   this.patientProfile.dob = form.value['dob'];
-  //   this.patientProfile.phone_number = form.value['phone_number'];
-  //   this.patientProfile.email = form.value['email'];
-  //   this.patientProfile.marital_status = form.value['marital_status'];
-  //   this.patientProfile.gender = form.value['gender'];
-  //   this.patientProfile.ethnicity = form.value['ethnicity'];
-  //   this.patientProfile.occupation = form.value['occupation'];
-  //   this.patientProfile.address = form.value['address'];
-  //   this.patientProfile.city = form.value['city'];
-  //   this.patientProfile.state = form.value['state'];
-  //   this.patientProfile.zipcode = form.value['zipcode'];
-  //   this.patientProfile.insurance_provider = form.value['insurance_provider'];
-  //   this.patientProfile.insurance_id = form.value['insurance_id'];
-
-  //   // send patient profile to server
-  //   this.formService.createPatientProfile(this.patientProfile);
-  // }
 
   cancel(){
     this.reset = true;
     this.router.navigate(['/home']);
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 }

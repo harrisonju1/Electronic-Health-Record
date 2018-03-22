@@ -178,5 +178,7 @@ export class VisitsComponent implements OnInit {
     this.updating = false;
   }
 
-
+  logout(){
+    this.authService.logout();
+  }
 }
