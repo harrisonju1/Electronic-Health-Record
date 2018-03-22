@@ -1,5 +1,5 @@
 .container{
-    background-color: aliceblue;
+    background-color: #ecf7fa;
     border-radius: 25px;
     width: 50%;
     margin: 5% auto;
@@ -41,4 +41,8 @@ input.ng-pristine[required],textarea.ng-pristine[required], select.ng-pristine[r
 #submit:hover{
     background-color: transparent;
     color: #343A40;
+}
+
+label {
+    font-weight: bold;
 }
