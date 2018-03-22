@@ -137,9 +137,7 @@ public class AccountController {
             PatientProfileDao updateProfile = new PatientProfileDao();
             int patient_id = patientInfo.getPatient_id();
             profile.setPatientId(patient_id);
-            System.out.println(profile);
             updateProfile.update(profile);
-            System.out.println(profile);
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR:FAILED TO UPDATE PATIENT PROFILE " + e.getStackTrace();
@@ -283,6 +281,15 @@ public class AccountController {
 
     @RequestMapping(value = "/api/form/visit/update", method = RequestMethod.POST)
     Object updateVisitDetail(@RequestBody VisitDetails visitDetails) {
+        System.out.println("VISIT DETAILS : " + visitDetails);
+        System.out.println("visit id: " + visitDetails.getVisit_id());
+        System.out.println("patient_id: " + visitDetails.getPatient_id());
+        System.out.println("doctor_id: " + visitDetails.getDoctor_id());
+        System.out.println("prescriptions: " + visitDetails.getPrescriptions());
+        System.out.println("diagnosis: " + visitDetails.getDiagnosis());
+        System.out.println("treatments: " + visitDetails.getTreatments());
+        System.out.println("tests: " + visitDetails.getTests());
+        System.out.println("symptoms: " + visitDetails.getSymptoms());
         try {
             //get patient
             PatientProfileDao patientProfileDao = new PatientProfileDao();
@@ -295,7 +302,8 @@ public class AccountController {
             Visit visit = visitDao.findByVisitId(visitDetails.getVisit_id());
 
             //update diagnosis
-            List<String> diagnosisList = visitDetails.getDiagnosisList();
+            List<String> diagnosisList = visitDetails.getDiagnosis();
+
             String diagnosis ="";
             for (int i = 0; i < diagnosisList.size(); i++){
                 diagnosis = diagnosis + "," +diagnosisList.get(i);
@@ -304,11 +312,11 @@ public class AccountController {
             List<Diagnosis> d = dd.findByVisit(visit);
             Diagnosis diag = d.get(0);
             diag.setDiagnosis(diagnosis);
-            System.out.println(diag);
+//            System.out.println("diagnosis object: " + diag);
             dd.update(diag);
 
             //update symptoms
-            List<String> symptomsList = visitDetails.getSymptomsList();
+            List<String> symptomsList = visitDetails.getSymptoms();
             String symptoms = "";
             for (int i = 0; i < symptomsList.size(); i++){
                 symptoms = symptoms + "," + symptomsList.get(i);
@@ -320,7 +328,7 @@ public class AccountController {
             s.update(symptom3);
 
             //update prescriptions
-            List<String> prescriptionsList = visitDetails.getPrescriptionsList();
+            List<String> prescriptionsList = visitDetails.getPrescriptions();
             String prescriptions = "";
             for (int i = 0; i < prescriptionsList.size(); i++){
                 prescriptions = prescriptions + "," + prescriptionsList.get(i);
@@ -332,7 +340,7 @@ public class AccountController {
             prescriptionsDao.update(prescriptions1);
 
             //update treatment
-            List<String> treatmentsList = visitDetails.getTreatmentsList();
+            List<String> treatmentsList = visitDetails.getTreatments();
             String treatments = "";
             for (int i = 0; i <treatmentsList.size(); i++){
                 treatments = treatments + "," + treatmentsList.get(i);
@@ -343,7 +351,7 @@ public class AccountController {
 
 
             //update tests
-            List<String> testsList = visitDetails.getTestsList();
+            List<String> testsList = visitDetails.getTests();
             String tests = "";
             for (int i = 0; i < testsList.size(); i++){
                 tests = tests + "," + testsList.get(i);

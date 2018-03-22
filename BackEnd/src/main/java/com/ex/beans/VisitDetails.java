@@ -52,43 +52,43 @@ public class VisitDetails {
         this.patient_id = patient_id;
     }
 
-    public List<String> getDiagnosisList() {
+    public List<String> getDiagnosis() {
         return diagnosis;
     }
 
-    public void setDiagnosisList(List<String> diagnosis) {
+    public void setDiagnosis(List<String> diagnosis) {
         this.diagnosis = diagnosis;
     }
 
-    public List<String> getSymptomsList() {
+    public List<String> getSymptoms() {
         return symptoms;
     }
 
-    public void setSymptomsList(List<String> symptoms) {
+    public void setSymptoms(List<String> symptoms) {
         this.symptoms = symptoms;
     }
 
-    public List<String> getPrescriptionsList() {
+    public List<String> getPrescriptions() {
         return prescriptions;
     }
 
-    public void setPrescriptionsList(List<String> prescriptions) {
+    public void setPrescriptions(List<String> prescriptions) {
         this.prescriptions = prescriptions;
     }
 
-    public List<String> getTreatmentsList() {
+    public List<String> getTreatments() {
         return treatments;
     }
 
-    public void setTreatmentsList(List<String> treatments) {
+    public void setTreatments(List<String> treatments) {
         this.treatments = treatments;
     }
 
-    public List<String> getTestsList() {
+    public List<String> getTests() {
         return tests;
     }
 
-    public void setTestsList(List<String> tests) {
+    public void setTests(List<String> tests) {
         this.tests = tests;
     }
 }
