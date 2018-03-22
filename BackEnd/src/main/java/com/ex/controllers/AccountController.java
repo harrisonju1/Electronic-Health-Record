@@ -5,11 +5,17 @@ import com.ex.dao.*;
 import com.ex.util.EncryptionUtil;
 import com.ex.util.PdfMaker;
 import com.fasterxml.jackson.databind.JsonSerializer;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -42,12 +48,32 @@ public class AccountController {
     }
 
     // returns the data for a pdf
-    @RequestMapping("/api/pdf")
-    String getPDF() {
-        return new PdfMaker()
-                .add(new Paragraph("Sample paragraph text"))
-//                .add(Image.getInstance(""))
-                .finishDocument();
+    //todo delete
+    @RequestMapping("/pdftest")
+    String getPDF1() {
+        return "<a href=\"http://localhost:8090/api/pdf\">View pdf</a>";
+    }
+    // returns the data for a pdf
+    // todo return actual pdf we need
+    @RequestMapping(value = "/api/pdf", produces = "application/pdf")
+    Object getPDF() {
+        try {
+            com.itextpdf.text.List list = new com.itextpdf.text.List(com.itextpdf.text.List.ORDERED);
+            list.add("item 1");
+            list.add("item 2");
+            list.add("item 3");
+            return new PdfMaker()
+                    .setTitle("UHF Title")
+                    .add(new Paragraph("Sample paragraph text"))
+                    .add(Image.getInstance("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Adobe_PDF.svg/96px-Adobe_PDF.svg.png"))
+                    .add(list)
+                    .finishDocument();
+        } catch (BadElementException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // adds or updates the patient profile to the database
