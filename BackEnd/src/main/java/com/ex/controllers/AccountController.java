@@ -285,7 +285,7 @@ public class AccountController {
     }
 
     @RequestMapping(value="/api/form/visit/update", method=RequestMethod.POST)
-    Object updateVisitDetail(@RequestParam VisitDetails visitDetails){
+    Object updateVisitDetail(@RequestBody VisitDetails visitDetails){
         try{
             //get patient
             PatientProfileDao patientProfileDao= new PatientProfileDao();
@@ -299,8 +299,9 @@ public class AccountController {
 
             //update diagnosis
             List<String> diagnosisList = visitDetails.getDiagnosisList();
+            int length = diagnosisList.size();
             DiagnosisDao diagnosisDao = new DiagnosisDao();
-            for (int i = 0; i < diagnosisList.size(); i++){
+            for (int i = 0; i < length; i++){
                 Diagnosis d = new Diagnosis(profile, doctor, visit, diagnosisList.get(i));
                 diagnosisDao.create(d);
             }

@@ -90,6 +90,7 @@ export class FormService {
   }
 
   updateVisitDetails(visitDetails: VisitDetails) {
+    console.log("updatevisit details was reached")
     this.http.post(this.visitUrl+"/update", visitDetails, httpOptions).subscribe();
   }
 }
