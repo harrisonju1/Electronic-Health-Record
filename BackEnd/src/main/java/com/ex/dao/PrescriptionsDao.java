@@ -51,10 +51,10 @@ public class PrescriptionsDao {
         return prescription;
     }
 
-    public Prescriptions findByVisit(Visit visit){
+    public List<Prescriptions> findByVisit(Visit visit){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Prescriptions prescription = (Prescriptions) session.createCriteria(Prescriptions.class).
-                add(Restrictions.eq("visit", visit));
+        List<Prescriptions> prescription = (List<Prescriptions>) session.createCriteria(Prescriptions.class).
+                add(Restrictions.eq("visit", visit)).list();
 
         session.close();
         return prescription;

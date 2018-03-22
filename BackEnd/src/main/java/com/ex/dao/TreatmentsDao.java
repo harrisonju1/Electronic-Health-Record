@@ -42,9 +42,10 @@ public class TreatmentsDao {
         return treatments;
     }
 
-    public Treatments findByVisit(Visit visit){
+    public List<Treatments> findByVisit(Visit visit){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Treatments treatments = (Treatments) session.createCriteria(Treatments.class).add(Restrictions.eq("visit", visit));
+        List<Treatments> treatments = (List<Treatments>) session.createCriteria(Treatments.class).
+                add(Restrictions.eq("visit", visit)).list();
 
         session.close();
         return treatments;

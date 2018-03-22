@@ -51,9 +51,9 @@ public class SymptomsDao {
         return symptoms;
     }
 
-    public Symptoms findByVisit(Visit visit){
+    public List<Symptoms> findByVisit(Visit visit){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Symptoms symptoms = (Symptoms) session.createCriteria(Symptoms.class)
+        List<Symptoms> symptoms = (List<Symptoms>) session.createCriteria(Symptoms.class)
                 .add(Restrictions.eq("visit", visit)).list();
 
         session.close();

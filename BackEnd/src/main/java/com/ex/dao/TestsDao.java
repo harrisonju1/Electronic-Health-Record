@@ -50,9 +50,10 @@ public class TestsDao {
         return tests;
     }
 
-    public Tests findByVisit(Visit visit){
+    public List<Tests> findByVisit(Visit visit){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Tests tests = (Tests) session.createCriteria(Tests.class).add(Restrictions.eq("visit", visit));
+        List<Tests> tests = (List<Tests>) session.createCriteria(Tests.class).
+                add(Restrictions.eq("visit", visit)).list();
 
         session.close();
         return tests;

@@ -42,7 +42,8 @@ public class DoctorsDao {
 
     public List<Doctor> findByDoctorId(Doctor doctor){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        List<Doctor> doctors = (List<Doctor>) session.createCriteria(Doctor.class).add(Restrictions.eq("doctor_id", doctor)).list();
+        List<Doctor> doctors = (List<Doctor>) session.createCriteria(Doctor.class).
+                add(Restrictions.eq("doctor_id", doctor)).list();
 
         session.close();
         return doctors;

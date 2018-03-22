@@ -50,9 +50,10 @@ public class DiagnosisDao {
         return diagnosis;
     }
 
-    public Diagnosis findByVisit(Visit visit){
+    public List<Diagnosis> findByVisit(Visit visit){
         Session session = HibernateUtils.getSessionFactory().openSession();
-        Diagnosis diagnosis = (Diagnosis) session.createCriteria(Diagnosis.class).add(Restrictions.eq("visit", visit));
+        List<Diagnosis> diagnosis = (List<Diagnosis>) session.createCriteria(Diagnosis.class).
+                add(Restrictions.eq("visit", visit)).list();
         return diagnosis;
     }
 
