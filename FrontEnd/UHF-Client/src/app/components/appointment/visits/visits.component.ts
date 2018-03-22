@@ -175,6 +175,7 @@ export class VisitsComponent implements OnInit {
   }
 
   finishUpdate(){
+    console.log("finish update was reached");
     this.formService.updateVisitDetails(this.currentVisit);
     this.updating = false;
   }
