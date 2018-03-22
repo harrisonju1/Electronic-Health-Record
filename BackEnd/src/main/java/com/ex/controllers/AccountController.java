@@ -3,7 +3,10 @@ package com.ex.controllers;
 import com.ex.beans.*;
 import com.ex.dao.*;
 import com.ex.util.EncryptionUtil;
+import com.ex.util.PdfMaker;
 import com.fasterxml.jackson.databind.JsonSerializer;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +39,15 @@ public class AccountController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    // returns the data for a pdf
+    @RequestMapping("/api/pdf")
+    String getPDF() {
+        return new PdfMaker()
+                .add(new Paragraph("Sample paragraph text"))
+//                .add(Image.getInstance(""))
+                .finishDocument();
     }
 
     // adds or updates the patient profile to the database
