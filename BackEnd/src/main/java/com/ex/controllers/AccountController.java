@@ -301,7 +301,7 @@ public class AccountController {
             List<String> diagnosisList = visitDetails.getDiagnosisList();
             int length = diagnosisList.size();
             DiagnosisDao diagnosisDao = new DiagnosisDao();
-            for (int i = ; i < length; i++){
+            for (int i = 0; i < length; i++){
                 Diagnosis d = new Diagnosis(profile, doctor, visit, diagnosisList.get(i));
                 diagnosisDao.create(d);
             }
