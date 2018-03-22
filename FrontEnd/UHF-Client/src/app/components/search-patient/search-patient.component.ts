@@ -106,4 +106,8 @@ export class SearchPatientComponent implements OnInit {
     }
   }
 
+  logout(){
+    this.authService.logout();
+  }
+
 }

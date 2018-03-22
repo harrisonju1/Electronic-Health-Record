@@ -3,11 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { MedHistoryComponent } from './components/med/med-history/med-history.component';
 import { SearchPatientComponent } from './components/search-patient/search-patient.component';
 import { PatientProfileComponent } from './components/patient/patient-profile/patient-profile.component';
 import { PatientFormComponent } from './components/patient/patient-form/patient-form.component';
-import { MedHistoryFormComponent } from './components/med/med-history-form/med-history-form.component';
 import { ApptRecordFormComponent } from './components/appointment/appt-record-form/appt-record-form.component';
 import { AuthGuard } from './guard/auth.guard';
 import { VisitsComponent } from './components/appointment/visits/visits.component';
@@ -17,19 +15,11 @@ import { VisitsComponent } from './components/appointment/visits/visits.componen
 const routes : Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
-  // { path: 'search', component: SearchPatientComponent, canActivate: [AuthGuard]},
-  // { path: 'patient/:id', component: PatientProfileComponent, canActivate: [AuthGuard]},
-  // { path: 'record/:id', component: ApptRecordComponent, canActivate: [AuthGuard]},
-  // { path: 'form/patient', component: PatientFormComponent, canActivate: [AuthGuard]},
-  // { path: 'form/medical', component: MedHistoryFormComponent, canActivate: [AuthGuard]},
-  // { path: 'form/appointment', component: ApptRecordFormComponent, canActivate: [AuthGuard]},
-  { path: 'search', component: SearchPatientComponent},
-  { path: 'patient/:id', component: PatientProfileComponent},
-  { path: 'patient/:patient_id/visit/:visit_id', component: VisitsComponent},
-  { path: 'form/patient', component: PatientFormComponent},
-  { path: 'form/medical', component: MedHistoryFormComponent},
-  { path: 'form/appointment/:id', component: ApptRecordFormComponent},
-  { path: 'temp', component: MedHistoryComponent},
+  { path: 'search', component: SearchPatientComponent, canActivate:[AuthGuard]},
+  { path: 'patient/:id', component: PatientProfileComponent, canActivate: [AuthGuard]},
+  { path: 'patient/:patient_id/visit/:visit_id', component: VisitsComponent, canActivate: [AuthGuard]},
+  { path: 'form/patient', component: PatientFormComponent, canActivate: [AuthGuard]},
+  { path: 'form/appointment/:id', component: ApptRecordFormComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ]
 
