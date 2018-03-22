@@ -1,9 +1,11 @@
 #apptRecordDiv{
     width: 50%;
     margin: 5% auto;
-    background-color: aliceblue;
+    background:linear-gradient(#c1e2eb , #e5f8fd);
+    /* background-color: #ecf7fa; */
     padding: 3%;
     border-radius: 25px;
+    color:#014353;
 }
 
 /* FORM VALIDATION */
