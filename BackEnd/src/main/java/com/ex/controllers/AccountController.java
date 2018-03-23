@@ -321,17 +321,24 @@ public class AccountController {
 
             DiagnosisDao dd = new DiagnosisDao();
             List<Diagnosis> d = dd.findByVisit(visit);
+            System.out.println("priting list of diagnosis: "+d);
             Diagnosis diag = new Diagnosis();
+            System.out.println("printing diag before update: "+diag);
             if (diag.getDiagnosis() == null){
                 diag.setDiagnosis(diagnosis);
+                diag.setPatient(profile);
+                diag.setDoctor(doctor);
+                diag.setVisitId(visit);
+                dd.create(diag);
             }
             else{
                 diag = d.get(0);
                 diag.setDiagnosis(diagnosis);
+                dd.update(diag);
             }
+            System.out.println("printing diagnosis after update: " + diag);
 
 //            System.out.println("diagnosis object: " + diag);
-            dd.update(diag);
 
 
             //update symptoms
@@ -347,15 +354,17 @@ public class AccountController {
             }
             SymptomsDao s = new SymptomsDao();
             List<Symptoms> symptoms1 = s.findByVisit(visit);
-            Symptoms symptom3 = new Symptoms();
+
             if (symptoms1.size() == 0 ){
-                symptom3.setSymptoms(symptoms);
+                Symptoms symptom3 = new Symptoms(profile, doctor, visit, symptoms);
+                s.create(symptom3);
             }
             else{
-                symptom3 = symptoms1.get(0);
+                Symptoms symptom4 = symptoms1.get(0);
+                symptom4.setSymptoms(symptoms);
+                s.update(symptom4);
             }
-            symptom3.setSymptoms(symptoms);
-            s.update(symptom3);
+
 
 
             //update prescriptions
@@ -371,9 +380,15 @@ public class AccountController {
             }
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
             List<Prescriptions> pl = prescriptionsDao.findByVisit(visit);
-            Prescriptions prescriptions1 = pl.get(0);
-            prescriptions1.setDrugs(prescriptions);
-            prescriptionsDao.update(prescriptions1);
+            if (pl.size() == 0){
+                Prescriptions prescriptions1 = new Prescriptions(profile, doctor, visit, prescriptions);
+                prescriptionsDao.create(prescriptions1);
+            }
+            else{
+                Prescriptions prescriptions1 = pl.get(0);
+                prescriptions1.setDrugs(prescriptions);
+                prescriptionsDao.update(prescriptions1);
+            }
 
             //update treatment
             List<String> treatmentsList = visitDetails.getTreatments();
@@ -388,13 +403,15 @@ public class AccountController {
             }
             TreatmentsDao treatmentsDao = new TreatmentsDao();
             List<Treatments> treatmentsList1 = treatmentsDao.findByVisit(visit);
-            Treatments treat = treatmentsList1.get(0);
-            treat.setTreatment(treatments);
-            treatmentsDao.update(treat);
-
-
-
-
+            if(treatmentsList1.size() == 0){
+                Treatments treatments1 = new Treatments(doctor, profile, treatments, visit );
+                treatmentsDao.create(treatments1);
+            }
+            else{
+                Treatments treatments1 = treatmentsList1.get(0);
+                treatments1.setTreatment(treatments);
+                treatmentsDao.update(treatments1);
+            }
             //update tests
             List<String> testsList = visitDetails.getTests();
             String tests = null;
@@ -408,11 +425,16 @@ public class AccountController {
             }
             TestsDao testsDao = new TestsDao();
             List<Tests> testBean = testsDao.findByVisit(visit);
-            Tests test = testBean.get(0);
-            test.setTest(tests);
-            testsDao.update(test);
 
-
+            if(testBean.size() == 0){
+                Tests test = new Tests(profile, doctor, visit, tests);
+                testsDao.create(test);
+            }
+            else{
+                Tests test = testBean.get(0);
+                test.setTest(tests);
+                testsDao.update(test);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: FAILED TO UPDATE VISIT DETAILS " + e.getStackTrace();
