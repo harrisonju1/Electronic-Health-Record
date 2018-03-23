@@ -18,9 +18,9 @@ export class PatientProfileComponent implements OnInit {
   apptRecords: ApptRecord[] = [];
   doctor: Doctor;
   doctor_id: number;
-  updating:boolean=false;
-  validForm:boolean=true;
-  
+  updating: boolean = false;
+  validForm: boolean = true;
+
   zipIsFIVE: boolean = false;
   phoneIsTEN: boolean = false;
 
@@ -41,17 +41,17 @@ export class PatientProfileComponent implements OnInit {
     this.formService.getPatientById(id).subscribe(p => {
       this.patient = p;
       this.doctor_id = p.doctor_id;
-      this.formService.getDoctor(this.doctor_id).subscribe(p=> {
+      this.formService.getDoctor(this.doctor_id).subscribe(p => {
         this.doctor = p;
         console.log(this.doctor);
         this.validForm = true;
-        
+
       });
-      this.formService.getAllApptRecords(id).subscribe(r =>{
+      this.formService.getAllApptRecords(id).subscribe(r => {
         this.apptRecords = r;
         console.log(this.apptRecords);
         this.canCheck = true;
-      }) 
+      })
     });
 
 
@@ -76,16 +76,16 @@ export class PatientProfileComponent implements OnInit {
 
   }
 
-  ngDoCheck(){
-    if (this.canCheck){
+  ngDoCheck() {
+    if (this.canCheck) {
       if (this.patient.zipcode > 10000 &&  // Ths constantly checks if the ZIP input is 5 digits
-        this.patient.zipcode < 99999){
-          this.zipIsFIVE = true;
-        }
-        else {
-          this.zipIsFIVE = false;
-          this.validForm = false;
-        }
+        this.patient.zipcode < 99999) {
+        this.zipIsFIVE = true;
+      }
+      else {
+        this.zipIsFIVE = false;
+        this.validForm = false;
+      }
 
       if (this.patient.phone_number > 1000000000 && this.patient.phone_number < 9999999999) {
         this.phoneIsTEN = true;
@@ -95,58 +95,58 @@ export class PatientProfileComponent implements OnInit {
         this.validForm = false;
       }
 
-      if (this.validForm == false){
-          if (this.patient.address != "" &&
-            this.patient.city != "" &&
-            this.patient.doctor_id != null &&
-            this.patient.email != null &&
-            this.patient.ethnicity != "" &&
-            this.patient.first_name != "" &&
-            this.patient.last_name != "" &&
-            this.patient.gender != "" &&
-            this.patient.occupation != "" &&
-            this.patient.marital_status != "" &&
-            this.patient.phone_number != null &&
-            this.patient.state != "" &&
-            this.patient.zipcode != null &&
-            this.patient.zipcode > 10000 &&
-            this.patient.zipcode < 99999 &&
-            this.patient.insurance_id != null &&
-            this.patient.insurance_provider != ""
-          ) {
+      if (this.validForm == false) {
+        if (this.patient.address != "" &&
+          this.patient.city != "" &&
+          this.patient.doctor_id != null &&
+          this.patient.email != null &&
+          this.patient.ethnicity != "" &&
+          this.patient.first_name != "" &&
+          this.patient.last_name != "" &&
+          this.patient.gender != "" &&
+          this.patient.occupation != "" &&
+          this.patient.marital_status != "" &&
+          this.patient.phone_number != null &&
+          this.patient.state != "" &&
+          this.patient.zipcode != null &&
+          this.patient.zipcode > 10000 &&
+          this.patient.zipcode < 99999 &&
+          this.patient.insurance_id != null &&
+          this.patient.insurance_provider != ""
+        ) {
           this.validForm = true;
         }
       }
 
-      if(this.validForm == true){
+      if (this.validForm == true) {
         if (this.patient.address == "" ||
-            this.patient.city == "" ||
-            this.patient.doctor_id == null ||
-            this.patient.email == null ||
-            this.patient.ethnicity == "" ||
-            this.patient.first_name == "" ||
-            this.patient.last_name == "" ||
-            this.patient.gender == "" ||
-            this.patient.occupation == "" ||
-            this.patient.marital_status == "" ||
-            this.patient.phone_number == null ||
-            this.patient.state == "" ||
-            this.patient.zipcode == null ||
-            this.patient.insurance_id == null ||
-            this.patient.insurance_provider == ""
-          ) {
+          this.patient.city == "" ||
+          this.patient.doctor_id == null ||
+          this.patient.email == null ||
+          this.patient.ethnicity == "" ||
+          this.patient.first_name == "" ||
+          this.patient.last_name == "" ||
+          this.patient.gender == "" ||
+          this.patient.occupation == "" ||
+          this.patient.marital_status == "" ||
+          this.patient.phone_number == null ||
+          this.patient.state == "" ||
+          this.patient.zipcode == null ||
+          this.patient.insurance_id == null ||
+          this.patient.insurance_provider == ""
+        ) {
           this.validForm = false;
         }
       }
     }
   }
 
-  activateUpdate(){
+  activateUpdate() {
     // switches form view
     this.updating = true;
   }
 
-  updateForm(){
+  updateForm() {
     // submit form update
 
     if (this.patient.address != "" &&
@@ -163,7 +163,7 @@ export class PatientProfileComponent implements OnInit {
       this.patient.state != "" &&
       this.patient.zipcode != null &&
       this.patient.insurance_id != null &&
-      this.patient.insurance_provider != ""){
+      this.patient.insurance_provider != "") {
 
       this.formService.updatePatientProfile(this.patient);
       console.log(this.patient);
@@ -174,11 +174,11 @@ export class PatientProfileComponent implements OnInit {
     }
   }
 
-  cancel(){
+  cancel() {
     this.updating = false;
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 

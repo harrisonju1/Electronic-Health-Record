@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -12,14 +12,14 @@ import { VisitsComponent } from './components/appointment/visits/visits.componen
 
 
 // add AuthGuard to protected routes
-const routes : Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'search', component: SearchPatientComponent, canActivate:[AuthGuard]},
-  { path: 'patient/:id', component: PatientProfileComponent, canActivate: [AuthGuard]},
-  { path: 'patient/:patient_id/visit/:visit_id', component: VisitsComponent, canActivate: [AuthGuard]},
-  { path: 'form/patient', component: PatientFormComponent, canActivate: [AuthGuard]},
-  { path: 'form/appointment/:id', component: ApptRecordFormComponent, canActivate: [AuthGuard]},
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'search', component: SearchPatientComponent, canActivate: [AuthGuard] },
+  { path: 'patient/:id', component: PatientProfileComponent, canActivate: [AuthGuard] },
+  { path: 'patient/:patient_id/visit/:visit_id', component: VisitsComponent, canActivate: [AuthGuard] },
+  { path: 'form/patient', component: PatientFormComponent, canActivate: [AuthGuard] },
+  { path: 'form/appointment/:id', component: ApptRecordFormComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ]
 
@@ -27,7 +27,7 @@ const routes : Routes = [
   imports: [
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ],
+  exports: [RouterModule],
   declarations: []
 })
 export class AppRoutingModule { }

@@ -10,9 +10,8 @@ import java.io.UnsupportedEncodingException;
 
 public class PdfMaker {
 
-    PdfWriter pdfwriter;
-    ByteArrayOutputStream output;
-    Document doc;
+    private ByteArrayOutputStream output;
+    private Document doc;
 
     public PdfMaker() {
         newDocument();
@@ -21,7 +20,7 @@ public class PdfMaker {
         doc = new Document();
         try {
             output = new ByteArrayOutputStream();
-            pdfwriter = PdfWriter.getInstance(doc, output);
+            PdfWriter.getInstance(doc, output);
             doc.addAuthor("Universal Healthcare Force");
             doc.addCreator("Team Triple G Force");
             doc.open();

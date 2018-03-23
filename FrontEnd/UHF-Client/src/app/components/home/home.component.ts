@@ -10,31 +10,31 @@ import { AuthorizationService } from '../../services/authorization.service';
 export class HomeComponent implements OnInit {
 
   currentUser: User;
-  loggedIn:boolean = false;
+  loggedIn: boolean = false;
 
   constructor(
-    private authService:AuthorizationService
-  ) { 
+    private authService: AuthorizationService
+  ) {
     authService.authorizePage(UserRole.NONE);
   }
 
   ngOnInit() {
     this.currentUser = this.authService.getCurrentUser();
     console.log(this.currentUser);
-    
+
     if (this.currentUser != null) {
       this.loggedIn = true;
     }
   }
 
-  ngDoCheck(){
-    if(this.authService.currentUser != null){
+  ngDoCheck() {
+    if (this.authService.currentUser != null) {
       this.currentUser = this.authService.currentUser;
-        this.loggedIn = true;
+      this.loggedIn = true;
     }
   }
 
-  logout(){
+  logout() {
     this.currentUser = null;
     this.loggedIn = false;
     this.authService.logout();

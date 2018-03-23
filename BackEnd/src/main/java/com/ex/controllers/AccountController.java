@@ -48,32 +48,60 @@ public class AccountController {
     }
 
     // returns the data for a pdf
-    //todo delete
     @RequestMapping("/pdftest")
     String getPDF1() {
-        return "<a href=\"http://localhost:8090/api/pdf\">View pdf</a>";
+        return "<a href=\"http://localhost:8090/api/pdf/visitdetails\">View pdf</a>";
     }
-    // returns the data for a pdf
-    // todo return actual pdf we need
-    @RequestMapping(value = "/api/pdf", produces = "application/pdf")
-    Object getPDF() {
+    // returns the pdf for visit details
+    @RequestMapping(value = "/api/pdf/visitdetails", produces = "application/pdf")
+    Object getPDF(@RequestBody VisitDetails visitDetails) {
         try {
-            com.itextpdf.text.List list = new com.itextpdf.text.List(com.itextpdf.text.List.ORDERED);
-            list.add("item 1");
-            list.add("item 2");
-            list.add("item 3");
-            return new PdfMaker()
-                    .setTitle("UHF Title")
-                    .add(new Paragraph("Sample paragraph text"))
-                    .add(Image.getInstance("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Adobe_PDF.svg/96px-Adobe_PDF.svg.png"))
-                    .add(list)
-                    .finishDocument();
-        } catch (BadElementException e) {
+            // create a new pdf for this visit details
+            PdfMaker pdf = new PdfMaker();
+            pdf.setTitle("Visit Details");
+
+            pdf.add(new Paragraph("Visit ID: "+visitDetails.visit_id));
+            pdf.add(new Paragraph("Doctor ID: "+visitDetails.doctor_id));
+            pdf.add(new Paragraph("Patient ID: "+visitDetails.patient_id));
+
+            // add lists to pdf
+            pdf.add(new Paragraph("Diagnosis"));
+            com.itextpdf.text.List diagnosislist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.diagnosis.size();i++) {
+                diagnosislist.add(visitDetails.diagnosis.get(i));
+            }
+            pdf.add(diagnosislist);
+            pdf.add(new Paragraph("Symptoms"));
+            com.itextpdf.text.List symptomslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.symptoms.size();i++) {
+                symptomslist.add(visitDetails.symptoms.get(i));
+                pdf.add(new Paragraph("Diagnosis"));
+            }
+            pdf.add(symptomslist);
+            pdf.add(new Paragraph("Prescriptions"));
+            com.itextpdf.text.List prescriptionslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.prescriptions.size();i++) {
+                prescriptionslist.add(visitDetails.prescriptions.get(i));
+            }
+            pdf.add(prescriptionslist);
+            pdf.add(new Paragraph("Treatments"));
+            com.itextpdf.text.List treatmentslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.treatments.size();i++) {
+                treatmentslist.add(visitDetails.treatments.get(i));
+            }
+            pdf.add(treatmentslist);
+            pdf.add(new Paragraph("Tests"));
+            com.itextpdf.text.List testslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.tests.size();i++) {
+                testslist.add(visitDetails.tests.get(i));
+            }
+            pdf.add(testslist);
+
+            return pdf.finishDocument();
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return "ERROR:FAILED TO CREATE PATIENT DETAILS PDF" + e.getStackTrace();
         }
-        return null;
     }
 
     // adds or updates the patient profile to the database
@@ -242,33 +270,48 @@ public class AccountController {
             //get list of diagnosis by patient
             DiagnosisDao diagnosisDao = new DiagnosisDao();
             List<Diagnosis> d = diagnosisDao.findByVisit(visit);
-            String toSplit = d.get(0).getDiagnosis();
-            List<String> diagnosisList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            String toSplit = null;
+            List<String> diagnosisList = new ArrayList<>();
+            if (d.size() != 0 ) {
+                toSplit = d.get(0).getDiagnosis();
+                diagnosisList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            }
 
             //get list of symptoms by patient
             SymptomsDao symptomsDao = new SymptomsDao();
             List<Symptoms> s = symptomsDao.findByVisit(visit);
-            toSplit = s.get(0).getSymptoms();
-            List<String> symptomList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            List<String> symptomList = new ArrayList<>();
+            if (s.size() != 0) {
+                toSplit = s.get(0).getSymptoms();
+                symptomList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            }
 
             //get list of prescriptions
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
             List<Prescriptions> allPrescriptions = prescriptionsDao.findByVisit(visit);
-            toSplit = allPrescriptions.get(0).getDrugs();
-            List<String> prescriptionsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            List<String> prescriptionsList = new ArrayList<>();
+            if (allPrescriptions.size() != 0){
+                toSplit = allPrescriptions.get(0).getDrugs();
+                prescriptionsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            }
 
             //get list of treatments
             TreatmentsDao treatmentsDao = new TreatmentsDao();
             List<Treatments> allTreatments = treatmentsDao.findByVisit(visit);
-            toSplit = allTreatments.get(0).getTreatment();
-            List<String> treatmentsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            List<String> treatmentsList = new ArrayList<>();
+            if (allTreatments.size() != 0){
+                toSplit = allTreatments.get(0).getTreatment();
+                treatmentsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            }
 
             //get list of tests
             TestsDao testsDao = new TestsDao();
             List<Tests> allTests = testsDao.findByVisit(visit);
-            toSplit = allTests.get(0).getTest();
-            List<String> testsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
-
+            List<String> testsList = new ArrayList<>();
+            if (allTests.size() != 0){
+                toSplit = allTests.get(0).getTest();
+                testsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
+            }
             VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), diagnosisList, symptomList, prescriptionsList, treatmentsList, testsList);
 
             return visitDetails;
@@ -281,15 +324,6 @@ public class AccountController {
 
     @RequestMapping(value = "/api/form/visit/update", method = RequestMethod.POST)
     Object updateVisitDetail(@RequestBody VisitDetails visitDetails) {
-        System.out.println("VISIT DETAILS : " + visitDetails);
-        System.out.println("visit id: " + visitDetails.getVisit_id());
-        System.out.println("patient_id: " + visitDetails.getPatient_id());
-        System.out.println("doctor_id: " + visitDetails.getDoctor_id());
-        System.out.println("prescriptions: " + visitDetails.getPrescriptions());
-        System.out.println("diagnosis: " + visitDetails.getDiagnosis());
-        System.out.println("treatments: " + visitDetails.getTreatments());
-        System.out.println("tests: " + visitDetails.getTests());
-        System.out.println("symptoms: " + visitDetails.getSymptoms());
         try {
             //get patient
             PatientProfileDao patientProfileDao = new PatientProfileDao();
@@ -303,63 +337,132 @@ public class AccountController {
 
             //update diagnosis
             List<String> diagnosisList = visitDetails.getDiagnosis();
-
-            String diagnosis ="";
-            for (int i = 0; i < diagnosisList.size(); i++){
-                diagnosis = diagnosis + "," +diagnosisList.get(i);
+            String diagnosis = "";
+            if (diagnosisList.size() == 1) {
+                diagnosis = diagnosisList.get(0);
             }
+            else {
+                for (int i = 0; i < diagnosisList.size(); i++) {
+                    diagnosis = diagnosis + "," + diagnosisList.get(i);
+                }
+            }
+
             DiagnosisDao dd = new DiagnosisDao();
             List<Diagnosis> d = dd.findByVisit(visit);
-            Diagnosis diag = d.get(0);
-            diag.setDiagnosis(diagnosis);
+            System.out.println("priting list of diagnosis: "+d);
+            Diagnosis diag = new Diagnosis();
+            System.out.println("printing diag before update: "+diag);
+            if (diag.getDiagnosis() == null){
+                diag.setDiagnosis(diagnosis);
+                diag.setPatient(profile);
+                diag.setDoctor(doctor);
+                diag.setVisitId(visit);
+                dd.create(diag);
+            }
+            else{
+                diag = d.get(0);
+                diag.setDiagnosis(diagnosis);
+                dd.update(diag);
+            }
+            System.out.println("printing diagnosis after update: " + diag);
+
 //            System.out.println("diagnosis object: " + diag);
-            dd.update(diag);
+
 
             //update symptoms
             List<String> symptomsList = visitDetails.getSymptoms();
-            String symptoms = "";
-            for (int i = 0; i < symptomsList.size(); i++){
-                symptoms = symptoms + "," + symptomsList.get(i);
+            String symptoms = null;
+            if (symptomsList.size() == 1) {
+                symptoms = symptomsList.get(0);
+            }
+            else{
+                for (int i = 0; i < symptomsList.size(); i++) {
+                    symptoms = symptoms + "," + symptomsList.get(i);
+                }
             }
             SymptomsDao s = new SymptomsDao();
             List<Symptoms> symptoms1 = s.findByVisit(visit);
-            Symptoms symptom3 = symptoms1.get(0);
-            symptom3.setSymptoms(symptoms);
-            s.update(symptom3);
+
+            if (symptoms1.size() == 0 ){
+                Symptoms symptom3 = new Symptoms(profile, doctor, visit, symptoms);
+                s.create(symptom3);
+            }
+            else{
+                Symptoms symptom4 = symptoms1.get(0);
+                symptom4.setSymptoms(symptoms);
+                s.update(symptom4);
+            }
+
+
 
             //update prescriptions
             List<String> prescriptionsList = visitDetails.getPrescriptions();
-            String prescriptions = "";
-            for (int i = 0; i < prescriptionsList.size(); i++){
-                prescriptions = prescriptions + "," + prescriptionsList.get(i);
+            String prescriptions = null;
+            if (prescriptionsList.size() ==1){
+                prescriptions = prescriptionsList.get(0);
+            }
+            else{
+                for (int i = 0; i < prescriptionsList.size(); i++) {
+                    prescriptions = prescriptions + "," + prescriptionsList.get(i);
+                }
             }
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
             List<Prescriptions> pl = prescriptionsDao.findByVisit(visit);
-            Prescriptions prescriptions1 = pl.get(0);
-            prescriptions1.setDrugs(prescriptions);
-            prescriptionsDao.update(prescriptions1);
+            if (pl.size() == 0){
+                Prescriptions prescriptions1 = new Prescriptions(profile, doctor, visit, prescriptions);
+                prescriptionsDao.create(prescriptions1);
+            }
+            else{
+                Prescriptions prescriptions1 = pl.get(0);
+                prescriptions1.setDrugs(prescriptions);
+                prescriptionsDao.update(prescriptions1);
+            }
 
             //update treatment
             List<String> treatmentsList = visitDetails.getTreatments();
-            String treatments = "";
-            for (int i = 0; i <treatmentsList.size(); i++){
-                treatments = treatments + "," + treatmentsList.get(i);
+            String treatments = null;
+            if (treatmentsList.size() == 1){
+                treatments = treatmentsList.get(0);
+            }
+            else{
+                for (int i = 0; i < treatmentsList.size(); i++) {
+                    treatments = treatments + "," + treatmentsList.get(i);
+                }
             }
             TreatmentsDao treatmentsDao = new TreatmentsDao();
             List<Treatments> treatmentsList1 = treatmentsDao.findByVisit(visit);
-
-
-
+            if(treatmentsList1.size() == 0){
+                Treatments treatments1 = new Treatments(doctor, profile, treatments, visit );
+                treatmentsDao.create(treatments1);
+            }
+            else{
+                Treatments treatments1 = treatmentsList1.get(0);
+                treatments1.setTreatment(treatments);
+                treatmentsDao.update(treatments1);
+            }
             //update tests
             List<String> testsList = visitDetails.getTests();
-            String tests = "";
-            for (int i = 0; i < testsList.size(); i++){
-                tests = tests + "," + testsList.get(i);
+            String tests = null;
+            if (testsList.size() == 1){
+                tests = testsList.get(0);
+            }
+            else {
+                for (int i = 0; i < testsList.size(); i++) {
+                    tests = tests + "," + testsList.get(i);
+                    }
             }
             TestsDao testsDao = new TestsDao();
             List<Tests> testBean = testsDao.findByVisit(visit);
 
-            testsDao.update(testBean.get(0));
+            if(testBean.size() == 0){
+                Tests test = new Tests(profile, doctor, visit, tests);
+                testsDao.create(test);
+            }
+            else{
+                Tests test = testBean.get(0);
+                test.setTest(tests);
+                testsDao.update(test);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: FAILED TO UPDATE VISIT DETAILS " + e.getStackTrace();

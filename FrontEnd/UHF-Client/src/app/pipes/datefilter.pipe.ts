@@ -8,19 +8,19 @@ export class DatefilterPipe implements PipeTransform {
 
   transform(items: PatientProfile[], searchDate: string): PatientProfile[] {
 
-    if (!items || !searchDate){
+    if (!items || !searchDate) {
       return items;
     }
 
     items.forEach(item => {
-      items =  items.filter( it => {
+      items = items.filter(it => {
         let dateConvert = new Date(it.dob);
-        let month = dateConvert.getMonth()+1;
+        let month = dateConvert.getMonth() + 1;
         let day = dateConvert.getDate();
         let year = dateConvert.getFullYear();
         let date = month + "/" + day + "/" + year;
         return date.includes(searchDate);
-      });  
+      });
     });
     return items;
   }

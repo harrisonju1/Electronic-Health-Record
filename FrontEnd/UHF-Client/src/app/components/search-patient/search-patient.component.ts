@@ -3,7 +3,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 import { FormService } from '../../services/form.service';
 import { PatientProfile } from '../../domain/PatientProfile';
 import { Doctor } from '../../domain/Doctor';
-import {forEach} from "@angular/router/src/utils/collection";
+import { forEach } from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-search-patient',
@@ -50,7 +50,7 @@ export class SearchPatientComponent implements OnInit {
     // this.filtered = false;
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
     this.touchedSearch();
   }
 
@@ -65,23 +65,23 @@ export class SearchPatientComponent implements OnInit {
 
     this.filtered = true;
 
-    if (sortType == 0){
+    if (sortType == 0) {
 
-      this.patients.sort(function(obj1, obj2) {
+      this.patients.sort(function (obj1, obj2) {
         return obj1.patient_id - obj2.patient_id;
       })
     }
-    else if(sortType == 1) {
+    else if (sortType == 1) {
 
-      this.patients.sort(function(obj1,obj2) {
+      this.patients.sort(function (obj1, obj2) {
         if (obj1.first_name < obj2.first_name) return -1;
         if (obj1.first_name > obj2.first_name) return 1;
         return 0;
       })
     }
-    else if(sortType == 2) {
+    else if (sortType == 2) {
 
-      this.patients.sort(function(obj1, obj2) {
+      this.patients.sort(function (obj1, obj2) {
         if (obj1.last_name < obj2.last_name) return -1;
         if (obj1.last_name > obj2.last_name) return 1;
         return 0;
@@ -89,7 +89,7 @@ export class SearchPatientComponent implements OnInit {
     }
     else if (sortType == 3) {
 
-      this.patients.sort(function(obj1, obj2) {
+      this.patients.sort(function (obj1, obj2) {
         if (obj1.dob < obj2.dob) return -1;
         if (obj1.dob > obj2.dob) return 1;
         return 0;
@@ -97,16 +97,16 @@ export class SearchPatientComponent implements OnInit {
     }
   }
 
-  touchedSearch(){
+  touchedSearch() {
     if (this.searchDate || this.searchID || this.searchText) {
       this.filtered = true;
     }
-    else{
+    else {
       this.filtered = false;
     }
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 
