@@ -1,12 +1,18 @@
 <nav class="navbar navbar-expand navbar-light bg-light">
-  <div class="collapse navbar-collapse">
-      <ul class="navbar-nav">
-          <li class="nav-item active"><a class="nav-link" routerLink="/home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/search">Search Patients</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/form/patient">New Patient Form</a></li>
-      </ul>
-  </div>
-  <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="logout()">Logout</button>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/search">Search Patients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/form/patient">New Patient Form</a>
+            </li>
+        </ul>
+    </div>
+    <button class="btn btn-outline-secondary my-1 my-sm-0" (click)="logout()">Logout</button>
 </nav>
 
 <br>
@@ -15,47 +21,47 @@
     <div class="container" id="title">
         <div class="input-group">
             <h2>Patients</h2>
-              <select class="form-control offset-md-7 mr-sm-2" #sortBy>
-                  <option selected [value]=0>Patient ID</option>
-                  <option [value]=1>First name</option>
-                  <option [value]=2>Last name</option>
-                  <option [value]=3>Date of Birth</option>
-                </select>
-              <span class="input-group-btn">
-                  <button class="btn btn-outline-info" (click)="sort(sortBy.value)" *ngIf="!filtered">Sort</button>
-                  <button class="btn btn-outline-info" *ngIf="filtered" id="filtered" disabled>Sort</button>
-              </span>
-          </div>
-      </div>
-      <div class="container" id="alertDiv">
+            <select class="form-control offset-md-7 mr-sm-2" #sortBy>
+                <option selected [value]=0>Patient ID</option>
+                <option [value]=1>First name</option>
+                <option [value]=2>Last name</option>
+                <option [value]=3>Date of Birth</option>
+            </select>
+            <span class="input-group-btn">
+                <button class="btn btn-outline-info" (click)="sort(sortBy.value)" *ngIf="!filtered">Sort</button>
+                <button class="btn btn-outline-info" *ngIf="filtered" id="filtered" disabled>Sort</button>
+            </span>
+        </div>
+    </div>
+    <div class="container" id="alertDiv">
         <div class="alert alert-light" role="alert" *ngIf="filtered">
-          Filter Mode: Clear fields to enable sorting
+            Filter Mode: Clear fields to enable sorting
         </div>
-      </div>
-    
+    </div>
+
     <div class="container" id="search">
-    
-      <div class="row">
-        <div class=" col-md-2">
-          <input class="form-control mr-sm-2" type="number" placeholder="ID" aria-label="Search" name="id" [(ngModel)]="searchID">
-        </div>
-        <div class="ml-md-3 col-md-4">
-            <input class="form-control mr-sm-2" type="text" placeholder="Name" aria-label="Search" name="name" [(ngModel)]="searchText">
-        </div>
-        <div class="ml-md-3 col-md-3">
-            <input class="form-control mr-sm-2" type="text" placeholder="Date of Birth" aria-label="Search" name="date" [(ngModel)]="searchDate">
-        </div>
-      </div>
-      <hr>
-      <div *ngFor="let patient of patients | filter : searchText | idfilter : searchID | datefilter : searchDate">
+
         <div class="row">
-            <div class="ml-md-5 col-md-2">{{patient.patient_id}}</div>
-            <div class="col-md-4">{{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</div>
-            <div class="col-md-4">{{patient.dob | date: 'MM/dd/yyyy'}}</div>
-            <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
+            <div class=" col-md-2">
+                <input class="form-control mr-sm-2" type="number" placeholder="ID" aria-label="Search" name="id" [(ngModel)]="searchID">
+            </div>
+            <div class="ml-md-3 col-md-4">
+                <input class="form-control mr-sm-2" type="text" placeholder="Name" aria-label="Search" name="name" [(ngModel)]="searchText">
+            </div>
+            <div class="ml-md-3 col-md-3">
+                <input class="form-control mr-sm-2" type="text" placeholder="Date of Birth" aria-label="Search" name="date" [(ngModel)]="searchDate">
+            </div>
         </div>
         <hr>
-      </div>
-    
+        <div *ngFor="let patient of patients | filter : searchText | idfilter : searchID | datefilter : searchDate">
+            <div class="row">
+                <div class="ml-md-5 col-md-2">{{patient.patient_id}}</div>
+                <div class="col-md-4">{{patient.first_name | uppercase}} {{patient.last_name | uppercase}}</div>
+                <div class="col-md-4">{{patient.dob | date: 'MM/dd/yyyy'}}</div>
+                <button class="btn btn-outline-info btn-sm" routerLink="/patient/{{patient.patient_id}}">View</button>
+            </div>
+            <hr>
+        </div>
+
     </div>
 </div>

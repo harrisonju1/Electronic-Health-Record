@@ -18,8 +18,8 @@ export class VisitsComponent implements OnInit {
   currentVisit: VisitDetails;
   currentAppt: ApptRecord;
   currentDoctor: Doctor;
-  isDoctor:boolean; // check if current user role is doctor
-  userRole:string;
+  isDoctor: boolean; // check if current user role is doctor
+  userRole: string;
   updating: boolean = false; //check if page is in update mode
 
   canCheck: boolean = false;
@@ -47,7 +47,7 @@ export class VisitsComponent implements OnInit {
     this.userRole = this.authService.getUserRole();
     console.log(this.userRole);
 
-    if (this.userRole == "DOCTOR"){
+    if (this.userRole == "DOCTOR") {
       this.isDoctor = true;
     }
 
@@ -59,7 +59,7 @@ export class VisitsComponent implements OnInit {
     this.formService.getVisitDetailsByID(visID).subscribe(a => {
       this.currentVisit = a;
 
-    //   // get doctor information
+      //   // get doctor information
       this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
         this.currentDoctor = d;
         this.canCheck = true;
@@ -69,91 +69,91 @@ export class VisitsComponent implements OnInit {
     // VISIT DETAILS DUMMY DATA
     // this.currentVisit = new VisitDetails(1, 5, this.pID, ["You're on fire.", "Make a dragon wanna retire, man."], ["Very high temperatures.", "Fire.", "Burn baby burn."], ["Ice water.", "Burn cream.", "Sleep."], ["Ice Bath"], ["None"]);
     // get doctor information
-      // this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
-      //   this.currentDoctor = d;
-      //   this.canCheck = true;
-      // });
+    // this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+    //   this.currentDoctor = d;
+    //   this.canCheck = true;
+    // });
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
   }
 
   // ------------------------ UPDATING/REMOVING DIAGNOSES ----------------------
 
-  addDiagnosis(){
-    if (this.diagnosis){
+  addDiagnosis() {
+    if (this.diagnosis) {
       this.currentVisit.diagnosis.push(this.diagnosis);
       this.diagnosis = "";
       this.error1 = false;
     }
-    else{
+    else {
       this.error1 = true;
     }
   }
 
-  removeDiagnosis(d: string){
+  removeDiagnosis(d: string) {
     let diagnoses = this.currentVisit.diagnosis;
     let index = diagnoses.indexOf(this.diagnosis);
     diagnoses.splice(index, 1);
   }
 
   // ------------------------ UPDATING/REMOVING SYMPTOMS -----------------------
-  addSymptom(){
-    if (this.symptom){
+  addSymptom() {
+    if (this.symptom) {
       this.currentVisit.symptoms.push(this.symptom);
       this.symptom = "";
       this.error2 = false;
     }
-    else{
+    else {
       this.error2 = true;
     }
   }
 
-  removeSymptom(s:string){
+  removeSymptom(s: string) {
     let symptoms = this.currentVisit.symptoms;
     let index = symptoms.indexOf(s);
-    symptoms.splice(index,1);
+    symptoms.splice(index, 1);
   }
 
   // ----------------------- UPDATING/REMOVING PRESCRIPTIONS ----------------------
-  addPrescription(){
-    if (this.prescription){
+  addPrescription() {
+    if (this.prescription) {
       this.currentVisit.prescriptions.push(this.prescription);
       this.prescription = "";
       this.error3 = false;
     }
-    else{
+    else {
       this.error3 = true;
     }
   }
 
-  removePrescription(p: string){
+  removePrescription(p: string) {
     let pscrip = this.currentVisit.prescriptions;
     let index = pscrip.indexOf(p);
-    pscrip.splice(index,1);
+    pscrip.splice(index, 1);
   }
 
   // ------------------------ UPDATING/REMOVING TREATMENTS ----------------------
-  addTreatment(){
-    if(this.treatment){
+  addTreatment() {
+    if (this.treatment) {
       this.currentVisit.treatments.push(this.treatment);
       this.treatment = "";
       this.error4 = false;
     }
-    else{
+    else {
       this.error4 = true;
     }
   }
 
-  removeTreatment(t: string){
+  removeTreatment(t: string) {
     let treatments = this.currentVisit.treatments;
     let index = treatments.indexOf(t);
     treatments.splice(index, 1);
   }
 
   // ----------------------- UPDATING/REMOVING TEST RESULTS ---------------------
-  addTestResult(){
-    if (this.test_result){
+  addTestResult() {
+    if (this.test_result) {
       this.currentVisit.tests.push(this.test_result);
       this.test_result = "";
       this.error5 = false;
@@ -163,24 +163,24 @@ export class VisitsComponent implements OnInit {
     }
   }
 
-  removeTestResult(t: string){
+  removeTestResult(t: string) {
     let tests = this.currentVisit.tests;
     let index = tests.indexOf(t);
-    tests.splice(index,1);
+    tests.splice(index, 1);
   }
 
   // ---------------------- TOGGLING UPDATE MODE ------------------------------
-  activateUpdate(){
+  activateUpdate() {
     this.updating = true;
   }
 
-  finishUpdate(){
+  finishUpdate() {
     console.log("finish update was reached");
     this.formService.updateVisitDetails(this.currentVisit);
     this.updating = false;
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 }

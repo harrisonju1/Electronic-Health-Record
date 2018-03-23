@@ -10,10 +10,10 @@ describe('ApptRecordFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApptRecordFormComponent ],
-      imports: [ FormsModule ]
+      declarations: [ApptRecordFormComponent],
+      imports: [FormsModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
