@@ -5,6 +5,7 @@ import { ApptRecord } from '../../../domain/ApptRecord';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from '../../../services/form.service';
 import { Doctor } from '../../../domain/Doctor';
+import { FileSaver } from 'file-saver';
 
 @Component({
   selector: 'app-visits',
@@ -50,7 +51,7 @@ export class VisitsComponent implements OnInit {
     if (this.userRole == "DOCTOR") {
       this.isDoctor = true;
     }
-
+    
     // get patientID
     this.pID = +this.route.snapshot.paramMap.get('patient_id');
 
@@ -76,6 +77,12 @@ export class VisitsComponent implements OnInit {
   }
 
   ngDoCheck() {
+  }
+
+  // ------------------------ Download PDF ------------------------------------
+  downloadAdPDF() {
+    // todo
+    FileSaver.saveas(new Blob(), 'visitdetails.pdf');
   }
 
   // ------------------------ UPDATING/REMOVING DIAGNOSES ----------------------
