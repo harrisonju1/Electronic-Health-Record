@@ -56,15 +56,34 @@ export class VisitsComponent implements OnInit {
 
     // get visit details
     const visID = +this.route.snapshot.paramMap.get('visit_id');
-    this.formService.getVisitDetailsByID(visID).subscribe(a => {
-      this.currentVisit = a;
+    
+    this.formService.getAllApptRecords(this.pID).subscribe(a => {
+      a.forEach(r => {
+        if (r.visit_id == visID){
+          this.currentAppt = r;
+        }
+      });
 
-      //   // get doctor information
-      this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
-        this.currentDoctor = d;
-        this.canCheck = true;
+      this.formService.getVisitDetailsByID(visID).subscribe(a2 => {
+        this.currentVisit = a2;
+  
+        //   // get doctor information
+        this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+          this.currentDoctor = d;
+          this.canCheck = true;
+        });
       });
     });
+
+    // this.formService.getVisitDetailsByID(visID).subscribe(a => {
+    //   this.currentVisit = a;
+
+    //   //   // get doctor information
+    //   this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+    //     this.currentDoctor = d;
+    //     this.canCheck = true;
+    //   });
+    // });
 
     // VISIT DETAILS DUMMY DATA
     // this.currentVisit = new VisitDetails(1, 5, this.pID, ["You're on fire.", "Make a dragon wanna retire, man."], ["Very high temperatures.", "Fire.", "Burn baby burn."], ["Ice water.", "Burn cream.", "Sleep."], ["Ice Bath"], ["None"]);

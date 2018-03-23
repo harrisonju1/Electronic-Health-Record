@@ -23,7 +23,7 @@
     <!-- ONLY FOR DOCTOR!!!! -->
     <!-- ngIf current user role is doctor -->
     <button class="btn btn-outline-info btn-sm" *ngIf="isDoctor && !updating" (click)="activateUpdate()">Edit Details</button>
-    <button type="submit" lass="btn btn-outline-success btn-sm" *ngIf="updating" (click)="finishUpdate()">Finish</button>
+    <button type="submit" class="btn btn-outline-success btn-sm" *ngIf="updating" (click)="finishUpdate()">Finish</button>
     <hr />
     <br />
     <!-- APPOINT RECORD INFO -->
@@ -53,11 +53,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label>Visit Date</label>
-                <p>If only I was not undefined</p>
+                <p>{{currentAppt.visit_date | date: 'MM/dd/yyyy'}}</p>
             </div>
             <div class="col-md-6">
                 <label>Visit Reason</label>
-                <p>If only I was not undefined</p>
+                <p>{{currentAppt.visit_reason}}</p>
             </div>
         </div>
     </div>
@@ -121,12 +121,12 @@
             <div class="col-md-6">
                 <label>Visit Date</label>
                 <!-- Add ngModel for apptRecord.visit_date-->
-                <input type="date" class="form-control col-md-7" placeholder="#" id="visitDate" name="visitDate">
+                <p>{{currentAppt.visit_date | date: 'MM/dd/yyyy'}}</p>
             </div>
             <div class="col-md-6">
                 <label>Visit Reason</label>
                 <!-- Add ngModel for apptRecord.visit_reason-->
-                <input type="text" class="form-control col-md-8" placeholder="Why?" id="visitReason" name="visitReason">
+                <p>{{currentAppt.visit_reason}}</p>
             </div>
         </div>
     </div>
