@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthorizationService,
-    private route:Router
-  ) { 
+    private route: Router
+  ) {
     authService.authorizePage(UserRole.NONE);
   }
 
@@ -28,13 +28,13 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(username:string, password:string){
+  login(username: string, password: string) {
     // $event.preventDefault();
 
     this.username = username;
     this.password = password;
 
-    this.authService.login(this.username,this.password).subscribe(o=>{
+    this.authService.login(this.username, this.password).subscribe(o => {
       if (o && o.username == username) {
         console.log("logged in!");
         this.route.navigate(['/home']);
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       } else {
         // unsuccessful login
         console.log("login failed");
-        this.error="Username/Password is incorrect.";
+        this.error = "Username/Password is incorrect.";
       }
     });
 

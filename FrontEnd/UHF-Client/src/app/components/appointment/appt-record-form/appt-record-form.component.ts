@@ -14,15 +14,15 @@ import { PatientProfile } from '../../../domain/PatientProfile';
 export class ApptRecordFormComponent implements OnInit {
 
   patient_id: number;
-  submitted:boolean=false;
-  validForm:boolean=false;
-  isPositive: boolean=false;
-  reason200:boolean=false;
+  submitted: boolean = false;
+  validForm: boolean = false;
+  isPositive: boolean = false;
+  reason200: boolean = false;
 
-  apptRecord:ApptRecord = new ApptRecord(0, null , 0, 0, "");
+  apptRecord: ApptRecord = new ApptRecord(0, null, 0, 0, "");
 
   constructor(
-    private formService:FormService,
+    private formService: FormService,
     private authService: AuthorizationService,
     private router: Router,
     private route: ActivatedRoute
@@ -30,24 +30,24 @@ export class ApptRecordFormComponent implements OnInit {
 
   ngOnInit() {
     this.patient_id = +this.route.snapshot.paramMap.get('id');
-    if (this.apptRecord.doctor_id <= 0 || this.apptRecord.doctor_id == null || this.apptRecord.visit_date == null || this.apptRecord.patient_id == 0 || this.apptRecord.visit_reason == ""){
+    if (this.apptRecord.doctor_id <= 0 || this.apptRecord.doctor_id == null || this.apptRecord.visit_date == null || this.apptRecord.patient_id == 0 || this.apptRecord.visit_reason == "") {
       this.validForm = false;
     }
 
   }
 
-  ngDoCheck(){
+  ngDoCheck() {
 
-    if (this.apptRecord.doctor_id > 0){
-        // console.log("1:" +this.apptRecord.doctor_id);
-        this.isPositive = true;
-        // console.log("2:" +this.isPositive);
-      }
+    if (this.apptRecord.doctor_id > 0) {
+      // console.log("1:" +this.apptRecord.doctor_id);
+      this.isPositive = true;
+      // console.log("2:" +this.isPositive);
+    }
     else if (this.apptRecord.doctor_id <= 0 || this.apptRecord.doctor_id == null) {
-        this.isPositive = false;
-        this.validForm = false;
-        // console.log("3:" +this.isPositive);
-      }
+      this.isPositive = false;
+      this.validForm = false;
+      // console.log("3:" +this.isPositive);
+    }
 
     if (this.apptRecord.visit_reason.length <= 200) {
       this.reason200 = true;
@@ -57,34 +57,34 @@ export class ApptRecordFormComponent implements OnInit {
       this.validForm = false;
     }
 
-    if (this.validForm == false){
-      if (this.apptRecord.visit_date && this.apptRecord.visit_reason && this.apptRecord.doctor_id){
+    if (this.validForm == false) {
+      if (this.apptRecord.visit_date && this.apptRecord.visit_reason && this.apptRecord.doctor_id) {
         // remember to validate patient id: && this.apptRecord.patientId != 0
         this.validForm = true;
       }
     }
-    if (this.validForm == true){
-      if (!this.apptRecord.visit_date || this.apptRecord.visit_reason == "" || this.isPositive == false){
+    if (this.validForm == true) {
+      if (!this.apptRecord.visit_date || this.apptRecord.visit_reason == "" || this.isPositive == false) {
         // remember to validate patient id: this.apptRecord.patientId == 0
         this.validForm = false;
       }
     }
   }
 
-  onSubmit(){
-      this.apptRecord.patient_id = this.patient_id;
-      this.submitted = true;
+  onSubmit() {
+    this.apptRecord.patient_id = this.patient_id;
+    this.submitted = true;
 
 
-      this.formService.createApptRecord(this.apptRecord);
+    this.formService.createApptRecord(this.apptRecord);
 
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['/patient/' + this.patient_id]);
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
   }
 }

@@ -16,7 +16,8 @@ div.container {
     /* margin-top:5%; */
     height:stretch;
 
-    background-image:url("https://static.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg");
+    /* background-image:url("https://static.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg"); */
+    background-image:url("/assets/bg.jpeg");
     background-position: fixed;
     background-size:cover;
     overflow: hidden;

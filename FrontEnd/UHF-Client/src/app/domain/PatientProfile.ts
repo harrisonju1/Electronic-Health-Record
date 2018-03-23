@@ -41,7 +41,7 @@ export class PatientProfile {
         zipcode: number,
         insurance_provider: string,
         insurance_id: number
-    ){
+    ) {
         this.patient_id = patient_id;
         // this.user_id = user_id;
         this.doctor_id = doctor_id;
