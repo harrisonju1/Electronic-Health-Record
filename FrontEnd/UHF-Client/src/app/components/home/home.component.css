@@ -59,6 +59,29 @@ div.container {
     background-size: cover;
 }
 
+#BADiv {
+    display:block;
+    /* background-color: #374346; */
+    background-image:url("/assets/bg.jpeg");
+    height:400px;
+    text-align:center;
+    color:#374346;
+    padding:10% 0% 20% 0%;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#BAdivbg {
+    background-color:#fff;
+    border-radius:25px;
+    padding:2%;
+    width:70%;
+    margin:0 auto;
+}
+
 nav {
     z-index: 5;
 }

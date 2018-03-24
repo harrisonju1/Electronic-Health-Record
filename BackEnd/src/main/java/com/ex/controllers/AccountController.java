@@ -48,32 +48,60 @@ public class AccountController {
     }
 
     // returns the data for a pdf
-    //todo delete
     @RequestMapping("/pdftest")
     String getPDF1() {
-        return "<a href=\"http://localhost:8090/api/pdf\">View pdf</a>";
+        return "<a href=\"http://localhost:8090/api/pdf/visitdetails\">View pdf</a>";
     }
-    // returns the data for a pdf
-    // todo return actual pdf we need
-    @RequestMapping(value = "/api/pdf", produces = "application/pdf")
-    Object getPDF() {
+    // returns the pdf for visit details
+    @RequestMapping(value = "/api/pdf/visitdetails", produces = "application/pdf")
+    Object getPDF(@RequestBody VisitDetails visitDetails) {
         try {
-            com.itextpdf.text.List list = new com.itextpdf.text.List(com.itextpdf.text.List.ORDERED);
-            list.add("item 1");
-            list.add("item 2");
-            list.add("item 3");
-            return new PdfMaker()
-                    .setTitle("UHF Title")
-                    .add(new Paragraph("Sample paragraph text"))
-                    .add(Image.getInstance("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Adobe_PDF.svg/96px-Adobe_PDF.svg.png"))
-                    .add(list)
-                    .finishDocument();
-        } catch (BadElementException e) {
+            // create a new pdf for this visit details
+            PdfMaker pdf = new PdfMaker();
+            pdf.setTitle("Visit Details");
+
+            pdf.add(new Paragraph("Visit ID: "+visitDetails.visit_id));
+            pdf.add(new Paragraph("Doctor ID: "+visitDetails.doctor_id));
+            pdf.add(new Paragraph("Patient ID: "+visitDetails.patient_id));
+
+            // add lists to pdf
+            pdf.add(new Paragraph("Diagnosis"));
+            com.itextpdf.text.List diagnosislist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.diagnosis.size();i++) {
+                diagnosislist.add(visitDetails.diagnosis.get(i));
+            }
+            pdf.add(diagnosislist);
+            pdf.add(new Paragraph("Symptoms"));
+            com.itextpdf.text.List symptomslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.symptoms.size();i++) {
+                symptomslist.add(visitDetails.symptoms.get(i));
+                pdf.add(new Paragraph("Diagnosis"));
+            }
+            pdf.add(symptomslist);
+            pdf.add(new Paragraph("Prescriptions"));
+            com.itextpdf.text.List prescriptionslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.prescriptions.size();i++) {
+                prescriptionslist.add(visitDetails.prescriptions.get(i));
+            }
+            pdf.add(prescriptionslist);
+            pdf.add(new Paragraph("Treatments"));
+            com.itextpdf.text.List treatmentslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.treatments.size();i++) {
+                treatmentslist.add(visitDetails.treatments.get(i));
+            }
+            pdf.add(treatmentslist);
+            pdf.add(new Paragraph("Tests"));
+            com.itextpdf.text.List testslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
+            for(int i=0;i<visitDetails.tests.size();i++) {
+                testslist.add(visitDetails.tests.get(i));
+            }
+            pdf.add(testslist);
+
+            return pdf.finishDocument();
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return "ERROR:FAILED TO CREATE PATIENT DETAILS PDF" + e.getStackTrace();
         }
-        return null;
     }
 
     // adds or updates the patient profile to the database
