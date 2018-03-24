@@ -43,11 +43,11 @@ public class Diagnosis {
         this.diagnosis = diagnosis;
     }
 
-    public int getDiagnosisId() {
+    public int getDiagnosis_id() {
         return diagnosis_id;
     }
 
-    public void setDiagnosisId(int diagnosisId) {
+    public void setDiagnosis_id(int diagnosis_id) {
         this.diagnosis_id = diagnosis_id;
     }
 
@@ -71,7 +71,7 @@ public class Diagnosis {
         return visit;
     }
 
-    public void setVisitId(Visit visit) {
+    public void setVisit(Visit visit) {
         this.visit = visit;
     }
 

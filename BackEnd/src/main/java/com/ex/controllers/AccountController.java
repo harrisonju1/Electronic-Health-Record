@@ -4,19 +4,8 @@ import com.ex.beans.*;
 import com.ex.dao.*;
 import com.ex.util.EncryptionUtil;
 import com.ex.util.PdfMaker;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.itextpdf.text.BadElementException;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.*;
 
 @RestController
@@ -148,7 +137,7 @@ public class AccountController {
             PatientProfile profile = new PatientProfile(doctor, first_name, last_name, ssn, dob, phone_number, email, marital_status, gender, ethnicity, occupation, address, city, state, zipcode, insurance_provider, insurance_id);
             PatientProfileDao updateProfile = new PatientProfileDao();
             int patient_id = patientInfo.getPatient_id();
-            profile.setPatientId(patient_id);
+            profile.setPatient_id(patient_id);
             updateProfile.update(profile);
         } catch (Exception e) {
             e.printStackTrace();
@@ -331,7 +320,7 @@ public class AccountController {
             }
             System.out.println("tests are not null \n");
 
-            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), diagnosisList, symptomList, prescriptionsList, treatmentsList, testsList);
+            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatient_id(), diagnosisList, symptomList, prescriptionsList, treatmentsList, testsList);
             return visitDetails;
 
         } catch (Exception e) {

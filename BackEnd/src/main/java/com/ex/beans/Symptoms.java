@@ -44,12 +44,12 @@ public class Symptoms {
         this.symptoms = symptoms;
     }
 
-    public int getSymptomId() {
+    public int getSymptom_id() {
         return symptom_id;
     }
 
-    public void setSymptomId(int symptomId) {
-        this.symptom_id = symptomId;
+    public void setSymptom_id(int symptom_id) {
+        this.symptom_id = symptom_id;
     }
 
     public PatientProfile getPatient() {
@@ -64,7 +64,7 @@ public class Symptoms {
         return doctor;
     }
 
-    public void setDoctorId(Doctor doctor) {
+    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
@@ -72,7 +72,7 @@ public class Symptoms {
         return visit;
     }
 
-    public void setVisitId(Visit visit) {
+    public void setVisit(Visit visit) {
         this.visit = visit;
     }
 

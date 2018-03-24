@@ -22,11 +22,11 @@ public class VisitInfo {
 //    }
 
     public VisitInfo(Visit v){
-        this.visit_id = v.getVisitId();
-        this.visit_date = v.getVisitDate();
-        this.patient_id = v.getPatient().getPatientId();
+        this.visit_id = v.getVisit_id();
+        this.visit_date = v.getVisit_date();
+        this.patient_id = v.getPatient().getPatient_id();
         this.doctor_id = v.getDoctor().getDoctor_id();
-        this.visit_reason = v.getVisitReason();
+        this.visit_reason = v.getVisit_reason();
     }
 
     public int getVisit_id() {

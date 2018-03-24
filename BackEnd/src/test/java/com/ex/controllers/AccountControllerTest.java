@@ -54,7 +54,7 @@ public class AccountControllerTest {
 //        req.setInsuranceId(59);
 //        Object result = accountController.submitPatientProfile(req);
 //        Assert.assertTrue(result instanceof Integer);
-//        req.setPatientId((Integer) result);
+//        req.setPatient_id((Integer) result);
 //        PatientProfile indb = new PatientProfileDao().findOneByPatientId(req.getPatientId());
 //        Assert.assertEquals(req, indb);
 //        // todo also test update

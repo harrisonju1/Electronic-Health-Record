@@ -16,7 +16,7 @@ public class TreatmentsDao {
         Transaction transaction = session.beginTransaction();
 
         Integer id = (Integer) session.save(treatment);
-        treatment.setTreatmentId(id);
+        treatment.setTreatment_id(id);
         transaction.commit();
 
         session.close();

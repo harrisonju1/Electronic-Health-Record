@@ -41,20 +41,20 @@ public class Visit {
         this.visit_reason = visitReason;
     }
 
-    public int getVisitId() {
+    public int getVisit_id() {
         return visit_id;
     }
 
-    public void setVisitId(int visitId) {
+    public void setVisit_id(int visitId) {
         this.visit_id = visitId;
     }
 
-    public Date getVisitDate() {
+    public Date getVisit_date() {
         return visit_date;
     }
 
-    public void setVisitDate(Date visitDate) {
-        this.visit_date = visitDate;
+    public void setVisit_date(Date visit_date) {
+        this.visit_date = visit_date;
     }
 
     public PatientProfile getPatient() {
@@ -69,16 +69,16 @@ public class Visit {
         return doctor;
     }
 
-    public void setDoctorId(Doctor doctor) {
+    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
-    public String getVisitReason() {
+    public String getVisit_reason() {
         return visit_reason;
     }
 
-    public void setVisitReason(String visitReason) {
-        this.visit_reason = visitReason;
+    public void setVisit_reason(String visit_reason) {
+        this.visit_reason = visit_reason;
     }
 
     @Override

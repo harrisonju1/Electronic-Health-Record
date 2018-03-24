@@ -44,11 +44,11 @@ public class Treatments {
         this.visit = visit;
     }
 
-    public int getTreatmentId() {
+    public int getTreatment_id() {
         return treatment_id;
     }
 
-    public void setTreatmentId(int treatmentId) {
+    public void setTreatment_id(int treatmentId) {
         this.treatment_id = treatmentId;
     }
 
@@ -56,7 +56,7 @@ public class Treatments {
         return doctor;
     }
 
-    public void setDoctorId(Doctor doctor) {
+    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
@@ -80,7 +80,7 @@ public class Treatments {
         return visit;
     }
 
-    public void setVisitId(Visit visit) {
+    public void setVisit(Visit visit) {
         this.visit = visit;
     }
 

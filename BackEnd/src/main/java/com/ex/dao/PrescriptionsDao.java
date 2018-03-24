@@ -16,7 +16,7 @@ public class PrescriptionsDao {
         Transaction transaction = session.beginTransaction();
 
         Integer id = (Integer) session.save(prescription);
-        prescription.setPrescriptionId(id);
+        prescription.setPrescription_id(id);
         transaction.commit();
 
         session.close();
