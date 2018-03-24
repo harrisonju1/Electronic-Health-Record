@@ -16,7 +16,8 @@ input {
 }
 
 #search {
-    background-color:#ecf7fa;
+    /* background-color:#ecf7fa; */
+    background:linear-gradient( #e5f8fd,rgb(202, 241, 248) );
     border-radius: 25px;
     color:#374346;
 

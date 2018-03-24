@@ -108,7 +108,7 @@ nav {
 }
 
 .box:not(:last-child) {
-    border-right:#fff solid 2px;
+    border-right:rgba(250,250,250,0.7) solid 2px;
 }
 
 .box:hover {

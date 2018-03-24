@@ -1,8 +1,22 @@
+#apptRecordBG {    
+    background-image:url("/assets/bg2.jpg");
+    /* background-image:url('https://www.manatt.com/Manatt/media/Media/Images/Square/IV_Drip_with_Hospital_Corridor_Background.jpg?ext=.jpg'); */
+    background-position: fixed;
+    background-size:cover;
+    height:stretch;
+    overflow: hidden;
+    /* height:650px; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 #apptRecordDiv{
     width: 50%;
     margin: 5% auto;
-    background:linear-gradient(#c1e2eb , #e5f8fd);
+    /* background:linear-gradient(#e7faff , #e5f8fd); */
     /* background-color: #ecf7fa; */
+    background-color:rgba(250, 250, 250, 0.8);
     padding: 3%;
     border-radius: 25px;
     color:#014353;
