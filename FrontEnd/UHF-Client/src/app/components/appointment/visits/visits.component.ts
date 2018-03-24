@@ -56,11 +56,9 @@ export class VisitsComponent implements OnInit {
     
     // get patientID
     this.pID = +this.route.snapshot.paramMap.get('patient_id');
-    this.currentVisit.patient_id = this.pID;
 
     // get visit details
     const visID = +this.route.snapshot.paramMap.get('visit_id');
-    this.currentVisit.visit_id = visID;
     
     this.formService.getAllApptRecords(this.pID).subscribe(a => {
       a.forEach(r => {
