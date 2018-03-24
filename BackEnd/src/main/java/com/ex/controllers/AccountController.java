@@ -358,12 +358,25 @@ public class AccountController {
             DiagnosisDao diagnosisDao = new DiagnosisDao();
             List<String> diagnosisList = visitDetails.getDiagnosis();
             //if diagnosis is null or empty string, skip.
-            if(diagnosisList.size() > 1) {
+
+            if(diagnosisList.size() == 0){
+                String diagnosis = "No Diagnosis";
+                Diagnosis diagnosisBean = diagnosisDao.findByVisit(visit).get(0);
+                diagnosisBean.setDiagnosis(diagnosis);
+                diagnosisDao.update(diagnosisBean);
+            }
+            else if(diagnosisList.size() > 0) {
                 String diagnosis = "";
-                for (int i = 1; i < diagnosisList.size(); i++) {
-                    diagnosis = diagnosis + "," + diagnosisList.get(i);
+                if (diagnosisList.size() == 1){
+                    diagnosis = diagnosisList.get(0);
                 }
-                Diagnosis diagnosisBean = new Diagnosis(profile, doctor, visit, diagnosis);
+                else {
+                    for (int i = 0; i < diagnosisList.size(); i++) {
+                        diagnosis = diagnosisList.get(i) + "," + diagnosis;
+                    }
+                }
+                Diagnosis diagnosisBean = diagnosisDao.findByVisit(visit).get(0);
+                diagnosisBean.setDiagnosis(diagnosis);
                 diagnosisDao.update(diagnosisBean);
             }
 
@@ -371,48 +384,97 @@ public class AccountController {
             SymptomsDao symptomsDao = new SymptomsDao();
             List<String> symptomsList = visitDetails.getSymptoms();
             //if symptoms list is greater than one, add to string to add to database
-            if(symptomsList.size() > 1){
+            if (symptomsList.size() == 0){
+                String symptoms = "No Symptoms";
+
+            }
+            else if(symptomsList.size() > 0){
                 String symptoms = "";
-                for (int i = 1; i < symptomsList.size(); i++){
-                    symptoms = symptoms + "," + symptomsList.get(i);
+                if (symptomsList.size() == 1){
+                    symptoms = symptomsList.get(0);
+                    Symptoms symptomBean = symptomsDao.findByVisit(visit).get(0);
+                    symptomBean.setSymptoms(symptoms);
+                    symptomsDao.update(symptomBean);
                 }
-                Symptoms symptomBean = new Symptoms(profile, doctor, visit, symptoms);
+                else {
+                    for (int i = 0; i < symptomsList.size(); i++) {
+                        symptoms = symptomsList.get(i) + "," + symptoms ;
+                    }
+                }
+                Symptoms symptomBean = symptomsDao.findByVisit(visit).get(0);
+                symptomBean.setSymptoms(symptoms);
                 symptomsDao.update(symptomBean);
             }
 
             //update prescription
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
             List<String> prescriptionsList = visitDetails.getPrescriptions();
-            if(prescriptionsList.size() > 1){
+            if (prescriptionsList.size() == 0){
+                String prescriptions = "No Prescriptions";
+                Prescriptions prescriptionBean = prescriptionsDao.findByVisit(visit).get(0);
+                prescriptionBean.setDrugs(prescriptions);
+                prescriptionsDao.update(prescriptionBean);
+            }
+            else if(prescriptionsList.size() > 0){
                 String prescriptions ="";
-                for (int i = 1; i < prescriptionsList.size(); i++){
-                    prescriptions = prescriptions + "," + prescriptionsList.get(i);
+                if (prescriptionsList.size() == 1){
+                    prescriptions = prescriptionsList.get(0);
                 }
-                Prescriptions prescriptionBean = new Prescriptions(profile, doctor, visit, prescriptions);
+                else {
+                    for (int i = 0; i < prescriptionsList.size(); i++) {
+                        prescriptions = prescriptionsList.get(i) + "," + prescriptions;
+                    }
+                }
+                Prescriptions prescriptionBean = prescriptionsDao.findByVisit(visit).get(0);
+                prescriptionBean.setDrugs(prescriptions);
                 prescriptionsDao.update(prescriptionBean);
             }
 
             //update tests
             TestsDao testsDao = new TestsDao();
             List<String> testsList = visitDetails.getTests();
-            if(testsList.size() > 1){
+            if (testsList.size() == 0){
+                String tests = "No Test Ran";
+                Tests testsBean = testsDao.findByVisit(visit).get(0);
+                testsBean.setTest(tests);
+                testsDao.update(testsBean);
+            }
+            else if(testsList.size() > 0){
                 String tests = "";
-                for (int i = 1; i < testsList.size(); i++){
-                    tests = tests + "," + testsList.get(i);
+                if (testsList.size() == 1){
+                    tests = testsList.get(0);
                 }
-                Tests testsBean = new Tests(profile, doctor, visit, tests);
+                else {
+                    for (int i = 0; i < testsList.size(); i++) {
+                        tests = testsList.get(i) + "," + tests;
+                    }
+                }
+                Tests testsBean = testsDao.findByVisit(visit).get(0);
+                testsBean.setTest(tests);
                 testsDao.update(testsBean);
             }
 
             //update treatments
             TreatmentsDao treatmentsDao = new TreatmentsDao();
             List<String> treatmentsList = visitDetails.getTreatments();
-            if(treatmentsList.size() > 1){
+            if (treatmentsList.size() == 0){
+                String treatments = "No Treatments";
+                Treatments treatmentsBean = treatmentsDao.findByVisit(visit).get(0);
+                treatmentsBean.setTreatment(treatments);
+                treatmentsDao.update(treatmentsBean);
+            }
+            else if(treatmentsList.size() > 0){
                 String treatments = "";
-                for (int i = 1; i < treatmentsList.size(); i++){
-                    treatments = treatments + "," + treatmentsList.get(i);
+                if (treatmentsList.size() == 1){
+                    treatments = treatmentsList.get(0);
                 }
-                Treatments treatmentsBean = new Treatments(doctor, profile, treatments, visit);
+                else {
+                    for (int i = 0; i < treatmentsList.size(); i++) {
+                        treatments = treatmentsList.get(i) + "," + treatments ;
+                    }
+                }
+                Treatments treatmentsBean = treatmentsDao.findByVisit(visit).get(0);
+                treatmentsBean.setTreatment(treatments);
                 treatmentsDao.update(treatmentsBean);
             }
         } catch (Exception e) {
