@@ -104,7 +104,7 @@ nav {
     /* background-color: #014353; */
     background:linear-gradient(#014353 , #0e7a96);
     color:#fff;
-    border-radius:20px;
+    border-radius:25px;
 }
 
 .box:not(:last-child) {

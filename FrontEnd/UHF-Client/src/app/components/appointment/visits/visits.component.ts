@@ -15,7 +15,7 @@ export class VisitsComponent implements OnInit {
 
   pID: number;
   visit_id: number = 1;
-  currentVisit: VisitDetails;
+  currentVisit: VisitDetails = new VisitDetails(0,0,0,["No diagnosis available yet."],["No prescriptions available yet."],["List of symptoms not available yet."],["No tests have been ordered yet."],["No treatments have been ordered yet."]);
   currentAppt: ApptRecord;
   currentDoctor: Doctor;
   isDoctor: boolean; // check if current user role is doctor
@@ -43,6 +43,7 @@ export class VisitsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     // get the current user
     this.userRole = this.authService.getUserRole();
     console.log(this.userRole);
@@ -53,9 +54,11 @@ export class VisitsComponent implements OnInit {
 
     // get patientID
     this.pID = +this.route.snapshot.paramMap.get('patient_id');
+    this.currentVisit.patient_id = this.pID;
 
     // get visit details
     const visID = +this.route.snapshot.paramMap.get('visit_id');
+    this.currentVisit.visit_id = visID;
     
     this.formService.getAllApptRecords(this.pID).subscribe(a => {
       a.forEach(r => {
@@ -70,6 +73,7 @@ export class VisitsComponent implements OnInit {
         //   // get doctor information
         this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
           this.currentDoctor = d;
+          this.currentVisit.doctor_id = this.currentDoctor.doctor_id;
           this.canCheck = true;
         });
       });
@@ -92,9 +96,6 @@ export class VisitsComponent implements OnInit {
     //   this.currentDoctor = d;
     //   this.canCheck = true;
     // });
-  }
-
-  ngDoCheck() {
   }
 
   // ------------------------ UPDATING/REMOVING DIAGNOSES ----------------------
