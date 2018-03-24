@@ -15,7 +15,7 @@ export class VisitsComponent implements OnInit {
 
   pID: number;
   visit_id: number = 1;
-  currentVisit: VisitDetails = new VisitDetails(0,0,0,["No diagnosis available yet."],["No prescriptions available yet."],["List of symptoms not available yet."],["No tests have been ordered yet."],["No treatments have been ordered yet."]);
+  currentVisit: VisitDetails;  
   currentAppt: ApptRecord;
   currentDoctor: Doctor;
   isDoctor: boolean; // check if current user role is doctor
