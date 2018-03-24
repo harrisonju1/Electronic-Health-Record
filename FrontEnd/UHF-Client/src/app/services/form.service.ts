@@ -47,6 +47,7 @@ export class FormService {
     // console.log(data);
     // let obs = this.http.post<User>(this.authorizeUrl, data, httpOptions);
     // return obs;
+    this.router.navigate(['/home']);
   }
 
   getDoctor(doctor_id: number): Observable<Doctor> {
@@ -73,7 +74,7 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form: ApptRecord) {
-    console.log("from createappt record:" + form);
+    console.log("from createappt record:" + form.visit_date);
     this.http.post(this.visitUrl, form, httpOptions).subscribe();
     this.router.navigate(['/patient/' + form.patient_id]);
   }

@@ -6,6 +6,10 @@
     padding:3%;
 }
 
+#visitsDiv input {
+    border:none;
+}
+
 form, #formDiv {
     padding:4%;
 }

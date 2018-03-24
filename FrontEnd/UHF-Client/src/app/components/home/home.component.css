@@ -75,7 +75,7 @@ div.container {
 }
 
 #BAdivbg {
-    background-color:#fff;
+    background-color:rgba(250,250,250,0.7);
     border-radius:25px;
     padding:2%;
     width:70%;
