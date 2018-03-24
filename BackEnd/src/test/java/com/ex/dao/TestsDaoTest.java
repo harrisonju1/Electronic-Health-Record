@@ -11,7 +11,7 @@ import java.util.List;
 public class TestsDaoTest {
 
     @Test
-    public void test() {
+    public void maintest() {
         TestsDao testsDao = new TestsDao();
 
         Tests tests = new Tests();
@@ -46,6 +46,7 @@ public class TestsDaoTest {
         List<Tests> all = testsDao.findAll();
         Assert.assertNotNull(all);
         Assert.assertFalse(all.contains(tests));
+
     }
 
 }

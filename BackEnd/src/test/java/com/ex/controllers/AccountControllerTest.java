@@ -6,6 +6,7 @@ import com.ex.beans.User;
 import com.ex.dao.DoctorsDao;
 import com.ex.dao.PatientProfileDao;
 import com.ex.dao.UserDao;
+import com.ex.util.EncryptionUtil;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,8 +22,9 @@ public class AccountControllerTest {
     @Test
     public void authorize() {
         AccountController accountController = new AccountController();
-        String uname = "root";
-        String cred = uname+":"+"root";
+        String uname = "tinkerbell";
+        String cred = uname+":"+"tbell123";
+        new EncryptionUtil().encrypt(cred);
         Object user = accountController.authorize(cred);
         Assert.assertNotNull(user);
         Assert.assertEquals("root", ((User)user).getUsername());
