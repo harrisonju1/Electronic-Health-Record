@@ -14,7 +14,6 @@ public class PatientProfileDao {
     public PatientInfo create(PatientProfile profile){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        System.out.println("creating profile: " + profile);
         Integer id = (Integer) session.save(profile);
         PatientInfo info = new PatientInfo();
         info.setPatient_id(id);

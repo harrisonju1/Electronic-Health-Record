@@ -54,7 +54,6 @@ public class DiagnosisDao {
         Session session = HibernateUtils.getSessionFactory().openSession();
         List<Diagnosis> diagnosis = (List<Diagnosis>) session.createCriteria(Diagnosis.class).
                 add(Restrictions.eq("visit", visit)).list();
-        System.out.println(diagnosis);
         return diagnosis;
     }
 

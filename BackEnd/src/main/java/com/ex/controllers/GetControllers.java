@@ -150,7 +150,6 @@ public class GetControllers {
                 toSplit = s.get(0).getSymptoms();
                 symptomList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
-            System.out.println("symptoms is not null \n");
 
             //get list of prescriptions
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
@@ -161,7 +160,6 @@ public class GetControllers {
                 toSplit = allPrescriptions.get(0).getDrugs();
                 prescriptionsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
-            System.out.println("prescriptions is not null \n");
 
             //get list of treatments
             TreatmentsDao treatmentsDao = new TreatmentsDao();
@@ -171,7 +169,6 @@ public class GetControllers {
                 toSplit = allTreatments.get(0).getTreatment();
                 treatmentsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
-            System.out.println("treatments is not null \n");
 
             //get list of tests
             TestsDao testsDao = new TestsDao();
@@ -182,7 +179,6 @@ public class GetControllers {
                 toSplit = allTests.get(0).getTest();
                 testsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
-            System.out.println("tests are not null \n");
 
             VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatient_id(), diagnosisList, symptomList, prescriptionsList, treatmentsList, testsList);
             return visitDetails;
