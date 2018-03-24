@@ -13,7 +13,11 @@ public class TestsDaoTest {
     @Test
     public void test() {
         TestsDao testsDao = new TestsDao();
+
         Tests tests = new Tests();
+
+        // todo set needed values
+
 
         // create test
         tests = testsDao.create(tests);
@@ -22,18 +26,26 @@ public class TestsDaoTest {
         // find by id test
         List<Tests> found = testsDao.findByTestId(tests.getTestId());
         Assert.assertNotNull(found);
-        Assert.assertEquals(tests, found);
+        Assert.assertEquals(tests, found.get(0));
+
+        // todo any other methods tested here
+
 
         // update test
-//        tests.
+        // todo actually change a value
+
         Tests updated = testsDao.update(tests);
+        List<Tests> updatedFound = testsDao.findByTestId(tests.getTestId());
+        Assert.assertNotNull(updatedFound);
+        Assert.assertEquals(tests, updatedFound.get(0));
 
         // delete test
         testsDao.delete(tests);
 
         // find all test
         List<Tests> all = testsDao.findAll();
-
+        Assert.assertNotNull(all);
+        Assert.assertFalse(all.contains(tests));
     }
 
 }
