@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../../services/authorization.service';
+import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { VisitDetails } from '../../../domain/VisitDetails';
 import { ApptRecord } from '../../../domain/ApptRecord';
 import { ActivatedRoute } from '@angular/router';
@@ -39,7 +40,8 @@ export class VisitsComponent implements OnInit {
   constructor(
     private authService: AuthorizationService,
     private formService: FormService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient,
   ) { }
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class VisitsComponent implements OnInit {
     if (this.userRole == "DOCTOR") {
       this.isDoctor = true;
     }
-
+    
     // get patientID
     this.pID = +this.route.snapshot.paramMap.get('patient_id');
     this.currentVisit.patient_id = this.pID;
@@ -96,6 +98,24 @@ export class VisitsComponent implements OnInit {
     //   this.currentDoctor = d;
     //   this.canCheck = true;
     // });
+  }
+
+  // ------------------------ Download PDF ------------------------------------
+  downloadAsPDF() {
+    // send visit details to server to make a pdf for us
+    const fileUrl = this.formService.baseUrl + 'pdf/visitdetails';
+    var data = this.currentVisit;
+    console.log('Getting pdf for: '+JSON.stringify(data, null, 4)+'.');
+    let headers = new HttpHeaders({ 
+      'Content-Type': 'application/json', 
+      'Accept': 'application/pdf' 
+    });
+    this.http.post(fileUrl, data, {headers: headers, responseType:'blob'}).subscribe((pdfFile)=>{
+      // console.log('Got response: '+pdfFile.type+' '+pdfFile.size+' '+pdfFile+'.');
+      // open pdf in a new window
+      var url = window.URL.createObjectURL(pdfFile);
+      window.open(url);
+    });
   }
 
   // ------------------------ UPDATING/REMOVING DIAGNOSES ----------------------

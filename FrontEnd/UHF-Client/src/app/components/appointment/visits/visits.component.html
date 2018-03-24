@@ -24,6 +24,7 @@
     <!-- ngIf current user role is doctor -->
     <button class="btn btn-outline-info btn-sm" *ngIf="isDoctor && !updating" (click)="activateUpdate()">Edit Details</button>
     <button type="submit" class="btn btn-outline-success btn-sm" *ngIf="updating" (click)="finishUpdate()">Finish</button>
+    <button class="btn btn-outline-info btn-sm" *ngIf="isDoctor && !updating" (click)="downloadAsPDF()">Download</button>
     <hr />
     <br />
     <!-- APPOINT RECORD INFO -->
