@@ -229,6 +229,32 @@ public class AccountController {
             Visit visit = new Visit(visitInfo.getVisit_date(), pp, d, visitInfo.getVisit_reason());
             VisitDao visitDao = new VisitDao();
             visitDao.create(visit);
+
+            //diagnosis initialize
+            DiagnosisDao diagnosisDao = new DiagnosisDao();
+            Diagnosis diagnosis = new Diagnosis (pp, d, visit, "No Diagnosis");
+            diagnosisDao.create(diagnosis);
+
+            //Symptoms initialize
+            SymptomsDao symptomsDao = new SymptomsDao();
+            Symptoms symptoms = new Symptoms(pp,d,visit,"No Symptoms");
+            symptomsDao.create(symptoms);
+
+            //Treatments initialize
+            TreatmentsDao treatmentsDao = new TreatmentsDao();
+            Treatments treatments = new Treatments(d, pp, "No Treatments", visit);
+            treatmentsDao.create(treatments);
+
+            //tests initialize
+            TestsDao testsDao = new TestsDao();
+            Tests tests = new Tests(pp, d , visit, "No Tests");
+            testsDao.create(tests);
+
+            //Prescriptions initialize
+            PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
+            Prescriptions prescriptions = new Prescriptions(pp, d, visit, "No Prescriptions");
+            prescriptionsDao.create(prescriptions);
+
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: FAILED TO RETRIEVE VISIT " + e.getStackTrace();
@@ -248,6 +274,7 @@ public class AccountController {
                 VisitInfo vi = new VisitInfo(allVisits.get(i));
                 patientVisits.add(vi);
             }
+
             return patientVisits;
         } catch (Exception e) {
             e.printStackTrace();
@@ -260,15 +287,12 @@ public class AccountController {
         try {
             VisitDao visitDao = new VisitDao();
             Visit visit = visitDao.findByVisitId(visit_id);
-            System.out.println("visit id is not null \n");
 
             //get patient for other fields and patient_id
             PatientProfile pp = visit.getPatient();
-            System.out.println("patient profile is not null \n");
 
             //get Doctor for doctor id
             Doctor doctor = pp.getDoctor();
-            System.out.println("doctor is not null \n");
 
             //get list of diagnosis by patient
             DiagnosisDao diagnosisDao = new DiagnosisDao();
