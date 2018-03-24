@@ -315,15 +315,18 @@ public class AccountController {
             }
             else {
                 for (int i = 0; i < diagnosisList.size(); i++) {
+                    if (diagnosisList.get(i) == null || diagnosisList.get(i) == "")
+                    {
+                        break;
+                    }
                     diagnosis = diagnosis + "," + diagnosisList.get(i);
                 }
             }
 
             DiagnosisDao dd = new DiagnosisDao();
             List<Diagnosis> d = dd.findByVisit(visit);
-            System.out.println("priting list of diagnosis: "+d);
             Diagnosis diag = new Diagnosis();
-            System.out.println("printing diag before update: "+diag);
+
             if (diag.getDiagnosis() == null){
                 diag.setDiagnosis(diagnosis);
                 diag.setPatient(profile);
@@ -336,10 +339,6 @@ public class AccountController {
                 diag.setDiagnosis(diagnosis);
                 dd.update(diag);
             }
-            System.out.println("printing diagnosis after update: " + diag);
-
-//            System.out.println("diagnosis object: " + diag);
-
 
             //update symptoms
             List<String> symptomsList = visitDetails.getSymptoms();
@@ -349,6 +348,9 @@ public class AccountController {
             }
             else{
                 for (int i = 0; i < symptomsList.size(); i++) {
+                    if(symptomsList.get(i) == null || symptomsList.get(i) == ""){
+                        break;
+                    }
                     symptoms = symptoms + "," + symptomsList.get(i);
                 }
             }
@@ -375,6 +377,9 @@ public class AccountController {
             }
             else{
                 for (int i = 0; i < prescriptionsList.size(); i++) {
+                    if(prescriptionsList.get(i) == null || prescriptionsList.get(i) == ""){
+                        break;
+                    }
                     prescriptions = prescriptions + "," + prescriptionsList.get(i);
                 }
             }
@@ -398,6 +403,9 @@ public class AccountController {
             }
             else{
                 for (int i = 0; i < treatmentsList.size(); i++) {
+                    if(treatmentsList.get(i) == null || treatmentsList.get(i) == ""){
+                        break;
+                    }
                     treatments = treatments + "," + treatmentsList.get(i);
                 }
             }
@@ -420,6 +428,9 @@ public class AccountController {
             }
             else {
                 for (int i = 0; i < testsList.size(); i++) {
+                    if(testsList.get(i) == null || testsList.get(i) == ""){
+                        break;
+                    }
                     tests = tests + "," + testsList.get(i);
                     }
             }
