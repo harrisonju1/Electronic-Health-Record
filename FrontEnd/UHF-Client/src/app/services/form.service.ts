@@ -94,6 +94,6 @@ export class FormService {
     console.log("updatevisit details was reached")
     this.http.post(this.visitUrl + "/update", visitDetails, httpOptions).subscribe();
     // // this.router.navigate(['/patient/' + visitDetails.patient_id + '/visit/' + visitDetails.visit_id]);
-    // window.location.reload();
+    window.location.reload();
   }
 }
