@@ -82,6 +82,7 @@ export class VisitsComponent implements OnInit {
 
   // ------------------------ Download PDF ------------------------------------
   downloadAsPDF() {
+    // send visit details to server to make a pdf for us
     const fileUrl = this.formService.baseUrl + 'pdf/visitdetails';
     var data = this.currentVisit;
     console.log('Getting pdf for: '+JSON.stringify(data, null, 4)+'.');
@@ -90,8 +91,8 @@ export class VisitsComponent implements OnInit {
       'Accept': 'application/pdf' 
     });
     this.http.post(fileUrl, data, {headers: headers, responseType:'blob'}).subscribe((pdfFile)=>{
-      console.log('Got response: '+pdfFile.type+' '+pdfFile.size+' '+pdfFile+'.');
-      // var blob = new Blob(pdfFile, { type: 'application/pdf' });
+      // console.log('Got response: '+pdfFile.type+' '+pdfFile.size+' '+pdfFile+'.');
+      // open pdf in a new window
       var url = window.URL.createObjectURL(pdfFile);
       window.open(url);
     });
