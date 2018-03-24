@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class FormService {
 
-  private baseUrl = 'http://localhost:8080/api/';
+  baseUrl = 'http://localhost:8080/api/';
   private authorizeUrl = this.baseUrl + 'authorize';
 
   private patientUrl = this.baseUrl + 'form/patient';

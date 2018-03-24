@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../../services/authorization.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { VisitDetails } from '../../../domain/VisitDetails';
 import { ApptRecord } from '../../../domain/ApptRecord';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from '../../../services/form.service';
 import { Doctor } from '../../../domain/Doctor';
-import { FileSaver } from 'file-saver';
 
 @Component({
   selector: 'app-visits',
@@ -40,7 +40,8 @@ export class VisitsComponent implements OnInit {
   constructor(
     private authService: AuthorizationService,
     private formService: FormService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient,
   ) { }
 
   ngOnInit() {
@@ -82,7 +83,17 @@ export class VisitsComponent implements OnInit {
   // ------------------------ Download PDF ------------------------------------
   downloadAdPDF() {
     // todo
-    FileSaver.saveas(new Blob(), 'visitdetails.pdf');
+    // FileSaver.saveas(new Blob(), 'visitdetails.pdf');
+    const fileUrl = this.formService.baseUrl + 'pdf/visitdetails';
+    var data = {};
+    console.log('Saving '+data+'.');
+    let headers = {headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/pdf' })};
+    this.http.post(fileUrl, data, headers).subscribe((pdfFile)=>{
+      console.log('got response '+pdfFile+'.');
+      const blob = new Blob(pdfFile, { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
   }
 
   // ------------------------ UPDATING/REMOVING DIAGNOSES ----------------------
