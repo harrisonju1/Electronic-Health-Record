@@ -60,43 +60,27 @@ public class AccountController {
             PdfMaker pdf = new PdfMaker();
             pdf.setTitle("Visit Details");
 
-            pdf.add(new Paragraph("Visit ID: "+visitDetails.visit_id));
-            pdf.add(new Paragraph("Doctor ID: "+visitDetails.doctor_id));
-            pdf.add(new Paragraph("Patient ID: "+visitDetails.patient_id));
+            pdf.addText("Visit ID: "+visitDetails.visit_id);
+            
+            pdf.addText("Doctor ID: "+visitDetails.doctor_id);
+            pdf.addText("Patient ID: "+visitDetails.patient_id);
 
             // add lists to pdf
-            pdf.add(new Paragraph("Diagnosis"));
-            com.itextpdf.text.List diagnosislist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
-            for(int i=0;i<visitDetails.diagnosis.size();i++) {
-                diagnosislist.add(visitDetails.diagnosis.get(i));
-            }
-            pdf.add(diagnosislist);
-            pdf.add(new Paragraph("Symptoms"));
-            com.itextpdf.text.List symptomslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
-            for(int i=0;i<visitDetails.symptoms.size();i++) {
-                symptomslist.add(visitDetails.symptoms.get(i));
-                pdf.add(new Paragraph("Diagnosis"));
-            }
-            pdf.add(symptomslist);
-            pdf.add(new Paragraph("Prescriptions"));
-            com.itextpdf.text.List prescriptionslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
-            for(int i=0;i<visitDetails.prescriptions.size();i++) {
-                prescriptionslist.add(visitDetails.prescriptions.get(i));
-            }
-            pdf.add(prescriptionslist);
-            pdf.add(new Paragraph("Treatments"));
-            com.itextpdf.text.List treatmentslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
-            for(int i=0;i<visitDetails.treatments.size();i++) {
-                treatmentslist.add(visitDetails.treatments.get(i));
-            }
-            pdf.add(treatmentslist);
-            pdf.add(new Paragraph("Tests"));
-            com.itextpdf.text.List testslist = new com.itextpdf.text.List(com.itextpdf.text.List.UNORDERED);
-            for(int i=0;i<visitDetails.tests.size();i++) {
-                testslist.add(visitDetails.tests.get(i));
-            }
-            pdf.add(testslist);
-
+            pdf.addText("Diagnosis:");
+            pdf.addList(visitDetails.diagnosis, false);
+            
+            pdf.addText("Symptoms:");
+            pdf.addList(visitDetails.symptoms, false);
+            
+            pdf.addText("Prescriptions:");
+            pdf.addList(visitDetails.prescriptions, false);
+            
+            pdf.addText("Treatments:");
+            pdf.addList(visitDetails.treatments, false);
+            
+            pdf.addText("Tests:");
+            pdf.addList(visitDetails.tests, false);
+            
             return pdf.finishDocument();
         } catch (Exception e) {
             e.printStackTrace();

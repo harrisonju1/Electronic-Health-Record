@@ -11,6 +11,7 @@ import org.junit.Test;
 import javax.print.Doc;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -19,9 +20,11 @@ public class PdfMakerTest {
     @Test
     public void pdfDocumentTest() {
         PdfMaker maker = new PdfMaker();
-        maker.setTitle("PdfTitleTest");
-        maker.setSubject("PDF Subject Test");
-        maker.add(new Paragraph("Test Text here"));
+        maker.setTitle("PdfTitleTest")
+            .setSubject("PDF Subject Test")
+            .add(new Paragraph("Test Text here"))
+            .addText("Some text")
+            .addList(new ArrayList<String>(3){}, false);
         Object pdfdata = maker.finishDocument();
 //        System.out.println(pdfdata);
         Assert.assertNotNull(pdfdata);
