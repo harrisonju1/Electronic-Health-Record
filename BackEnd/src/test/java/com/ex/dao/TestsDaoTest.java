@@ -10,50 +10,30 @@ import java.util.List;
 
 public class TestsDaoTest {
 
-    TestsDao testsDao = new TestsDao();
-    Tests exTests = null;
-
-    @Before
-    public void before() {
-        exTests = new Tests();
-        testsDao.create(exTests);
-    }
-
-    @After
-    public void after() {
-        testsDao.delete(exTests);
-    }
-
     @Test
-    public void create() {
+    public void test() {
+        TestsDao testsDao = new TestsDao();
         Tests tests = new Tests();
+
+        // create test
         tests = testsDao.create(tests);
-        List<Tests> byTestId = testsDao.findByTestId(tests.getTestId());
-        Assert.assertNotNull(byTestId);
-        Assert.assertEquals(tests, byTestId);
+        Assert.assertNotNull(tests);
+
+        // find by id test
+        List<Tests> found = testsDao.findByTestId(tests.getTestId());
+        Assert.assertNotNull(found);
+        Assert.assertEquals(tests, found);
+
+        // update test
+//        tests.
+        Tests updated = testsDao.update(tests);
+
+        // delete test
+        testsDao.delete(tests);
+
+        // find all test
+        List<Tests> all = testsDao.findAll();
+
     }
 
-    @Test
-    public void update() {
-    }
-
-    @Test
-    public void findByTestId() {
-    }
-
-    @Test
-    public void findByPatient() {
-    }
-
-    @Test
-    public void findByVisit() {
-    }
-
-    @Test
-    public void findAll() {
-    }
-
-    @Test
-    public void delete() {
-    }
 }
