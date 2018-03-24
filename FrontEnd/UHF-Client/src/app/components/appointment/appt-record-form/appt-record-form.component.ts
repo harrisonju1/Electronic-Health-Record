@@ -72,6 +72,11 @@ export class ApptRecordFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.apptRecord.visit_date = new Date(this.apptRecord.visit_date);
+    this.apptRecord.visit_date.setHours(24);
+
+    console.log(this.apptRecord.visit_date);
+
     this.apptRecord.patient_id = this.patient_id;
     this.submitted = true;
 
