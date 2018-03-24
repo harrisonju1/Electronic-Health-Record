@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../../services/authorization.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { VisitDetails } from '../../../domain/VisitDetails';
 import { ApptRecord } from '../../../domain/ApptRecord';
 import { ActivatedRoute } from '@angular/router';
@@ -81,17 +81,18 @@ export class VisitsComponent implements OnInit {
   }
 
   // ------------------------ Download PDF ------------------------------------
-  downloadAdPDF() {
-    // todo
-    // FileSaver.saveas(new Blob(), 'visitdetails.pdf');
+  downloadAsPDF() {
     const fileUrl = this.formService.baseUrl + 'pdf/visitdetails';
-    var data = {};
-    console.log('Saving '+data+'.');
-    let headers = {headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/pdf' })};
-    this.http.post(fileUrl, data, headers).subscribe((pdfFile)=>{
-      console.log('got response '+pdfFile+'.');
-      const blob = new Blob(pdfFile, { type: 'application/pdf' });
-      const url = window.URL.createObjectURL(blob);
+    var data = this.currentVisit;
+    console.log('Getting pdf for: '+JSON.stringify(data, null, 4)+'.');
+    let headers = new HttpHeaders({ 
+      'Content-Type': 'application/json', 
+      'Accept': 'application/pdf' 
+    });
+    this.http.post(fileUrl, data, {headers: headers, responseType:'blob'}).subscribe((pdfFile)=>{
+      console.log('Got response: '+pdfFile.type+' '+pdfFile.size+' '+pdfFile+'.');
+      // var blob = new Blob(pdfFile, { type: 'application/pdf' });
+      var url = window.URL.createObjectURL(pdfFile);
       window.open(url);
     });
   }
