@@ -260,61 +260,68 @@ public class AccountController {
         try {
             VisitDao visitDao = new VisitDao();
             Visit visit = visitDao.findByVisitId(visit_id);
+            System.out.println("visit id is not null \n");
 
             //get patient for other fields and patient_id
             PatientProfile pp = visit.getPatient();
+            System.out.println("patient profile is not null \n");
 
             //get Doctor for doctor id
             Doctor doctor = pp.getDoctor();
+            System.out.println("doctor is not null \n");
 
             //get list of diagnosis by patient
             DiagnosisDao diagnosisDao = new DiagnosisDao();
             List<Diagnosis> d = diagnosisDao.findByVisit(visit);
             String toSplit = null;
             List<String> diagnosisList = new ArrayList<>();
-            if (d.size() != 0 ) {
+            if (d.get(0) != null ) {
                 toSplit = d.get(0).getDiagnosis();
                 diagnosisList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
+            System.out.println("diagnosis is not null \n");
 
             //get list of symptoms by patient
             SymptomsDao symptomsDao = new SymptomsDao();
             List<Symptoms> s = symptomsDao.findByVisit(visit);
             List<String> symptomList = new ArrayList<>();
-            if (s.size() != 0) {
+            if (s.get(0) != null) {
                 toSplit = s.get(0).getSymptoms();
                 symptomList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
+            System.out.println("symptoms is not null \n");
 
             //get list of prescriptions
             PrescriptionsDao prescriptionsDao = new PrescriptionsDao();
             List<Prescriptions> allPrescriptions = prescriptionsDao.findByVisit(visit);
             List<String> prescriptionsList = new ArrayList<>();
-            if (allPrescriptions.size() != 0){
+            if (allPrescriptions.get(0) != null){
                 toSplit = allPrescriptions.get(0).getDrugs();
                 prescriptionsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
+            System.out.println("prescriptions is not null \n");
 
             //get list of treatments
             TreatmentsDao treatmentsDao = new TreatmentsDao();
             List<Treatments> allTreatments = treatmentsDao.findByVisit(visit);
             List<String> treatmentsList = new ArrayList<>();
-            if (allTreatments.size() != 0){
+            if (allTreatments.get(0) != null){
                 toSplit = allTreatments.get(0).getTreatment();
                 treatmentsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
+            System.out.println("treatments is not null \n");
 
             //get list of tests
             TestsDao testsDao = new TestsDao();
             List<Tests> allTests = testsDao.findByVisit(visit);
             List<String> testsList = new ArrayList<>();
-            if (allTests.size() != 0){
+            if (allTests.get(0) != null){
                 toSplit = allTests.get(0).getTest();
                 testsList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
-            VisitDetails visitDetails = new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), diagnosisList, symptomList, prescriptionsList, treatmentsList, testsList);
+            System.out.println("tests are not null \n");
+            return new VisitDetails(visit_id, doctor.getDoctor_id(), pp.getPatientId(), diagnosisList, symptomList, prescriptionsList, treatmentsList, testsList);
 
-            return visitDetails;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -343,10 +350,11 @@ public class AccountController {
             }
             else {
                 for (int i = 0; i < diagnosisList.size(); i++) {
-                    if (diagnosisList.get(i) == null || diagnosisList.get(i) == "")
+                    if (diagnosisList.get(i) == null || diagnosisList.get(i).equals("")||diagnosisList.get(i).equals("null"))
                     {
                         break;
                     }
+                    System.out.println(diagnosisList.get(i) + "\n");
                     diagnosis = diagnosis + "," + diagnosisList.get(i);
                 }
             }
@@ -376,9 +384,10 @@ public class AccountController {
             }
             else{
                 for (int i = 0; i < symptomsList.size(); i++) {
-                    if(symptomsList.get(i) == null || symptomsList.get(i) == ""){
+                    if(symptomsList.get(i) == null || symptomsList.get(i).equals("")||symptomsList.get(i).equals("null")){
                         break;
                     }
+                    System.out.println(symptomsList.get(i));
                     symptoms = symptoms + "," + symptomsList.get(i);
                 }
             }
@@ -405,7 +414,7 @@ public class AccountController {
             }
             else{
                 for (int i = 0; i < prescriptionsList.size(); i++) {
-                    if(prescriptionsList.get(i) == null || prescriptionsList.get(i) == ""){
+                    if(prescriptionsList.get(i) == null || prescriptionsList.get(i).equals("")||prescriptionsList.get(i).equals("null")){
                         break;
                     }
                     prescriptions = prescriptions + "," + prescriptionsList.get(i);
@@ -431,7 +440,7 @@ public class AccountController {
             }
             else{
                 for (int i = 0; i < treatmentsList.size(); i++) {
-                    if(treatmentsList.get(i) == null || treatmentsList.get(i) == ""){
+                    if(treatmentsList.get(i) == null || treatmentsList.get(i).equals("")||treatmentsList.get(i).equals("null")){
                         break;
                     }
                     treatments = treatments + "," + treatmentsList.get(i);
@@ -456,7 +465,7 @@ public class AccountController {
             }
             else {
                 for (int i = 0; i < testsList.size(); i++) {
-                    if(testsList.get(i) == null || testsList.get(i) == ""){
+                    if(testsList.get(i) == null || testsList.get(i).equals("")||testsList.get(i).equals("null")){
                         break;
                     }
                     tests = tests + "," + testsList.get(i);
