@@ -18,7 +18,7 @@ public class VisitDaoTest {
         Visit visit = new Visit();
 
         // set needed values
-//        visit.setVisitDate(Date.from(Instant.now()));
+        visit.setVisitDate(Date.from(Instant.now()));
 
         // create test
         visit = visitDao.create(visit);

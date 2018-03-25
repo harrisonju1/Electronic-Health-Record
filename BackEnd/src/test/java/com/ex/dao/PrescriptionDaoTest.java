@@ -31,7 +31,7 @@ public class PrescriptionDaoTest {
         // find by id test
         List<Prescriptions> found = prescriptionDao.findByPrescriptionsId(prescription.getPrescriptionId());
         Assert.assertNotNull(found);
-        Assert.assertEquals(prescription, found.get(0));
+        Assert.assertEquals(prescription.getPrescriptionId(), found.get(0).getPrescriptionId());
 
         // test other methods
 
@@ -42,7 +42,7 @@ public class PrescriptionDaoTest {
         Prescriptions updated = prescriptionDao.update(prescription);
         List<Prescriptions> updatedFound = prescriptionDao.findByPrescriptionsId(prescription.getPrescriptionId());
         Assert.assertNotNull(updatedFound);
-        Assert.assertEquals(prescription, updatedFound.get(0));
+        Assert.assertEquals(prescription.getPrescriptionId(), updatedFound.get(0).getPrescriptionId());
 
         // delete test
         prescriptionDao.delete(prescription);

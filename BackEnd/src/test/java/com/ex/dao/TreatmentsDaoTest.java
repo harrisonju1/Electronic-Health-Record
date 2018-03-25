@@ -5,6 +5,8 @@ import com.ex.beans.Visit;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 public class TreatmentsDaoTest {
@@ -17,7 +19,9 @@ public class TreatmentsDaoTest {
 
         // set needed values
         Visit v = new Visit();
-        v.setVisitId(9999);
+        VisitDao visitDao = new VisitDao();
+        v.setVisitDate(Date.from(Instant.now()));
+        v = visitDao.create(v);
         treatments.setVisitId(v);
 
         // create test
@@ -27,7 +31,7 @@ public class TreatmentsDaoTest {
         // find by id test
         List<Treatments> found = treatmentsDao.findByTreatmentId(treatments.getTreatmentId());
         Assert.assertNotNull(found);
-        Assert.assertEquals(treatments, found.get(0));
+        Assert.assertEquals(treatments.getTreatmentId(), found.get(0).getTreatmentId());
 
         // test other methods
 
@@ -38,10 +42,11 @@ public class TreatmentsDaoTest {
         Treatments updated = treatmentsDao.update(treatments);
         List<Treatments> updatedFound = treatmentsDao.findByTreatmentId(treatments.getTreatmentId());
         Assert.assertNotNull(updatedFound);
-        Assert.assertEquals(treatments, updatedFound.get(0));
+        Assert.assertEquals(treatments.getTreatmentId(), updatedFound.get(0).getTreatmentId());
 
         // delete test
         treatmentsDao.delete(treatments);
+        visitDao.delete(v);
 
         // find all test
         List<Treatments> all = treatmentsDao.findAll();
