@@ -14,7 +14,7 @@ public class AllergiesDaoTest {
 
         Allergies allergies = new Allergies();
 
-        // todo set needed values
+        // set needed values
 
 
         // create test
@@ -26,11 +26,11 @@ public class AllergiesDaoTest {
 //        Assert.assertNotNull(found);
 //        Assert.assertEquals(allergies, found.get(0));
 
-        // todo any other methods tested here
+        // test other methods
 
 
         // update test
-        // todo actually change a value
+        // todo change a value
 
         Allergies updated = allergiesDao.update(allergies);
 //        List<Allergies> updatedFound = allergiesDao.fin(allergies.getTestId());

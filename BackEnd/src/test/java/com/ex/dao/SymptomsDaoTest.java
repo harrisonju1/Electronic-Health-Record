@@ -14,7 +14,7 @@ public class SymptomsDaoTest {
 
         Symptoms symptoms = new Symptoms();
 
-        // todo set needed values
+        // set needed values
 
 
         // create test
@@ -26,11 +26,11 @@ public class SymptomsDaoTest {
         Assert.assertNotNull(found);
         Assert.assertEquals(symptoms, found.get(0));
 
-        // todo any other methods tested here
+        // test other methods
 
 
         // update test
-        // todo actually change a value
+        // todo change a value
 
         Symptoms updated = symptomsDao.update(symptoms);
         List<Symptoms> updatedFound = symptomsDao.findBySymptomId(symptoms.getSymptomId());

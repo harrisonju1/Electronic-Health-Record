@@ -15,7 +15,7 @@ public class TreatmentsDaoTest {
 
         Treatments treatments = new Treatments();
 
-        // todo set needed values
+        // set needed values
         Visit v = new Visit();
         v.setVisitId(9999);
         treatments.setVisitId(v);
@@ -29,11 +29,11 @@ public class TreatmentsDaoTest {
         Assert.assertNotNull(found);
         Assert.assertEquals(treatments, found.get(0));
 
-        // todo any other methods tested here
+        // test other methods
 
 
         // update test
-        // todo actually change a value
+        // todo change a value
 
         Treatments updated = treatmentsDao.update(treatments);
         List<Treatments> updatedFound = treatmentsDao.findByTreatmentId(treatments.getTreatmentId());

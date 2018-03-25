@@ -16,7 +16,7 @@ public class TestsDaoTest {
 
         Tests tests = new Tests();
 
-        // todo set needed values
+        // set needed values
 
 
         // create test
@@ -28,11 +28,11 @@ public class TestsDaoTest {
         Assert.assertNotNull(found);
         Assert.assertEquals(tests, found.get(0));
 
-        // todo any other methods tested here
+        // test other methods
 
 
         // update test
-        // todo actually change a value
+        // todo change a value
 
         Tests updated = testsDao.update(tests);
         List<Tests> updatedFound = testsDao.findByTestId(tests.getTestId());

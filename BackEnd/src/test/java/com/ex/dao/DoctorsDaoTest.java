@@ -15,7 +15,7 @@ public class DoctorsDaoTest {
 
         Doctor doctor = new Doctor();
 
-        // todo set needed values
+        // set needed values
         doctor.setDoctor_id(new Random().nextInt());
         doctor.setFirst_name("fname");
         doctor.setLast_name("lname");
@@ -30,11 +30,11 @@ public class DoctorsDaoTest {
         Assert.assertNotNull(found);
         Assert.assertEquals(doctor, found);
 
-        // todo any other methods tested here
+        // test other methods
 
 
         // update test
-        // todo actually change a value
+        // todo change a value
 
         Doctor updated = doctorDao.update(doctor);
         Doctor updatedFound = doctorDao.getByDoctorId(doctor.getDoctor_id());

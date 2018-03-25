@@ -23,7 +23,7 @@ export class VisitsComponent implements OnInit {
   userRole: string;
   updating: boolean = false; //check if page is in update mode
 
-  canCheck: boolean = false;
+  canCheck: boolean = false;n
   error1: boolean = false;
   error2: boolean = false;
   error3: boolean = false;

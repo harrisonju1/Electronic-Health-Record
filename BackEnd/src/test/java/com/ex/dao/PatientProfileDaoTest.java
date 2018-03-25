@@ -15,7 +15,7 @@ public class PatientProfileDaoTest {
 
         PatientProfile patientProfile = new PatientProfile();
 
-        // todo set needed values
+        // set needed values
 
 
         // create test
@@ -28,11 +28,11 @@ public class PatientProfileDaoTest {
         Assert.assertNotNull(found);
         Assert.assertEquals(patientProfile, found);
 
-        // todo any other methods tested here
+        // test other methods
 
 
         // update test
-        // todo actually change a value
+        // todo change a value
 
         PatientProfile updated = patientProfileDao.update(patientProfile);
         PatientProfile updateFound = patientProfileDao.findOneByPatientId(patientProfile.getPatientId());
