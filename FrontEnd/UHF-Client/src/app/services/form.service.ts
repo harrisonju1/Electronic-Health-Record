@@ -16,7 +16,7 @@ const httpOptions = {
 export class FormService {
 
   // private baseUrl = 'http://localhost:8080/api/';
-  private baseUrl = 'http://ec2-34-204-88-121.compute-1.amazonaws.com:8090/api/';
+  baseUrl = 'http://ec2-34-204-88-121.compute-1.amazonaws.com:8090/api/';
 
   private authorizeUrl = this.baseUrl + 'authorize';
 

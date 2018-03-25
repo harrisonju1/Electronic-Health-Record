@@ -27,8 +27,8 @@ public class AccountControllerTest {
         String cred = uname+":"+"root";
         cred = EncryptionUtil.encrypt(cred);
         Object user = accountController.authorize(cred);
-//        Assert.assertNotNull(user);
-//        Assert.assertEquals("root", ((User)user).getUsername());
+       Assert.assertNotNull(user);
+       Assert.assertEquals("root", ((User)user).getUsername());
     }
 
 //    @Test
