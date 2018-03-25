@@ -32,7 +32,7 @@ List of Technologies Used
 - AWS EC2
 - AWS RDS
 - PostgreSql
-- PDF converter
+- iText PDF converter
 - Spring Web
 - Spring Boot
 - JUnit
