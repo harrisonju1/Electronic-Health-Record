@@ -44,12 +44,12 @@ public class Prescriptions {
         this.drugs = drugs;
     }
 
-    public int getPrescriptionId() {
+    public int getPrescription_id() {
         return prescription_id;
     }
 
-    public void setPrescriptionId(int prescriptionId) {
-        this.prescription_id = prescriptionId;
+    public void setPrescription_id(int prescription_id) {
+        this.prescription_id = prescription_id;
     }
 
     public PatientProfile getPatient() {
@@ -64,7 +64,7 @@ public class Prescriptions {
         return doctor;
     }
 
-    public void setDoctor(int doctor_id) {
+    public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
 
@@ -72,7 +72,7 @@ public class Prescriptions {
         return visit;
     }
 
-    public void setVisitId(Visit visit) {
+    public void setVisit(Visit visit) {
         this.visit = visit;
     }
 

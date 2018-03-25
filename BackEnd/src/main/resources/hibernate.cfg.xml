@@ -14,7 +14,6 @@
         <!-- this is where we would place mapping for classes used -->
         <mapping class="com.ex.beans.User"/>
         <mapping class="com.ex.beans.PatientProfile"/>
-        <mapping class="com.ex.beans.Allergies"/>
         <mapping class="com.ex.beans.Diagnosis"/>
         <mapping class="com.ex.beans.Doctor"/>
         <mapping class="com.ex.beans.Prescriptions"/>

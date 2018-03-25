@@ -80,36 +80,7 @@ public class PatientProfile {
         this.insurance_id = insurance_id;
     }
 
-//    public PatientProfile(int patient_id, Doctor doctor, String first_name, String last_name, int ssn, Date dob, String phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insurance_id) {
-//        this.patient_id = patient_id;
-//        this.doctor = doctor;
-//        this.first_name = first_name;
-//        this.last_name = last_name;
-//        this.ssn = ssn;
-//        this.dob = dob;
-//        this.phone_number = phone_number;
-//        this.email = email;
-//        this.marital_status = marital_status;
-//        this.gender = gender;
-//        this.ethnicity = ethnicity;
-//        this.occupation = occupation;
-//        this.address = address;
-//        this.city = city;
-//        this.state = state;
-//        this.zipcode = zipcode;
-//        this.insurance_provider = insurance_provider;
-//        this.insurance_id = insurance_id;
-//    }
-
-
-
-
-
-    public int getPatientId() {
-        return patient_id;
-    }
-
-    public void setPatientId(int patientId) {
+    public void setPatient_id(int patientId) {
         this.patient_id = patientId;
     }
 
@@ -120,10 +91,6 @@ public class PatientProfile {
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
-
-//    public int getDoctor_id(){return doctor_id;}
-//
-//    public void setDoctor_id(int doctor_id){this.doctor_id = doctor_id;}
 
     public String getFirst_name() {
         return first_name;
@@ -243,12 +210,12 @@ public class PatientProfile {
         this.insurance_provider = insurance_provider;
     }
 
-    public int getInsuranceId() {
+    public int getInsurance_id() {
         return insurance_id;
     }
 
-    public void setInsuranceId(int insuranceId) {
-        this.insurance_id = insuranceId;
+    public void setInsurance_id(int insurance_id) {
+        this.insurance_id = insurance_id;
     }
 
     public int getPatient_id() {

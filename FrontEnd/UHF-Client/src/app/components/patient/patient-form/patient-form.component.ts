@@ -151,10 +151,14 @@ export class PatientFormComponent implements OnInit {
       this.patientProfile.insurance_id != null &&
       this.patientProfile.insurance_provider != "") {
 
+      this.patientProfile.dob = new Date(this.patientProfile.dob);
+      this.patientProfile.dob.setHours(24);
+
       this.submitted = true;
 
       // send patient profile to server
       this.formService.createPatientProfile(this.patientProfile);
+      
     }
   }
 

@@ -41,6 +41,7 @@ export class FormService {
 
   createPatientProfile(form: PatientProfile) {
     console.log(form);
+
     this.http.post(this.patientUrl, form, httpOptions).subscribe();
 
     // console.log("here")
@@ -49,6 +50,7 @@ export class FormService {
     // console.log(data);
     // let obs = this.http.post<User>(this.authorizeUrl, data, httpOptions);
     // return obs;
+    this.router.navigate(['/home']);
   }
 
   getDoctor(doctor_id: number): Observable<Doctor> {
@@ -75,7 +77,7 @@ export class FormService {
 
   /* APPT RECORD FORM SERVICES ------------------------------------------------------------------------------- */
   createApptRecord(form: ApptRecord) {
-    console.log("from createappt record:" + form);
+    console.log("from createappt record:" + form.visit_date);
     this.http.post(this.visitUrl, form, httpOptions).subscribe();
     this.router.navigate(['/patient/' + form.patient_id]);
   }
@@ -94,5 +96,7 @@ export class FormService {
   updateVisitDetails(visitDetails: VisitDetails) {
     console.log("updatevisit details was reached")
     this.http.post(this.visitUrl + "/update", visitDetails, httpOptions).subscribe();
+    // // this.router.navigate(['/patient/' + visitDetails.patient_id + '/visit/' + visitDetails.visit_id]);
+    window.location.reload();
   }
 }

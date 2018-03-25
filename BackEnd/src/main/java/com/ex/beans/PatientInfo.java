@@ -31,7 +31,7 @@ public class PatientInfo {
     }
 
     public PatientInfo(PatientProfile pp) {
-        this.patient_id = pp.getPatientId();
+        this.patient_id = pp.getPatient_id();
         this.doctor_id = pp.getDoctor().getDoctor_id();
         this.first_name = pp.getFirst_name();
         this.last_name = pp.getLast_name();
@@ -48,7 +48,7 @@ public class PatientInfo {
         this.state = pp.getState();
         this.zipcode = pp.getZipcode();
         this.insurance_provider = pp.getInsurance_provider();
-        this.insurance_id = pp.getInsuranceId();
+        this.insurance_id = pp.getInsurance_id();
     }
 
     public PatientInfo(int patient_id, int doctor_id, String first_name, String last_name, int ssn, Date dob, String phone_number, String email, String marital_status, String gender, String ethnicity, String occupation, String address, String city, String state, int zipcode, String insurance_provider, int insurance_id) {

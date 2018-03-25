@@ -59,6 +59,29 @@ div.container {
     background-size: cover;
 }
 
+#BADiv {
+    display:block;
+    /* background-color: #374346; */
+    background-image:url("/assets/bg.jpeg");
+    height:400px;
+    text-align:center;
+    color:#374346;
+    padding:10% 0% 20% 0%;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#BAdivbg {
+    background-color:rgba(250,250,250,0.7);
+    border-radius:25px;
+    padding:2%;
+    width:70%;
+    margin:0 auto;
+}
+
 nav {
     z-index: 5;
 }
@@ -81,11 +104,11 @@ nav {
     /* background-color: #014353; */
     background:linear-gradient(#014353 , #0e7a96);
     color:#fff;
-    border-radius:20px;
+    border-radius:25px;
 }
 
 .box:not(:last-child) {
-    border-right:#fff solid 2px;
+    border-right:rgba(250,250,250,0.7) solid 2px;
 }
 
 .box:hover {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../../services/authorization.service';
+import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { VisitDetails } from '../../../domain/VisitDetails';
 import { ApptRecord } from '../../../domain/ApptRecord';
 import { ActivatedRoute } from '@angular/router';
@@ -15,14 +16,14 @@ export class VisitsComponent implements OnInit {
 
   pID: number;
   visit_id: number = 1;
-  currentVisit: VisitDetails;
+  currentVisit: VisitDetails;  
   currentAppt: ApptRecord;
   currentDoctor: Doctor;
   isDoctor: boolean; // check if current user role is doctor
   userRole: string;
   updating: boolean = false; //check if page is in update mode
 
-  canCheck: boolean = false;
+  canCheck: boolean = false;n
   error1: boolean = false;
   error2: boolean = false;
   error3: boolean = false;
@@ -39,10 +40,12 @@ export class VisitsComponent implements OnInit {
   constructor(
     private authService: AuthorizationService,
     private formService: FormService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient,
   ) { }
 
   ngOnInit() {
+
     // get the current user
     this.userRole = this.authService.getUserRole();
     console.log(this.userRole);
@@ -50,21 +53,41 @@ export class VisitsComponent implements OnInit {
     if (this.userRole == "DOCTOR") {
       this.isDoctor = true;
     }
-
+    
     // get patientID
     this.pID = +this.route.snapshot.paramMap.get('patient_id');
 
     // get visit details
     const visID = +this.route.snapshot.paramMap.get('visit_id');
-    this.formService.getVisitDetailsByID(visID).subscribe(a => {
-      this.currentVisit = a;
+    
+    this.formService.getAllApptRecords(this.pID).subscribe(a => {
+      a.forEach(r => {
+        if (r.visit_id == visID){
+          this.currentAppt = r;
+        }
+      });
 
-      //   // get doctor information
-      this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
-        this.currentDoctor = d;
-        this.canCheck = true;
+      this.formService.getVisitDetailsByID(visID).subscribe(a2 => {
+        this.currentVisit = a2;
+  
+        //   // get doctor information
+        this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+          this.currentDoctor = d;
+          this.currentVisit.doctor_id = this.currentDoctor.doctor_id;
+          this.canCheck = true;
+        });
       });
     });
+
+    // this.formService.getVisitDetailsByID(visID).subscribe(a => {
+    //   this.currentVisit = a;
+
+    //   //   // get doctor information
+    //   this.formService.getDoctor(this.currentVisit.doctor_id).subscribe(d => {
+    //     this.currentDoctor = d;
+    //     this.canCheck = true;
+    //   });
+    // });
 
     // VISIT DETAILS DUMMY DATA
     // this.currentVisit = new VisitDetails(1, 5, this.pID, ["You're on fire.", "Make a dragon wanna retire, man."], ["Very high temperatures.", "Fire.", "Burn baby burn."], ["Ice water.", "Burn cream.", "Sleep."], ["Ice Bath"], ["None"]);
@@ -75,7 +98,22 @@ export class VisitsComponent implements OnInit {
     // });
   }
 
-  ngDoCheck() {
+  // ------------------------ Download PDF ------------------------------------
+  downloadAsPDF() {
+    // send visit details to server to make a pdf for us
+    const fileUrl = this.formService.baseUrl + 'pdf/visitdetails';
+    var data = this.currentVisit;
+    console.log('Getting pdf for: '+JSON.stringify(data, null, 4)+'.');
+    let headers = new HttpHeaders({ 
+      'Content-Type': 'application/json', 
+      'Accept': 'application/pdf' 
+    });
+    this.http.post(fileUrl, data, {headers: headers, responseType:'blob'}).subscribe((pdfFile)=>{
+      // console.log('Got response: '+pdfFile.type+' '+pdfFile.size+' '+pdfFile+'.');
+      // open pdf in a new window
+      var url = window.URL.createObjectURL(pdfFile);
+      window.open(url);
+    });
   }
 
   // ------------------------ UPDATING/REMOVING DIAGNOSES ----------------------

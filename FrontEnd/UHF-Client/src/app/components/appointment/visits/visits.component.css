@@ -1,5 +1,6 @@
 .container {
-    background-color: aliceblue;
+    /* background-color: #ecf7fa; */
+    background:linear-gradient( #e5f8fd,rgb(202, 241, 248) );
     margin: 5% auto;
     border-radius: 25px;
     width: 50%;

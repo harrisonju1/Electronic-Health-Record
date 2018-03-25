@@ -16,7 +16,7 @@ public class VisitDao {
         Transaction transaction = session.beginTransaction();
 
         Integer id = (Integer) session.save(visits);
-        visits.setVisitId(id);
+        visits.setVisit_id(id);
         transaction.commit();
 
         session.close();
