@@ -13,39 +13,51 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200", "http://universal-healthcare-force.s3-website-us-east-1.amazonaws.com"})
 public class GetControllers {
-    // returns the data for a pdf
-    @RequestMapping("/pdftest")
-    String getPDF1() {
-        return "<a href=\"http://localhost:8090/api/pdf/visitdetails\">View pdf</a>";
-    }
+
     // returns the pdf for visit details
     @RequestMapping(value = "/api/pdf/visitdetails", produces = "application/pdf")
     Object getPDF(@RequestBody VisitDetails visitDetails) {
+
         try {
             // create a new pdf for this visit details
             PdfMaker pdf = new PdfMaker();
-            pdf.setTitle("Visit Details");
+            pdf.setTitle("=========== VISIT DETAILS ===========");
 
-            pdf.addText("Visit ID: "+visitDetails.visit_id);
+            pdf.addText("============================== VISIT DETAILS ==============================");
 
-            pdf.addText("Doctor ID: "+visitDetails.doctor_id);
-            pdf.addText("Patient ID: "+visitDetails.patient_id);
+            pdf.addText("                                                                 Visit ID: "+visitDetails.visit_id + "                                                       ");
 
+            pdf.addText("                                                                 Doctor ID: "+visitDetails.doctor_id + "                                                       ");
+
+            pdf.addText("                                                                 Patient ID: "+visitDetails.patient_id + "                                                       ");
+
+            pdf.addText("==========================================================================");
+            pdf.addText("          ");
             // add lists to pdf
-            pdf.addText("Diagnosis:");
+            pdf.addText("DIAGNOSIS");
             pdf.addList(visitDetails.diagnosis, false);
 
-            pdf.addText("Symptoms:");
+            pdf.addText("--------------------------------------------------------------------------------------------------------------------------------");
+
+            pdf.addText("SYMPTOMS");
             pdf.addList(visitDetails.symptoms, false);
 
-            pdf.addText("Prescriptions:");
+            pdf.addText("--------------------------------------------------------------------------------------------------------------------------------");
+
+            pdf.addText("PRESCRIPTIONS");
             pdf.addList(visitDetails.prescriptions, false);
 
-            pdf.addText("Treatments:");
+            pdf.addText("--------------------------------------------------------------------------------------------------------------------------------");
+
+            pdf.addText("TREATMENTS");
             pdf.addList(visitDetails.treatments, false);
 
-            pdf.addText("Tests:");
+            pdf.addText("--------------------------------------------------------------------------------------------------------------------------------");
+
+            pdf.addText("TESTS");
             pdf.addList(visitDetails.tests, false);
+
+            pdf.addText("--------------------------------------------------------------------------------------------------------------------------------");
 
             return pdf.finishDocument();
         } catch (Exception e) {

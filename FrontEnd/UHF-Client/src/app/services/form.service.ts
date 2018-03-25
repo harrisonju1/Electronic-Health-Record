@@ -39,6 +39,7 @@ export class FormService {
 
   createPatientProfile(form: PatientProfile) {
     console.log(form);
+
     this.http.post(this.patientUrl, form, httpOptions).subscribe();
 
     // console.log("here")
