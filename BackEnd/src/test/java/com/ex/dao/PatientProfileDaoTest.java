@@ -20,11 +20,11 @@ public class PatientProfileDaoTest {
 
         // create test
         PatientInfo patientInfo = patientProfileDao.create(patientProfile);
-        patientProfile.setPatientId(patientInfo.patient_id);
+        patientProfile.setPatient_id(patientInfo.patient_id);
         Assert.assertNotNull(patientProfile);
 
         // find by id test
-        PatientProfile found = patientProfileDao.findOneByPatientId(patientProfile.getPatientId());
+        PatientProfile found = patientProfileDao.findOneByPatientId(patientProfile.getPatient_id());
         Assert.assertNotNull(found);
         Assert.assertEquals(patientProfile, found);
 
@@ -35,7 +35,7 @@ public class PatientProfileDaoTest {
         // todo change a value
 
         PatientProfile updated = patientProfileDao.update(patientProfile);
-        PatientProfile updateFound = patientProfileDao.findOneByPatientId(patientProfile.getPatientId());
+        PatientProfile updateFound = patientProfileDao.findOneByPatientId(patientProfile.getPatient_id());
         Assert.assertNotNull(updateFound);
         Assert.assertEquals(patientProfile, updateFound);
 

@@ -20,18 +20,18 @@ public class TreatmentsDaoTest {
         // set needed values
         Visit v = new Visit();
         VisitDao visitDao = new VisitDao();
-        v.setVisitDate(Date.from(Instant.now()));
+        v.setVisit_date(Date.from(Instant.now()));
         v = visitDao.create(v);
-        treatments.setVisitId(v);
+        treatments.setVisit(v);
 
         // create test
         treatments = treatmentsDao.create(treatments);
         Assert.assertNotNull(treatments);
 
         // find by id test
-        List<Treatments> found = treatmentsDao.findByTreatmentId(treatments.getTreatmentId());
+        List<Treatments> found = treatmentsDao.findByTreatmentId(treatments.getTreatment_id());
         Assert.assertNotNull(found);
-        Assert.assertEquals(treatments.getTreatmentId(), found.get(0).getTreatmentId());
+        Assert.assertEquals(treatments.getTreatment_id(), found.get(0).getTreatment_id());
 
         // test other methods
 
@@ -40,9 +40,9 @@ public class TreatmentsDaoTest {
         // todo change a value
 
         Treatments updated = treatmentsDao.update(treatments);
-        List<Treatments> updatedFound = treatmentsDao.findByTreatmentId(treatments.getTreatmentId());
+        List<Treatments> updatedFound = treatmentsDao.findByTreatmentId(treatments.getTreatment_id());
         Assert.assertNotNull(updatedFound);
-        Assert.assertEquals(treatments.getTreatmentId(), updatedFound.get(0).getTreatmentId());
+        Assert.assertEquals(treatments.getTreatment_id(), updatedFound.get(0).getTreatment_id());
 
         // delete test
         treatmentsDao.delete(treatments);

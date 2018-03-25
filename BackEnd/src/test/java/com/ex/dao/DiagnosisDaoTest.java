@@ -22,7 +22,7 @@ public class DiagnosisDaoTest {
         Assert.assertNotNull(diagnosis);
 
         // find by id test
-        List<Diagnosis> found = diagnosisDao.findByDiagnosisId(diagnosis.getDiagnosisId());
+        List<Diagnosis> found = diagnosisDao.findByDiagnosisId(diagnosis.getDiagnosis_id());
         Assert.assertNotNull(found);
         Assert.assertEquals(diagnosis, found.get(0));
 
@@ -33,7 +33,7 @@ public class DiagnosisDaoTest {
         // todo change a value
 
         Diagnosis updated = diagnosisDao.update(diagnosis);
-        List<Diagnosis> updatedFound = diagnosisDao.findByDiagnosisId(diagnosis.getDiagnosisId());
+        List<Diagnosis> updatedFound = diagnosisDao.findByDiagnosisId(diagnosis.getDiagnosis_id());
         Assert.assertNotNull(updatedFound);
         Assert.assertEquals(diagnosis, updatedFound.get(0));
 

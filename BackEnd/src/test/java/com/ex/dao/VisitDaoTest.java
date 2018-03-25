@@ -18,17 +18,17 @@ public class VisitDaoTest {
         Visit visit = new Visit();
 
         // set needed values
-        visit.setVisitDate(Date.from(Instant.now()));
+        visit.setVisit_date(Date.from(Instant.now()));
 
         // create test
         visit = visitDao.create(visit);
         Assert.assertNotNull(visit);
 
         // find by id test
-        Visit found = visitDao.findByVisitId(visit.getVisitId());
+        Visit found = visitDao.findByVisitId(visit.getVisit_id());
         Assert.assertNotNull(found);
         // note: date will be different
-        Assert.assertEquals(visit.getVisitId(), found.getVisitId());
+        Assert.assertEquals(visit.getVisit_id(), found.getVisit_id());
 
         // test other methods
 
@@ -37,9 +37,9 @@ public class VisitDaoTest {
         // todo change a value
 
         Visit updated = visitDao.update(visit);
-        Visit updatedFound = visitDao.findByVisitId(visit.getVisitId());
+        Visit updatedFound = visitDao.findByVisitId(visit.getVisit_id());
         Assert.assertNotNull(updatedFound);
-        Assert.assertEquals(visit.getVisitId(), found.getVisitId());
+        Assert.assertEquals(visit.getVisit_id(), found.getVisit_id());
 
         // delete test
         visitDao.delete(visit);

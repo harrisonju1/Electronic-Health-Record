@@ -20,18 +20,18 @@ public class PrescriptionDaoTest {
         // set needed values
         Visit v = new Visit();
         VisitDao visitDao = new VisitDao();
-        v.setVisitDate(Date.from(Instant.now()));
+        v.setVisit_date(Date.from(Instant.now()));
         v = visitDao.create(v);
-        prescription.setVisitId(v);
+        prescription.setVisit(v);
 
         // create test
         prescription = prescriptionDao.create(prescription);
         Assert.assertNotNull(prescription);
 
         // find by id test
-        List<Prescriptions> found = prescriptionDao.findByPrescriptionsId(prescription.getPrescriptionId());
+        List<Prescriptions> found = prescriptionDao.findByPrescriptionsId(prescription.getPrescription_id());
         Assert.assertNotNull(found);
-        Assert.assertEquals(prescription.getPrescriptionId(), found.get(0).getPrescriptionId());
+        Assert.assertEquals(prescription.getPrescription_id(), found.get(0).getPrescription_id());
 
         // test other methods
 
@@ -40,9 +40,9 @@ public class PrescriptionDaoTest {
         // todo change a value
 
         Prescriptions updated = prescriptionDao.update(prescription);
-        List<Prescriptions> updatedFound = prescriptionDao.findByPrescriptionsId(prescription.getPrescriptionId());
+        List<Prescriptions> updatedFound = prescriptionDao.findByPrescriptionsId(prescription.getPrescription_id());
         Assert.assertNotNull(updatedFound);
-        Assert.assertEquals(prescription.getPrescriptionId(), updatedFound.get(0).getPrescriptionId());
+        Assert.assertEquals(prescription.getPrescription_id(), updatedFound.get(0).getPrescription_id());
 
         // delete test
         prescriptionDao.delete(prescription);
