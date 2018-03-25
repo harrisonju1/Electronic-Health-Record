@@ -140,7 +140,7 @@ public class GetControllers {
                 toSplit = d.get(0).getDiagnosis();
                 diagnosisList = new ArrayList<>(Arrays.asList(toSplit.split(",")));
             }
-//            System.out.println("diagnosis is not null \n");
+
             //get list of symptoms by patient
             SymptomsDao symptomsDao = new SymptomsDao();
             List<Symptoms> s = symptomsDao.findByVisit(visit);

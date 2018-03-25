@@ -78,7 +78,7 @@ public class UpdateControllers {
                     diagnosis = diagnosisList.get(0);
                 }
                 else {
-                    for (int i = 0; i < diagnosisList.size(); i++) {
+                    for (int i = 1; i < diagnosisList.size(); i++) {
                         diagnosis = diagnosisList.get(i) + "," + diagnosis;
                     }
                 }
@@ -104,7 +104,7 @@ public class UpdateControllers {
                     symptomsDao.update(symptomBean);
                 }
                 else {
-                    for (int i = 0; i < symptomsList.size(); i++) {
+                    for (int i = 1; i < symptomsList.size(); i++) {
                         symptoms = symptomsList.get(i) + "," + symptoms ;
                     }
                 }
@@ -128,7 +128,7 @@ public class UpdateControllers {
                     prescriptions = prescriptionsList.get(0);
                 }
                 else {
-                    for (int i = 0; i < prescriptionsList.size(); i++) {
+                    for (int i = 1; i < prescriptionsList.size(); i++) {
                         prescriptions = prescriptionsList.get(i) + "," + prescriptions;
                     }
                 }
@@ -152,7 +152,7 @@ public class UpdateControllers {
                     tests = testsList.get(0);
                 }
                 else {
-                    for (int i = 0; i < testsList.size(); i++) {
+                    for (int i = 1; i < testsList.size(); i++) {
                         tests = testsList.get(i) + "," + tests;
                     }
                 }
@@ -176,7 +176,7 @@ public class UpdateControllers {
                     treatments = treatmentsList.get(0);
                 }
                 else {
-                    for (int i = 0; i < treatmentsList.size(); i++) {
+                    for (int i = 1; i < treatmentsList.size(); i++) {
                         treatments = treatmentsList.get(i) + "," + treatments ;
                     }
                 }

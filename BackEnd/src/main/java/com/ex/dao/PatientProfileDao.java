@@ -14,11 +14,14 @@ public class PatientProfileDao {
     public PatientInfo create(PatientProfile profile){
         Session session = HibernateUtils.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
+        System.out.println("firstname: "+ profile.getFirst_name());
+        System.out.println("lastname " + profile.getLast_name());
         Integer id = (Integer) session.save(profile);
+        System.out.println(profile.getFirst_name());
         PatientInfo info = new PatientInfo();
         info.setPatient_id(id);
         transaction.commit();
-
+        System.out.println("patientinfo is being sent back: " +info);
         session.close();
         return info;
     }
