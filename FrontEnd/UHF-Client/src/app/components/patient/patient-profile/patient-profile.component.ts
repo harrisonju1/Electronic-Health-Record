@@ -33,7 +33,8 @@ export class PatientProfileComponent implements OnInit {
   constructor(
     private formService: FormService,
     private authService: AuthorizationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -176,6 +177,7 @@ export class PatientProfileComponent implements OnInit {
 
   cancel() {
     this.updating = false;
+    window.location.reload();
   }
 
   logout() {
