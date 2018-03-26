@@ -32,6 +32,25 @@ public class GetControllers {
             pdf.addText("                                                                 Patient ID: "+visitDetails.patient_id + "                                                       ");
 
             pdf.addText("==========================================================================");
+
+            pdf.addText("          ");
+
+            // add patient info
+            PatientProfile patient = new PatientProfileDao().findOneByPatientId(visitDetails.patient_id);
+            pdf.addText("Name: "+patient.getFirst_name()+" "+patient.getLast_name());
+            pdf.addText("SSN: "+patient.getSsn());
+            pdf.addText("Date of Birth: "+patient.getDob());
+            pdf.addText("Phone Number: "+patient.getPhone_number());
+            pdf.addText("Email: "+patient.getEmail());
+            pdf.addText("Marital Status: "+patient.getMarital_status());
+            pdf.addText("Gender: "+patient.getGender());
+            pdf.addText("Ethnicity: "+patient.getEthnicity());
+            pdf.addText("Occupation: "+patient.getOccupation());
+            pdf.addText("Location: "+patient.getAddress());
+            pdf.addText("                "+patient.getCity()+" "+patient.getState());
+            pdf.addText("                "+patient.getZipcode());
+            pdf.addText("Insurance info: "+patient.getInsurance_id()+" "+patient.getInsurance_provider());
+            pdf.addText("          ");
             pdf.addText("          ");
             // add lists to pdf
             pdf.addText("DIAGNOSIS");
