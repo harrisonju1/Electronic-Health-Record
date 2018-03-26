@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   login(username: string, password: string) {
     // $event.preventDefault();
-
+    this.error = null;
     this.username = username;
     this.password = password;
 
