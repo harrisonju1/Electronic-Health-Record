@@ -11,9 +11,11 @@ export class DocidfilterPipe implements PipeTransform {
       return items;
     }
 
+    let s: string =  ""+searchID;
+
     items.forEach(item => {
       items = items.filter(it => {
-        return it.doctor_id === searchID;
+        return (""+it.doctor_id).includes(s);
       });
     });
     return items;

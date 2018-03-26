@@ -131,7 +131,7 @@ export class VisitsComponent implements OnInit {
 
   removeDiagnosis(d: string) {
     let diagnoses = this.currentVisit.diagnosis;
-    let index = diagnoses.indexOf(this.diagnosis);
+    let index = diagnoses.indexOf(d);
     diagnoses.splice(index, 1);
   }
 
